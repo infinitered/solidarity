@@ -1,11 +1,17 @@
 {
   "name": "solidarity",
   "version": "0.0.1",
-  "description": "Make sure all React Native dependencies are even",
-  "main": "index.js",
+  "description": "Make sure all React Native dependencies are uniform across machines",
+  "bin": {
+    "solidarity": "bin/solidarity"
+  },
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gant Laborde",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "gluegun": "^0.20.1"
+  }
 }
