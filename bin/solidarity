@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+
+// TODO: Maybe add some pre-requisites or sanity checks before we go?
+
+// let's kick it off with the command line parameters
+require(`${__dirname}/../src/index.js`)(process.argv)

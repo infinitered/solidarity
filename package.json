@@ -6,12 +6,13 @@
     "solidarity": "bin/solidarity"
   },
   "scripts": {
-    "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bin/solidarity"
   },
   "author": "Gant Laborde",
   "license": "MIT",
   "dependencies": {
-    "gluegun": "^0.20.1"
+    "gluegun": "^0.20.1",
+    "minimist": "^1.2.0",
+    "ramda": "^0.24.1"
   }
 }
