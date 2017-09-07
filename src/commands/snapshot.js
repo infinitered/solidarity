@@ -1,7 +1,7 @@
 // @solidarityDescription Say hello and be nice.
 
 module.exports = async function (context) {
-  const { print } = context
+  const { print, printCommands } = context
 
-  print.info(`👊 I got your back.`)
+  print.info(`O HAI!`)
 }
