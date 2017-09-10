@@ -1,4 +1,4 @@
-// @solidarityDescription Say hello and be nice.
+// @solidarityDescription Take a snapshot of the versions and store in .solidarity file
 
 module.exports = async function (context) {
   const { print, printCommands } = context
