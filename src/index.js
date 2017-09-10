@@ -27,10 +27,14 @@ module.exports = async function run (argv) {
     if (context.error) {
       // something didn't work right in the command
       print.debug(context.error)
-    } else if (wantsHelp || isNil(context.plugin) || isNil(context.command)) {
-      // we didn't do anything, so let's print some helpful instructions
+    } else if (wantsHelp) {
       print.info(`${BRAND}`)
       printCommands(context)
+    } else if (isNil(context.plugin) || isNil(context.command)) {
+      // default option is to run check plugin
+      runtime.run({
+        pluginName: 'check'
+      })
     } else {
       // we did something and it wasn't an error! hurray for us!
     }
