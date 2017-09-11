@@ -1,7 +1,9 @@
 // @solidarityDescription Take a snapshot of the versions and store in .solidarity file
 
 module.exports = async function (context) {
-  const { print, printCommands } = context
+  const { print } = context
+  const { colors } = print
 
-  print.info(`O HAI!`)
+  print.info(colors.bgGreen(colors.black('i like trees')))
+
 }

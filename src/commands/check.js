@@ -3,12 +3,14 @@ const { head, last, trim, pipe, split, replace } = require('ramda')
 
 module.exports = async function (context) {
   const { print, system } = context
+  const { colors } = print
 
-  const spinner = context.print.spin('Verifying')
+  const spinner = context.print.spin('Verifying Versions')
 
   // chomp result and kill `v` from versions (yeah node... we're talking about you!)
   // if nothing is returned, swap out for `None`
   const runTrim = async (command) => pipe(trim, replace('v', ''))(await system.run(command))
+  const printSeparator = () => print.info(colors.america('---------------------------------------'))
 
   const rnVersionRaw = await runTrim(`react-native --version`)
   const rnVersion = pipe(split('\n'), head, trim, split(' '), last)(rnVersionRaw)
@@ -25,20 +27,24 @@ module.exports = async function (context) {
   //   const androidVersion = await system.run(`$ANDROID_HOME/tools/bin/sdkmanager --list | grep 'build-tools;#{ANDROID_SDK}' | tail -1 | awk '{print $3}'`)
   // else?
   //   cat $ANDROID_HOME/tools/source.properties | grep Pkg.Revision
+  const androidSDKVersion = await runTrim(`$ANDROID_HOME/tools/android list sdk | grep 'SDK Tools' | tail -1 | awk '{print $6}'`)
 
   spinner.succeed('Check Success')
-  print.info('-----------------')
+
+  printSeparator()
   // generic printing
   print.table([
-    ['react-native version', rnVersion],
-    ['node version', nodeVersion],
-    ['NPM version', npmVersion],
-    ['yarn version', yarnVersion],
-    // ['Android Version', androidVersion],
+    ['Tool', 'Version'],
+    ['---', '---'],
+    ['react-native', rnVersion],
+    ['node', nodeVersion],
+    ['NPM', npmVersion],
+    ['yarn ', yarnVersion],
+    ['Android SDK', androidSDKVersion],
     ['Xcode', xcodeBuild],
     ['Cocoapods', cocoapods],
     ['Code Push', codePush],
     ['Mobile Center', mobileCenter],
   ])
-
+  printSeparator()
 }
