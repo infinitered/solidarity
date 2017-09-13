@@ -1,19 +1,20 @@
 {
   "Android": [
-    { "name": "Android Home", "rule": "env", "variable": "ANDROID_HOME" },
-    { "name": "", "rule": "cli", "binary": "adb", "regex": "" },
-    { "name": "", "rule": "cli", "binary": "adb" },
-    { "name": "", "build-tools": "cli" },
+    { "rule": "env", "variable": "ANDROID_HOME" },
+    { "rule": "cli", "binary": "adb", "regex": "" },
+    { "rule": "cli", "binary": "adb" },
+    { "build-tools": "cli" },
     { "sdk": "cli" }
   ],
-  "Yarn": [{ "rule": "cli", "binary": "yarn", "semver": "1.0.1" }],
+  "NPM": [{ "rule": "cli", "binary": "npm", "semver": "^1.0.1" }],
+  "Yarn": [{ "rule": "cli", "binary": "yarn", "version": "--version", "semver": "^1.0.1" }],
   "React Native CLI": [{ "rule": "cli", "binary": "react-native", "line": 1 }],
   "Watchman": [
     {
       "rule": "cli",
       "binary": "watchman",
       "line": 1,
-      "errorMessage": "please install `brew install watchman`"
+      "error": "please install `brew install watchman`"
     }
   ]
 }
