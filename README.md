@@ -2,6 +2,7 @@
 -----
 
 An environment checking tool for verifying dependencies across machines for their dependant projects.
+![solidarity action](./_art/action-shot.png)
 
 Package management `.lock` files help zero in on project dependencies, but some tech stacks need so much more! Look at React Native which needs a specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without the sharing the same environment complexity.
 
