@@ -1,6 +1,6 @@
 const { isNil } = require('ramda')
 const minimist = require('minimist')
-const { print, printCommands } = require('gluegun')
+const { print, printCommands, printWtf } = require('gluegun')
 const { BRAND, configureRuntime } = require('./runtime')
 
 /**
@@ -35,6 +35,7 @@ module.exports = async function run (argv) {
       runtime.run({
         pluginName: 'check'
       })
+      printWtf(runtime)
     } else {
       // we did something and it wasn't an error! hurray for us!
     }

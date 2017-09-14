@@ -4,6 +4,7 @@ module.exports = async function (context) {
   const { print } = context
   const { colors } = print
 
-  print.info(colors.bgGreen(colors.black('i like trees')))
-
+  // check is there an existing .solidarity file?
+  // if yes, load in existing file checks and update them
+  // if no, prompt for environment packages
 }
