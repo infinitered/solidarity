@@ -1,20 +1,22 @@
-# solidarity
-React Native tool for verifying dependencies across machines for a project
+![solidarity logo](./_art/solidarity-logo.png)
+-----
 
-Yarn and NPM have locked down the crazy mess of dependencies for JavaScript, but a React Native stack has so much more.  Android SDK, Pods, Xcode, hell, even versions of NPM and Yarn.  This tool is for making sure your team is sharing the same complex environment of dependencies.
+An environment checking tool for verifying dependencies across machines for their dependant projects.
 
-## Hod do I use it?
+Package management `.lock` files help zero in on project dependencies, but some tech stacks need so much more! Look at React Native which needs a specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without the sharing the same environment complexity.
+
+## How do I use it?
 Most of the time you'll just be typing the base command, to check your environment.
 ```sh
 $ solidarity
 ```
 This command looks for the `.solidarity` file in the working directory, and then runs a checking rules against your environment.  The command exit code is tied to the success of solidarity check.
 
-If you have updates to your environment, you can update the file with this:
+Updates to your environment can be stored easily.
 ```sh
 $ solidarity snapshot
 ```
-Snapshot will update the rules in the `.solidarity` file to fit the current system specs.  If no `.solidarity` file is present, then this command will attempt to verify if you have any environment plugins you would like to use.
+Snapshot will update the rules in the `.solidarity` file to fit the current system specs.  If no `.solidarity` file is present, then you are prompted to snapshot the environment variables that fit whatever technology your project depends on.
 
 # Solidarity Options
 By default a snapshot will be strict with the versions of _everything_ detected.  But, semantic versioning is supported.
