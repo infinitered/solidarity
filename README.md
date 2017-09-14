@@ -3,9 +3,10 @@
 
 Package management `.lock` files help zero-in on dependencies, but some stacks need more! For example, React Native needs specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without the sharing the same environment complexity.
 
-![solidarity action](./_art/action-shot.png)
+
 <p align="center">
   <strong>Solidarity is an environment checker for project dependencies across multiple machines.</strong>
+  <img src='./_art/action-shot.png' />
 </p>
 
 ## How do I use it?
@@ -13,7 +14,7 @@ Most of the time you'll just be typing the base command, to check your environme
 ```sh
 $ solidarity
 ```
-This command looks for the `.solidarity` file in the working directory, and then runs a checking rules against your environment.  The command exit code is tied to the success of solidarity check.
+This command looks for the `.solidarity` file in the working directory, and then runs a check of the containing rules against your environment.  The command exit code is tied to the success of solidarity check.
 
 Updates to your environment can be stored easily.
 ```sh
