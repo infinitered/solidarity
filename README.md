@@ -35,3 +35,6 @@ Custom rule-sets can be created by modifying the `.solidarity` file by hand, or 
 
 ## Supported Systems
 Currently solidarity only works with Mac OSX.  Functionality for Windows OS is in the works.  Please submit PRs.
+
+## Premium Support
+Solidarity, as open source, is free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
