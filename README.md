@@ -1,5 +1,5 @@
-![solidarity logo](./_art/combo.jpg)
 <p align="center">
+  <img src="./_art/combo.jpg" width="700px" />
   <h3>Solidarity is an environment checker for project dependencies across multiple machines.</h3>
 </p>
 
