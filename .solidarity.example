@@ -18,3 +18,18 @@
     }
   ]
 }
+
+/// CURRENTLY SUPPORTING
+
+{
+  "Android": [
+    { "rule": "cli", "binary": "emulator" },
+    { "rule": "cli", "binary": "android" },
+    { "rule": "env", "variable": "ANDROID_HOME", "error": "The ANDROID_HOME environment variable must be set to your local SDK.  Refer to getting started docs for help." }
+  ],
+  "NPM": [{ "rule": "cli", "binary": "npm" }],
+  "Yarn": [{ "rule": "cli", "binary": "yarn", "semver": "^1.0.1" }],
+  "Node": [{ "rule": "cli", "binary": "npm"}],
+  "Watchman": [{ "rule": "cli", "binary": "watchman", "error": "install watchman `brew install watchman`"}]
+}
+
