@@ -23,7 +23,7 @@ module.exports = async (requirement, context) => {
       // Handle CLI rule check
       case 'cli':
         const cliResult = await checkCLI(rule, context)
-        ruleString = `${requirementName} - ${rule.binary}`
+        ruleString = `${requirementName} - ${rule.binary} binary`
         if (cliResult) {
           addFailure(cliResult, rule.error, ruleString)
         } else {
@@ -32,7 +32,7 @@ module.exports = async (requirement, context) => {
         break
       // Handle ENV rule check
       case 'env':
-        ruleString = `${requirementName} - ${rule.variable}`
+        ruleString = `${requirementName} - ${rule.variable} env`
         if (process.env[rule.variable]) {
           spinner.succeed(ruleString)
         } else {
