@@ -16,14 +16,19 @@ module.exports = async function(context) {
   )
 
   // run the array of promises you just created
-  Promise.all(checks).then(results => {
-    const errors = flatten(results)
-    if (isEmpty(errors)) {
-      print.success('DONE')
-    } else {
-      print.error('Solidarity Check Failed:')
-      print.error(errors)
+  await Promise.all(checks)
+    .then(results => {
+      const errors = flatten(results)
+      if (isEmpty(errors)) {
+        print.success('DONE')
+      } else {
+        print.error('Solidarity Check Failed:')
+        print.error(errors)
+        process.exit(1)
+      }
+    })
+    .catch(err => {
+      print.error(err)
       process.exit(1)
-    }
-  })
+    })
 }

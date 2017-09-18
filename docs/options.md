@@ -24,7 +24,7 @@ To check a version, you can tell us how to identify the version, or we can guess
 
 To enforce and speed up version checking you can set the `version` property with the proper command.
 
-*e.g.* Yarn will do installs if it gets `-v` so specify correct way!
+*e.g.* Yarn < v1 installs if you pass `-v` so specify a correct way!
 ```json
 "Yarn": [{ "rule": "cli", "binary": "yarn", "version": "--version", "semver": "^0.27.5" }]
 ```
