@@ -1,4 +1,4 @@
-const { head, tail, pipe, flatten, map } = require('ramda')
+const { head, tail, pipe, flatten, map, isEmpty } = require('ramda')
 const checkCLI = require('./checkCLI')
 
 module.exports = async (requirement, context) => {
@@ -7,27 +7,26 @@ module.exports = async (requirement, context) => {
   const requirementName = head(requirement)
   const rules = pipe(tail, flatten)(requirement)
 
-  let failures = []
   let ruleString = ''
   const spinner = print.spin(`Verifying ${requirementName}`)
 
   const addFailure = (commonMessage, customMessage, ruleString) => {
-    if (customMessage) failures.push(customMessage)
-    failures.push(commonMessage)
     spinner.fail(ruleString)
+    return customMessage || commonMessage
   }
 
   // check each rule for requirement
-  map(async (rule) => {
+  const ruleChecks = await map(async (rule) => {
     switch(rule.rule) {
       // Handle CLI rule check
       case 'cli':
         const cliResult = await checkCLI(rule, context)
         ruleString = `${requirementName} - ${rule.binary} binary`
         if (cliResult) {
-          addFailure(cliResult, rule.error, ruleString)
+          return addFailure(cliResult, rule.error, ruleString)
         } else {
           spinner.succeed(ruleString)
+          return []
         }
         break
       // Handle ENV rule check
@@ -35,15 +34,21 @@ module.exports = async (requirement, context) => {
         ruleString = `${requirementName} - ${rule.variable} env`
         if (process.env[rule.variable]) {
           spinner.succeed(ruleString)
+          return []
         } else {
-          addFailure(`'$${rule.variable}' environment variable not found`, rule.error, ruleString)
+          return addFailure(`'$${rule.variable}' environment variable not found`, rule.error, ruleString)
         }
         break
       default:
-        addFailure(`Encountered unknown rule '${rule.rule}'`, rule.error, `${requirementName} - ${rule.rule}`)
+        return addFailure(`Encountered unknown rule '${rule.rule}'`, rule.error, `${requirementName} - ${rule.rule}`)
     }
   }, rules)
 
-  spinner.stop()
-  return failures
+  // Run all the rule checks for a requirement
+  return await Promise.all(ruleChecks)
+    .then(results => {
+      spinner.stop()
+      return results
+    })
+    .catch(err => console.log(err))
 }
