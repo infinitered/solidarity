@@ -9,6 +9,14 @@ const getVersion = async (rule, context) => {
   } else {
     // We try the following in this order
     // -v, --version, -version
+    try { versionOutput = await system.run(`${rule.binary} -v`) } catch(e) {
+      try { versionOutput = await system.run(`${rule.binary} --version`) } catch(e) {
+        try { versionOutput = await system.run(`${rule.binary} -version`) } catch(e) {
+          throw 'No version identifier flag for this binary was found'
+        }
+      }
+    }
+
   }
 
   return semver.clean(versionOutput)
