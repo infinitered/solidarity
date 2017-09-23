@@ -1,5 +1,6 @@
 const { head, tail, pipe, flatten, map, isEmpty } = require('ramda')
 const checkCLI = require('./checkCLI')
+const skipRule = require('./skipRule')
 
 module.exports = async (requirement, context) => {
   const { print, system } = context
@@ -17,6 +18,9 @@ module.exports = async (requirement, context) => {
 
   // check each rule for requirement
   const ruleChecks = await map(async (rule) => {
+    // Make sure this rule is active
+    if (skipRule(rule.platform)) return []
+
     switch(rule.rule) {
       // Handle CLI rule check
       case 'cli':

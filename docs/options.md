@@ -45,6 +45,12 @@ To match against the second version we give line 2
 ### `"rule"="env"`
 `env` means we will check for the environment variable passed in the `variable` property.
 
+### `"rule"="file"`
+`file` rule means for a given file passed in the `location` property, we will verify it exists.
+
+### `"rule"="dir"`
+`dir` rule means for a given directory passed in the `location` property, we will verify it exists.
+
 ### Friendly Errors
 So what do we do if a rule fails?  The return code will be non-zero, but that's not the most friendly option.  You can set the `error` for any rule to give the user legible instruction on why the failure happened, and how they should solve it.
 
@@ -55,6 +61,23 @@ So what do we do if a rule fails?  The return code will be non-zero, but that's 
       "rule": "cli",
       "binary": "watchman",
       "error": "please install with `brew install watchman`"
+    }
+  ]
+```
+
+### Platform Specific Rules
+Some rules are only essential for a given node platform.  You can identify these rules with passing the `"platform"` property on any rule.
+
+A platform property takes a string or and array of strings that identify the platforms that rule pertains to.  Platforms can be any of the following: `["darwin", "freebsd", "linux", "sunos", "win32"]`
+
+*e.g.* Rule only performs a check on Mac and Linux
+```json
+  "Watchman": [
+    {
+      "rule": "cli",
+      "binary": "watchman",
+      "error": "please install with `brew install watchman` or whatever friendly package management service you use.",
+      "platform": ["darwin", "linux"]
     }
   ]
 ```
