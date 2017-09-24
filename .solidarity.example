@@ -7,6 +7,14 @@
   "NPM": [{ "rule": "cli", "binary": "npm" }],
   "Yarn": [{ "rule": "cli", "binary": "yarn", "semver": "^1.0.1", "version": "--version" }],
   "Node": [{ "rule": "cli", "binary": "node", "semver": "8.5.0"}],
-  "Watchman": [{ "rule": "cli", "binary": "watchman", "error": "install watchman `brew install watchman`"}]
+  "Watchman": [
+    {
+      "rule": "cli",
+      "binary": "watchman",
+      "error": "install watchman `brew install watchman`",
+      "platform": "darwin"
+    }
+  ],
+  "Package.json": [{ "rule": "file", "location": "./package.json"}]
 }
 
