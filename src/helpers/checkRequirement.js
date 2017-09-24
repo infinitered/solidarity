@@ -1,5 +1,6 @@
 const { head, tail, pipe, flatten, map, isEmpty } = require('ramda')
 const checkCLI = require('./checkCLI')
+const checkENV = require('./checkENV')
 const skipRule = require('./skipRule')
 
 module.exports = async (requirement, context) => {
@@ -35,8 +36,9 @@ module.exports = async (requirement, context) => {
         break
       // Handle ENV rule check
       case 'env':
+        const envResult = await checkENV(rule, context)
         ruleString = `${requirementName} - ${rule.variable} env`
-        if (process.env[rule.variable]) {
+        if (envResult) {
           spinner.succeed(ruleString)
           return []
         } else {
