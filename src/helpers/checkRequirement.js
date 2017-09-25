@@ -56,5 +56,5 @@ module.exports = async (requirement, context) => {
       spinner.stop()
       return results
     })
-    .catch(err => console.log(err))
+    .catch(err => print.error(err))
 }
