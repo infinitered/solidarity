@@ -34,16 +34,21 @@ const getVersionLine = (rule, versionOutput) => {
     const findString = `.*${rule.line}.*`
     const findRegex = RegExp(findString, 'g')
     const foundLines = versionOutput.match(findRegex)
-    // attempt to access first value
     try {
+      // Always first instance
       result = foundLines[0]
     } catch (_e) {
       throw `rule.line string '${rule.line}' was not found`
     }
   } else {
-    // TODO: don't just grab first line, look for first instance
-    // of something that looks like a version
-    result = versionOutput.split('\n')[0]
+    // Parse output for something that looks like a version
+    const foundVersions = versionOutput.match(/(\d+\.)?(\d+\.)?(\d+)/g)
+    try {
+      // Always first match (for now...)
+      result = foundVersions[0]
+    } catch (_e) {
+      throw `No version was detected from the output of the binary '${rule.binary}'`
+    }
   }
 
   return result
