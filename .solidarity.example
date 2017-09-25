@@ -15,6 +15,10 @@
       "platform": "darwin"
     }
   ],
-  "Package.json": [{ "rule": "file", "location": "./package.json"}]
+  "Package.json": [{ "rule": "file", "location": "./package.json"}],
+  "React Native": [
+    { "rule": "cli", "binary": "react-native", "semver": "~2.0.1"},
+    { "rule": "cli", "binary": "react-native", "semver": ">0.0.1", "line": 2 }
+  ]
 }
 

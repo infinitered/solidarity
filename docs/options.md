@@ -29,17 +29,21 @@ To enforce and speed up version checking you can set the `version` property with
 "Yarn": [{ "rule": "cli", "binary": "yarn", "version": "--version", "semver": "^0.27.5" }]
 ```
 
-Sometimes the first semantic version is not the correct one.  So you can specify how to find the version by setting the `line` property.  If the `line` is a number, it will look at that line number.  If it is a string, it will act like `grep`.  And if it is regex, it will return the result of your regular expression for parsing.  So basically pass whatever helps you find your version to `line` for multi-line version output.
+Sometimes the first semantic version is not the correct one.  So you can specify how to find the version by setting the `line` property.  If the `line` is a number, it will look at that line number.  If it is a string, it will act like `grep`.  So basically pass whatever helps you find your version to `line` for multi-line version output.
 
-*e.g.* React Native gives two versions
+*e.g.* React Native version command outputs two versions. By default the first version is detected for rules.
 ```sh
 $ react-native -v
 react-native-cli: 2.0.1
 react-native: 0.48.1
 ```
-To match against the second version we give line 2
+To match against the second version we can give `line` number:
 ```json
 "React Native": [{ "rule": "cli", "binary": "react-native", "semver": "^0.48.1", "line": 2 }]
+```
+OR you could identify the `line` via string matching:
+```json
+"React Native": [{ "rule": "cli", "binary": "react-native", "semver": "^0.48.1", "line": "react-native:" }]
 ```
 
 ### `"rule"="env"`
