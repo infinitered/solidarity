@@ -6,7 +6,8 @@
     "solidarity": "bin/solidarity"
   },
   "scripts": {
-    "start": "node bin/solidarity"
+    "start": "node bin/solidarity",
+    "test": "ava"
   },
   "author": "Gant Laborde",
   "license": "MIT",
@@ -14,5 +15,13 @@
     "gluegun": "^0.22.0",
     "minimist": "^1.2.0",
     "ramda": "^0.24.1"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0"
+  },
+  "ava": {
+		"files": [
+			"test/*.js"
+		]
   }
 }
