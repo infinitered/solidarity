@@ -7,7 +7,8 @@
   },
   "scripts": {
     "start": "node bin/solidarity",
-    "test": "ava"
+    "test": "ava",
+    "snapupdate": "ava --update-snapshots"
   },
   "author": "Gant Laborde",
   "license": "MIT",
@@ -21,7 +22,8 @@
   },
   "ava": {
 		"files": [
-			"test/*.js"
+      "test/**/*.{js,ts}",
+      "!test/testHelpers.js"
 		]
   }
 }

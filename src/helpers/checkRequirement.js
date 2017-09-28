@@ -22,7 +22,7 @@ module.exports = async (requirement, context) => {
     // Make sure this rule is active
     if (skipRule(rule.platform)) return []
 
-    switch(rule.rule) {
+    switch (rule.rule) {
       // Handle CLI rule check
       case 'cli':
         const cliResult = await checkCLI(rule, context)
@@ -33,7 +33,6 @@ module.exports = async (requirement, context) => {
           spinner.succeed(ruleString)
           return []
         }
-        break
       // Handle ENV rule check
       case 'env':
         const envResult = await checkENV(rule, context)
@@ -44,14 +43,13 @@ module.exports = async (requirement, context) => {
         } else {
           return addFailure(`'$${rule.variable}' environment variable not found`, rule.error, ruleString)
         }
-        break
       default:
         return addFailure(`Encountered unknown rule '${rule.rule}'`, rule.error, `${requirementName} - ${rule.rule}`)
     }
   }, rules)
 
   // Run all the rule checks for a requirement
-  return await Promise.all(ruleChecks)
+  return Promise.all(ruleChecks)
     .then(results => {
       spinner.stop()
       return results
