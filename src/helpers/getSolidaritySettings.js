@@ -16,6 +16,6 @@ module.exports = context => {
         'solidarity snapshot'
       )} to take a snapshot of your environment and create a .solidarity file for this project.`
     )
-    process.exit(1)
+    process.exit(3)
   }
 }

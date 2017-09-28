@@ -1,7 +1,7 @@
 // @solidarityDescription Checks various programs.
 const { head, last, trim, pipe, split, replace } = require('ramda')
 
-module.exports = async function (context) {
+module.exports = async (context) => {
   const { print, system } = context
   const { colors } = print
 
@@ -44,7 +44,7 @@ module.exports = async function (context) {
     ['Xcode', xcodeBuild],
     ['Cocoapods', cocoapods],
     ['Code Push', codePush],
-    ['Mobile Center', mobileCenter],
+    ['Mobile Center', mobileCenter]
   ])
   printSeparator()
 }

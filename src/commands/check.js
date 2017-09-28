@@ -2,9 +2,8 @@
 const { map, toPairs, isEmpty, flatten } = require('ramda')
 const { checkRequirement, getSolidaritySettings } = require('../helpers')
 
-module.exports = async function(context) {
-  const { print, filesystem, system } = context
-  const { colors } = print
+module.exports = async (context) => {
+  const { print } = context
 
   // get settings
   const solidaritySettings = getSolidaritySettings(context)
@@ -29,6 +28,6 @@ module.exports = async function(context) {
     })
     .catch(err => {
       print.error(err)
-      process.exit(1)
+      process.exit(2)
     })
 }

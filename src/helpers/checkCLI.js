@@ -1,6 +1,6 @@
 // Get the version of a specific CLI
 const getVersion = async (rule, context) => {
-  const { system, semver } = context
+  const { system } = context
 
   let versionOutput
   // They specified how to check version

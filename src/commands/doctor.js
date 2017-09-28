@@ -1,7 +1,5 @@
 // @solidarityDescription Check location of known apps.
-const { head, last, trim, pipe, split } = require('ramda')
-
-module.exports = async function (context) {
+module.exports = async (context) => {
   const { print, system } = context
 
   const rn = await system.which(`react-native`)
