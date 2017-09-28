@@ -1,7 +1,8 @@
 <p align="center">
   <img src="./_art/combo.jpg" width="700px" />
-  <h3>Solidarity is an environment checker for project dependencies across multiple machines.</h3>
-  <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/feature-add_ci/badge.svg' alt='Build Status'></a>
+  <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3>
+  <hr/>
+  <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/feature-add_ci/badge.svg' alt='Build Status' ></a>
 </p>
 
 **WHY?** Package management `.lock` files help zero-in on dependencies, but some stacks need more! For example, React Native needs specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without worrying about the environment complexity.
