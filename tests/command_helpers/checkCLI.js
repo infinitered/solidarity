@@ -6,7 +6,7 @@ const doesNotExistCLI = {
 }
 
 const alwaysExistCLI = {
-  binary: 'cd'
+  binary: 'node'
 }
 
 const context = require('gluegun')
