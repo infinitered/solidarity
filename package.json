@@ -18,12 +18,14 @@
     "ramda": "^0.24.1"
   },
   "devDependencies": {
-    "ava": "^0.22.0"
+    "ava": "^0.22.0",
+    "execa": "^0.8.0",
+    "tempy": "^0.2.1"
   },
   "ava": {
-		"files": [
+    "files": [
       "test/**/*.{js,ts}",
       "!test/testHelpers.js"
-		]
+    ]
   }
 }
