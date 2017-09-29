@@ -14,17 +14,17 @@ function configureRuntime () {
       // The default plugin is the directory we're in right now, so
       // the commands sub-directory will contain the first right of
       // refusal to handle user's requests.
-      .loadDefault(__dirname)
+      .src(__dirname)
       // TODO: maybe there's other places you'd like to load plugins from?
       // .load(`~/.${BRAND}`)
 
       // These are the magic tokens found inside command js sources
       // which plugin authors use to specify the command users can type
       // as well as the help they see.
-      .token('commandName', `${BRAND}Command`)
-      .token('commandDescription', `${BRAND}Description`)
+      // .token('commandName', `${BRAND}Command`)
+      // .token('commandDescription', `${BRAND}Description`)
       // let's build it
-      .createRuntime()
+      .create()
   )
 }
 
