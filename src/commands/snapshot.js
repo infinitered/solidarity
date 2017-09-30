@@ -1,5 +1,3 @@
-// @solidarityDescription Take a snapshot of the versions and store in .solidarity file
-
 const run = async function (context) {
   // check is there an existing .solidarity file?
   // if yes, load in existing file checks and update them
@@ -7,5 +5,7 @@ const run = async function (context) {
 }
 
 module.exports = {
+  description: 'Take a snapshot of the versions and store in .solidarity file',
+  alias: 's',
   run
 }

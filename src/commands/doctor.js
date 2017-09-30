@@ -14,6 +14,9 @@ const run = async (context) => {
   ])
 }
 
+// Export command
 module.exports = {
+  description: '',
+  alias: 'd',
   run
 }
