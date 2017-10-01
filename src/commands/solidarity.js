@@ -1,6 +1,23 @@
 const { map, toPairs, isEmpty, flatten } = require('ramda')
 
+const checkForEscapeHatchFlags = async(context) => {
+  const { print, parameters } = context
+  const { options } = parameters
+  if (options.help || options.h) {
+    // Just looking for help
+    print.printCommands(context)
+    process.exit(0)
+  } else if (options.version || options.v) {
+    // Just looking for version
+    print.info(require('../../package.json').version)
+    process.exit(0)
+  }
+}
+
 const run = async (context) => {
+  // drop out fast in these situations
+  checkForEscapeHatchFlags(context)
+
   const { print, solidarity } = context
   const { checkRequirement, getSolidaritySettings } = solidarity
 

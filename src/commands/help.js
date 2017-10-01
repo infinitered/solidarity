@@ -1,5 +1,5 @@
-const { printCommands } = require('gluegun')
-
 module.exports = {
-  run: (context) => printCommands(context)
+  alias: 'h',
+  description: 'Displays this help',
+  run: (context) => context.print.printCommands(context)
 }

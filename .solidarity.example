@@ -19,6 +19,13 @@
   "React Native": [
     { "rule": "cli", "binary": "react-native", "semver": "~2.0.1"},
     { "rule": "cli", "binary": "react-native", "semver": ">0.0.1", "line": 2 }
+  ],
+  "Xcode" : [
+    { "rule": "cli", "binary": "xcodebuild", "semver": "9.0", "platform": "darwin"},
+    { "rule": "cli", "binary": "xcrun", "semver": "35", "platform": "darwin"}
+  ],
+  "Cocoapods": [
+    { "rule": "cli", "binary": "pod", "semver": "1.2.1" }
   ]
 }
 
