@@ -1,5 +1,5 @@
 import test from 'ava'
-import checkCLI from '../../src/helpers/checkCLI'
+import checkCLI from '../../src/extensions/functions/checkCLI'
 
 const doesNotExistCLI = {
   binary: 'no_way_this_should_be_real'

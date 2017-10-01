@@ -1,9 +1,8 @@
-// @solidarityDescription Checks various programs.
 const { map, toPairs, isEmpty, flatten } = require('ramda')
-const { checkRequirement, getSolidaritySettings } = require('../helpers')
 
-module.exports = async (context) => {
-  const { print } = context
+const run = async (context) => {
+  const { print, solidarity } = context
+  const { checkRequirement, getSolidaritySettings } = solidarity
 
   // get settings
   const solidaritySettings = getSolidaritySettings(context)
@@ -30,4 +29,10 @@ module.exports = async (context) => {
       print.error(err)
       process.exit(2)
     })
+}
+
+// Export command
+module.exports = {
+  description: 'Check environment rules',
+  run
 }

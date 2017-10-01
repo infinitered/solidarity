@@ -1,7 +1,7 @@
 // @solidarityDescription Checks various programs.
 const { head, last, trim, pipe, split, replace } = require('ramda')
 
-module.exports = async (context) => {
+const run = async (context) => {
   const { print, system } = context
   const { colors } = print
 
@@ -47,4 +47,8 @@ module.exports = async (context) => {
     ['Mobile Center', mobileCenter]
   ])
   printSeparator()
+}
+
+module.exports = {
+  run
 }

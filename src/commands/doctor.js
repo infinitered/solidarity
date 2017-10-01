@@ -1,5 +1,5 @@
 // @solidarityDescription Check location of known apps.
-module.exports = async (context) => {
+const run = async (context) => {
   const { print, system } = context
 
   const rn = await system.which(`react-native`)
@@ -12,4 +12,11 @@ module.exports = async (context) => {
     ['xcrun', xcrun],
     ['android home', androidHome]
   ])
+}
+
+// Export command
+module.exports = {
+  description: '',
+  alias: 'd',
+  run
 }
