@@ -21,7 +21,7 @@ const getVersion = async (rule, context) => {
   
   // Now parse
   const correctLine = getLineWithVersion(rule, versionOutput)
-  const version = removeNonVersionCharacters(correctLine)
+  const version = removeNonVersionCharacters(rule, correctLine)
   return version
 }
 
@@ -46,7 +46,7 @@ const getLineWithVersion = (rule, versionOutput) => {
   return result
 }
 
-const removeNonVersionCharacters = (line) => {
+const removeNonVersionCharacters = (rule, line) => {
   const foundVersions = line.match(/(\d+\.)?(\d+\.)?(\d+)([^\sa-zA-Z0-9]+\w+)?/g)
   // Return longest match, because it is most likely to be correct
   try {
