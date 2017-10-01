@@ -18,15 +18,14 @@ const getVersion = async (rule, context) => {
     }
 
   }
-
+  
   // Now parse
-  const correctLine = getVersionLine(rule, versionOutput)
-  // clean version to only consist of numbers (better than semver.clean)
-  return correctLine.replace(/[^\d.]/g, '')
+  const correctLine = getLineWithVersion(rule, versionOutput)
+  const version = removeNonVersionCharacters(rule, correctLine)
+  return version
 }
 
-// find semver based on rule and output
-const getVersionLine = (rule, versionOutput) => {
+const getLineWithVersion = (rule, versionOutput) => {
   let result
   if (typeof rule.line === 'number') {
     result = versionOutput.split('\n')[rule.line - 1]
@@ -41,16 +40,25 @@ const getVersionLine = (rule, versionOutput) => {
       throw `rule.line string '${rule.line}' was not found`
     }
   } else {
-    // Parse output for something that looks like a version
-    const foundVersions = versionOutput.match(/(\d+\.)?(\d+\.)?(\d+)/g)
-    try {
-      // Always first match (for now...)
-      result = foundVersions[0]
-    } catch (_e) {
-      throw `No version was detected from the output of the binary '${rule.binary}'`
-    }
+    //pass it through if rules don't provide a line
+    result = versionOutput
   }
+  return result
+}
 
+const removeNonVersionCharacters = (rule, line) => {
+  const foundVersions = line.match(/(\d+\.)?(\d+\.)?(\d+)([^\sa-zA-Z0-9]+\w+)?/g)
+  // Return longest match, because it is most likely to be correct
+  try {
+    var result = foundVersions[0]
+    for (let i = 1; i < foundVersions.length; i++) {
+      if (foundVersions[i].length >= result.length) {
+        result = foundVersions[i]
+      }
+    }
+  } catch (_e) {
+    throw `No version was detected from the output of the binary '${rule.binary}'`
+  }
   return result
 }
 
