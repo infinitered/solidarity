@@ -13,7 +13,7 @@
   "author": "Gant Laborde",
   "license": "MIT",
   "dependencies": {
-    "gluegun": "^1.0.0",
+    "gluegun": "^2.0.0-alpha.1",
     "minimist": "^1.2.0",
     "ramda": "^0.24.1"
   },
