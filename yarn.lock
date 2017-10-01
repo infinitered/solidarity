@@ -290,12 +290,12 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
-apisauce@0.14.1:
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/apisauce/-/apisauce-0.14.1.tgz#f5ccec9a1e802408feeb9e3230d1f440f20520c2"
+apisauce@0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/apisauce/-/apisauce-0.12.0.tgz#504b66d6268f8dfbf3180db9a63ae87299ec5e81"
   dependencies:
-    axios "^0.16.2"
-    ramda "^0.24.1"
+    axios "^0.16.1"
+    ramda "^0.23.0"
 
 app-module-path@2.2.0:
   version "2.2.0"
@@ -497,7 +497,7 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-axios@^0.16.2:
+axios@^0.16.1:
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.16.2.tgz#ba4f92f17167dfbab40983785454b9ac149c3c6d"
   dependencies:
@@ -1046,12 +1046,6 @@ cli-width@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
 
-clipboardy@1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/clipboardy/-/clipboardy-1.1.4.tgz#51b17574fc682588e2dd295cfa6e6aa109eab5ee"
-  dependencies:
-    execa "^0.6.0"
-
 clone-deep@^0.2.4:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/clone-deep/-/clone-deep-0.2.4.tgz#4e73dd09e9fb971cc38670c5dced9c1896481cc6"
@@ -1316,7 +1310,7 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
-ejs@2.5.7:
+ejs@^2.5.6:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.5.7.tgz#cc872c168880ae3c7189762fd5ffc00896c9518a"
 
@@ -1393,19 +1387,7 @@ esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
 
-execa@0.8.0, execa@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#d8d76bbc1b55217ed190fd6dd49d3c774ecfc8da"
-  dependencies:
-    cross-spawn "^5.0.1"
-    get-stream "^3.0.0"
-    is-stream "^1.1.0"
-    npm-run-path "^2.0.0"
-    p-finally "^1.0.0"
-    signal-exit "^3.0.0"
-    strip-eof "^1.0.0"
-
-execa@^0.6.0:
+execa@^0.6.3:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.6.3.tgz#57b69a594f081759c69e5370f0d17b9cb11658fe"
   dependencies:
@@ -1420,6 +1402,18 @@ execa@^0.6.0:
 execa@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.7.0.tgz#944becd34cc41ee32a63a9faf27ad5a65fc59777"
+  dependencies:
+    cross-spawn "^5.0.1"
+    get-stream "^3.0.0"
+    is-stream "^1.1.0"
+    npm-run-path "^2.0.0"
+    p-finally "^1.0.0"
+    signal-exit "^3.0.0"
+    strip-eof "^1.0.0"
+
+execa@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#d8d76bbc1b55217ed190fd6dd49d3c774ecfc8da"
   dependencies:
     cross-spawn "^5.0.1"
     get-stream "^3.0.0"
@@ -1666,20 +1660,19 @@ globby@^6.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gluegun@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-1.0.0.tgz#51fa03af9e5c933e3a7303ffb85d8bb74e5b42a7"
+gluegun@^2.0.0-alpha.1:
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.0-alpha.1.tgz#17163dab734d8c5fcfaeaba1997e4e7fda1d5cad"
   dependencies:
-    apisauce "0.14.1"
+    apisauce "0.12.0"
     app-module-path "2.2.0"
     ascii-table "0.0.9"
     autobind-decorator "1.4.1"
-    clipboardy "1.1.4"
     colors "1.1.2"
     cross-spawn "5.1.0"
-    ejs "2.5.7"
+    ejs "^2.5.6"
     enquirer "0.4.1"
-    execa "0.8.0"
+    execa "^0.6.3"
     fs-jetpack "1.2.0"
     lodash.camelcase "4.3.0"
     lodash.kebabcase "4.1.1"
@@ -1697,7 +1690,7 @@ gluegun@^1.0.0:
     lodash.uppercase "4.3.0"
     lodash.upperfirst "4.3.1"
     minimist "1.2.0"
-    ora "1.3.0"
+    ora "1.2.0"
     prompt-autocompletion "0.1.1"
     prompt-checkbox "0.4.2"
     prompt-confirm "0.2.1"
@@ -1708,10 +1701,10 @@ gluegun@^1.0.0:
     prompt-radio "0.3.1"
     prompt-rawlist "1.0.0"
     ramda "0.24.1"
-    ramdasauce "2.1.0"
-    semver "5.4.1"
-    toml "2.3.3"
-    which "1.3.0"
+    ramdasauce "1.2.0"
+    semver "5.3.0"
+    toml "^2.3.2"
+    which "1.2.14"
 
 got@^6.7.1:
   version "6.7.1"
@@ -2644,9 +2637,9 @@ option-chain@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/option-chain/-/option-chain-1.0.0.tgz#938d73bd4e1783f948d34023644ada23669e30f2"
 
-ora@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/ora/-/ora-1.3.0.tgz#80078dd2b92a934af66a3ad72a5b910694ede51a"
+ora@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ora/-/ora-1.2.0.tgz#32fb3183500efe83f5ea89101785f0ee6060fec9"
   dependencies:
     chalk "^1.1.1"
     cli-cursor "^2.1.0"
@@ -3095,11 +3088,15 @@ ramda@0.24.1, ramda@^0.24.1:
   version "0.24.1"
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.24.1.tgz#c3b7755197f35b8dc3502228262c4c91ddb6b857"
 
-ramdasauce@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/ramdasauce/-/ramdasauce-2.1.0.tgz#65ea157a9cfc17841a7dd6499d3f9f421dc2eb36"
+ramda@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.23.0.tgz#ccd13fff73497a93974e3e86327bfd87bd6e8e2b"
+
+ramdasauce@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ramdasauce/-/ramdasauce-1.2.0.tgz#7c0da39ffa1b547268c78536fddad9c49f0d12cb"
   dependencies:
-    ramda "^0.24.1"
+    ramda "^0.23.0"
 
 randomatic@^1.1.3:
   version "1.1.7"
@@ -3331,9 +3328,13 @@ semver-diff@^2.0.0:
   dependencies:
     semver "^5.0.3"
 
-"semver@2 || 3 || 4 || 5", semver@5.4.1, semver@^5.0.3, semver@^5.1.0, semver@^5.3.0:
+"semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
+
+semver@5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
 set-blocking@~2.0.0:
   version "2.0.0"
@@ -3694,7 +3695,7 @@ toggle-array@^1.0.1:
   dependencies:
     isobject "^3.0.0"
 
-toml@2.3.3:
+toml@^2.3.2:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/toml/-/toml-2.3.3.tgz#8d683d729577cb286231dfc7a8affe58d31728fb"
 
@@ -3818,7 +3819,13 @@ well-known-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/well-known-symbols/-/well-known-symbols-1.0.0.tgz#73c78ae81a7726a8fa598e2880801c8b16225518"
 
-which@1.3.0, which@^1.2.9:
+which@1.2.14:
+  version "1.2.14"
+  resolved "https://registry.yarnpkg.com/which/-/which-1.2.14.tgz#9a87c4378f03e827cecaf1acdf56c736c01c14e5"
+  dependencies:
+    isexe "^2.0.0"
+
+which@^1.2.9:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/which/-/which-1.3.0.tgz#ff04bdfc010ee547d780bec38e1ac1c2777d253a"
   dependencies:
