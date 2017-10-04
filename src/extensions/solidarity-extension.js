@@ -9,4 +9,7 @@ module.exports = (context) => {
   }
   // place for plugins
   context.pluginsList = []
+  // Flavored separator
+  context.printSeparator = () =>
+    context.print.info(context.print.colors.america('-----------------------------------------------------------------------------------'))
 }

@@ -1,14 +1,60 @@
+const { propEq, filter, head } = require('ramda')
+const NONE = 'None'
+const DO_NOTHING = 'Nothing to do ¯\\_(ツ)_/¯'
+
+const createSolidarityFile = async (context) => {
+  const { print, printSeparator } = context
+  // list visible plugins
+  printSeparator()
+  print.info('Available technology plugins:\n')
+  if (context.pluginsList.length > 0) {
+    const pluginOptions = [NONE]
+    context.pluginsList.map((plugin) => {
+      print.info(`   ${plugin.name}:\t ${plugin.description}`)
+      pluginOptions.unshift(plugin.name)
+    })
+    printSeparator()
+    const answer = await context.prompt.ask({
+      name: 'selectedPlugin',
+      message: 'Which of the above technology snapshots will you use for this project?',
+      type: 'list',
+      choices: pluginOptions
+    })
+
+    if (answer.selectedPlugin === NONE) {
+      print.info(DO_NOTHING)
+    } else {
+      // Config for selected plugin only
+      const runPlugin = head(filter(propEq('name', answer.selectedPlugin), context.pluginsList))
+      console.log(runPlugin)
+      // run plugin
+      // run snapshot
+    }
+  } else {
+    print.error(`No solidarity plugins found!
+
+    Add a plugin for a given technology:
+    ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/pluginsList.md')}
+
+    OR write your own plugin for generating rules:
+    ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/plugins.md')}
+
+    OR simply create a .solidarity rule-set by hand for this project:
+    ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/options.md')}
+    `)
+    printSeparator()
+  }
+}
+
 const run = async function (context) {
   const { print, prompt, filesystem } = context
-  const printSeparator = () =>
-    print.info(print.colors.america('-----------------------------------------------------------------------------------'))
 
-    // check is there an existing .solidarity file?
+  // check is there an existing .solidarity file?
   if (filesystem.exists('.solidarity')) {
     // load existing file and update rule versions
     print.info('Now loading latest environment')
   } else {
-    // prompt for environment packages
+    // Find out what they wanted
     const userAnswer = await prompt.ask({
       name: 'createFile',
       type: 'confirm',
@@ -16,27 +62,9 @@ const run = async function (context) {
     })
 
     if (userAnswer.createFile) {
-      // list visible plugins
-      print.info('Available technology plugins:')
-      printSeparator()
-      if (context.pluginsList.length > 0) {
-        print.info(context.pluginsList)
-      } else {
-        print.error(`No solidarity plugins found!
-
-        Add a plugin for a given technology:
-        ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/pluginsList.md')}
-
-        OR write your own plugin for generating rules:
-        ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/plugins.md')}
-
-        OR simply create a .solidarity rule-set by hand for this project:
-        ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/options.md')}
-        `)
-      }
-      printSeparator()
+      await createSolidarityFile(context)
     } else {
-      print.info('Nothing to do')
+      print.info(DO_NOTHING)
     }
   }
 }
