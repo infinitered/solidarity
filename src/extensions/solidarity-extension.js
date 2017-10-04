@@ -7,4 +7,6 @@ module.exports = (context) => {
     getSolidaritySettings: require('./functions/getSolidaritySettings'),
     skipRule: require('./functions/skipRule')
   }
+  // place for plugins
+  context.pluginsList = []
 }

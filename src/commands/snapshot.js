@@ -19,7 +19,7 @@ const run = async function (context) {
       // list visible plugins
       print.info('Available technology plugins:')
       printSeparator()
-      if (context.pluginsList) {
+      if (context.pluginsList.length > 0) {
         print.info(context.pluginsList)
       } else {
         print.error(`No solidarity plugins found!
