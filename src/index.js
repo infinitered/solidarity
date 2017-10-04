@@ -10,7 +10,7 @@ module.exports = async () => {
     // global npm is stored /usr/local/lib/node_modules
     .plugins('./node_modules', { matching: 'solidarity-*', hidden: true })
     // for testing - force load a plugin
-    .plugin('../solidarity-react-native')
+    // .plugin('../solidarity-react-native')
     .create()
     .run()
 }
