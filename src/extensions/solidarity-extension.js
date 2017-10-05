@@ -7,4 +7,9 @@ module.exports = (context) => {
     getSolidaritySettings: require('./functions/getSolidaritySettings'),
     skipRule: require('./functions/skipRule')
   }
+  // place for plugins
+  context.pluginsList = []
+  // Flavored separator
+  context.printSeparator = () =>
+    context.print.info(context.print.colors.america('-----------------------------------------------------------------------------------'))
 }
