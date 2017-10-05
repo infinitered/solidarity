@@ -47,12 +47,13 @@ const createSolidarityFile = async (context) => {
 }
 
 const run = async function (context) {
-  const { print, prompt, filesystem } = context
+  const { print, prompt, filesystem, solidarity } = context
 
   // check is there an existing .solidarity file?
   if (filesystem.exists('.solidarity')) {
     // load existing file and update rule versions
     print.info('Now loading latest environment')
+    solidarity.updateVersions(context)
   } else {
     // Find out what they wanted
     const userAnswer = await prompt.ask({

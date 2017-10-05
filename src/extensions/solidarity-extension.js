@@ -5,7 +5,8 @@ module.exports = (context) => {
     checkENV: require('./functions/checkENV'),
     checkRequirement: require('./functions/checkRequirement'),
     getSolidaritySettings: require('./functions/getSolidaritySettings'),
-    skipRule: require('./functions/skipRule')
+    skipRule: require('./functions/skipRule'),
+    updateVersions: require('./functions/updateVersions')
   }
   // place for plugins
   context.pluginsList = []
