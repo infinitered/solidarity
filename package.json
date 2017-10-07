@@ -8,7 +8,9 @@
   "scripts": {
     "start": "node bin/solidarity",
     "test": "ava",
-    "snapupdate": "ava --update-snapshots"
+    "snapupdate": "ava --update-snapshots",
+    "generate:docs": "docsify init ./docs --local true",
+    "serve:docs": "docsify serve docs"
   },
   "author": "Gant Laborde",
   "license": "MIT",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
+    "docsify-cli": "^4.1.10",
     "execa": "^0.8.0",
     "tempy": "^0.2.1"
   },
