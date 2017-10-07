@@ -10,10 +10,10 @@ Not all npm packages mentioned are released or even ready.  Plugins are still be
 
 **WHY DOES SOLIDARITY EXIST?** Package management `.lock` files help zero-in on dependencies, but some stacks need more! For example, React Native needs specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without worrying about the environment complexity.
 
-### Docs
-* [Solidarity Rules Options](./docs/options.md)
-* [Write Solidarity Plugins](./docs/plugins.md)
-* [Available Plugins](./docs/pluginsList.md)
+## Docs
+* [Solidarity Rules Options](./options.md)
+* [Write Solidarity Plugins](./plugins.md)
+* [Available Plugins](./pluginsList.md)
 
 ## How do I use it?
 Using solidarity easy! Run the command to check the current project environment
@@ -46,7 +46,7 @@ Install command globally, OR use via `node_modules`.  It's suggested you install
 $ npm i -g solidarity solidarity-react-native
 
 # example of installing local with yarn and elixir snapshot
-$ yarn add soliarity solidarity-elixir 
+$ yarn add soliarity solidarity-elixir
 ```
 
 ## Supported Systems
