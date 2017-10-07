@@ -2,12 +2,16 @@ const { map, toPairs, isEmpty, flatten } = require('ramda')
 
 module.exports = async (context) => {
   const { solidarity, print } = context
-  const { getSolidaritySettings, updateRequirement } = solidarity
+  const {
+    getSolidaritySettings,
+    setSolidaritySettings,
+    updateRequirement
+  } = solidarity
 
   // load current solidarity file
   const solidaritySettings = getSolidaritySettings(context)
 
-  // Map over requirements
+  // Map over requirements with option to mutate settings
   const checks = await map(
     async requirement => updateRequirement(requirement, solidaritySettings, context),
     toPairs(solidaritySettings)
@@ -16,13 +20,12 @@ module.exports = async (context) => {
   // run the array of promises you just created
   await Promise.all(checks)
     .then(results => {
-      const errors = flatten(results)
-      if (isEmpty(errors)) {
-        print.success('DONE')
+      const updates = flatten(results)
+      if (isEmpty(updates)) {
+        print.success('\n No Changes')
       } else {
-        print.error('Solidarity Update Failed:')
-        print.error(errors)
-        process.exit(1)
+        setSolidaritySettings(solidaritySettings, context)
+        print.success(`\n ${updates.length} Rule(s) updated`)
       }
     })
     .catch(err => {

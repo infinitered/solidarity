@@ -1,5 +1,5 @@
 const { head, tail, pipe, flatten, map } = require('ramda')
-const checkCLI = require('./checkCLI')
+const checkCLIForUpdates = require('./checkCLIForUpdates')
 const skipRule = require('./skipRule')
 
 module.exports = async (requirement, settings, context) => {
@@ -10,11 +10,6 @@ module.exports = async (requirement, settings, context) => {
   let ruleString = ''
   const spinner = print.spin(`Updating ${requirementName}`)
 
-  const addFailure = (commonMessage, customMessage, ruleString) => {
-    spinner.fail(ruleString)
-    return customMessage || commonMessage
-  }
-
   // check each rule for requirement
   const ruleChecks = await map(async (rule) => {
     // skip if we can't update
@@ -23,10 +18,11 @@ module.exports = async (requirement, settings, context) => {
     switch (rule.rule) {
       // Handle CLI rule update
       case 'cli':
-        const cliResult = await checkCLI(rule, context)
-        ruleString = `${rule.binary} ${rule.semver}`
-        if (cliResult) {
-          return addFailure(cliResult, rule.error, ruleString)
+        const updateResult = await checkCLIForUpdates(rule, context)
+        ruleString = `Keep ${rule.binary} ${rule.semver}`
+        if (updateResult) {
+          spinner.succeed(updateResult)
+          return updateResult
         } else {
           spinner.succeed(ruleString)
           return []
