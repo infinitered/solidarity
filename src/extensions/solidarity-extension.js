@@ -1,11 +1,17 @@
 // Adding our goodies to the context
 module.exports = (context) => {
   context.solidarity = {
-    checkCLI: require('./functions/checkCLI'),
-    checkENV: require('./functions/checkENV'),
-    checkRequirement: require('./functions/checkRequirement'),
     getSolidaritySettings: require('./functions/getSolidaritySettings'),
-    skipRule: require('./functions/skipRule')
+    setSolidaritySettings: require('./functions/setSolidaritySettings'),
+    checkRequirement: require('./functions/checkRequirement'),
+    updateRequirement: require('./functions/updateRequirement'),
+    skipRule: require('./functions/skipRule'),
+    checkENV: require('./functions/checkENV'),
+    checkCLI: require('./functions/checkCLI'),
+    updateVersions: require('./functions/updateVersions'),
+    removeNonVersionCharacters: require('./functions/removeNonVersionCharacters'),
+    getVersion: require('./functions/getVersion'),
+    getLineWithVersion: require('./functions/getLineWithVersion')
   }
   // place for plugins
   context.pluginsList = []

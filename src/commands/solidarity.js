@@ -35,9 +35,9 @@ const run = async (context) => {
     .then(results => {
       const errors = flatten(results)
       if (isEmpty(errors)) {
-        print.success('DONE')
+        print.success('\n Environment Checks Valid')
       } else {
-        print.error('Solidarity Check Failed:')
+        print.error('\n Solidarity Check Failed:')
         print.error(errors)
         process.exit(1)
       }
