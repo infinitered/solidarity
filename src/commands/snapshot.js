@@ -24,11 +24,12 @@ const createSolidarityFile = async (context) => {
     if (answer.selectedPlugin === NONE) {
       print.info(DO_NOTHING)
     } else {
+      const pluginSpinner = print.spin(`Running ${answer.selectedPlugin} Snapshot`)
       // Config for selected plugin only
       const runPlugin = head(filter(propEq('name', answer.selectedPlugin), context.pluginsList))
-      console.log(runPlugin)
-      // run plugin
-      // run snapshot
+      // run plugin's snapshot function
+      await runPlugin.snapshot(context)
+      pluginSpinner.succeed('Snapshot complete')
     }
   } else {
     print.error(`No solidarity plugins found!
