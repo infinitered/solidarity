@@ -5,7 +5,15 @@
 <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
 </p>
 
-**WHY?** Package management `.lock` files help zero-in on dependencies, but some stacks need more! For example, React Native needs specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without worrying about the environment complexity.
+# :star: This project is in Github Alpha :star:
+Not all npm packages mentioned are released or even ready.  Plugins are still being developed.
+
+**WHY DOES SOLIDARITY EXIST?** Package management `.lock` files help zero-in on dependencies, but some stacks need more! For example, React Native needs specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without worrying about the environment complexity.
+
+### Docs
+* [Solidarity Rules Options](./docs/options.md)
+* [Write Solidarity Plugins](./docs/plugins.md)
+* [Available Plugins](./docs/pluginsList.md)
 
 ## How do I use it?
 Using solidarity easy! Run the command to check the current project environment
@@ -31,12 +39,18 @@ No `.solidarity` file found for this project.  Would you like to create one? (Y/
 
 Custom rule-sets can be created by modifying the `.solidarity` file by hand, or by creating a solidarity plugin for a given technology.  See documentation for how you can create your own.
 
-### Docs
-* [Solidarity Rules Options](./docs/options.md)
-* [Solidarity Technology Plugins](./docs/plugins.md)
+### Install
+Install command globally, OR use via `node_modules`.  It's suggested you install your snapshot plugins in the same place.
+```sh
+# example of installing global with npm and react-native snapshot
+$ npm i -g solidarity solidarity-react-native
+
+# example of installing local with yarn and elixir snapshot
+$ yarn add soliarity solidarity-elixir 
+```
 
 ## Supported Systems
-Currently solidarity only works with Mac OSX.  Functionality for Windows OS is in the works.  Please submit PRs.
+Currently solidarity only works with Mac and Linux.  Functionality for Windows OS is in the works.  Please submit PRs.
 
 ## Premium Support
 Solidarity, as open source, is free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
