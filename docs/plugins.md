@@ -32,11 +32,11 @@ You may notice we haven't specified `semver` for any CLIs because, that's kinda 
 We need 2 folders, and 2 files.
 ```
 extensions/
-  |             
+  |
   | _ fiesta.js
 
 templates/
-  |                        
+  |
   | _ fiesta-template.json
 ```
 > **WARNING:** `extensions` folder must only contain extensions.  Don't add spurious files here.
@@ -81,6 +81,28 @@ Whatever async function you provide will be run when your plugin is selected.  N
 **And you're not alone!** You have full power of Gluegun's context API (the CLI driver of Solidarity).
 
 Learn more about [Gluegun here](https://infinitered.github.io/gluegun/#/context-api).  Any spinner, color, or prompt you see in Solidarity is driven from Gluegun.  So open up Solidarity source for examples of things you can do!
+
+_As an example:_ If we wanted to perform the same exact plugin from above, but do everything manually, the plugin would then look like this:
+
+```js
+module.exports = (context) => {
+  // Register this plugin
+  context.pluginsList.push({
+    name: 'Fiesta Time',
+    description: 'Make sure your system is ready to party 🎉',
+    snapshot: async (context) => {
+      const { filesystem, system } = context
+      // Copy template
+      filesystem.copy(
+        `${__dirname}/../templates/fiesta-template.json`,
+        '.solidarity'
+      )
+      // Update versions to local
+      await system.run('solidarity snapshot')
+    }
+  })
+}
+```
 
 ## Got questions?
 We're hanging around on [Infinite Red Community Slack](http://community.infinite.red), so you can hop in and chat with us.  Lots of our open source is discussed throughout this slack.  If you end up needing advanced attention, we are a consulting company, so we offer Premium support, too.  Email us at hello@infinite.red to get that ball rolling with your project.
