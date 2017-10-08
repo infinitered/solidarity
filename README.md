@@ -5,9 +5,6 @@
 <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
 </p>
 
-# :star: This project is in Github Alpha :star:
-Not all npm packages mentioned are released or even ready.  Plugins are still being developed.
-
 **WHY DOES SOLIDARITY EXIST?** Package management `.lock` files help zero-in on dependencies, but some stacks need more! For example, React Native needs specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without worrying about the environment complexity.
 
 ### Docs
