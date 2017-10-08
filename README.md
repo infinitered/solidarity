@@ -45,8 +45,8 @@ Install command globally, OR use via `node_modules`.  It's suggested you install
 # example of installing global with npm and react-native snapshot
 $ npm i -g solidarity solidarity-react-native
 
-# example of installing local with yarn and elixir snapshot
-$ yarn add soliarity solidarity-elixir
+# example of installing local with yarn and elixir snapshot (dev dependencies)
+$ yarn add soliarity solidarity-elixir --dev
 ```
 
 ## Supported Systems
