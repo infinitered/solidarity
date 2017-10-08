@@ -14,9 +14,9 @@ Let's pretend this is our plugin rule-set:
 ```
 _We have 1 requirement that has 3 rules. 2 CLIs to check, and 1 environment variable to verify the Fiesta is on._
 
-To learn mor about writing rules, take a look at all [options here](options.md).
+To learn more about writing rules, take a look at Solidarity [options here](options.md).
 
-You may notice we haven't specified `semver` for any CLIs because, that's kinda personal to the project.  **No problem!** we can start at `0.0.0` and a fresh snapshot will upgrade those numbers to whatever is working for that project.
+You may notice we haven't specified `semver` for any CLIs because, that's kinda personal to the project.  **No problem!** we can place a holder at `0.0.0` and ask for a fresh snapshot of local versions.  This will upgrade those numbers to whatever is currently working for that project.
 
 ```json
 "Fiesta": [
@@ -29,28 +29,27 @@ You may notice we haven't specified `semver` for any CLIs because, that's kinda 
 > So our plugin needs to do 2 things: copy our rules, and then run snapshot... that's it.
 
 ## Writing the Simplest Plugin
-Plugins have the full power of Gluegun (the CLI helper) behind them, but for this plugin, you won't even need to take notice.
-
 We need 2 folders, and 2 files.
 ```
 extensions/
-  |             |
-  | _ fiesta.js |
+  |             
+  | _ fiesta.js
 
 templates/
-  |                        |
-  | _ fiesta-template.json |
+  |                        
+  | _ fiesta-template.json
 ```
 > **WARNING:** `extensions` folder must only contain extensions.  Don't add spurious files here.
 
 As you may have guessed `fiesta-template.json` is our copy of the rule-set we designed above.  `fiesta.js` is going to be how we register our plugin, and copy that file.
 
+Contents of `fiesta.js`
 ```js
 module.exports = (context) => {
   // Register this plugin
   context.pluginsList.push({
     name: 'Fiesta Time',
-    description: 'Make sure your system is ready to party',
+    description: 'Make sure your system is ready to party 🎉',
     snapshot: `${__dirname}/../templates/fiesta-template.json`
   })
 }
@@ -64,15 +63,15 @@ Let's review the 3 properties:
 |  property   |                                                                            purpose                                                                             |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name        | Name of plugin presented to user                                                                                                                               |
-| description | Description given in listing of plugins to user                                                                                                                |
-| snapshot    | If type `string` it is the file to copy as the `.solidarity` file.  Otherwise it's the async function to run when this plugin is selected (_for advanced plugins_) |
+| description | Description given to user during listing of plugins.                                                                                                                |
+| snapshot    | If type `string`, it is the file to copy as the `.solidarity` file.  Otherwise it's the async function to run when this plugin is selected (_for advanced plugins_) |
 
 **Plugin written!**  Now you can publish your plugin to `npm`.
 
-Just make sure that it starts with `solidarity-` so the CLI knows to pick it up.  We could publish our above plugin as `solidarity-fiesta` and when installed, our plugin would be listed as a snapshot option.
+Just make sure that it starts with `solidarity-` so the CLI knows to pick it up.  We could publish our above plugin as `solidarity-fiesta` and when installed, our plugin would be listed as a Solidarity snapshot option.
 
 #### Congratulations!
-You can now write solidarity plugins for any tech stack.
+You can now write solidarity plugins for any tech stack.  Be sure to list your plugin [here](pluginsList.md).
 
 ## The Advanced Plugin
 File-copy is cute :heartpulse:, but perhaps you want to ask the user questions, read files, or even stamp your own versions.  All you need to do is provide an async function to the snapshot property, instead of a string.
@@ -81,4 +80,7 @@ Whatever async function you provide will be run when your plugin is selected.  N
 
 **And you're not alone!** You have full power of Gluegun's context API (the CLI driver of Solidarity).
 
-Learn more about [Gluegun here](https://infinitered.github.io/gluegun/#/context-api).  Any spinner, color, or prompt you see in Solidarity is driven from the Gluegun context API.  So open up our source for examples!
+Learn more about [Gluegun here](https://infinitered.github.io/gluegun/#/context-api).  Any spinner, color, or prompt you see in Solidarity is driven from Gluegun.  So open up Solidarity source for examples of things you can do!
+
+## Got questions?
+We're hanging around on [Infinite Red Community Slack](http://community.infinite.red), so you can hop in and chat with us.  Lots of our open source is discussed throughout this slack.  If you end up needing advanced attention, we are a consulting company, so we offer Premium support, too.  Email us at hello@infinite.red to get that ball rolling with your project.
