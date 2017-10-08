@@ -1,6 +1,21 @@
 const { propEq, filter, head } = require('ramda')
 const NONE = 'None'
 const DO_NOTHING = 'Nothing to do ¯\\_(ツ)_/¯'
+const runPluginSnapshot = async (runPlugin, context) => {
+  if (typeof runPlugin.snapshot === 'string') {
+    // Just a file copy
+    const { filesystem, system } = context
+    filesystem.copy(
+      runPlugin.snapshot,
+      '.solidarity'
+    )
+    // force local version update
+    await system.run('solidarity snapshot')
+  } else {
+    // run plugin's snapshot function
+    await runPlugin.snapshot(context)
+  }
+}
 
 const createSolidarityFile = async (context) => {
   const { print, printSeparator } = context
@@ -24,11 +39,12 @@ const createSolidarityFile = async (context) => {
     if (answer.selectedPlugin === NONE) {
       print.info(DO_NOTHING)
     } else {
+      const pluginSpinner = print.spin(`Running ${answer.selectedPlugin} Snapshot`)
       // Config for selected plugin only
       const runPlugin = head(filter(propEq('name', answer.selectedPlugin), context.pluginsList))
-      console.log(runPlugin)
       // run plugin
-      // run snapshot
+      await runPluginSnapshot(runPlugin, context)
+      pluginSpinner.succeed('Snapshot complete')
     }
   } else {
     print.error(`No solidarity plugins found!
