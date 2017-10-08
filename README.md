@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./_art/combo.jpg" width="700px" />
+  <img src="https://raw.githubusercontent.com/infinitered/solidarity/master/_art/combo.jpg" width="700px" />
   <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3>
   <hr/>
 <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
@@ -11,9 +11,9 @@ Not all npm packages mentioned are released or even ready.  Plugins are still be
 **WHY DOES SOLIDARITY EXIST?** Package management `.lock` files help zero-in on dependencies, but some stacks need more! For example, React Native needs specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without worrying about the environment complexity.
 
 ### Docs
-* [Solidarity Rules Options](./docs/options.md)
-* [Write Solidarity Plugins](./docs/plugins.md)
-* [Available Plugins](./docs/pluginsList.md)
+* [Solidarity Rules Options](/docs/options.md)
+* [Write Solidarity Plugins](/docs/plugins.md)
+* [Available Plugins](/docs/pluginsList.md)
 
 ## How do I use it?
 Using solidarity easy! Run the command to check the current project environment
@@ -46,7 +46,7 @@ Install command globally, OR use via `node_modules`.  It's suggested you install
 $ npm i -g solidarity solidarity-react-native
 
 # example of installing local with yarn and elixir snapshot
-$ yarn add soliarity solidarity-elixir 
+$ yarn add soliarity solidarity-elixir
 ```
 
 ## Supported Systems
