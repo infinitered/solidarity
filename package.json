@@ -20,6 +20,7 @@
     "typescript": "^2.5.3"
   },
   "devDependencies": {
+    "@types/node": "^8.0.33",
     "ava": "^0.22.0",
     "docsify-cli": "^4.1.10",
     "execa": "^0.8.0",
