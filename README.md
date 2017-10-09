@@ -38,6 +38,9 @@ Custom rule-sets can be created by modifying the `.solidarity` file by hand, or 
 
 ### Install
 Install command globally, OR use via `node_modules`.  It's suggested you install your snapshot plugins in the same place.
+
+Note:
+Node.js version must be >= `7.6.0`.
 ```sh
 # example of installing global with npm and react-native snapshot
 $ npm i -g solidarity solidarity-react-native
