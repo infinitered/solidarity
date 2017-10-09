@@ -5,4 +5,4 @@
 
 _Be sure to add your plugins here in alphabetical order_
 
-[How to write a Solidarity Plugin]('plugins.md')
+[How to write a Solidarity Plugin](plugins.md)
