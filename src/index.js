@@ -1,6 +1,6 @@
 const { build } = require('gluegun')
-const {dependenciesMet} = require('gluegun/sniff')
-if(dependenciesMet==1){
+const {ok} = require('gluegun/sniff')
+if(ok==1){
     module.exports = async () => {
       // setup the runtime
       build()
