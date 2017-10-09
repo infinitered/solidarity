@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node bin/solidarity",
-    "test": "ava",
+    "test": "nyc ava",
     "snapupdate": "ava --update-snapshots",
     "serve:docs": "docsify serve docs"
   },
@@ -20,8 +20,10 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
+    "coveralls": "^3.0.0",
     "docsify-cli": "^4.1.10",
     "execa": "^0.8.0",
+    "nyc": "^11.2.1",
     "tempy": "^0.2.1"
   },
   "ava": {
