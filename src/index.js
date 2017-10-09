@@ -15,4 +15,6 @@ if(dependenciesMet==1){
         .create()
         .run()
     }
+}else{
+    console.log("error dependencys not met, node version 7.6 or higher is required");
 }
