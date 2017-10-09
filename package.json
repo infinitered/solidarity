@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
+    "codecov.io": "^0.1.6",
     "coveralls": "^3.0.0",
     "docsify-cli": "^4.1.10",
     "execa": "^0.8.0",
