@@ -16,7 +16,8 @@
   "dependencies": {
     "gluegun": "^2.0.0-alpha.2",
     "minimist": "^1.2.0",
-    "ramda": "^0.24.1"
+    "ramda": "^0.24.1",
+    "typescript": "^2.5.3"
   },
   "devDependencies": {
     "ava": "^0.22.0",
