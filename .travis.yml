@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+- 'node'
+- '7'
+
+after_success:
+  - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/codecov'

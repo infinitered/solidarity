@@ -1,3 +1,5 @@
 node_modules/
 yarn-error.log
 .node-version
+coverage
+.nyc_output
