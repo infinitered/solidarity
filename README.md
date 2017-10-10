@@ -7,9 +7,10 @@
 <a href="https://codecov.io/gh/infinitered/solidarity">
   <img src="https://codecov.io/gh/infinitered/solidarity/graph/badge.svg" alt="Codecov" />
 </a>
-
+<a href="https://badge.fury.io/js/solidarity"><img src="https://badge.fury.io/js/solidarity.svg" alt="npm version" height="18"></a>
 
 </p>
+
 
 **WHY DOES SOLIDARITY EXIST?** Package management `.lock` files help zero-in on dependencies, but some stacks need more! For example, React Native needs specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without worrying about the environment complexity.
 
@@ -60,3 +61,6 @@ Currently solidarity only works with Mac and Linux.  Functionality for Windows O
 
 ## Premium Support
 Solidarity, as open source, is free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
+
+## Additional Info
+[![NPM](https://nodei.co/npm/solidarity.png)](https://npmjs.org/package/solidarity)
