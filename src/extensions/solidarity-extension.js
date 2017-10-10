@@ -8,6 +8,8 @@ module.exports = (context) => {
     skipRule: require('./functions/skipRule'),
     checkENV: require('./functions/checkENV'),
     checkCLI: require('./functions/checkCLI'),
+    checkDir: require('./functions/checkDir'),
+    checkFile: require('./functions/checkFile'),
     updateVersions: require('./functions/updateVersions'),
     removeNonVersionCharacters: require('./functions/removeNonVersionCharacters'),
     getVersion: require('./functions/getVersion'),

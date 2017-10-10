@@ -1,6 +1,8 @@
 const { head, tail, pipe, flatten, map } = require('ramda')
 const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
+const checkDir = require('./checkDir')
+const checkFile = require('./checkFile')
 const skipRule = require('./skipRule')
 
 module.exports = async (requirement, context) => {
@@ -41,6 +43,26 @@ module.exports = async (requirement, context) => {
           return []
         } else {
           return addFailure(`'$${rule.variable}' environment variable not found`, rule.error, ruleString)
+        }
+      // Handle dir rule check
+      case 'dir':
+        const dirResult = checkDir(rule, context)
+        ruleString = `${requirementName} - ${rule.location} directory`
+        if (dirResult) {
+          spinner.succeed(ruleString)
+          return []
+        } else {
+          return addFailure(`'$${rule.location}' directory not found`, rule.error, ruleString)
+        }
+      // Handle dir rule check
+      case 'file':
+        const fileResult = checkFile(rule, context)
+        ruleString = `${requirementName} - ${rule.location} file`
+        if (fileResult) {
+          spinner.succeed(ruleString)
+          return []
+        } else {
+          return addFailure(`'$${rule.location}' file not found`, rule.error, ruleString)
         }
       default:
         return addFailure(`Encountered unknown rule '${rule.rule}'`, rule.error, `${requirementName} - ${rule.rule}`)
