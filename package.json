@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node bin/solidarity",
-    "test": "ava",
+    "test": "tsc && ava",
     "snapupdate": "ava --update-snapshots",
     "serve:docs": "docsify serve docs"
   },
