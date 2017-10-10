@@ -1,9 +1,10 @@
-const { head, tail, pipe, flatten, map } = require('ramda')
 const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
 const skipRule = require('./skipRule')
 
 module.exports = async (requirement, context) => {
+  const { head, tail, pipe, flatten, map } = require('ramda')
+  
   const { print } = context
   const requirementName = head(requirement)
   const rules = pipe(tail, flatten)(requirement)

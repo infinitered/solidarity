@@ -6,11 +6,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const { head, tail, pipe, flatten, map } = require('ramda');
 const checkCLI = require('./checkCLI');
 const checkENV = require('./checkENV');
 const skipRule = require('./skipRule');
 module.exports = (requirement, context) => __awaiter(this, void 0, void 0, function* () {
+    const { head, tail, pipe, flatten, map } = require('ramda');
     const { print } = context;
     const requirementName = head(requirement);
     const rules = pipe(tail, flatten)(requirement);

@@ -1,5 +1,5 @@
 import test from 'ava'
-import skipRule from '../../src/extensions/functions/skipRule'
+import skipRule from '../../dist/extensions/functions/skipRule'
 
 const currentPlatform = process.platform
 

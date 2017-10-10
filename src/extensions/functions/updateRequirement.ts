@@ -1,8 +1,9 @@
-const { head, tail, pipe, flatten, map } = require('ramda')
-const checkCLIForUpdates = require('./checkCLIForUpdates')
-const skipRule = require('./skipRule')
-
 module.exports = async (requirement, settings, context) => {
+
+  const { head, tail, pipe, flatten, map } = require('ramda')
+  const checkCLIForUpdates = require('./checkCLIForUpdates')
+  const skipRule = require('./skipRule')
+  
   const { print } = context
   const requirementName = head(requirement)
   const rules = pipe(tail, flatten)(requirement)

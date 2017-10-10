@@ -6,8 +6,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const { map, toPairs, isEmpty, flatten } = require('ramda');
 module.exports = (context) => __awaiter(this, void 0, void 0, function* () {
+    const { map, toPairs, isEmpty, flatten } = require('ramda');
     const { solidarity, print } = context;
     const { getSolidaritySettings, setSolidaritySettings, updateRequirement } = solidarity;
     // load current solidarity file

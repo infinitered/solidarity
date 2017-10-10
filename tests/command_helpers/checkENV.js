@@ -1,5 +1,5 @@
 import test from 'ava'
-import checkENV from '../../src/extensions/functions/checkENV'
+import checkENV from '../../dist/extensions/functions/checkENV'
 
 test('checkENV detects set ENV', async t => {
   // get the first environment variable

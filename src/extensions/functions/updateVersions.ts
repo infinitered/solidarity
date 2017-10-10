@@ -1,6 +1,6 @@
-const { map, toPairs, isEmpty, flatten } = require('ramda')
 
 module.exports = async (context) => {
+  const { map, toPairs, isEmpty, flatten } = require('ramda')  
   const { solidarity, print } = context
   const {
     getSolidaritySettings,
