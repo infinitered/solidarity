@@ -1,5 +1,4 @@
-const fs = require('fs')
-
 module.exports = (rule, context) => {
-  return fs.existsSync(rule.location)
+  const {filesystem} = context
+  return filesystem.exists(rule.location) === 'file'
 }

@@ -1,4 +1,4 @@
-const checkFile = require('./checkFile')
-
-module.exports = checkFile
-
+module.exports = (rule, context) => {
+  const {filesystem} = context
+  return filesystem.exists(rule.location) === 'dir'
+}
