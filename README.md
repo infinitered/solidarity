@@ -2,6 +2,9 @@
   <img src="https://raw.githubusercontent.com/infinitered/solidarity/master/_art/combo.jpg" width="700px" />
   <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3>
   <hr/>
+  
+  <a href='https://www.npmjs.com/package/solidarity'> <img src='https://nodei.co/npm/solidarity.png?downloads=true&downloadRank=true&stars=true' alt="npm"> </a>
+  
 <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
 <a href='https://travis-ci.org/infinitered/solidarity'> <img src='https://travis-ci.org/infinitered/solidarity.svg' alt='Build Status'></a>
 <a href="https://codecov.io/gh/infinitered/solidarity">
