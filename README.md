@@ -19,9 +19,9 @@ I know the one-liner under the graphic isn't for everyone.  If you'd like a quic
 https://infinitered.github.io/solidarity/
 
 -------
-_We now return you to your regularly scheduled ReadMe file_
+_We now return you to your regularly scheduled ReadMe_
 
-### Install
+## Install
 Install command globally, OR use via `node_modules`.  It's suggested you install your snapshot plugins in the same place.
 
 Note:
@@ -61,8 +61,12 @@ Custom rule-sets can be created by modifying the `.solidarity` file by hand, or 
 ## Supported Systems
 Currently solidarity only works with Mac and Linux.  Functionality for Windows OS is in the works.  Please submit PRs.
 
-## Premium Support
-Solidarity, as open source, is free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
+## Support
+
+#### Open Source
+Solidarity, as open source, is free to use and always will be.  It's MIT Licensed and we'll always do our best to help and quickly answer issues.  If you'd like to get a hold of us, join our [community slack](http://community.infinite.red) and look for the #solidarity room.
+#### Premium
+[Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
 
 ## Additional Info
 [![NPM](https://nodei.co/npm/solidarity.png)](https://npmjs.org/package/solidarity)
