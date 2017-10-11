@@ -1,3 +1,5 @@
 _art/
 .solidarity.example
 tests/
+src/
+.node-version
