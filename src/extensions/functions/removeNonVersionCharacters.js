@@ -9,7 +9,7 @@ module.exports = (rule, line) => {
       }
     }
   } catch (_e) {
-    throw `No version was detected from the output of the binary '${rule.binary}'`
+    throw ` No version was detected from the output of the binary '${rule.binary}'`
   }
   return result
 }
