@@ -1,10 +1,12 @@
 language: node_js
 node_js:
-  - 'node'
-  - '7'
+- 'node'
+- '8'
+
 before_install:
   - npm i -g typescript
 before_script:
   - tsc
+
 after_success:
   - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/codecov'

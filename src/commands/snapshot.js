@@ -7,7 +7,7 @@ namespace Snapshot {
       // Just a file copy
       const { filesystem, system } = context
       filesystem.copy(
-        `${runPlugin.templateDirectory}${runPlugin.snapshot}`,
+        runPlugin.snapshot,
         '.solidarity'
       )
       // force local version update
@@ -17,15 +17,15 @@ namespace Snapshot {
       await runPlugin.snapshot(context)
     }
   }
-
+  
   const createSolidarityFile = async (context) => {
     const { print, printSeparator } = context
     // list visible plugins
     printSeparator()
     print.info('Available technology plugins:\n')
-    if (context._pluginsList.length > 0) {
+    if (context.pluginsList.length > 0) {
       const pluginOptions = [NONE]
-      context._pluginsList.map((plugin) => {
+      context.pluginsList.map((plugin) => {
         print.info(`   ${plugin.name}:\t ${plugin.description}`)
         pluginOptions.unshift(plugin.name)
       })
@@ -36,36 +36,36 @@ namespace Snapshot {
         type: 'list',
         choices: pluginOptions
       })
-
+  
       if (answer.selectedPlugin === NONE) {
         print.info(DO_NOTHING)
       } else {
         const pluginSpinner = print.spin(`Running ${answer.selectedPlugin} Snapshot`)
         // Config for selected plugin only
-        const runPlugin = head(filter(propEq('name', answer.selectedPlugin), context._pluginsList))
+        const runPlugin = head(filter(propEq('name', answer.selectedPlugin), context.pluginsList))
         // run plugin
         await runPluginSnapshot(runPlugin, context)
         pluginSpinner.succeed('Snapshot complete')
       }
     } else {
       print.error(`No solidarity plugins found!
-
+  
       Add a plugin for a given technology:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/pluginsList.md')}
-
+  
       OR write your own plugin for generating rules:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/plugins.md')}
-
+  
       OR simply create a .solidarity rule-set by hand for this project:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/options.md')}
       `)
       printSeparator()
     }
   }
-
+  
   export const run = async function (context) {
     const { print, prompt, filesystem, solidarity } = context
-
+  
     // check is there an existing .solidarity file?
     if (filesystem.exists('.solidarity')) {
       // load existing file and update rule versions
@@ -78,15 +78,16 @@ namespace Snapshot {
         type: 'confirm',
         message: 'No `.solidarity` file found for this project.  Would you like to create one?'
       })
-
+  
       if (userAnswer.createFile) {
         await createSolidarityFile(context)
       } else {
         print.info(DO_NOTHING)
       }
     }
-  } 
+  }
 }
+
 
 module.exports = {
   description: 'Take a snapshot of the versions and store in .solidarity file',

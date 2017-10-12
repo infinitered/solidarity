@@ -15,6 +15,7 @@
   "author": "Gant Laborde",
   "license": "MIT",
   "dependencies": {
+    "callsite": "^1.0.0",
     "gluegun": "^2.0.0-alpha.2",
     "minimist": "^1.2.0",
     "ramda": "^0.24.1",
