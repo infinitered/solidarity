@@ -5,7 +5,7 @@
   - [How do I update it?](#how-do-i-update-it-to-my-machine-specs)
   - [How do I create my first snapshot?](#how-do-I-create-my-first-snapshot)
   - [Supported Systems](#supported-systems)
-  - [Support](#support)
+  - [Additional Support](#support)
   - [Additional Info](#additional-info)
 - Comprehensive Docs
   - [Solidarity Rules Options](/docs/options.md)
