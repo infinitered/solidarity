@@ -31,7 +31,7 @@ Node.js version must be >= `7.6.0`.
 $ npm i -g solidarity solidarity-react-native
 
 # example of installing local with yarn and elixir snapshot (dev dependencies)
-$ yarn add soliarity solidarity-elixir --dev
+$ yarn add solidarity solidarity-elixir --dev
 ```
 
 ## How do I use it?
