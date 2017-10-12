@@ -6,7 +6,7 @@ const runPluginSnapshot = async (runPlugin, context) => {
     // Just a file copy
     const { filesystem, system } = context
     filesystem.copy(
-      runPlugin.snapshot,
+      `${runPlugin.templateDirectory}${runPlugin.snapshot}`,
       '.solidarity'
     )
     // force local version update
