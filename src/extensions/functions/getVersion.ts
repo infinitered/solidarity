@@ -13,7 +13,7 @@ module.exports = async (rule, context) => {
     try { versionOutput = await system.run(`${rule.binary} -v`) } catch(_e) {
       try { versionOutput = await system.run(`${rule.binary} --version`) } catch(_e) {
         try { versionOutput = await system.run(`${rule.binary} -version`) } catch(_e) {
-          throw 'No version identifier flag for this binary was found'
+          throw ' No version identifier flag for this binary was found'
         }
       }
     }

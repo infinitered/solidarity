@@ -7,16 +7,32 @@
 <a href="https://codecov.io/gh/infinitered/solidarity">
   <img src="https://codecov.io/gh/infinitered/solidarity/graph/badge.svg" alt="Codecov" />
 </a>
-
+<a href="https://badge.fury.io/js/solidarity"><img src="https://badge.fury.io/js/solidarity.svg" alt="npm version" height="18"></a>
 
 </p>
 
-**WHY DOES SOLIDARITY EXIST?** Package management `.lock` files help zero-in on dependencies, but some stacks need more! For example, React Native needs specific Android SDK, Pods, Xcode, node, & even versions of NPM and Yarn.  Solidarity is the perfect tool for making sure your team is sharing the same complex environment without worrying about the environment complexity.
 
-### Docs
-* [Solidarity Rules Options](/docs/options.md)
-* [Write Solidarity Plugins](/docs/plugins.md)
-* [Available Plugins](/docs/pluginsList.md)
+### WHY DOES SOLIDARITY EXIST:question:
+I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take a two minutes to read [the announcement blog post](https://medium.com/@gantlaborde/solidarity-the-cli-for-environment-sanity-672fa81b98e9)
+
+### Docs Page
+https://infinitered.github.io/solidarity/
+
+-------
+_We now return you to your regularly scheduled ReadMe_
+
+## Install
+Install command globally, OR use via `node_modules`.  It's suggested you install your snapshot plugins in the same place.
+
+Note:
+Node.js version must be >= `7.6.0`.
+```sh
+# example of installing global with npm and react-native snapshot
+$ npm i -g solidarity solidarity-react-native
+
+# example of installing local with yarn and elixir snapshot (dev dependencies)
+$ yarn add soliarity solidarity-elixir --dev
+```
 
 ## How do I use it?
 Using solidarity easy! Run the command to check the current project environment
@@ -25,7 +41,7 @@ $ solidarity
 ```
 This command looks for the `.solidarity` file in the working directory, and then runs a check of the containing rules against your environment.  The command exit code is tied to the success of solidarity check so for testing frameworks.
 
-## How do I update it?
+## How do I update it to my machine specs?
 Environment updates can be stored to solidarity quickly.
 ```sh
 $ solidarity snapshot
@@ -42,21 +58,15 @@ No `.solidarity` file found for this project.  Would you like to create one? (Y/
 
 Custom rule-sets can be created by modifying the `.solidarity` file by hand, or by creating a solidarity plugin for a given technology.  See documentation for how you can create your own.
 
-### Install
-Install command globally, OR use via `node_modules`.  It's suggested you install your snapshot plugins in the same place.
-
-Note:
-Node.js version must be >= `7.6.0`.
-```sh
-# example of installing global with npm and react-native snapshot
-$ npm i -g solidarity solidarity-react-native
-
-# example of installing local with yarn and elixir snapshot (dev dependencies)
-$ yarn add soliarity solidarity-elixir --dev
-```
-
 ## Supported Systems
 Currently solidarity only works with Mac and Linux.  Functionality for Windows OS is in the works.  Please submit PRs.
 
-## Premium Support
-Solidarity, as open source, is free to use and always will be. [Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
+## Support
+
+#### Open Source
+Solidarity, as open source, is free to use and always will be.  It's MIT Licensed and we'll always do our best to help and quickly answer issues.  If you'd like to get a hold of us, join our [community slack](http://community.infinite.red) and look for the #solidarity room.
+#### Premium
+[Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
+
+## Additional Info
+[![NPM](https://nodei.co/npm/solidarity.png)](https://npmjs.org/package/solidarity)

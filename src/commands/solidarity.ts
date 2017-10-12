@@ -1,6 +1,6 @@
 namespace Solidarity {
-  const { map, toPairs, isEmpty, flatten } = require('ramda')
-  
+  const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
+
   const checkForEscapeHatchFlags = async(context) => {
     const { print, parameters } = context
     const { options } = parameters
@@ -14,32 +14,32 @@ namespace Solidarity {
       process.exit(0)
     }
   }
-  
+
   export const run = async (context) => {
     // drop out fast in these situations
     checkForEscapeHatchFlags(context)
-  
+
     const { print, solidarity } = context
     const { checkRequirement, getSolidaritySettings } = solidarity
-  
+
     // get settings
     const solidaritySettings = getSolidaritySettings(context)
-  
+
     // build map of checks to perform
     const checks = await map(
       async requirement => checkRequirement(requirement, context),
       toPairs(solidaritySettings)
     )
-  
+
     // run the array of promises you just created
     await Promise.all(checks)
       .then(results => {
-        const errors = flatten(results)
+        const errors = reject(isNil, flatten(results))
         if (isEmpty(errors)) {
           print.success('\n Environment Checks Valid')
         } else {
-          print.error('\n Solidarity Check Failed:')
-          print.error(errors)
+          print.error('\nSolidarity Checks Failed:\n')
+          print.error(errors.join('\n'))
           process.exit(1)
         }
       })
@@ -49,6 +49,7 @@ namespace Solidarity {
       })
   }
 }
+
 
 // Export command
 module.exports = {
