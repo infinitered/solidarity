@@ -47,7 +47,7 @@ Contents of `fiesta.js`
 ```js
 module.exports = (context) => {
   // Register this plugin
-  context.pluginsList.push({
+  context.addPlugin({
     name: 'Fiesta Time',
     description: 'Make sure your system is ready to party 🎉',
     snapshot: `fiesta-template.json`
@@ -87,7 +87,7 @@ _As an example:_ If we wanted to perform the same exact plugin from above, but d
 ```js
 module.exports = (context) => {
   // Register this plugin
-  context.pluginsList.push({
+  context.addPlugin({
     name: 'Fiesta Time',
     description: 'Make sure your system is ready to party 🎉',
     snapshot: async (context) => {
