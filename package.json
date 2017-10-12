@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "node bin/solidarity",
+    "build": "tsc",
     "test": "nyc ava",
     "snapupdate": "ava --update-snapshots",
     "serve:docs": "docsify serve docs"
@@ -17,9 +18,11 @@
     "callsite": "^1.0.0",
     "gluegun": "^2.0.0-alpha.2",
     "minimist": "^1.2.0",
-    "ramda": "^0.24.1"
+    "ramda": "^0.24.1",
+    "typescript": "^2.5.3"
   },
   "devDependencies": {
+    "@types/node": "^8.0.33",
     "ava": "^0.22.0",
     "codecov.io": "^0.1.6",
     "coveralls": "^3.0.0",

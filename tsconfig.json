@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "dist",
+    "module": "es6",
+    "target": "es6"
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "types": ["node"],
+  "typeRoots": [
+    "node_modules/@types"
+  ]
+}
