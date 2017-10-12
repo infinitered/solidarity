@@ -47,10 +47,10 @@ Contents of `fiesta.js`
 ```js
 module.exports = (context) => {
   // Register this plugin
-  context.pluginsList.push({
+  context.addPlugin({
     name: 'Fiesta Time',
     description: 'Make sure your system is ready to party 🎉',
-    snapshot: `${__dirname}/../templates/fiesta-template.json`
+    snapshot: `fiesta-template.json`
   })
 }
 ```
@@ -64,7 +64,7 @@ Let's review the 3 properties:
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name        | Name of plugin presented to user                                                                                                                               |
 | description | Description given to user during listing of plugins.                                                                                                                |
-| snapshot    | If type `string`, it is the file to copy as the `.solidarity` file.  Otherwise it's the async function to run when this plugin is selected (_for advanced plugins_) |
+| snapshot    | If type `string`, it is the file to copy as the `.solidarity` file, and must be located in the `templates` folder.  Otherwise it's the async function to run when this plugin is selected (_for advanced plugins_) |
 
 **Plugin written!**  Now you can publish your plugin to `npm`.
 
@@ -87,7 +87,7 @@ _As an example:_ If we wanted to perform the same exact plugin from above, but d
 ```js
 module.exports = (context) => {
   // Register this plugin
-  context.pluginsList.push({
+  context.addPlugin({
     name: 'Fiesta Time',
     description: 'Make sure your system is ready to party 🎉',
     snapshot: async (context) => {

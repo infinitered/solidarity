@@ -1,3 +1,5 @@
+const callsite = require('callsite')
+const path = require('path')
 // Adding our goodies to the context
 module.exports = (context) => {
   context.solidarity = {
@@ -16,7 +18,19 @@ module.exports = (context) => {
     getLineWithVersion: require('./functions/getLineWithVersion')
   }
   // place for plugins
-  context.pluginsList = []
+  context._pluginsList = []
+  // the add plugin function
+  context.addPlugin = (pluginConfig) => {
+    // I'll fiinnnnd youuuu... calling function
+    const stack = callsite()
+    const requester = stack[1].getFileName()
+    const templateDirectory = path.join(path.dirname(requester), '../templates/')
+
+    context._pluginsList.push({
+      templateDirectory,
+      ...pluginConfig
+    })
+  }
   // Flavored separator
   context.printSeparator = () =>
     context.print.info(context.print.colors.america('-----------------------------------------------------------------------------------'))

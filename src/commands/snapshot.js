@@ -6,7 +6,7 @@ const runPluginSnapshot = async (runPlugin, context) => {
     // Just a file copy
     const { filesystem, system } = context
     filesystem.copy(
-      runPlugin.snapshot,
+      `${runPlugin.templateDirectory}${runPlugin.snapshot}`,
       '.solidarity'
     )
     // force local version update
@@ -22,9 +22,9 @@ const createSolidarityFile = async (context) => {
   // list visible plugins
   printSeparator()
   print.info('Available technology plugins:\n')
-  if (context.pluginsList.length > 0) {
+  if (context._pluginsList.length > 0) {
     const pluginOptions = [NONE]
-    context.pluginsList.map((plugin) => {
+    context._pluginsList.map((plugin) => {
       print.info(`   ${plugin.name}:\t ${plugin.description}`)
       pluginOptions.unshift(plugin.name)
     })
@@ -41,7 +41,7 @@ const createSolidarityFile = async (context) => {
     } else {
       const pluginSpinner = print.spin(`Running ${answer.selectedPlugin} Snapshot`)
       // Config for selected plugin only
-      const runPlugin = head(filter(propEq('name', answer.selectedPlugin), context.pluginsList))
+      const runPlugin = head(filter(propEq('name', answer.selectedPlugin), context._pluginsList))
       // run plugin
       await runPluginSnapshot(runPlugin, context)
       pluginSpinner.succeed('Snapshot complete')
