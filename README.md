@@ -70,3 +70,7 @@ Solidarity, as open source, is free to use and always will be.  It's MIT License
 
 ## Additional Info
 [![NPM](https://nodei.co/npm/solidarity.png)](https://npmjs.org/package/solidarity)
+
+## License
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
