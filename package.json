@@ -10,6 +10,7 @@
     "build": "tsc",
     "test": "nyc ava",
     "snapupdate": "ava --update-snapshots",
+    "welcome": "yarn tsc && npm link",
     "serve:docs": "docsify serve docs"
   },
   "author": "Gant Laborde",
