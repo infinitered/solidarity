@@ -6,8 +6,6 @@
   - [How do I create my first snapshot?](#how-do-I-create-my-first-snapshot)
   - [Supported Systems](#supported-systems)
   - [Support](#support)
-    - [Open Source](#open-source)
-    - [Premium](#premium)
   - [Additional Info](#additional-info)
 - Comprehensive Docs
   - [Solidarity Rules Options](/docs/options.md)
