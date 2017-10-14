@@ -1,12 +1,12 @@
 # Solidarity Options
 Understanding the `.solidarity` file helps you read and write new solidarity checks for any project.
 
-## `.solidarity` Rules
+## Solidarity Rules
 The `.solidarity` file is a JSON object with a set of rules to enforce on each computer's environment.
 
 Each type of check is dictated by the `rule` property.  Depending on the `rule` is what other properties will be required
 
-### `"rule"="cli"`
+### CLI Rules
 
 A CLI rule will investigate to make sure a specific CLI is installed on the system.  The contents of whatever is passed to `binary`, global or path, will be checked for existence.
 
@@ -46,13 +46,15 @@ OR you could identify the `line` via string matching:
 "React Native": [{ "rule": "cli", "binary": "react-native", "semver": "^0.48.1", "line": "react-native:" }]
 ```
 
-### `"rule"="env"`
+Lastly, if output has multiple versions, you can identify the index of the version you'd like by specifying a `matchIndex`.
+
+### Environment Rules
 `env` means we will check for the environment variable passed in the `variable` property.
 
-### `"rule"="file"`
+### File Rules
 `file` rule means for a given file passed in the `location` property, we will verify it exists.
 
-### `"rule"="dir"`
+### Directory Rules
 `dir` rule means for a given directory passed in the `location` property, we will verify it exists.
 
 ### Friendly Errors
