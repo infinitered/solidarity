@@ -3,7 +3,8 @@ module.exports = (rule, line) => {
   // Return longest match, because it is most likely to be correct
   let result
   try {
-    result = foundVersions[0]
+    const matchIndex = rule.matchIndex || 0
+    result = foundVersions[matchIndex]
   } catch (_e) {
     throw ` No version was detected from the output of the binary '${rule.binary}'`
   }
