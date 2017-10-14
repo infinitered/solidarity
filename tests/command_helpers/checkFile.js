@@ -1,5 +1,5 @@
 import test from 'ava'
-import checkFile from '../../src/extensions/functions/checkFile'
+import checkFile from '../../dist/extensions/functions/checkFile'
 import context from 'gluegun'
 
 test('checkFile detects an existing file', async t => {
