@@ -8,6 +8,7 @@
   "scripts": {
     "start": "node bin/solidarity",
     "build": "tsc",
+    "shipit": "tsc && np",
     "test": "tsc && nyc ava",
     "coverage": "nyc --reporter=text-summary ava",
     "snapupdate": "ava --update-snapshots",
@@ -20,8 +21,7 @@
     "callsite": "^1.0.0",
     "gluegun": "^2.0.0-alpha.2",
     "minimist": "^1.2.0",
-    "ramda": "^0.24.1",
-    "typescript": "^2.5.3"
+    "ramda": "^0.24.1"
   },
   "devDependencies": {
     "@types/node": "^8.0.33",
@@ -30,6 +30,8 @@
     "coveralls": "^3.0.0",
     "docsify-cli": "^4.1.10",
     "execa": "^0.8.0",
+    "typescript": "^2.5.3",
+    "np": "^2.16.0",
     "nyc": "^11.2.1",
     "tempy": "^0.2.1"
   },
