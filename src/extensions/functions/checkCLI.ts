@@ -1,10 +1,9 @@
 module.exports = async (rule, context) => {
   const { system, semver, solidarity } = context
+  const binaryExists = require('./binaryExists')
 
   // First check for binary
-  try {
-    system.which(rule.binary)
-  } catch (_e) {
+  if (!binaryExists(rule.binary, context)) {
     return `Binary '${rule.binary}' not found`
   }
 

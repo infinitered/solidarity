@@ -3,6 +3,7 @@ const path = require('path')
 // Adding our goodies to the context
 module.exports = (context) => {
   context.solidarity = {
+    binaryExists: require('./functions/binaryExists'),
     getSolidaritySettings: require('./functions/getSolidaritySettings'),
     setSolidaritySettings: require('./functions/setSolidaritySettings'),
     checkRequirement: require('./functions/checkRequirement'),

@@ -17,7 +17,7 @@ const outOfDateCLI = {
 
 const context = require('gluegun')
 
-test('error on missin binary', async t => {
+test('error on missing binary', async t => {
   t.is(await checkCLI(doesNotExistCLI, context), `Binary '${doesNotExistCLI.binary}' not found`)
 })
 
@@ -32,5 +32,5 @@ test('returns message on improper version', async t => {
         Rule='${outOfDateCLI.semver}'
         Actual='1'`
 
-  t.is(await checkCLI(outOfDateCLI, context), message)  
+  t.is(await checkCLI(outOfDateCLI, context), message)
 })
