@@ -1,6 +1,6 @@
 {
   "name": "solidarity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Make sure all React Native dependencies are uniform across machines",
   "bin": {
     "solidarity": "bin/solidarity"
@@ -30,10 +30,10 @@
     "coveralls": "^3.0.0",
     "docsify-cli": "^4.1.10",
     "execa": "^0.8.0",
-    "typescript": "^2.5.3",
     "np": "^2.16.0",
     "nyc": "^11.2.1",
-    "tempy": "^0.2.1"
+    "tempy": "^0.2.1",
+    "typescript": "^2.5.3"
   },
   "ava": {
     "files": [
