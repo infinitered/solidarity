@@ -14,3 +14,5 @@ module.exports = async () => {
     .create()
     .run()
 }
+
+export * from './types'

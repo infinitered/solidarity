@@ -5,6 +5,7 @@
   "bin": {
     "solidarity": "bin/solidarity"
   },
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "start": "node bin/solidarity",
     "build": "tsc",

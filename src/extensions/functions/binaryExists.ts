@@ -1,4 +1,6 @@
-module.exports = (binary, context) => {
+import { GluegunRunContext } from 'gluegun'
+
+module.exports = (binary: string, context: GluegunRunContext): boolean => {
   const { system } = context
 
   // Check if binary exists

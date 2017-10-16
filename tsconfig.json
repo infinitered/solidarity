@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    // Brings in Promise and all es2015 extensions to TS
+    // TODO: Bringing in dom to quell URL issue, please remove if possible
+    "lib": ["es2015", "dom"],
     "outDir": "dist",
+    // Emits types (next 2 commands)
+    "declaration": true,
+    "declarationDir": "dist/types",
     "module": "es6",
-    "target": "es6"
+    "target": "es5",
+    "moduleResolution": "node"
   },
   "include": [
     "./src/**/*"
-  ],
-  "types": ["node"],
-  "typeRoots": [
-    "node_modules/@types"
   ]
 }
