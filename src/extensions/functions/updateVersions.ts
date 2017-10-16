@@ -1,6 +1,6 @@
-
-module.exports = async (context) => {
-  const { map, toPairs, isEmpty, flatten } = require('ramda')  
+import { SolidarityRunContext } from '../../types'
+module.exports = async (context: SolidarityRunContext): Promise<void> => {
+  const { map, toPairs, isEmpty, flatten } = require('ramda')
   const { solidarity, print } = context
   const {
     getSolidaritySettings,

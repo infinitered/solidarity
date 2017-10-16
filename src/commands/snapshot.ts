@@ -1,3 +1,5 @@
+import { GluegunCommand } from 'gluegun'
+
 namespace Snapshot {
   const { propEq, filter, head } = require('ramda')
   const NONE = 'None'
@@ -85,11 +87,11 @@ namespace Snapshot {
         print.info(DO_NOTHING)
       }
     }
-  } 
+  }
 }
 
 module.exports = {
   description: 'Take a snapshot of the versions and store in .solidarity file',
   alias: 's',
   run: Snapshot.run
-}
+} as GluegunCommand

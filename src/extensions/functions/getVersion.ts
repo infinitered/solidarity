@@ -1,7 +1,7 @@
+import { SolidarityRule, SolidarityRunContext } from '../../types'
 // Get the version of a specific CLI
-module.exports = async (rule, context) => {
+module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Promise<string> => {
   const { system, solidarity } = context
-
 
   let versionOutput
   // They specified how to check version
@@ -17,7 +17,6 @@ module.exports = async (rule, context) => {
         }
       }
     }
-
   }
 
   // Now parse
