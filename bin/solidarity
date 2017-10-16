@@ -1,14 +1,4 @@
 #!/usr/bin/env node
 
-const { isNewEnough, nodeMinimum } = require(`${__dirname}/../node_modules/gluegun/sniff`)
-
-if (isNewEnough) {
-  // let's kick it off with the command line parameters  
-  require(`${__dirname}/../dist/index.js`)(process.argv)
-} else {
-  console.log(
-    "Whoops! You'll need to upgrade Node.js to go any further. \n\n" + 
-    `Version must be >= ${nodeMinimum}`
-  )
-}
-
+// let's kick it off with the command line parameters
+require(`${__dirname}/../dist/index.js`)(process.argv)
