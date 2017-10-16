@@ -1,6 +1,6 @@
-const { build } = require('gluegun')
+import { build } from 'gluegun'
 
-module.exports = async () => {
+module.exports = async (): Promise<void> => {
   // setup the runtime
   build()
     .brand('solidarity')
