@@ -1,5 +1,5 @@
-import test from 'ava'
-import binaryExists from '../../dist/extensions/functions/binaryExists'
+const test = require('ava')
+const binaryExists = require('../../dist/extensions/functions/binaryExists')
 
 const doesNotExistCLI = 'no_way_this_should_be_real'
 

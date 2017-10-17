@@ -1,5 +1,5 @@
-import test from 'ava'
-import skipRule from '../../dist/extensions/functions/skipRule'
+const test = require('ava')
+const skipRule = require('../../dist/extensions/functions/skipRule')
 
 const currentPlatform = process.platform
 

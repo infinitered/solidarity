@@ -1,6 +1,6 @@
-import test from 'ava'
-import checkDir from '../../dist/extensions/functions/checkDir'
-import context from 'gluegun'
+const test = require('ava')
+const checkDir = require('../../dist/extensions/functions/checkDir')
+const context = require('gluegun')
 
 test('checkDir detects an existing file', async t => {
   // Check for a known directory

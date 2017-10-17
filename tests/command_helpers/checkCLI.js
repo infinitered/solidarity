@@ -1,6 +1,6 @@
-import test from 'ava'
-import checkCLI from '../../dist/extensions/functions/checkCLI'
-import solidarityExtension from '../../dist/extensions/solidarity-extension'
+const test = require('ava')
+const checkCLI = require('../../dist/extensions/functions/checkCLI')
+const solidarityExtension = require('../../dist/extensions/solidarity-extension')
 
 const doesNotExistCLI = {
   binary: 'no_way_this_should_be_real'

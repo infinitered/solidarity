@@ -1,6 +1,6 @@
-import test from 'ava'
-import checkFile from '../../dist/extensions/functions/checkFile'
-import context from 'gluegun'
+const test = require('ava')
+const checkFile = require('../../dist/extensions/functions/checkFile')
+const context = require('gluegun')
 
 test('checkFile detects an existing file', async t => {
   // get the first environment variable

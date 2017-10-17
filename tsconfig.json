@@ -9,7 +9,8 @@
     "declaration": true,
     "declarationDir": "dist/types",
 
-    "module": "es6",
+    // Using commonjs here to play nice with node (imports not welcome here)
+    "module": "commonjs",
     "target": "es5",
     "moduleResolution": "node"
   },

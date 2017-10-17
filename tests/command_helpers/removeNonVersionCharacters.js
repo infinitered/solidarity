@@ -1,5 +1,5 @@
-import test from 'ava'
-import removeNonVersionCharacters from '../../dist/extensions/functions/removeNonVersionCharacters'
+const test = require('ava')
+const removeNonVersionCharacters = require('../../dist/extensions/functions/removeNonVersionCharacters')
 
 test('Verify removeNonVersionCharacters function', t => {
   t.is(typeof removeNonVersionCharacters, 'function')

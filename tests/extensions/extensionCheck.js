@@ -1,6 +1,6 @@
-import test from 'ava'
-import path from 'path'
-import solidarityExtension from '../../dist/extensions/solidarity-extension'
+const test = require('ava')
+const path = require('path')
+const solidarityExtension = require('../../dist/extensions/solidarity-extension')
 
 const newContext = {}
 solidarityExtension(newContext)
