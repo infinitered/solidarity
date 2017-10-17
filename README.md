@@ -8,7 +8,9 @@
   <img src="https://codecov.io/gh/infinitered/solidarity/graph/badge.svg" alt="Codecov" />
 </a>
 <a href="https://badge.fury.io/js/solidarity"><img src="https://badge.fury.io/js/solidarity.svg" alt="npm version" height="18"></a>
-
+<a href="http://community.infinite.red/">
+  <img src="https://infiniteredcommunity.herokuapp.com/badge.svg">
+</a>
 </p>
 
 
