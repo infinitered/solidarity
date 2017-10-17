@@ -1,4 +1,5 @@
-module.exports = (settings, context) => {
+import { SolidarityRunContext } from '../../types'
+module.exports = (settings: object, context: SolidarityRunContext): void => {
   const { print, filesystem } = context
 
   try {

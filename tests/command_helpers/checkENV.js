@@ -1,5 +1,5 @@
-import test from 'ava'
-import checkENV from '../../dist/extensions/functions/checkENV'
+const test = require('ava')
+const checkENV = require('../../dist/extensions/functions/checkENV')
 
 test('checkENV detects set ENV', async t => {
   // get the first environment variable

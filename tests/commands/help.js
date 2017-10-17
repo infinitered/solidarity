@@ -1,5 +1,5 @@
-import test from 'ava'
-import helpCommand from '../../dist/commands/help'
+const test = require('ava')
+const helpCommand = require('../../dist/commands/help')
 
 test('Snapshot check help command', t => {
   t.snapshot(helpCommand)

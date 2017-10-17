@@ -1,15 +1,20 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    // Brings in Promise and all es2015 extensions to TS
+    // TODO: Bringing in dom to quell URL issue, please remove if possible
+    "lib": ["es2015", "dom", "es7"],
     "outDir": "dist",
-    "module": "es6",
-    "target": "es6"
+
+    // Emits types for others to consume
+    "declaration": true,
+    "declarationDir": "dist/types",
+
+    // Using commonjs here to play nice with node (imports not welcome here)
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node"
   },
   "include": [
     "./src/**/*"
-  ],
-  "types": ["node"],
-  "typeRoots": [
-    "node_modules/@types"
   ]
 }

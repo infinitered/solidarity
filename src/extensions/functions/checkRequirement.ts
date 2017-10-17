@@ -1,12 +1,13 @@
+import { SolidarityRequirement, SolidarityRunContext } from '../../types'
 const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
 const checkDir = require('./checkDir')
 const checkFile = require('./checkFile')
 const skipRule = require('./skipRule')
 
-module.exports = async (requirement, context) => {
+module.exports = async (requirement: SolidarityRequirement, context: SolidarityRunContext): Promise<void | object[]> => {
   const { head, tail, pipe, flatten, map } = require('ramda')
-  
+
   const { print } = context
   const requirementName = head(requirement)
   const rules = pipe(tail, flatten)(requirement)

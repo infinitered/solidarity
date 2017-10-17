@@ -1,27 +1,14 @@
+import {SolidarityRunContext, solidarity, SolidarityPlugin} from '../types'
+
 const callsite = require('callsite')
 const path = require('path')
 // Adding our goodies to the context
-module.exports = (context) => {
-  context.solidarity = {
-    binaryExists: require('./functions/binaryExists'),
-    getSolidaritySettings: require('./functions/getSolidaritySettings'),
-    setSolidaritySettings: require('./functions/setSolidaritySettings'),
-    checkRequirement: require('./functions/checkRequirement'),
-    updateRequirement: require('./functions/updateRequirement'),
-    skipRule: require('./functions/skipRule'),
-    checkENV: require('./functions/checkENV'),
-    checkCLI: require('./functions/checkCLI'),
-    checkDir: require('./functions/checkDir'),
-    checkFile: require('./functions/checkFile'),
-    updateVersions: require('./functions/updateVersions'),
-    removeNonVersionCharacters: require('./functions/removeNonVersionCharacters'),
-    getVersion: require('./functions/getVersion'),
-    getLineWithVersion: require('./functions/getLineWithVersion')
-  }
+module.exports = (context: SolidarityRunContext) => {
+  context.solidarity = solidarity
   // place for plugins
   context._pluginsList = []
   // the add plugin function
-  context.addPlugin = (pluginConfig) => {
+  context.addPlugin = (pluginConfig: SolidarityPlugin) => {
     // I'll fiinnnnd youuuu... calling function
     const stack = callsite()
     const requester = stack[1].getFileName()

@@ -1,4 +1,5 @@
-module.exports = context => {
+import { SolidarityRunContext } from '../../types'
+module.exports = (context: SolidarityRunContext): object => {
   const { print, filesystem } = context
   const { colors } = print
   if (filesystem.exists('.solidarity')) {

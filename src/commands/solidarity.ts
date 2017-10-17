@@ -1,3 +1,5 @@
+import { GluegunCommand } from 'gluegun'
+
 namespace Solidarity {
   const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
 
@@ -55,4 +57,4 @@ namespace Solidarity {
 module.exports = {
   description: 'Check environment rules',
   run: Solidarity.run
-}
+} as GluegunCommand

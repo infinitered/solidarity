@@ -1,5 +1,5 @@
 // Return true if we should skip
-module.exports = (platform) => {
+module.exports = (platform: string | string[]): boolean => {
   if (typeof platform === 'string') {
     // it's a string
     return platform !== process.platform

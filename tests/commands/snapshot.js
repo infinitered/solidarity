@@ -1,5 +1,5 @@
-import test from 'ava'
-import snapshotCommand from '../../dist/commands/snapshot'
+const test = require('ava')
+const snapshotCommand = require('../../dist/commands/snapshot')
 
 test('Snapshot check snapshot command', t => {
   t.snapshot(snapshotCommand)
