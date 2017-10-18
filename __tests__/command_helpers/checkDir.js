@@ -1,7 +1,7 @@
 const checkDir = require('../../dist/extensions/functions/checkDir')
 const context = require('gluegun')
 
-test('checkDir detects an existing file', async () => {
+test('checkDir detects an existing dir', async () => {
   // Check for a known directory
   const location = './src'
   // Use checkDir to make sure it exists

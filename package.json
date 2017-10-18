@@ -11,7 +11,7 @@
     "build": "tsc",
     "shipit": "tsc && np",
     "test": "tsc && jest",
-    "coverage": "nyc --reporter=text-summary ava",
+    "coverage": "jest --coverage",
     "snapupdate": "ava --update-snapshots",
     "welcome": "yarn tsc && npm link",
     "serve:docs": "docsify serve docs"
