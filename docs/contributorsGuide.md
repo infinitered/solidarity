@@ -14,6 +14,8 @@ To test this project, you'll need to pull it down and configure your local syste
 
 You can now type `solidarity` and it is running from the compiled TypeScript in your local project.
 
+> If you have problems, `solidarity` has a Solidarity file (SO META!).  Just use the last stable version of the CLI from `npm` to check your environment.
+
 ### Updating Local Code
 Whenever you have modified the `/src` folder, you can run `yarn tsc` to compile the typescript into JS, and your global `solidarity` CLI will be updated.
 
