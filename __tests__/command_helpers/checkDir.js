@@ -1,20 +1,19 @@
-const test = require('ava')
 const checkDir = require('../../dist/extensions/functions/checkDir')
 const context = require('gluegun')
 
-test('checkDir detects an existing file', async t => {
+test('checkDir detects an existing file', async () => {
   // Check for a known directory
   const location = './src'
   // Use checkDir to make sure it exists
-  t.truthy(checkDir({location}, context))
+  expect(checkDir({location}, context)).toBeTruthy()
 })
 
-test('checkDir can fail', async t => {
+test('checkDir can fail', async () => {
   // Use checkDir to make sure a non-existant directory returns false
-  t.falsy(checkDir({location: 'DOES_NOT_EXIST'}, context))
+  expect(checkDir({location: 'DOES_NOT_EXIST'}, context)).toBeFalsy()
 })
 
-test('checkDir returns false for a file that exists', async t => {
+test('checkDir returns false for a file that exists', async () => {
   // Use checkDir to make sure a known file returns false since it's not a directory
-  t.falsy(checkDir({location: './package.json'}, context))
+  expect(checkDir({location: './package.json'}, context)).toBeFalsy()
 })

@@ -10,7 +10,7 @@
     "start": "node bin/solidarity",
     "build": "tsc",
     "shipit": "tsc && np",
-    "test": "tsc && nyc ava",
+    "test": "tsc && jest",
     "coverage": "nyc --reporter=text-summary ava",
     "snapupdate": "ava --update-snapshots",
     "welcome": "yarn tsc && npm link",
@@ -32,11 +32,15 @@
     "coveralls": "^3.0.0",
     "docsify-cli": "^4.1.10",
     "execa": "^0.8.0",
+    "jest": "^21.2.1",
     "np": "^2.16.0",
     "nyc": "^11.2.1",
     "tempy": "^0.2.1",
     "tslint": "^5.7.0",
     "typescript": "^2.5.3"
+  },
+  "jest": {
+    "moduleDirectories": ["node_modules"]
   },
   "ava": {
     "files": [

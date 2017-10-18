@@ -1,28 +1,29 @@
-const test = require('ava')
 const execa = require('execa')
 const tempy = require('tempy')
 
 const SOLIDARITY = `${process.cwd()}/bin/solidarity`
 
-test.before(t => {
+beforeAll(() => {
   const tempDir = tempy.directory()
   process.chdir(tempDir)
 })
 
-test('default looks for .solidarity file', async t => {
+test('default looks for .solidarity file', async done => {
   try {
     await execa(SOLIDARITY)
-    t.fail()
+    done.fail()
   } catch (err) {
-    t.is(err.code, 3)
+    expect(err.code).toBe(3)
+    done()
   }
 })
 
-test('check looks for .solidarity file', async t => {
+test('check looks for .solidarity file', async done => {
   try {
     await execa(SOLIDARITY, ['check'])
-    t.fail()
+    done.fail()
   } catch (err) {
-    t.is(err.code, 3)
+    expect(err.code).toBe(3)
+    done()
   }
 })

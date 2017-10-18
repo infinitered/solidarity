@@ -1,7 +1,6 @@
-const test = require('ava')
 const checkENV = require('../../dist/extensions/functions/checkENV')
 
-test('checkENV detects set ENV', async t => {
+test('checkENV detects set ENV', async () => {
   // get the first environment variable
   const environmentKeys = Object.keys(process.env)
   if (environmentKeys.length > 0) {
@@ -15,15 +14,11 @@ test('checkENV detects set ENV', async t => {
       i++
     }
     // Use checkENV to make sure it exists
-    t.truthy(await checkENV({variable: someRealEnvVar}))
-  } else {
-    // This only happens in sub-run tests
-    // don't worry when this happens
-    t.pass()
-  }
+    expect(await checkENV({variable: someRealEnvVar})).toBeTruthy()
+  } else {}
 })
 
-test('checkENV can fail', async t => {
+test('checkENV can fail', async () => {
   // Use checkENV to make sure it exists
-  t.falsy(await checkENV({variable: 'THIS_SHOULD_NOT_EXIST_VERIFIER'}))
+  expect(await checkENV({variable: 'THIS_SHOULD_NOT_EXIST_VERIFIER'})).toBeFalsy()
 })

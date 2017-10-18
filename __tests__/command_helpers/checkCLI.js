@@ -1,4 +1,3 @@
-const test = require('ava')
 const checkCLI = require('../../dist/extensions/functions/checkCLI')
 const solidarityExtension = require('../../dist/extensions/solidarity-extension')
 
@@ -17,20 +16,20 @@ const outOfDateCLI = {
 
 const context = require('gluegun')
 
-test('error on missing binary', async t => {
-  t.is(await checkCLI(doesNotExistCLI, context), `Binary '${doesNotExistCLI.binary}' not found`)
+test('error on missing binary', async () => {
+  expect(await checkCLI(doesNotExistCLI, context)).toBe(`Binary '${doesNotExistCLI.binary}' not found`)
 })
 
-test('fine on existing binary', async t => {
-  t.is(await checkCLI(alwaysExistCLI, context), undefined)
+test('fine on existing binary', async () => {
+  expect(await checkCLI(alwaysExistCLI, context)).toBe(undefined)
 })
 
-test('returns message on improper version', async t => {
+test('returns message on improper version', async () => {
   solidarityExtension(context)
   context.solidarity.getVersion = () => '1'
   const message = `This system has an improper version for ${outOfDateCLI.binary}:
         Rule='${outOfDateCLI.semver}'
         Actual='1'`
 
-  t.is(await checkCLI(outOfDateCLI, context), message)
+  expect(await checkCLI(outOfDateCLI, context)).toBe(message)
 })
