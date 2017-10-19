@@ -2,8 +2,8 @@ import checkDir from '../../src/extensions/functions/checkDir'
 import context from 'gluegun'
 
 test('checkDir detects an existing dir', () => {
-  // Check for a known directory (must be absolute)
-  const location = __dirname + '/../../src'
+  // Check for a known directory
+  const location = './src'
   // Use checkDir to make sure it exists
   expect(checkDir({location}, context)).toBeTruthy()
 })

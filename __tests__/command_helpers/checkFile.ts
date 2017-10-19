@@ -2,8 +2,8 @@ import checkFile from '../../src/extensions/functions/checkFile'
 import context from 'gluegun'
 
 test('checkFile detects an existing file', () => {
-  // use full path! otherwise flaky testing
-  const location = __dirname + '/../../package.json'
+  // known file
+  const location = './package.json'
   // Use checkFile to make sure it exists
   expect(checkFile({location}, context)).toBeTruthy()
 })
