@@ -14,7 +14,7 @@
     "target": "es6",
     "moduleResolution": "node",
 
-    // Let's allow do `import`
+    // Let's allow `import`
     "allowSyntheticDefaultImports": true
   },
   "include": [
