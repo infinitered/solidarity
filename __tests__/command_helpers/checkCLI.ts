@@ -1,5 +1,5 @@
-const checkCLI = require('../../dist/extensions/functions/checkCLI')
-const solidarityExtension = require('../../dist/extensions/solidarity-extension')
+const checkCLI = require('../../src/extensions/functions/checkCLI')
+const solidarityExtension = require('../../src/extensions/solidarity-extension')
 
 const doesNotExistCLI = {
   binary: 'no_way_this_should_be_real'

@@ -1,4 +1,4 @@
-const checkFile = require('../../dist/extensions/functions/checkFile')
+const checkFile = require('../../src/extensions/functions/checkFile')
 const context = require('gluegun')
 
 test('checkFile detects an existing file', async () => {

@@ -1,5 +1,5 @@
 const path = require('path')
-const solidarityExtension = require('../../dist/extensions/solidarity-extension')
+const solidarityExtension = require('../../src/extensions/solidarity-extension')
 
 const newContext = {}
 solidarityExtension(newContext)

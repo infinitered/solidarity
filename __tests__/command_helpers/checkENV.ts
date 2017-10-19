@@ -1,4 +1,4 @@
-const checkENV = require('../../dist/extensions/functions/checkENV')
+const checkENV = require('../../src/extensions/functions/checkENV')
 
 test('checkENV detects set ENV', async () => {
   // get the first environment variable

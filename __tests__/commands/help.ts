@@ -1,4 +1,4 @@
-const helpCommand = require('../../dist/commands/help')
+const helpCommand = require('../../src/commands/help')
 
 test('Snapshot check help command', () => {
   expect(helpCommand).toMatchSnapshot()

@@ -1,4 +1,4 @@
-const checkDir = require('../../dist/extensions/functions/checkDir')
+const checkDir = require('../../src/extensions/functions/checkDir')
 const context = require('gluegun')
 
 test('checkDir detects an existing dir', async () => {

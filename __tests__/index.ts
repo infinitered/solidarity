@@ -1,4 +1,4 @@
-const baseRuntimeConfiguration = require('../dist/index')
+const baseRuntimeConfiguration = require('../src/index')
 
 test('Verify Runtime AND Configuration', () => {
   expect(baseRuntimeConfiguration).toMatchSnapshot()

@@ -1,4 +1,4 @@
-const snapshotCommand = require('../../dist/commands/snapshot')
+const snapshotCommand = require('../../src/commands/snapshot')
 
 test('Snapshot check snapshot command', () => {
   expect(snapshotCommand).toMatchSnapshot()
