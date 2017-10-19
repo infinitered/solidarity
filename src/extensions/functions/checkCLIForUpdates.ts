@@ -1,4 +1,5 @@
-module.exports = async (rule, context) => {
+import { SolidarityRule, SolidarityRunContext } from '../../types'
+module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Promise<string> => {
   const { system, semver, solidarity, print } = context
   const { color } = print
 

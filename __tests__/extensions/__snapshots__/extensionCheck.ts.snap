@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot of solidarity extension 1`] = `
+Object {
+  "binaryExists": [Function],
+  "checkCLI": [Function],
+  "checkDir": [Function],
+  "checkENV": [Function],
+  "checkFile": [Function],
+  "checkRequirement": [Function],
+  "getLineWithVersion": [Function],
+  "getSolidaritySettings": [Function],
+  "getVersion": [Function],
+  "removeNonVersionCharacters": [Function],
+  "setSolidaritySettings": [Function],
+  "skipRule": [Function],
+  "updateRequirement": [Function],
+  "updateVersions": [Function],
+}
+`;

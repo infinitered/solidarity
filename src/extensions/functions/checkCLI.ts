@@ -1,10 +1,10 @@
-module.exports = async (rule, context) => {
+import { SolidarityRunContext, SolidarityRule } from '../../types'
+module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Promise<string> => {
   const { system, semver, solidarity } = context
+  const binaryExists = require('./binaryExists')
 
   // First check for binary
-  try {
-    system.which(rule.binary)
-  } catch (_e) {
+  if (!binaryExists(rule.binary, context)) {
     return `Binary '${rule.binary}' not found`
   }
 

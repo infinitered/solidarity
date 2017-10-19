@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot check default command 1`] = `
+Object {
+  "description": "Check environment rules",
+  "run": [Function],
+}
+`;

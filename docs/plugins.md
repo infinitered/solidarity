@@ -1,5 +1,5 @@
 # Writing your Plugin
-If you're using a technology that doesn't have a plugin, or if you'd just like build your on style, we've made creating plugins extremely simple.
+If you're using a technology that doesn't have a plugin, or if you'd just like build your own style, we've made creating plugins extremely simple.
 
 ## The Simplest Plugin
 Most of the time the plugin you're going to write will be so _dead simple_ that the art is in the rule set alone.

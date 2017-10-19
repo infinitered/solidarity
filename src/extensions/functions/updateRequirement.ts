@@ -1,9 +1,10 @@
-module.exports = async (requirement, settings, context) => {
+import { SolidarityRequirement, SolidarityRunContext } from '../../types'
+module.exports = async (requirement: SolidarityRequirement, settings: object, context: SolidarityRunContext): Promise<void | object[]> => {
 
   const { head, tail, pipe, flatten, map } = require('ramda')
   const checkCLIForUpdates = require('./checkCLIForUpdates')
   const skipRule = require('./skipRule')
-  
+
   const { print } = context
   const requirementName = head(requirement)
   const rules = pipe(tail, flatten)(requirement)
