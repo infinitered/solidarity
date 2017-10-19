@@ -9,4 +9,4 @@ before_script:
   - tsc
 
 after_success:
-  - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/codecov'
+  - './node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/codecov'

@@ -11,8 +11,11 @@
 
     // Using commonjs here to play nice with node (imports not welcome here)
     "module": "commonjs",
-    "target": "es5",
-    "moduleResolution": "node"
+    "target": "es6",
+    "moduleResolution": "node",
+
+    // Let's allow `import`
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "./src/**/*"
