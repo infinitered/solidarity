@@ -1,4 +1,4 @@
-const checkCommand = require('../../src/commands/solidarity')
+import checkCommand from '../../src/commands/solidarity'
 
 test('Snapshot check default command', () => {
   expect(checkCommand).toMatchSnapshot()

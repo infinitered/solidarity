@@ -1,5 +1,5 @@
-const execa = require('execa')
-const tempy = require('tempy')
+import execa from 'execa'
+import tempy from 'tempy'
 
 const SOLIDARITY = `${process.cwd()}/bin/solidarity`
 

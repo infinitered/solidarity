@@ -1,4 +1,4 @@
-const skipRule = require('../../src/extensions/functions/skipRule')
+import skipRule from '../../src/extensions/functions/skipRule'
 
 const currentPlatform = process.platform
 

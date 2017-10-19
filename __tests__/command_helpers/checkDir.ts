@@ -1,5 +1,5 @@
-const checkDir = require('../../src/extensions/functions/checkDir')
-const context = require('gluegun')
+import checkDir from '../../src/extensions/functions/checkDir'
+import context from 'gluegun'
 
 test('checkDir detects an existing dir', () => {
   // Check for a known directory (must be absolute)

@@ -1,4 +1,4 @@
-const removeNonVersionCharacters = require('../../src/extensions/functions/removeNonVersionCharacters')
+import removeNonVersionCharacters from '../../src/extensions/functions/removeNonVersionCharacters'
 
 test('Verify removeNonVersionCharacters function', () => {
   expect(typeof removeNonVersionCharacters).toBe('function')

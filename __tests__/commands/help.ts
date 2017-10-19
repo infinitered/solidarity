@@ -1,4 +1,4 @@
-const helpCommand = require('../../src/commands/help')
+import helpCommand from '../../src/commands/help'
 
 test('Snapshot check help command', () => {
   expect(helpCommand).toMatchSnapshot()

@@ -1,10 +1,8 @@
-const binaryExists = require('../../src/extensions/functions/binaryExists')
+import binaryExists from '../../src/extensions/functions/binaryExists'
+import context from 'gluegun'
 
 const doesNotExistCLI = 'no_way_this_should_be_real'
-
 const alwaysExistCLI = 'node'
-
-const context = require('gluegun')
 
 test('false on missing binary', async () => {
   expect(await binaryExists(doesNotExistCLI, context)).toBe(false)

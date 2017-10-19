@@ -1,5 +1,5 @@
-const checkFile = require('../../src/extensions/functions/checkFile')
-const context = require('gluegun')
+import checkFile from '../../src/extensions/functions/checkFile'
+import context from 'gluegun'
 
 test('checkFile detects an existing file', () => {
   // use full path! otherwise flaky testing
