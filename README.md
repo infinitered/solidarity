@@ -21,7 +21,7 @@ I know the one-liner under the graphic isn't for everyone.  If you'd like a quic
 https://infinitered.github.io/solidarity/
 
 -------
-_We now return you to your regularly scheduled ReadMe_
+> _We now return you to your regularly scheduled ReadMe_
 
 ## Install
 Install command globally, OR use via `node_modules`.  It's suggested you install your snapshot plugins in the same place.
