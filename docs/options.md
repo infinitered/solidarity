@@ -2,9 +2,11 @@
 Understanding the `.solidarity` file helps you read and write new solidarity checks for any project.
 
 ## Solidarity Rules
-The `.solidarity` file is a JSON object with a set of rules to enforce on each computer's environment.
+The `.solidarity` file is a JSON object with a set of requirements to enforce on each computer's environment.  All requirements should be specified inside the `requirements` key.
 
-Each type of check is dictated by the `rule` property.  Depending on the `rule` is what other properties will be required
+See [.solidarity.example](../.solidarity.example) for an example of what a file might look like in a project.
+
+Each type of requirement check is dictated by the `rule` property.  Depending on the `rule` is what other properties will be required
 
 ### CLI Rules
 
