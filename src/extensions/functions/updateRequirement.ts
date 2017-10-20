@@ -1,4 +1,4 @@
-import { SolidarityRequirement, SolidarityRunContext,  } from '../../types'
+import { SolidarityRequirement, SolidarityRunContext } from '../../types'
 module.exports = async (requirement: SolidarityRequirement, settings: object, context: SolidarityRunContext): Promise<void | object[]> => {
 
   const { head, tail, pipe, flatten, map } = require('ramda')
