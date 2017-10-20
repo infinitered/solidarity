@@ -47,5 +47,5 @@ export interface SolidarityRule {
 export type SolidarityRequirement = SolidarityRule[]
 
 export interface SolidaritySettings {
-  requirements: SolidarityRequirement[]
+  requirements: object
 }
