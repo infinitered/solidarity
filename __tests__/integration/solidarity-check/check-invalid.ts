@@ -17,13 +17,3 @@ test('default looks for .solidarity file', async done => {
     done()
   }
 })
-
-test('check looks for .solidarity file', async done => {
-  try {
-    await execa(SOLIDARITY, ['check'])
-    done.fail()
-  } catch (err) {
-    expect(err.code).toBe(3)
-    done()
-  }
-})

@@ -13,8 +13,8 @@ module.exports = async (context: SolidarityRunContext): Promise<void> => {
 
   // Map over requirements with option to mutate settings
   const checks = await map(
-    async requirement => updateRequirement(requirement, solidaritySettings, context),
-    toPairs(solidaritySettings)
+    async requirement => updateRequirement(requirement, solidaritySettings.requirements, context),
+    toPairs(solidaritySettings.requirements)
   )
 
   // run the array of promises you just created

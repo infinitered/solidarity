@@ -1,22 +1,23 @@
-import { SolidarityRunContext } from '../../types'
-module.exports = (context: SolidarityRunContext): object => {
+import { SolidarityRunContext, SolidaritySettings } from '../../types'
+module.exports = (context: SolidarityRunContext): SolidaritySettings => {
   const { print, filesystem } = context
   const { colors } = print
+
+  // for now only JSON support
+  let solidaritySettings
   if (filesystem.exists('.solidarity')) {
-    try {
-      // for now only JSON support
-      return JSON.parse(filesystem.read('.solidarity'))
-    } catch (e) {
-      print.error(e)
-      process.exit(1)
-    }
+    solidaritySettings = JSON.parse(filesystem.read('.solidarity'))
+  } else if (filesystem.exists('.solidarity.json')) {
+    solidaritySettings = JSON.parse(filesystem.read('.solidarity.json'))
   } else {
-    print.error('ERROR: No `.solidarity` file found')
-    print.info(
-      `Make sure you are in the correct folder or run ${colors.success(
-        'solidarity snapshot'
-      )} to take a snapshot of your environment and create a .solidarity file for this project.`
-    )
-    process.exit(3)
+    // if we got here there was no solidarity file
+    throw 'ERROR: No solidarity file was found'
+  }
+
+  // Check shape
+  if (solidaritySettings.requirements) {
+    return solidaritySettings
+  } else {
+    throw 'ERROR: Found, but no requirements key.  Please validate your solidarity file'
   }
 }
