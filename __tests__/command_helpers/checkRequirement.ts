@@ -1,7 +1,5 @@
 import { SolidarityRequirement } from '../../dist/types';
-import { platform } from 'os';
-import { read } from 'fs';
-import { tail, pipe, head, flatten, toPairs } from 'ramda';
+import { toPairs } from 'ramda';
 
 import checkRequirement from '../../src/extensions/functions/checkRequirement'
 import solidarityExtension from '../../src/extensions/solidarity-extension'

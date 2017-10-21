@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getSolidaritySettings w/ .solidarity happy path 1`] = `
+Object {
+  "NPM": Array [
+    Object {
+      "binary": "npm",
+      "rule": "cli",
+    },
+  ],
+  "Node": Array [
+    Object {
+      "binary": "node",
+      "error": "Upgrade to latest node >= 7.6 please.",
+      "rule": "cli",
+      "semver": ">=7.6.0",
+    },
+  ],
+  "TypeScript Active": Array [
+    Object {
+      "error": "Did you get this code from npm? Try github!",
+      "location": "./src",
+      "rule": "dir",
+    },
+    Object {
+      "error": "You haven't compiled. Run the build script!",
+      "location": "./dist",
+      "rule": "dir",
+    },
+  ],
+  "Yarn": Array [
+    Object {
+      "binary": "yarn",
+      "rule": "cli",
+      "semver": "^1.0.0",
+      "version": "--version",
+    },
+  ],
+}
+`;
