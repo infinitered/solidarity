@@ -6,7 +6,7 @@ const origCwd = process.cwd();
 
 beforeAll(() => {
   const tempDir = tempy.directory()
-  process.chdir(tempDir) 
+  process.chdir(tempDir)
 })
 
 test('default looks for .solidarity file', async done => {
