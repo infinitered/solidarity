@@ -24,13 +24,24 @@ namespace Solidarity {
     const { print, solidarity } = context
     const { checkRequirement, getSolidaritySettings } = solidarity
 
-    // get settings
-    const solidaritySettings = getSolidaritySettings(context)
+    // get settings or error
+    let solidaritySettings
+    try {
+      solidaritySettings = getSolidaritySettings(context)
+    } catch (e) {
+      print.error(e)
+      print.info(
+        `Make sure you are in the correct folder or run ${print.colors.success(
+          'solidarity snapshot'
+        )} to take a snapshot of your environment and create a .solidarity file for this project.`
+      )
+      process.exit(3)
+    }
 
     // build map of checks to perform
     const checks = await map(
       async requirement => checkRequirement(requirement, context),
-      toPairs(solidaritySettings)
+      toPairs(solidaritySettings.requirements)
     )
 
     // run the array of promises you just created
@@ -51,7 +62,6 @@ namespace Solidarity {
       })
   }
 }
-
 
 // Export command
 module.exports = {

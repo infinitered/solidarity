@@ -1,31 +1,25 @@
-import { read } from 'fs';
-
 import { solidarity } from '../../src';
 import getSolidaritySettings from '../../src/extensions/functions/getSolidaritySettings'
 
-import solidarityExtension from '../../src/extensions/solidarity-extension'
-
 const context = require('gluegun')
-solidarityExtension(context)
 
 describe('getSolidaritySettings', () => {
   describe('w/ .solidarity', () => {
-    test('happy path', () => {
-      const solidaritySettings = getSolidaritySettings(context)
-      expect(solidaritySettings).toMatchSnapshot()
+    test('getSolidaritySettings exists', () => expect(getSolidaritySettings).toMatchSnapshot())
+    
+    test('getSolidaritySettings succeeds', async () => {
+      const resultSettings = getSolidaritySettings(context)
+      // we got an object with requirements defined
+      expect(resultSettings).toMatchObject({requirements: {}})
     })
-
-    // Need to figure out a good pattern for mocking filesystem  
-    // to point at our .solidarity.example 
-
-    // test('sad path', () => {
-
-    // })
   })
-
-  // describe('w/o .solidarity', () => {
-  //   test('it should print a reasonable error', () => {
-
-  //   })
-  // })
+  
+  test('getSolidaritySettings can fail', async () => {
+    expect(() => {
+      process.chdir('__tests__')
+      const resultSettings = getSolidaritySettings(context)
+    }).toThrow()
+    process.chdir('../')
+  })
 })
+
