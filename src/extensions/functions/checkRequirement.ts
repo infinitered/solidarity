@@ -1,4 +1,4 @@
-import { SolidarityRequirement, SolidarityRunContext } from '../../types'
+import { SolidarityRequirement, SolidarityRunContext, SolidarityOutputMode } from '../../types'
 const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
 const checkDir = require('./checkDir')
@@ -13,11 +13,33 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
   const rules = pipe(tail, flatten)(requirement)
 
   let ruleString = ''
-  const spinner = print.spin(`Verifying ${requirementName}`)
+  // Hide spinner if silent outputmode is set
+  const spinner = context.outputMode != SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
 
   const addFailure = (commonMessage, customMessage, ruleString) => {
-    spinner.fail(ruleString)
+    printResult(false, customMessage || commonMessage)
     return customMessage || commonMessage
+  }
+
+  const printResult = (checkSuccessful, resultMessage) => {
+    switch(context.outputMode) {
+      case SolidarityOutputMode.VERBOSE:
+        // Print everything
+        checkSuccessful ? spinner.succeed(resultMessage) : spinner.fail(resultMessage)        
+        break;
+
+      case SolidarityOutputMode.SILENT: 
+        // Print nothing
+        break;
+
+      case SolidarityOutputMode.MODERATE:
+      default:
+        // Print only errors
+        if (!checkSuccessful) {
+          spinner.fail(resultMessage)
+        }
+        break;
+    }    
   }
 
   // check each rule for requirement
@@ -33,7 +55,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
         if (cliResult) {
           return addFailure(cliResult, rule.error, ruleString)
         } else {
-          spinner.succeed(ruleString)
+          printResult(true, ruleString)
           return []
         }
       // Handle ENV rule check
@@ -41,7 +63,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
         const envResult = await checkENV(rule, context)
         ruleString = `${requirementName} - ${rule.variable} env`
         if (envResult) {
-          spinner.succeed(ruleString)
+          printResult(true, ruleString)
           return []
         } else {
           return addFailure(`'$${rule.variable}' environment variable not found`, rule.error, ruleString)
@@ -51,7 +73,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
         const dirResult = checkDir(rule, context)
         ruleString = `${requirementName} - ${rule.location} directory`
         if (dirResult) {
-          spinner.succeed(ruleString)
+          printResult(true, ruleString)
           return []
         } else {
           return addFailure(`'$${rule.location}' directory not found`, rule.error, ruleString)
@@ -61,7 +83,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
         const fileResult = checkFile(rule, context)
         ruleString = `${requirementName} - ${rule.location} file`
         if (fileResult) {
-          spinner.succeed(ruleString)
+          printResult(true, ruleString)
           return []
         } else {
           return addFailure(`'$${rule.location}' file not found`, rule.error, ruleString)
@@ -74,7 +96,9 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
   // Run all the rule checks for a requirement
   return Promise.all(ruleChecks)
     .then(results => {
-      spinner.stop()
+      if (spinner != null) {
+        spinner.stop()
+      }
       return results
     })
     .catch(err => print.error(err))
