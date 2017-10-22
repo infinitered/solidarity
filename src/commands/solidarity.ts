@@ -51,7 +51,7 @@ namespace Solidarity {
     }
 
     context.outputMode = setOutputMode(context.parameters, solidaritySettings)
-    
+
     // build map of checks to perform
     const checks = await map(
       async requirement => checkRequirement(requirement, context),
@@ -62,18 +62,14 @@ namespace Solidarity {
     await Promise.all(checks)
       .then(results => {
         const errors = reject(isNil, flatten(results))
-        const silentOutput = context.outputMode == SolidarityOutputMode.SILENT
+        const silentOutput = context.outputMode === SolidarityOutputMode.SILENT
         // Add empty line between final result if printing rule results
-        if (!silentOutput) print.success('\n')
-        
+        if (!silentOutput) print.success('')
+
         if (isEmpty(errors)) {
-          print.success('Good to go.')
+          if (!silentOutput) print.success('Solidarity checks valid')
         } else {
-          print.error('Solidarity checks failed.')
-          // Print instructions in case silent logging is enabled
-          if (silentOutput) {
-            print.error('Change "output" in .solidarity-file or pass --verbose to see details.')
-          }
+          if (!silentOutput) print.error('Solidarity checks failed.')
           process.exit(1)
         }
       })

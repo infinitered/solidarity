@@ -6,13 +6,15 @@ You can use set the following option in `.solidarity` to configure output:
 ```
 {
   "config" : {
-    "output" : "<moderate/verbose/silent>" // Default is moderate
+    "output" : "<moderate/verbose/silent>"
   }
 }
 ```
+_Default is `moderate`_
+
 - Moderate - Only outputs message if a specific check fails
-- Verbose  - Outputs messages for successful and failed checks.
-- Silent   - Only outputs the final result for all checks (Pass/Fail)
+- Verbose  - Outputs all messages for successful and failed checks.
+- Silent   - No visible output, just have to see system return value (mostly for turning down CI noise).
 
 Optionally you can also pass `--verbose` in the CLI to override the configuration option and output all status messages.
 
