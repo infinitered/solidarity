@@ -82,6 +82,6 @@ namespace Solidarity {
 
 // Export command
 module.exports = {
-  description: 'Check environment rules',
+  description: 'Check environment against solidarity rules',
   run: Solidarity.run
 } as GluegunCommand

@@ -91,7 +91,7 @@ namespace Snapshot {
 }
 
 module.exports = {
-  description: 'Take a snapshot of the versions and store in .solidarity file',
+  description: 'Take a snapshot of the versions and store in solidarity file',
   alias: 's',
   run: Snapshot.run
 } as GluegunCommand
