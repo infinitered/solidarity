@@ -19,9 +19,14 @@ namespace Solidarity {
   }
 
   const setOutputMode = (parameters, settings) : SolidarityOutputMode => {
-    // CLI parameter --verbose overrides any config settings
-    if (parameters.options.verbose) {
+    const { options } = parameters
+    // CLI flags override config
+    if (options.verbose || options.a) {
       return SolidarityOutputMode.VERBOSE
+    } else if (options.silent || options.s) {
+      return SolidarityOutputMode.SILENT
+    } else if (options.moderate || options.m) {
+      return SolidarityOutputMode.MODERATE
     }
 
     // Set output mode, set to default on invalid value
