@@ -3,7 +3,7 @@
 exports[`Snapshot check snapshot command 1`] = `
 Object {
   "alias": "s",
-  "description": "Take a snapshot of the versions and store in .solidarity file",
+  "description": "Take a snapshot of the versions and store in solidarity file",
   "run": [Function],
 }
 `;
