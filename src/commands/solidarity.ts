@@ -67,7 +67,7 @@ namespace Solidarity {
         if (!silentOutput) print.success('')
 
         if (isEmpty(errors)) {
-          if (!silentOutput) print.success('Solidarity checks valid')
+          if (!silentOutput) print.success(print.checkmark + ' Solidarity checks valid')
         } else {
           if (!silentOutput) print.error('Solidarity checks failed.')
           process.exit(1)
