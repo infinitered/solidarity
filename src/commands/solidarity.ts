@@ -1,4 +1,5 @@
 import { GluegunCommand } from 'gluegun'
+import { SolidarityOutputMode } from '../types'
 
 namespace Solidarity {
   const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
@@ -15,6 +16,17 @@ namespace Solidarity {
       print.info(require('../../package.json').version)
       process.exit(0)
     }
+  }
+
+  const setOutputMode = (parameters, settings) : SolidarityOutputMode => {
+    // CLI parameter --verbose overrides any config settings
+    if (parameters.options.verbose) {
+      return SolidarityOutputMode.VERBOSE
+    }
+
+    // Set output mode, set to default on invalid value
+    let outputModeString = settings.config ? String(settings.config.output).toUpperCase() : null
+    return SolidarityOutputMode[outputModeString] || SolidarityOutputMode.MODERATE
   }
 
   export const run = async (context) => {
@@ -38,6 +50,8 @@ namespace Solidarity {
       process.exit(3)
     }
 
+    context.outputMode = setOutputMode(context.parameters, solidaritySettings)
+    
     // build map of checks to perform
     const checks = await map(
       async requirement => checkRequirement(requirement, context),
@@ -48,11 +62,18 @@ namespace Solidarity {
     await Promise.all(checks)
       .then(results => {
         const errors = reject(isNil, flatten(results))
+        const silentOutput = context.outputMode == SolidarityOutputMode.SILENT
+        // Add empty line between final result if printing rule results
+        if (!silentOutput) print.success('\n')
+        
         if (isEmpty(errors)) {
-          print.success('\n Environment Checks Valid')
+          print.success('Good to go.')
         } else {
-          print.error('\nSolidarity Checks Failed:\n')
-          print.error(errors.join('\n'))
+          print.error('Solidarity checks failed.')
+          // Print instructions in case silent logging is enabled
+          if (silentOutput) {
+            print.error('Change "output" in .solidarity-file or pass --verbose to see details.')
+          }
           process.exit(1)
         }
       })

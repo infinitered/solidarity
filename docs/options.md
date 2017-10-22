@@ -1,6 +1,21 @@
 # Solidarity Options
 Understanding the `.solidarity` file helps you read and write new solidarity checks for any project.
 
+## Solidarity output
+You can use set the following option in `.solidarity` to configure output:
+```
+{
+  "config" : {
+    "output" : "<moderate/verbose/silent>" // Default is moderate
+  }
+}
+```
+- Moderate - Only outputs message if a specific check fails
+- Verbose  - Outputs messages for successful and failed checks.
+- Silent   - Only outputs the final result for all checks (Pass/Fail)
+
+Optionally you can also pass `--verbose` in the CLI to override the configuration option and output all status messages.
+
 ## Solidarity Rules
 The `.solidarity` file is a JSON object with a set of requirements to enforce on each computer's environment.  All requirements should be specified inside the `requirements` key.
 
