@@ -7,6 +7,8 @@ before_install:
   - npm i -g typescript
 before_script:
   - tsc
+script:
+  - npm run test:ci
 
 after_success:
   - './node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/codecov'
