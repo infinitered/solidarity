@@ -68,14 +68,14 @@ Currently solidarity only works with Mac and Linux.  Functionality for Windows O
 
 ## Support
 #### Open Source
-Solidarity, as open source, is free to use and always will be.  It's MIT Licensed and we'll always do our best to help and quickly answer issues.  If you'd like to get a hold of us, join our [community slack](http://community.infinite.red) and look for the #solidarity room.
+Solidarity, as open source, is free to use and always will be :heart:.  It's MIT Licensed and we'll always do our best to help and quickly answer issues.  If you'd like to get a hold of us, join our [community slack](http://community.infinite.red) and look for the #solidarity room.
 
 #### Premium
 [Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
 
 ## Additional Info
-### You can contribute
-* Mentions us [![Twitter](https://img.shields.io/twitter/url/https/github.com/infinitered/solidarity.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Finfinitered%2Fsolidarity)
+### You can help!
+* Spread the word [![Twitter](https://img.shields.io/twitter/url/https/github.com/infinitered/solidarity.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Finfinitered%2Fsolidarity)
 * Star the Repo!
 * Clap on Medium
 * Read the [Contributors Guide](https://github.com/infinitered/solidarity/blob/master/docs/contributorsGuide.md)
