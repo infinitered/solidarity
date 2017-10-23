@@ -11,6 +11,9 @@
 <a href="http://community.infinite.red/">
   <img src="https://infiniteredcommunity.herokuapp.com/badge.svg">
 </a>
+<a href="https://www.npmjs.com/package/solidarity">
+  <img src="https://img.shields.io/npm/dt/solidarity.svg">        
+</a>
 </p>
 
 
@@ -60,7 +63,7 @@ No `.solidarity` file found for this project.  Would you like to create one? (Y/
 
 Custom rule-sets can be created by modifying the `.solidarity` file by hand, or by creating a solidarity plugin for a given technology.  See documentation for how you can create your own.
 
-## Supported Systems
+## Platforms
 Currently solidarity only works with Mac and Linux.  Functionality for Windows OS is in the works.  Please submit PRs.
 
 ## Support
@@ -71,6 +74,13 @@ Solidarity, as open source, is free to use and always will be.  It's MIT License
 [Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
 
 ## Additional Info
+### You can contribute
+* Mentions us [![Twitter](https://img.shields.io/twitter/url/https/github.com/infinitered/solidarity.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Finfinitered%2Fsolidarity)
+* Star the Repo!
+* Clap on Medium
+* Read the [Contributors Guide](https://github.com/infinitered/solidarity/blob/master/docs/contributorsGuide.md)
+* Add solidarity to your projects and file issues
+
 ### License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
