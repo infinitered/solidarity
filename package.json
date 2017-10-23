@@ -25,6 +25,7 @@
     "callsite": "^1.0.0",
     "gluegun": "^2.0.0-alpha.3",
     "minimist": "^1.2.0",
+    "pluralize": "^7.0.0",
     "ramda": "^0.24.1"
   },
   "devDependencies": {
