@@ -1,13 +1,12 @@
 import helpCommand from '../../src/commands/help'
 
-let counter = 0
 const context = {
   print: {
-    info: () => counter++,
-    printCommands: () => counter++,
-    success: () => counter++,
+    info: jest.fn(),
+    printCommands: jest.fn(),
+    success: jest.fn(),
     colors: {
-      magenta: () => counter++
+      magenta: jest.fn()
     }
   }
 }
@@ -22,8 +21,14 @@ test('Enforce required properties', () => {
   expect(typeof helpCommand.run).toBe('function')
 })
 
-test('Hash run command printing', () => {
-  expect(counter).toBe(0)
+test('Calls print items several times', () => {
+  expect(context.print.info.mock.calls.length).toBe(0)
+  expect(context.print.printCommands.mock.calls.length).toBe(0)
+  expect(context.print.success.mock.calls.length).toBe(0)
+  expect(context.print.colors.magenta.mock.calls.length).toBe(0)
   helpCommand.run(context)
-  expect(counter).toBe(11)
+  expect(context.print.info.mock.calls.length).toBe(6)
+  expect(context.print.printCommands.mock.calls.length).toBe(1)
+  expect(context.print.success.mock.calls.length).toBe(2)
+  expect(context.print.colors.magenta.mock.calls.length).toBe(2)
 })
