@@ -19,9 +19,14 @@ namespace Solidarity {
   }
 
   const setOutputMode = (parameters, settings) : SolidarityOutputMode => {
-    // CLI parameter --verbose overrides any config settings
-    if (parameters.options.verbose) {
+    const { options } = parameters
+    // CLI flags override config
+    if (options.verbose || options.a) {
       return SolidarityOutputMode.VERBOSE
+    } else if (options.silent || options.s) {
+      return SolidarityOutputMode.SILENT
+    } else if (options.moderate || options.m) {
+      return SolidarityOutputMode.MODERATE
     }
 
     // Set output mode, set to default on invalid value
@@ -51,7 +56,7 @@ namespace Solidarity {
     }
 
     context.outputMode = setOutputMode(context.parameters, solidaritySettings)
-    
+
     // build map of checks to perform
     const checks = await map(
       async requirement => checkRequirement(requirement, context),
@@ -62,18 +67,14 @@ namespace Solidarity {
     await Promise.all(checks)
       .then(results => {
         const errors = reject(isNil, flatten(results))
-        const silentOutput = context.outputMode == SolidarityOutputMode.SILENT
+        const silentOutput = context.outputMode === SolidarityOutputMode.SILENT
         // Add empty line between final result if printing rule results
-        if (!silentOutput) print.success('\n')
-        
+        if (!silentOutput) print.success('')
+
         if (isEmpty(errors)) {
-          print.success('Good to go.')
+          if (!silentOutput) print.success(print.checkmark + ' Solidarity checks valid')
         } else {
-          print.error('Solidarity checks failed.')
-          // Print instructions in case silent logging is enabled
-          if (silentOutput) {
-            print.error('Change "output" in .solidarity-file or pass --verbose to see details.')
-          }
+          if (!silentOutput) print.error('Solidarity checks failed.')
           process.exit(1)
         }
       })
@@ -86,6 +87,6 @@ namespace Solidarity {
 
 // Export command
 module.exports = {
-  description: 'Check environment rules',
+  description: 'Check environment against solidarity rules',
   run: Solidarity.run
 } as GluegunCommand

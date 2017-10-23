@@ -25,10 +25,10 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
     switch(context.outputMode) {
       case SolidarityOutputMode.VERBOSE:
         // Print everything
-        checkSuccessful ? spinner.succeed(resultMessage) : spinner.fail(resultMessage)        
+        checkSuccessful ? spinner.succeed(resultMessage) : spinner.fail(resultMessage)
         break;
 
-      case SolidarityOutputMode.SILENT: 
+      case SolidarityOutputMode.SILENT:
         // Print nothing
         break;
 
@@ -39,7 +39,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
           spinner.fail(resultMessage)
         }
         break;
-    }    
+    }
   }
 
   // check each rule for requirement
@@ -96,7 +96,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
   // Run all the rule checks for a requirement
   return Promise.all(ruleChecks)
     .then(results => {
-      if (spinner != null) {
+      if (spinner !== null) {
         spinner.stop()
       }
       return results

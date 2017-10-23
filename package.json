@@ -10,11 +10,12 @@
     "start": "node bin/solidarity",
     "build": "tsc",
     "shipit": "tsc && np",
-    "test": "jest --no-cache",
+    "test": "jest",
+    "test:ci": "jest --ci",
     "newclear": "rm -rf node_modules && yarn && tsc",
     "watch": "jest --watch",
     "coverage": "jest --coverage",
-    "snapupdate": "ava --update-snapshots",
+    "snapupdate": "jest -u",
     "welcome": "yarn tsc && npm link",
     "serve:docs": "docsify serve docs"
   },
@@ -24,6 +25,7 @@
     "callsite": "^1.0.0",
     "gluegun": "^2.0.0-alpha.3",
     "minimist": "^1.2.0",
+    "pluralize": "^7.0.0",
     "ramda": "^0.24.1"
   },
   "devDependencies": {
