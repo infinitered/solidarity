@@ -1,6 +1,6 @@
 import { SolidarityRunContext, SolidarityRule } from '../../types'
 module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Promise<string> => {
-  const { system, semver, solidarity } = context
+  const { semver, solidarity } = context
   const binaryExists = require('./binaryExists')
 
   // First check for binary

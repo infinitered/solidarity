@@ -4,7 +4,7 @@ import { SolidarityOutputMode } from '../types'
 namespace Solidarity {
   const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
 
-  const checkForEscapeHatchFlags = async(context) => {
+  const checkForEscapeHatchFlags = async (context) => {
     const { print, parameters } = context
     const { options } = parameters
     if (options.help || options.h) {
@@ -18,7 +18,7 @@ namespace Solidarity {
     }
   }
 
-  const setOutputMode = (parameters, settings) : SolidarityOutputMode => {
+  const setOutputMode = (parameters, settings): SolidarityOutputMode => {
     const { options } = parameters
     // CLI flags override config
     if (options.verbose || options.a) {
@@ -36,7 +36,7 @@ namespace Solidarity {
 
   export const run = async (context) => {
     // drop out fast in these situations
-    checkForEscapeHatchFlags(context)
+    await checkForEscapeHatchFlags(context)
 
     const { print, solidarity } = context
     const { checkRequirement, getSolidaritySettings } = solidarity

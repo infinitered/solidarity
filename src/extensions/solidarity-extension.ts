@@ -1,4 +1,4 @@
-import {SolidarityRunContext, solidarity, SolidarityPlugin} from '../types'
+import { SolidarityRunContext, solidarity, SolidarityPlugin } from '../types'
 
 const callsite = require('callsite')
 const path = require('path')
