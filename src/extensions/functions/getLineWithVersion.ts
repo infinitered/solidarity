@@ -14,7 +14,7 @@ module.exports = (rule: SolidarityRule, versionOutput: string): string => {
       throw `rule.line string '${rule.line}' was not found`
     }
   } else {
-    //pass it through if rules don't provide a line
+    // pass it through if rules don't provide a line
     result = versionOutput
   }
   return result

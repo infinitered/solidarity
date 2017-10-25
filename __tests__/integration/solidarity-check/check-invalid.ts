@@ -2,7 +2,7 @@ import execa from 'execa'
 import tempy from 'tempy'
 
 const SOLIDARITY = `${process.cwd()}/bin/solidarity`
-const origCwd = process.cwd();
+const origCwd = process.cwd()
 
 beforeAll(() => {
   const tempDir = tempy.directory()
@@ -20,5 +20,5 @@ test('default looks for .solidarity file', async done => {
 })
 
 afterAll(() => {
-  process.chdir(origCwd) 
+  process.chdir(origCwd)
 })

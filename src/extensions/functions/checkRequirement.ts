@@ -14,32 +14,30 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
 
   let ruleString = ''
   // Hide spinner if silent outputmode is set
-  const spinner = context.outputMode != SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
-
-  const addFailure = (commonMessage, customMessage, ruleString) => {
-    printResult(false, customMessage || commonMessage)
-    return customMessage || commonMessage
-  }
+  const spinner = context.outputMode !== SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
 
   const printResult = (checkSuccessful, resultMessage) => {
-    switch(context.outputMode) {
+    switch (context.outputMode) {
       case SolidarityOutputMode.VERBOSE:
         // Print everything
         checkSuccessful ? spinner.succeed(resultMessage) : spinner.fail(resultMessage)
-        break;
-
+        break
       case SolidarityOutputMode.SILENT:
         // Print nothing
-        break;
-
+        break
       case SolidarityOutputMode.MODERATE:
       default:
         // Print only errors
         if (!checkSuccessful) {
           spinner.fail(resultMessage)
         }
-        break;
+        break
     }
+  }
+
+  const addFailure = (failureMessage) => {
+    printResult(false, failureMessage)
+    return failureMessage
   }
 
   // check each rule for requirement
@@ -53,7 +51,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
         const cliResult = await checkCLI(rule, context)
         ruleString = `${requirementName} - ${rule.binary} binary`
         if (cliResult) {
-          return addFailure(cliResult, rule.error, ruleString)
+          return addFailure(rule.error || cliResult)
         } else {
           printResult(true, ruleString)
           return []
@@ -66,7 +64,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
           printResult(true, ruleString)
           return []
         } else {
-          return addFailure(`'$${rule.variable}' environment variable not found`, rule.error, ruleString)
+          return addFailure(rule.error || `'$${rule.variable}' environment variable not found`)
         }
       // Handle dir rule check
       case 'dir':
@@ -76,7 +74,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
           printResult(true, ruleString)
           return []
         } else {
-          return addFailure(`'$${rule.location}' directory not found`, rule.error, ruleString)
+          return addFailure(rule.error || `'${rule.location}' directory not found`)
         }
       // Handle dir rule check
       case 'file':
@@ -86,10 +84,10 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
           printResult(true, ruleString)
           return []
         } else {
-          return addFailure(`'$${rule.location}' file not found`, rule.error, ruleString)
+          return addFailure(rule.error || `'${rule.location}' file not found`)
         }
       default:
-        return addFailure(`Encountered unknown rule '${rule.rule}'`, rule.error, `${requirementName} - ${rule.rule}`)
+        return addFailure(rule.error || `Encountered unknown rule '${rule.rule}'`)
     }
   }, rules)
 
