@@ -4,6 +4,7 @@
   <hr/>
 <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
 <a href='https://travis-ci.org/infinitered/solidarity'> <img src='https://travis-ci.org/infinitered/solidarity.svg' alt='Build Status'></a>
+<a href='https://ci.appveyor.com/project/kevinvangelder/solidarity'> <img src='https://ci.appveyor.com/api/projects/status/yxy6uo6ok69d0av6?svg=true' alt='Build Status'></a>
 <a href="https://codecov.io/gh/infinitered/solidarity">
   <img src="https://codecov.io/gh/infinitered/solidarity/graph/badge.svg" alt="Codecov" />
 </a>
