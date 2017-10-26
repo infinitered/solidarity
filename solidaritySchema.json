@@ -16,20 +16,66 @@
       "type": "object",
       "additionalProperties": {
         "type": "array",
-        "oneOf": [
-          { "$ref": "#/definitions/cli" },
-          { "$ref": "#/definitions/dir" },
-          { "$ref": "#/definitions/file" },
-          { "$ref": "#/definitions/env" }
-        ]
+        "items": {
+          "type": "object",
+          "oneOf": [
+            { "$ref": "#/definitions/cli" },
+            { "$ref": "#/definitions/dir" },
+            { "$ref": "#/definitions/file" },
+            { "$ref": "#/definitions/env" }
+          ]
+        },
+        "minItems": 1,
+        "uniqueItems": true
       }
     }
   },
   "required": ["requirements"],
   "definitions": {
-    "cli": {},
-    "dir": {},
-    "file": {},
-    "env": {}
+    "cli": {
+      "description": "CLI Rule",
+      "type": "object",
+      "properties": {
+        "rule": { "enum": [ "cli" ] },
+        "binary": {
+          "type": "string"
+        },
+        "semver": { "type": "string"},
+        "version": { "type": "string"},
+        "line": {
+          "type": ["string", "integer"]
+        },
+        "matchIndex": { "type": "integer" },
+        "error": { "type": "string"}
+      },
+      "required": ["rule", "binary"]
+    },
+    "dir": {
+      "description": "Dir Rule",
+      "type": "object",
+      "properties": {
+        "rule": { "enum": [ "dir" ] },
+        "error": { "type": "string"}
+      },
+      "required": ["rule", "location"]
+    },
+    "file": {
+      "description": "File Rule",
+      "type": "object",
+      "properties": {
+        "rule": { "enum": [ "file" ] },
+        "error": { "type": "string"}
+      },
+      "required": ["rule", "location"]
+    },
+    "env": {
+      "description": "ENV Rule",
+      "type": "object",
+      "properties": {
+        "rule": { "enum": [ "env" ] },
+        "error": { "type": "string"}
+      },
+      "required": ["rule", "variable"]
+    }
   }
 }
