@@ -1,0 +1,4 @@
+build: off
+
+test:
+  - npm run test:ci
