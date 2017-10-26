@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "title": "Solidarity",
+  "description": "A rule-set and config for the Solidarity JSON checker",
+  "type": "object",
+  "properties": {
+    "config": {
+      "output": {
+        "description": "Identify what kind output should happen when a check is called",
+        "type": "string",
+        "enum": ["moderate", "verbose", "silent"]
+      }
+    },
+    "requirements": {
+      "description": "List of requirement rules for your particular environment",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "oneOf": [
+          { "$ref": "#/definitions/cli" },
+          { "$ref": "#/definitions/dir" },
+          { "$ref": "#/definitions/file" },
+          { "$ref": "#/definitions/env" }
+        ]
+      }
+    }
+  },
+  "required": ["requirements"],
+  "definitions": {
+    "cli": {},
+    "dir": {},
+    "file": {},
+    "env": {}
+  }
+}
