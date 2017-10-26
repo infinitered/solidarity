@@ -2,6 +2,7 @@ build: off
 
 install:
   - npm install
+  - npm run tsc
 
 test_script:
   - npm run test:ci
