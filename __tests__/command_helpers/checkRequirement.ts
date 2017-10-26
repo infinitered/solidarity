@@ -98,6 +98,16 @@ describe('checkRequirement', () => {
       expect(result).toEqual([[]])
     })
 
+    test('directory alias', async () => {
+      checkDir.mockImplementation(() => 'It worked!')
+
+      const rule = toPairs({
+        YARN: [{ rule: 'directory', location: 'yarn' }]
+      })[0]
+      const result = await checkRequirement(rule, context)
+      expect(result).toEqual([[]])
+    })
+
     test('sad path', async () => {
       checkDir.mockImplementation(() => false)
 
@@ -159,12 +169,10 @@ describe('checkRequirement', () => {
 
   describe('when rule fails with custom error messages', () => {
     const customError = 'customError'
-    beforeEach(() => {
-      checkCLI.mockClear()
-      checkCLI.mockImplementation(() => true)
-    })
 
     test('failed CLI rule with custom message', async () => {
+      checkCLI.mockClear()
+      checkCLI.mockImplementation(() => true)
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }]
       })[0]
