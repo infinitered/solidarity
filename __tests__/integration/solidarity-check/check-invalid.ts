@@ -14,7 +14,7 @@ test('default looks for .solidarity file', async done => {
     await execa(SOLIDARITY)
     done.fail()
   } catch (err) {
-    expect(err.code).toBe(3)
+    expect(err.code).not.toBe(0)
     done()
   }
 })
