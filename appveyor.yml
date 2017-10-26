@@ -1,4 +1,4 @@
 build: off
 
-test:
+test_script:
   - npm run test:ci
