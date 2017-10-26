@@ -6,5 +6,9 @@ environment:
 install:
   - npm install
 
+before_build:
+  - node --version
+  - npm --version
+
 test_script:
   - npm run test:ci
