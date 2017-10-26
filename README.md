@@ -14,6 +14,9 @@
 <a href="https://www.npmjs.com/package/solidarity">
   <img src="https://img.shields.io/npm/dt/solidarity.svg">        
 </a>
+<a href="https://ci.appveyor.com/project/GantMan/solidarity">
+  <img src="https://ci.appveyor.com/api/projects/status/eqn3imsv7pk75sjv/branch/master?svg=true">
+</a>
 </p>
 
 
@@ -64,8 +67,8 @@ No `.solidarity` file found for this project.  Would you like to create one? (Y/
 
 Custom rule-sets can be created by modifying the `.solidarity` file by hand, or by creating a solidarity plugin for a given technology.  See documentation for how you can create your own.
 
-## Platforms
-Currently solidarity only works with Mac and Linux.  Functionality for Windows OS is in the works.  Please submit PRs.
+## Cross Platform
+Solidarity is used with Mac/Linux/Windows environments. CI tests all rules with each platform on every update.
 
 ## Project Support
 #### Open Source
