@@ -1,4 +1,7 @@
 build: off
 
+install:
+  - npm install
+
 test_script:
   - npm run test:ci
