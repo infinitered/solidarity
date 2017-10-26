@@ -1,20 +1,27 @@
 # Solidarity Options
 Understanding the `.solidarity` file helps you read and write new solidarity checks for any project.
 
+If you'd like to get auto-complete, or validation of your JSON rules, you can optionally add the following line to the `.solidarity` file for help in your personal editor.
+```json
+{
+  "$schema": "http://json.schemastore.org/solidaritySchema",
+}
+```
+
 ## Solidarity output
 You can use set the following option in `.solidarity` to configure output:
-```
+```json
 {
   "config" : {
-    "output" : "<moderate/verbose/silent>"
+    "output" : "moderate"
   }
 }
 ```
 _Default is `moderate`_
 
-- Moderate - Only outputs message if a specific check fails
-- Verbose  - Outputs all messages for successful and failed checks.
-- Silent   - No visible output, just have to see system return value (mostly for turning down CI noise).
+- `moderate` - Only outputs message if a specific check fails
+- `verbose`  - Outputs all messages for successful and failed checks.
+- `silent`   - No visible output, just have to see system return value (mostly for turning down CI noise).
 
 Optionally you can also pass `--verbose`, `--moderate`, or `--silent` in the CLI to override the configuration option change the output.
 

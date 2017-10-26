@@ -46,6 +46,7 @@
           "type": ["string", "integer"]
         },
         "matchIndex": { "type": "integer" },
+        "platform": { "enum": ["darwin", "freebsd", "linux", "sunos", "win32"] },
         "error": { "type": "string"}
       },
       "required": ["rule", "binary"]
@@ -55,6 +56,7 @@
       "type": "object",
       "properties": {
         "rule": { "enum": [ "dir" ] },
+        "platform": { "enum": ["darwin", "freebsd", "linux", "sunos", "win32"] },
         "error": { "type": "string"}
       },
       "required": ["rule", "location"]
@@ -64,6 +66,7 @@
       "type": "object",
       "properties": {
         "rule": { "enum": [ "file" ] },
+        "platform": { "enum": ["darwin", "freebsd", "linux", "sunos", "win32"] },
         "error": { "type": "string"}
       },
       "required": ["rule", "location"]
@@ -73,6 +76,7 @@
       "type": "object",
       "properties": {
         "rule": { "enum": [ "env" ] },
+        "platform": { "enum": ["darwin", "freebsd", "linux", "sunos", "win32"] },
         "error": { "type": "string"}
       },
       "required": ["rule", "variable"]
