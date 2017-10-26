@@ -23,6 +23,7 @@
   "author": "Gant Laborde",
   "license": "MIT",
   "dependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "callsite": "^1.0.0",
     "gluegun": "^2.0.0-alpha.3",
     "minimist": "^1.2.0",
