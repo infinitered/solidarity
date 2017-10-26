@@ -1,4 +1,15 @@
 build: off
 
-test:
+environment:
+  nodejs_version: "7.8.0"
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+
+before_test:
+  - node --version
+  - npm --version
+
+test_script:
   - npm run test:ci
