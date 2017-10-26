@@ -67,6 +67,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
           return addFailure(rule.error || `'$${rule.variable}' environment variable not found`)
         }
       // Handle dir rule check
+      case 'directory':
       case 'dir':
         const dirResult = checkDir(rule, context)
         ruleString = `${requirementName} - ${rule.location} directory`

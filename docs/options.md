@@ -74,7 +74,7 @@ Lastly, if output has multiple versions, you can identify the index of the versi
 `file` rule means for a given file passed in the `location` property, we will verify it exists.
 
 ### Directory Rules
-`dir` rule means for a given directory passed in the `location` property, we will verify it exists.
+`dir` (or `directory`) rule means for a given directory passed in the `location` property, we will verify it exists.
 
 ### Friendly Errors
 So what do we do if a rule fails?  The return code will be non-zero, but that's not the most friendly option.  You can set the `error` for any rule to give the user legible instruction on why the failure happened, and how they should solve it.
