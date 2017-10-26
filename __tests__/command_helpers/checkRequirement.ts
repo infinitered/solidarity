@@ -107,6 +107,16 @@ describe('checkRequirement', () => {
       const result = await checkRequirement(rule, context)
       expect(result).toEqual(["'yarn' directory not found"])
     })
+
+    test('directory alias', async () => {
+      checkDir.mockImplementation(() => 'It worked!')
+
+      const rule = toPairs({
+        YARN: [{ rule: 'directory', location: 'yarn' }]
+      })[0]
+      const result = await checkRequirement(rule, context)
+      expect(result).toEqual([[]])
+    })
   })
 
   describe('when rule: env', () => {
