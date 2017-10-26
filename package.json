@@ -32,6 +32,7 @@
   "devDependencies": {
     "@types/jest": "^21.1.4",
     "@types/node": "^8.0.33",
+    "ajv": "^5.3.0",
     "babel-eslint": "^8.0.1",
     "codecov.io": "^0.1.6",
     "coveralls": "^3.0.0",

@@ -1,4 +1,5 @@
 {
+  "$schema": "./solidaritySchema.json",
   "requirements": {
     "NPM": [{ "rule": "cli", "binary": "npm" }],
     "Yarn": [{ "rule": "cli", "binary": "yarn", "semver": "^1.0.0", "version": "--version" }],
