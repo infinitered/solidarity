@@ -55,7 +55,7 @@
       "description": "Dir Rule",
       "type": "object",
       "properties": {
-        "rule": { "enum": [ "dir" ] },
+        "rule": { "enum": [ "dir", "directory" ] },
         "platform": { "enum": ["darwin", "freebsd", "linux", "sunos", "win32"] },
         "error": { "type": "string"}
       },
