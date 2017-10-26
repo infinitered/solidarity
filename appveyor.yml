@@ -1,8 +1,10 @@
 build: off
 
+environment:
+  nodejs_version: "7.8.0"
+
 install:
   - npm install
-  - npm run build
 
 test_script:
   - npm run test:ci
