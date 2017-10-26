@@ -30,7 +30,7 @@ The `.solidarity` file is a JSON object with a set of requirements to enforce on
 
 Each type of requirement check is dictated by the `rule` property.  Depending on the `rule` is what other properties will be required
 
-See [this file](../.solidarity.example) for an example of what a solidarity rule-set might look like for any given project.
+See [this file](../.solidarity.example.json) for an example of what a solidarity rule-set might look like for any given project.
 
 ### CLI Rules
 
