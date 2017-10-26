@@ -98,16 +98,6 @@ describe('checkRequirement', () => {
       expect(result).toEqual([[]])
     })
 
-    test('sad path', async () => {
-      checkDir.mockImplementation(() => false)
-
-      const rule = toPairs({
-        YARN: [{ rule: 'dir', location: 'yarn' }]
-      })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual(["'yarn' directory not found"])
-    })
-
     test('directory alias', async () => {
       checkDir.mockImplementation(() => 'It worked!')
 
@@ -116,6 +106,16 @@ describe('checkRequirement', () => {
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([[]])
+    })
+
+    test('sad path', async () => {
+      checkDir.mockImplementation(() => false)
+
+      const rule = toPairs({
+        YARN: [{ rule: 'dir', location: 'yarn' }]
+      })[0]
+      const result = await checkRequirement(rule, context)
+      expect(result).toEqual(["'yarn' directory not found"])
     })
   })
 
@@ -169,12 +169,10 @@ describe('checkRequirement', () => {
 
   describe('when rule fails with custom error messages', () => {
     const customError = 'customError'
-    beforeEach(() => {
-      checkCLI.mockClear()
-      checkCLI.mockImplementation(() => true)
-    })
 
     test('failed CLI rule with custom message', async () => {
+      checkCLI.mockClear()
+      checkCLI.mockImplementation(() => true)
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }]
       })[0]
