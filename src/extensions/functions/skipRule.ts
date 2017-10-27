@@ -10,10 +10,10 @@ module.exports = (platform: string | string[]): boolean => {
     platform.map((p) => p.toLowerCase())
     const winIndex = platform.indexOf('windows')
     const macIndex = platform.indexOf('macos')
-    if (winIndex > 0) {
+    if (winIndex >= 0) {
       platform[winIndex] = 'win32'
     }
-    if (macIndex > 0) {
+    if (macIndex >= 0) {
       platform[macIndex] = 'darwin'
     }
     return !platform.includes(process.platform)
