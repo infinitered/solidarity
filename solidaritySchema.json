@@ -46,7 +46,7 @@
           "type": ["string", "integer"]
         },
         "matchIndex": { "type": "integer" },
-        "platform": { "enum": ["darwin", "freebsd", "linux", "sunos", "win32"] },
+        "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string"}
       },
       "required": ["rule", "binary"]
@@ -56,7 +56,7 @@
       "type": "object",
       "properties": {
         "rule": { "enum": [ "dir", "directory" ] },
-        "platform": { "enum": ["darwin", "freebsd", "linux", "sunos", "win32"] },
+        "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string"}
       },
       "required": ["rule", "location"]
@@ -66,7 +66,7 @@
       "type": "object",
       "properties": {
         "rule": { "enum": [ "file" ] },
-        "platform": { "enum": ["darwin", "freebsd", "linux", "sunos", "win32"] },
+        "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string"}
       },
       "required": ["rule", "location"]
@@ -76,7 +76,7 @@
       "type": "object",
       "properties": {
         "rule": { "enum": [ "env" ] },
-        "platform": { "enum": ["darwin", "freebsd", "linux", "sunos", "win32"] },
+        "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string"}
       },
       "required": ["rule", "variable"]

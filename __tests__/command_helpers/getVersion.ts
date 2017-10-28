@@ -28,7 +28,7 @@ describe('getVersion', () => {
     let result
 
     try {
-      await getVersion(rule, context)            
+      await getVersion(rule, context)
     } catch(e) {
       result = e
     }

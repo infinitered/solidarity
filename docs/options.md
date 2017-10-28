@@ -100,7 +100,7 @@ So what do we do if a rule fails?  The return code will be non-zero, but that's 
 ### Platform Specific Rules
 Some rules are only essential for a given node platform.  You can identify these rules with passing the `"platform"` property on any rule.
 
-A platform property takes a string or and array of strings that identify the platforms that rule pertains to.  Platforms can be any of the following: `["darwin", "freebsd", "linux", "sunos", "win32"]`
+A platform property takes a string or and array of strings that identify the platforms that rule pertains to.  Platforms can be any of the following: `["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"]`
 
 *e.g.* Rule only performs a check on Mac and Linux
 ```json
