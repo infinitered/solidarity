@@ -6,8 +6,15 @@
     "language": "en",
     // words - list of words to be always considered correct
     "words": [
+        "callsite",
+        "checkmark",
+        "codecov",
+        "docsify",
         "execa",
         "gluegun",
+        "newclear",
+        "shipit",
+        "snapupdate",
         "tempy"
     ],
     // flagWords - list of words to be always considered incorrect

@@ -1,6 +1,6 @@
 import { SolidarityRunContext, SolidarityRule } from '../../types'
 module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Promise<string> => {
-  const { system, semver, solidarity } = context
+  const { semver, solidarity } = context
   const binaryExists = require('./binaryExists')
 
   // First check for binary
@@ -20,9 +20,7 @@ module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Pr
 
     // I can't get no satisfaction
     if (!semver.satisfies(binarySemantic, rule.semver)) {
-      return `This system has an improper version for ${rule.binary}:
-        Rule='${rule.semver}'
-        Actual='${binaryVersion}'`
+      return `${rule.binary}: you have '${binaryVersion}', but the project requires '${rule.semver}'`
     }
   }
 }

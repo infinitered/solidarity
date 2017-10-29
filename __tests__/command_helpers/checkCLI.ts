@@ -27,9 +27,7 @@ test('fine on existing binary', async () => {
 test('returns message on improper version', async () => {
   solidarityExtension(context)
   context.solidarity.getVersion = () => '1'
-  const message = `This system has an improper version for ${outOfDateCLI.binary}:
-        Rule='${outOfDateCLI.semver}'
-        Actual='1'`
+  const message = `${outOfDateCLI.binary}: you have '1', but the project requires '${outOfDateCLI.semver}'`
 
   expect(await checkCLI(outOfDateCLI, context)).toBe(message)
 })

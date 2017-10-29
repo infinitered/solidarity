@@ -2,7 +2,7 @@
 
 exports[`Snapshot check default command 1`] = `
 Object {
-  "description": "Check environment rules",
+  "description": "Check environment against solidarity rules",
   "run": [Function],
 }
 `;

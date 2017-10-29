@@ -1,12 +1,36 @@
 # Solidarity Options
 Understanding the `.solidarity` file helps you read and write new solidarity checks for any project.
 
+If you'd like to get auto-complete, or validation of your JSON rules, you can optionally add the following line to the `.solidarity` file for help in your personal editor.
+```json
+{
+  "$schema": "http://json.schemastore.org/solidaritySchema",
+}
+```
+
+## Solidarity output
+You can use set the following option in `.solidarity` to configure output:
+```json
+{
+  "config" : {
+    "output" : "moderate"
+  }
+}
+```
+_Default is `moderate`_
+
+- `moderate` - Only outputs message if a specific check fails
+- `verbose`  - Outputs all messages for successful and failed checks.
+- `silent`   - No visible output, just have to see system return value (mostly for turning down CI noise).
+
+Optionally you can also pass `--verbose`, `--moderate`, or `--silent` in the CLI to override the configuration option change the output.
+
 ## Solidarity Rules
 The `.solidarity` file is a JSON object with a set of requirements to enforce on each computer's environment.  All requirements should be specified inside the `requirements` key.
 
 Each type of requirement check is dictated by the `rule` property.  Depending on the `rule` is what other properties will be required
 
-See [this file](../.solidarity.example) for an example of what a solidarity rule-set might look like for any given project.
+See [this file](../.solidarity.example.json) for an example of what a solidarity rule-set might look like for any given project.
 
 ### CLI Rules
 
@@ -57,7 +81,7 @@ Lastly, if output has multiple versions, you can identify the index of the versi
 `file` rule means for a given file passed in the `location` property, we will verify it exists.
 
 ### Directory Rules
-`dir` rule means for a given directory passed in the `location` property, we will verify it exists.
+`dir` (or `directory`) rule means for a given directory passed in the `location` property, we will verify it exists.
 
 ### Friendly Errors
 So what do we do if a rule fails?  The return code will be non-zero, but that's not the most friendly option.  You can set the `error` for any rule to give the user legible instruction on why the failure happened, and how they should solve it.
@@ -76,7 +100,7 @@ So what do we do if a rule fails?  The return code will be non-zero, but that's 
 ### Platform Specific Rules
 Some rules are only essential for a given node platform.  You can identify these rules with passing the `"platform"` property on any rule.
 
-A platform property takes a string or and array of strings that identify the platforms that rule pertains to.  Platforms can be any of the following: `["darwin", "freebsd", "linux", "sunos", "win32"]`
+A platform property takes a string or and array of strings that identify the platforms that rule pertains to.  Platforms can be any of the following: `["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"]`
 
 *e.g.* Rule only performs a check on Mac and Linux
 ```json

@@ -1,7 +1,6 @@
 import { SolidarityRunContext, SolidaritySettings } from '../../types'
 module.exports = (context: SolidarityRunContext): SolidaritySettings => {
-  const { print, filesystem } = context
-  const { colors } = print
+  const { filesystem } = context
 
   // for now only JSON support
   let solidaritySettings

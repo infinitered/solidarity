@@ -7,9 +7,15 @@
 <a href="https://codecov.io/gh/infinitered/solidarity">
   <img src="https://codecov.io/gh/infinitered/solidarity/graph/badge.svg" alt="Codecov" />
 </a>
-<a href="https://badge.fury.io/js/solidarity"><img src="https://badge.fury.io/js/solidarity.svg" alt="npm version" height="18"></a>
+<a href="https://badge.fury.io/js/solidarity"><img src="https://badge.fury.io/js/solidarity.svg" alt="npm version"></a>
 <a href="http://community.infinite.red/">
   <img src="https://infiniteredcommunity.herokuapp.com/badge.svg">
+</a>
+<a href="https://www.npmjs.com/package/solidarity">
+  <img src="https://img.shields.io/npm/dt/solidarity.svg">        
+</a>
+<a href="https://ci.appveyor.com/project/GantMan/solidarity">
+  <img src="https://ci.appveyor.com/api/projects/status/eqn3imsv7pk75sjv/branch/master?svg=true">
 </a>
 </p>
 
@@ -17,11 +23,12 @@
 ### WHY DOES SOLIDARITY EXIST:question:
 I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take a two minutes to read [the announcement blog post](https://medium.com/@gantlaborde/solidarity-the-cli-for-environment-sanity-672fa81b98e9)
 
-### Docs Page
+### Docs Website
 https://infinitered.github.io/solidarity/
 
 -------
 > _We now return you to your regularly scheduled ReadMe_
+-------
 
 ## Install
 Install command globally, OR use via `node_modules`.  It's suggested you install your snapshot plugins in the same place.
@@ -60,17 +67,25 @@ No `.solidarity` file found for this project.  Would you like to create one? (Y/
 
 Custom rule-sets can be created by modifying the `.solidarity` file by hand, or by creating a solidarity plugin for a given technology.  See documentation for how you can create your own.
 
-## Supported Systems
-Currently solidarity only works with Mac and Linux.  Functionality for Windows OS is in the works.  Please submit PRs.
+## Cross Platform
+Solidarity is used with Mac/Linux/Windows environments. CI tests all rules with each platform on every update.
 
-## Support
+## Project Support
 #### Open Source
-Solidarity, as open source, is free to use and always will be.  It's MIT Licensed and we'll always do our best to help and quickly answer issues.  If you'd like to get a hold of us, join our [community slack](http://community.infinite.red) and look for the #solidarity room.
+Solidarity, as open source, is free to use and always will be :heart:.  It's MIT Licensed and we'll always do our best to help and quickly answer issues.  If you'd like to get a hold of us, join our [community slack](http://community.infinite.red) and look for the #solidarity room.
 
 #### Premium
 [Infinite Red](https://infinite.red/) offers premium Solidarity support and general mobile app design/development services. Email us at [hello@infinite.red](mailto:hello@infinite.red) to get in touch with us for more details.
 
 ## Additional Info
+### You can help!
+* Spread the word [![Twitter](https://img.shields.io/twitter/url/https/github.com/infinitered/solidarity.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Finfinitered%2Fsolidarity)
+* Star the repo!
+* Clap on Medium
+* Read the [Contributors Guide](https://github.com/infinitered/solidarity/blob/master/docs/contributorsGuide.md)
+* Add solidarity to all your projects
+* [Build plugins](https://github.com/infinitered/solidarity/blob/master/docs/plugins.md)
+
 ### License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
