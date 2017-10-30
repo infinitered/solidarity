@@ -35,7 +35,6 @@ describe('checkRequirement', () => {
     fail = jest.fn()
     stop = jest.fn()
     succeed = jest.fn()
-
     const spinner = {
       fail,
       stop,
