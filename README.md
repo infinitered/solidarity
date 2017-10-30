@@ -21,7 +21,7 @@
 
 
 ### WHY DOES SOLIDARITY EXIST:question:
-I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take a two minutes to read [the announcement blog post](https://medium.com/@gantlaborde/solidarity-the-cli-for-environment-sanity-672fa81b98e9)
+I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take two minutes to read [the announcement blog post](https://medium.com/@gantlaborde/solidarity-the-cli-for-environment-sanity-672fa81b98e9).
 
 ### Docs Website
 https://infinitered.github.io/solidarity/
@@ -31,7 +31,7 @@ https://infinitered.github.io/solidarity/
 -------
 
 ## Install
-Install command globally, OR use via `node_modules`.  It's suggested you install your snapshot plugins in the same place.
+Install the command globally OR use via `node_modules`.  It's suggested you install your snapshot plugins in the same place.
 
 Note:
 Node.js version must be >= `7.6.0`.
@@ -44,11 +44,11 @@ $ yarn add solidarity solidarity-elixir --dev
 ```
 
 ## How do I use it?
-Using solidarity easy! Run the command to check the current project environment
+Using solidarity is easy! Run the following command to check the current project environment.
 ```sh
 $ solidarity
 ```
-This command looks for the `.solidarity` file in the working directory, and then runs a check of the containing rules against your environment.  The command exit code is tied to the success of solidarity check so for testing frameworks.
+This command looks for the `.solidarity` file in the working directory, and then runs a check of the containing rules against your environment.  The command exit code is tied to the success of the solidarity check for testing frameworks.
 
 ## How do I update it to my machine specs?
 Environment updates can be stored to solidarity quickly.
@@ -68,7 +68,7 @@ No `.solidarity` file found for this project.  Would you like to create one? (Y/
 Custom rule-sets can be created by modifying the `.solidarity` file by hand, or by creating a solidarity plugin for a given technology.  See documentation for how you can create your own.
 
 ## Cross Platform
-Solidarity is used with Mac/Linux/Windows environments. CI tests all rules with each platform on every update.
+Solidarity works with Mac/Linux/Windows environments. CI tests all rules with each platform on every update.
 
 ## Project Support
 #### Open Source
