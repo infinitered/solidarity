@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`updateVersions exists 1`] = `[Function]`;
+
+exports[`updateVersions pulls solidarity settings 1`] = `Promise {}`;

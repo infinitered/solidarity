@@ -6,3 +6,5 @@ Object {
   "run": [Function],
 }
 `;
+
+exports[`check solidarity run 1`] = `undefined`;
