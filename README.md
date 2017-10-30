@@ -21,7 +21,7 @@
 
 
 ### WHY DOES SOLIDARITY EXIST:question:
-I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take two minutes to read [the announcement blog post](https://medium.com/@gantlaborde/solidarity-the-cli-for-environment-sanity-672fa81b98e9).
+I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take two minutes to read [the announcement blog post](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
 
 ### Docs Website
 https://infinitered.github.io/solidarity/
