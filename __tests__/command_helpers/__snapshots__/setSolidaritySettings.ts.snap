@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`check good setSolidarity path 1`] = `undefined`;
+
 exports[`setSolidaritySettings exists 1`] = `[Function]`;
