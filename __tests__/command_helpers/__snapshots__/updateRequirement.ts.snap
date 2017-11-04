@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`updateRequirement empty still spins 1`] = `Array []`;
+
 exports[`updateRequirement exists 1`] = `[Function]`;
