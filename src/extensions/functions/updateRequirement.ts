@@ -16,7 +16,6 @@ module.exports = async (requirement: SolidarityRequirement, settings: object, co
   const ruleChecks = await map(async (rule) => {
     // skip if we can't update
     if (skipRule(rule.platform) || !rule.semver) return []
-
     switch (rule.rule) {
       // Handle CLI rule update
       case 'cli':
