@@ -1,5 +1,8 @@
 _art/
 .solidarity.example.json
-tests/
+__tests__/
 src/
 .node-version
+coverage/
+yarn.lock
+*.log

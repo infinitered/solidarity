@@ -12,6 +12,7 @@ let spinner
 
 test('updateRequirement exists', () => expect(updateRequirement).toMatchSnapshot())
 
+
 describe('updateRequirement', () => {
   beforeEach(() => {
     spinner = {
@@ -23,6 +24,12 @@ describe('updateRequirement', () => {
       spin: jest.fn(() => spinner),
       error: jest.fn(),
     }
+  })
+
+  test('updateRequirement empty still spins', async () => {
+    const theVoid = await updateRequirement([], {}, context)
+    expect(theVoid).toMatchSnapshot()
+    expect(context.print.spin.mock.calls.length).toBe(1)
   })
 
   describe('given skipRule returns true', () => {
@@ -68,7 +75,7 @@ describe('updateRequirement', () => {
           checkCLIForUpdates.mockImplementation(() => Promise.resolve("Updated"))
         })
 
-        it('returns the updateResults', async () => {
+        it('returns the missing binary', async () => {
           const requirement = toPairs({
             Yarn: [{
               "rule": "cli",
@@ -121,4 +128,3 @@ describe('updateRequirement', () => {
       })
     })
   })
-})
