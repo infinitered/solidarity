@@ -14,8 +14,13 @@ test('updateRequirement exists', () => expect(updateRequirement).toMatchSnapshot
 
 describe('updateRequirement', () => {
   beforeAll(() => {
+    const spinner = {
+      succeed: jest.fn(),
+      stop: jest.fn()
+    }
+
     context.print = {
-      spin: jest.fn(),
+      spin: jest.fn(() => spinner),
       error: jest.fn(),
     }
   })
@@ -33,7 +38,7 @@ describe('updateRequirement', () => {
 
 
       const result = await updateRequirement(requirement, settings, context)
-      expect(result).toEqual([])
+      expect(result).toEqual([[]])
     })
   })
 })
