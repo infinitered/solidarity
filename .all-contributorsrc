@@ -1,0 +1,11 @@
+{
+  "projectName": "solidarity",
+  "projectOwner": "GantMan",
+  "files": [
+    "docs/existingContributors.md",
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": []
+}
