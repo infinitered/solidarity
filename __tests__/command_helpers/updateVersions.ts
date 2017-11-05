@@ -16,5 +16,4 @@ test('updateVersions exists', () => expect(updateVersions).toMatchSnapshot())
 test('updateVersions pulls solidarity settings', () => {
   const theVoid = updateVersions(mockContext)
   expect(theVoid).toMatchSnapshot()
-
 })
