@@ -1,8 +1,9 @@
 import { platform } from 'os';
 import { toPairs } from 'ramda'
+import context from 'gluegun'
+
 import updateRequirement from '../../src/extensions/functions/updateRequirement'
 
-const context = require('gluegun')
 jest.mock('../../src/extensions/functions/checkCLIForUpdates')
 const checkCLIForUpdates = require('../../src/extensions/functions/checkCLIForUpdates')
 
