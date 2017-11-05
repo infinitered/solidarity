@@ -27,15 +27,30 @@ describe('updateRequirement', () => {
 
   describe('given skipRule returns true', () => {
     test('it returns an empty []', async () => {
-
       const requirement = toPairs({
         Yarn: [{
           "rule": "cli",
           "binary": "yarn",
-          "version": "--version"
+          "version": "--version",
+          "platform": "windows",
+          "semver": "6.1.0"
         }]
       })[0]
 
+      const result = await updateRequirement(requirement, settings, context)
+      expect(result).toEqual([[]])
+    })
+  })
+
+  describe('without a semver returns', () => {
+    test('it returns an empty []', async () => {
+      const requirement = toPairs({
+        Yarn: [{
+          "rule": "cli",
+          "binary": "yarn",
+          "version": "--version",
+        }]
+      })[0]
 
       const result = await updateRequirement(requirement, settings, context)
       expect(result).toEqual([[]])
