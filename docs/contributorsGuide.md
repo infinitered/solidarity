@@ -16,6 +16,8 @@ You can now type `solidarity` and it is running from the compiled TypeScript in 
 
 > If you have problems, `solidarity` has a Solidarity file (SO META!).  Just use the last stable version of the CLI from `npm` to check your environment.
 
+The project is written in TypeScript and the tests are in Jest.  [They were originally in Ava](https://shift.infinite.red/switching-from-ava-to-jest-for-typescript-a6dac7d1712f).
+
 ### Updating Local Code
 Whenever you have modified the `/src` folder, you can run `yarn tsc` to compile the typescript into JS, and your global `solidarity` CLI will be updated.
 
