@@ -17,10 +17,6 @@
   <a href="https://ci.appveyor.com/project/GantMan/solidarity">
     <img src="https://ci.appveyor.com/api/projects/status/eqn3imsv7pk75sjv/branch/master?svg=true">
   </a>
-
-  <a href="https://infinitered.github.io/solidarity/#/docs/existingContributors">
-    <img src="https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square">
-  </a>
 </p>
 
 

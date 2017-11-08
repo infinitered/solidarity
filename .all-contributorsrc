@@ -2,8 +2,7 @@
   "projectName": "solidarity",
   "projectOwner": "infinitered",
   "files": [
-    "docs/existingContributors.md",
-    "README.md"
+    "docs/existingContributors.md"
   ],
   "imageSize": 100,
   "commit": false,
