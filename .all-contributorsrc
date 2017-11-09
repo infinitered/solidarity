@@ -59,7 +59,7 @@
       "avatar_url": "https://avatars0.githubusercontent.com/u/27202?v=4",
       "profile": "http://timosand.com",
       "contributions": [
-        "test"
+        "infra"
       ]
     },
     {
@@ -135,12 +135,58 @@
       ]
     },
     {
+      "login": "charpeni",
+      "name": "Nicolas Charpentier",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7189823?v=4",
+      "profile": "https://github.com/charpeni",
+      "contributions": [
+        "infra"
+      ]
+    },
+    {
       "login": "willrax",
       "name": "Will Raxworthy",
       "avatar_url": "https://avatars1.githubusercontent.com/u/94960?v=4",
       "profile": "https://github.com/willrax",
       "contributions": [
         "plugin"
+      ]
+    },
+    {
+      "login": "Mknsri",
+      "name": "Markus Mikonsaari",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5314500?v=4",
+      "profile": "https://github.com/Mknsri",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Bnaya",
+      "name": "Bnaya Peretz",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1304862?v=4",
+      "profile": "https://github.com/Bnaya",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "ceejtron",
+      "name": "Christian Johannessen",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/713658?v=4",
+      "profile": "https://github.com/ceejtron",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "JenFucci",
+      "name": "Jenna Fucci",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/17892823?v=4",
+      "profile": "https://github.com/JenFucci",
+      "contributions": [
+        "design"
       ]
     }
   ]
