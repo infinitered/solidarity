@@ -6,5 +6,142 @@
   ],
   "imageSize": 100,
   "commit": false,
-  "contributors": []
+  "contributors": [
+    {
+      "login": "GantMan",
+      "name": "Gant Laborde",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/997157?v=4",
+      "profile": "https://github.com/GantMan",
+      "contributions": [
+        "blog",
+        "code",
+        "ideas",
+        "plugin",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "kevinvangelder",
+      "name": "Kevin VanGelder",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1771152?v=4",
+      "profile": "https://www.infinite.red",
+      "contributions": [
+        "code",
+        "test",
+        "review"
+      ]
+    },
+    {
+      "login": "mattathompson",
+      "name": "Matt Thompson",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6240043?v=4",
+      "profile": "http://thompsonportfolio.herokuapp.com/",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "skellock",
+      "name": "Steve Kellock",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/68273?v=4",
+      "profile": "https://github.com/skellock",
+      "contributions": [
+        "ideas",
+        "code"
+      ]
+    },
+    {
+      "login": "deiga",
+      "name": "Timo Sand",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/27202?v=4",
+      "profile": "http://timosand.com",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "codeithuman",
+      "name": "AJ Robertson",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3494509?v=4",
+      "profile": "http://codeithuman.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jokosu10",
+      "name": "Joko Susilo",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7246784?v=4",
+      "profile": "https://github.com/jokosu10",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "campionfellin",
+      "name": "Campion Fellin",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11984923?v=4",
+      "profile": "https://github.com/campionfellin",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "siakaramalegos",
+      "name": "Sia",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4777393?v=4",
+      "profile": "http://www.clioandcalliope.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ddncn",
+      "name": "dduncan",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/14152125?v=4",
+      "profile": "https://github.com/ddncn",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "thedeany",
+      "name": "Brandon Dean",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4968754?v=4",
+      "profile": "https://github.com/thedeany",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "grigori-gru",
+      "name": "Grigori",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/25131978?v=4",
+      "profile": "https://github.com/grigori-gru",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "rmnegatives",
+      "name": "Imran Brown",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3335740?v=4",
+      "profile": "http://www.imranbrown.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "willrax",
+      "name": "Will Raxworthy",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/94960?v=4",
+      "profile": "https://github.com/willrax",
+      "contributions": [
+        "plugin"
+      ]
+    }
+  ]
 }
