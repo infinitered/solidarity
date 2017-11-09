@@ -2,21 +2,21 @@
   <img src="https://raw.githubusercontent.com/infinitered/solidarity/master/_art/combo.jpg" width="700px" />
   <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3>
   <hr/>
-<a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
-<a href='https://travis-ci.org/infinitered/solidarity'> <img src='https://travis-ci.org/infinitered/solidarity.svg' alt='Build Status'></a>
-<a href="https://codecov.io/gh/infinitered/solidarity">
-  <img src="https://codecov.io/gh/infinitered/solidarity/graph/badge.svg" alt="Codecov" />
-</a>
-<a href="https://badge.fury.io/js/solidarity"><img src="https://badge.fury.io/js/solidarity.svg" alt="npm version"></a>
-<a href="http://community.infinite.red/">
-  <img src="https://infiniteredcommunity.herokuapp.com/badge.svg">
-</a>
-<a href="https://www.npmjs.com/package/solidarity">
-  <img src="https://img.shields.io/npm/dt/solidarity.svg">        
-</a>
-<a href="https://ci.appveyor.com/project/GantMan/solidarity">
-  <img src="https://ci.appveyor.com/api/projects/status/eqn3imsv7pk75sjv/branch/master?svg=true">
-</a>
+  <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
+  <a href='https://travis-ci.org/infinitered/solidarity'> <img src='https://travis-ci.org/infinitered/solidarity.svg' alt='Build Status'></a>
+  <a href="https://codecov.io/gh/infinitered/solidarity">
+    <img src="https://codecov.io/gh/infinitered/solidarity/graph/badge.svg" alt="Codecov" />
+  </a>
+  <a href="https://badge.fury.io/js/solidarity"><img src="https://badge.fury.io/js/solidarity.svg" alt="npm version"></a>
+  <a href="http://community.infinite.red/">
+    <img src="https://infiniteredcommunity.herokuapp.com/badge.svg">
+  </a>
+  <a href="https://www.npmjs.com/package/solidarity">
+    <img src="https://img.shields.io/npm/dt/solidarity.svg">
+  </a>
+  <a href="https://ci.appveyor.com/project/GantMan/solidarity">
+    <img src="https://ci.appveyor.com/api/projects/status/eqn3imsv7pk75sjv/branch/master?svg=true">
+  </a>
 </p>
 
 

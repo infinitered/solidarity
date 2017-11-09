@@ -12,3 +12,5 @@
   - [Write Solidarity Plugins](/docs/plugins.md)
   - [Contributors Guide](/docs/contributorsGuide.md)
   - [Available Plugins](/docs/pluginsList.md)
+
+- [Existing Contributors](/docs/existingContributors.md)
