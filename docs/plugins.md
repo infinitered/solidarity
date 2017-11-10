@@ -4,7 +4,7 @@ If you're using a technology that doesn't have a plugin, or if you'd just like b
 ## The Simplest Plugin
 Most of the time the plugin you're going to write will be so _dead simple_ that the art is in the rule set alone.
 
-Let's pretend this is our plugin rule-set:
+Let's pretend we're working with a technology called Fiesta and this is our plugin rule-set:
 ```json
 "Fiesta": [
     { "rule": "cli", "binary": "nachos" },
@@ -41,7 +41,7 @@ templates/
 ```
 > **WARNING:** `extensions` folder must only contain extensions.  Don't add spurious files here.
 
-As you may have guessed `fiesta-template.json` is our copy of the rule-set we designed above.  `fiesta.js` is going to be how we register our plugin, and copy that file.
+As you may have guessed `fiesta-template.json` is our copy of the rule-set we designed above.  `fiesta.js` is going to be how we register our plugin with Solidarity, and copy that file.
 
 Contents of `fiesta.js`
 ```js
