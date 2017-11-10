@@ -5,8 +5,7 @@ module.exports = (platform: string | string[]): boolean => {
     platform = (platform === 'windows') ? 'win32' : platform
     platform = (platform === 'macos') ? 'darwin' : platform
     return platform !== process.platform
-  } else if (typeof platform === 'object' && platform.length > 0) {
-    // it's an array
+  } else if (Array.isArray(platform)) {
     platform.map((p) => p.toLowerCase())
     const winIndex = platform.indexOf('windows')
     const macIndex = platform.indexOf('macos')

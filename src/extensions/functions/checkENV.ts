@@ -1,4 +1,5 @@
 import { SolidarityRule, SolidarityRunContext } from '../../types'
-module.exports = (rule: SolidarityRule, context: SolidarityRunContext): string => {
-  return process.env[rule.variable]
+module.exports = (rule: SolidarityRule, context: SolidarityRunContext): string | undefined => {
+  const envVar = rule.variable || ''
+  return process.env[envVar]
 }

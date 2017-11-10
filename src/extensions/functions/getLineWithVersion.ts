@@ -7,10 +7,10 @@ module.exports = (rule: SolidarityRule, versionOutput: string): string => {
     const findString = `.*${rule.line}.*`
     const findRegex = RegExp(findString, 'g')
     const foundLines = versionOutput.match(findRegex)
-    try {
+    if (Array.isArray(foundLines)) {
       // Always first instance
       result = foundLines[0]
-    } catch (_e) {
+    } else {
       throw `rule.line string '${rule.line}' was not found`
     }
   } else {
