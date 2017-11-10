@@ -13,7 +13,11 @@ test('checkFile can fail', () => {
   expect(checkFile({location: 'DOES_NOT_EXIST'}, context)).toBeFalsy()
 })
 
-test('checkFile returns false for a file that exists', () => {
+test('checkFile returns false for a dir that exists', () => {
   // Use checkFile to make sure a known dir returns false since it's not a file
   expect(checkFile({location: './src'}, context)).toBeFalsy()
+})
+
+test('checkFile returns false with no location', () => {
+  expect(checkFile({}, context)).toBeFalsy()
 })

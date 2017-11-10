@@ -18,7 +18,10 @@
     "types": ["node"],
 
     // Let's allow `import`
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+
+    // Don't let sneaky null/undefined through
+    "strictNullChecks": true
   },
   "include": [
     "./src/**/*"

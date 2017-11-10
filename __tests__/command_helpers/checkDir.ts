@@ -17,3 +17,7 @@ test('checkDir returns false for a file that exists', () => {
   // Use checkDir to make sure a known file returns false since it's not a directory
   expect(checkDir({location: './package.json'}, context)).toBeFalsy()
 })
+
+test('checkDir returns false if no location is set', () => {
+  expect(checkDir({}, context)).toBeFalsy()
+})

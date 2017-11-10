@@ -1,13 +1,15 @@
 import { SolidarityRule, SolidarityRunContext } from '../../types'
-module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Promise<string> => {
+module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Promise<string | undefined> => {
   const { system, semver, solidarity, print } = context
   const { color } = print
 
-  // First check for binary
-  try {
-    system.which(rule.binary)
-  } catch (_e) {
-    return `Binary '${rule.binary}' not found`
+  // If binary is set but not found
+  if (rule.binary) {
+    try {
+      system.which(rule.binary)
+    } catch (_e) {
+      return `Binary '${rule.binary}' not found`
+    }
   }
 
   const binaryVersion = await solidarity.getVersion(rule, context)
@@ -16,8 +18,8 @@ module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Pr
   let binarySemantic = binaryVersion
   while (binarySemantic.split('.').length < 3) { binarySemantic += '.0' }
 
-  // If it doesn't satisfy, upgrade
-  if (!semver.satisfies(binarySemantic, rule.semver)) {
+  // if it doesn't satisfy, upgrade
+  if (rule.semver && !semver.satisfies(binarySemantic, rule.semver)) {
     rule.semver = binaryVersion
     return color.green(`Setting ${rule.binary} to '${binaryVersion}'`)
   }
