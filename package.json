@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "callsite": "^1.0.0",
+    "envinfo": "^3.9.0",
     "gluegun": "^2.0.0-alpha.3",
     "minimist": "^1.2.0",
     "pluralize": "^7.0.0",
