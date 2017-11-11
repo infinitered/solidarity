@@ -7,3 +7,4 @@ coverage
 dist/
 .vscode/
 !.vscode/cSpell.json
+npm-debug.log
