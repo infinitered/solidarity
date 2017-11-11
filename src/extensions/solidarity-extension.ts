@@ -19,6 +19,7 @@ module.exports = (context: SolidarityRunContext) => {
       ...pluginConfig
     })
   }
+
   // Flavored separator
   context.printSeparator = () =>
     context.print.info(context.print.colors.america('-----------------------------------------------------------------------------------'))

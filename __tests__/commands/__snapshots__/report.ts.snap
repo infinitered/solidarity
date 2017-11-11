@@ -3,7 +3,7 @@
 exports[`Snapshot check help command 1`] = `
 Object {
   "alias": "r",
-  "description": "Report an issue",
+  "description": "Report identify info about the current machine",
   "run": [Function],
 }
 `;
