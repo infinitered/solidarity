@@ -45,15 +45,19 @@ export interface SolidarityRule {
   readonly matchIndex?: number
 }
 
-export type SolidarityRequirement = SolidarityRule[]
-
-export interface SolidaritySettings {
-  readonly requirements: object
-  readonly config: object
-}
-
 export enum SolidarityOutputMode {
   MODERATE,
   VERBOSE,
   SILENT
 }
+
+export type SolidarityRequirement = SolidarityRule[]
+export interface SolidarityConfig {
+  output: SolidarityOutputMode
+}
+
+export interface SolidaritySettings {
+  readonly requirements: object
+  readonly config: SolidarityConfig
+}
+

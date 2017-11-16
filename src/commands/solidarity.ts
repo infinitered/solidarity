@@ -1,5 +1,5 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityOutputMode } from '../types'
+import { SolidarityOutputMode, SolidaritySettings } from '../types'
 
 namespace Solidarity {
   const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
@@ -18,7 +18,7 @@ namespace Solidarity {
     }
   }
 
-  const setOutputMode = (parameters, settings): SolidarityOutputMode => {
+  const setOutputMode = (parameters, settings: SolidaritySettings): SolidarityOutputMode => {
     const { options } = parameters
     // CLI flags override config
     if (options.verbose || options.a) {
