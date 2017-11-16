@@ -189,6 +189,16 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "tabrindle",
+      "name": "Trevor Brindle",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2925048?v=4",
+      "profile": "http://trevorbrindle.com",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ]
 }
