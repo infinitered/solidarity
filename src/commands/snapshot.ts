@@ -65,14 +65,37 @@ namespace Snapshot {
     }
   }
 
+  const addNewRule = async (context) => {
+    const { parameters, print } = context
+    const { first, second } = parameters;
+    console.log(parameters);
+    print.info('Update complete');
+  }
+
   export const run = async function (context) {
-    const { print, prompt, filesystem, solidarity } = context
+    const { print, prompt, filesystem, solidarity, parameters } = context
+    const { first, second } = parameters;
+
+
 
     // check is there an existing .solidarity file?
     if (filesystem.exists('.solidarity')) {
       // load existing file and update rule versions
-      print.info('Now loading latest environment')
-      solidarity.updateVersions(context)
+
+      if (first && second) {
+        const userAnswer = await prompt.ask({
+          name: 'addNewRule',
+          type: 'confirm',
+          message: `Would you like to add the binary '${second}' to your Solidarity file?`
+        })
+
+        if (userAnswer.addNewRule) {
+          await addNewRule(context)
+        }
+      } else {
+        print.info('Now loading latest environment')
+        solidarity.updateVersions(context)
+      }
     } else {
       // Find out what they wanted
       const userAnswer = await prompt.ask({
