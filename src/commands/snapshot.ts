@@ -1,4 +1,6 @@
-import { GluegunCommand } from 'gluegun'
+import { GluegunCommand, semver } from 'gluegun'
+import { toPairs, flatten, filter } from 'ramda'
+import { request } from 'http';
 
 namespace Snapshot {
   const { propEq, filter, head } = require('ramda')
@@ -65,33 +67,121 @@ namespace Snapshot {
     }
   }
 
-  const addNewRule = async (context) => {
-    const { parameters, print } = context
-    const { first, second } = parameters;
-    console.log(parameters);
-    print.info('Update complete');
+  const findRule = (requirements, binary) => (
+    flatten(toPairs(requirements))
+      .filter((x) => x instanceof Object && binary === x.binary)
+  )
+
+  const hasRule = (solidaritySettings, parameters) => {
+    const { second } = parameters
+    const rule = findRule(solidaritySettings.requirements, second)
+
+    return rule.length !== 0
+  }
+
+  const buildCliRequirement = async (context) => {
+    const { parameters, solidarity, prompt, print } = context
+    const { getVersion } = solidarity
+
+    const rule = parameters.first
+    const binary = parameters.second;
+    const requirement = {
+      [binary]: {
+        rule,
+        binary
+      }
+    }
+    let semver;
+
+    const userAnswer = await prompt.ask({
+      name: 'enforceVersion',
+      type: 'confirm',
+      message: 'Would you like to enforce a version requirement?'
+    })
+
+    if (userAnswer.enforceVersion) {
+      return await getVersion(requirement[binary], context)
+        .then((sysVersion) => {
+          print.info(`Your system currently has version ${sysVersion}`)
+          print.info(`Semver requirement for '${binary}' binary : ^${sysVersion}`)
+          requirement[binary]['semver'] = sysVersion
+          return requirement
+        })
+        .catch(() => {
+          print.error("Seems as though you do not have this binary istalled. Please install this binary first")
+        })
+    }
+
+    return requirement
+  }
+
+  const buildEnvRequirement = () => {
+
+  }
+
+  const buildFileRequirement = () => {
+
+  }
+
+  const ruleHandlers = {
+    cli: buildCliRequirement,
+    env: buildEnvRequirement,
+    file: buildFileRequirement
+  }
+
+  const buildSpecifiedRequirment = async (context) => {
+    const { parameters, print, prompt, solidarity } = context
+    const { getSolidaritySettings, getVersion } = solidarity
+    const solidaritySettings = getSolidaritySettings(context)
+
+    if (hasRule(solidaritySettings, parameters)) {
+      return Promise.reject("This binary already exists")
+      // asks about updating this specific rule?
+    } else {
+      const userAnswer = await prompt.ask({
+        name: 'addNewRule',
+        type: 'confirm',
+        message: `Would you like to add the binary '${parameters.second}' to your Solidarity file?`
+      })
+
+      if (userAnswer.addNewRule) {
+        // maybe ask about setting up the new rule w/ a specific version?
+        return await ruleHandlers[parameters.first](context)
+      } else {
+        return Promise.reject('Rule not added.')
+      }
+    }
+  }
+
+  const appendSolidaritySettings = (solidaritySettings, newRequirement) => {
+    return {
+      ...solidaritySettings,
+      requirements: {
+        ...solidaritySettings.requirements,
+        ...newRequirement
+      }
+    }
   }
 
   export const run = async function (context) {
     const { print, prompt, filesystem, solidarity, parameters } = context
     const { first, second } = parameters;
-
-
+    const { getSolidaritySettings, setSolidaritySettings } = solidarity
 
     // check is there an existing .solidarity file?
     if (filesystem.exists('.solidarity')) {
       // load existing file and update rule versions
 
       if (first && second) {
-        const userAnswer = await prompt.ask({
-          name: 'addNewRule',
-          type: 'confirm',
-          message: `Would you like to add the binary '${second}' to your Solidarity file?`
-        })
-
-        if (userAnswer.addNewRule) {
-          await addNewRule(context)
-        }
+        await buildSpecifiedRequirment(context)
+          .then((newRequirement) => {
+            const solidaritySettings = getSolidaritySettings(context)
+            const updatedSolidaritySettings = appendSolidaritySettings(solidaritySettings, newRequirement)
+            setSolidaritySettings(updatedSolidaritySettings, context)
+          })
+          .catch((error) => {
+            print.error('Your new requirement was not added.')
+          })
       } else {
         print.info('Now loading latest environment')
         solidarity.updateVersions(context)

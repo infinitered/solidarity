@@ -2,6 +2,8 @@ import tempy from 'tempy'
 
 import snapshotCommand from '../../src/commands/snapshot'
 import setSolidaritySettings from '../../src/extensions/functions/setSolidaritySettings'
+import solidarityExtension from '../../src/extensions/solidarity-extension'
+
 
 import context from 'gluegun'
 
@@ -86,6 +88,8 @@ describe('with a .solidarity file', () => {
 
     describe('give a cli rule', () => {
       beforeEach(() => {
+        solidarityExtension(context);
+
         context.parameters = {
           plugin: 'solidarity',
           command: 'snapshot',
@@ -107,13 +111,18 @@ describe('with a .solidarity file', () => {
       })
 
       it('handles a binary without a version', async () => {
-        const result = await snapshotCommand.run(context);
-
         expect(requirements()).toEqual({})
+
+        const result = await snapshotCommand.run(context);
         expect(context.prompt.ask.mock.calls).toEqual([
           [{
             message: "Would you like to add the binary 'yarn' to your Solidarity file?",
             name: "addNewRule",
+            type: "confirm"
+          }],
+          [{
+            message: "Would you like to enforce a version requirement?",
+            name: "enforceVersion",
             type: "confirm"
           }]
         ])
