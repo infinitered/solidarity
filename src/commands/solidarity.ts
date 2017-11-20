@@ -1,5 +1,5 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityOutputMode } from '../types'
+import { SolidarityOutputMode, SolidaritySettings } from '../types'
 
 namespace Solidarity {
   const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
@@ -18,7 +18,7 @@ namespace Solidarity {
     }
   }
 
-  const setOutputMode = (parameters, settings): SolidarityOutputMode => {
+  const setOutputMode = (parameters, settings: SolidaritySettings): SolidarityOutputMode => {
     const { options } = parameters
     // CLI flags override config
     if (options.verbose || options.a) {
@@ -30,8 +30,8 @@ namespace Solidarity {
     }
 
     // Set output mode, set to default on invalid value
-    let outputModeString = settings.config ? String(settings.config.output).toUpperCase() : SolidarityOutputMode.MODERATE
-    return SolidarityOutputMode[outputModeString]
+    let outputModeString = settings.config ? String(settings.config.output).toUpperCase() : 'MODERATE'
+    return SolidarityOutputMode[outputModeString] || SolidarityOutputMode.MODERATE
   }
 
   export const run = async (context) => {

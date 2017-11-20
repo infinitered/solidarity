@@ -17,9 +17,9 @@ export const solidarity = {
 }
 
 export interface SolidarityPlugin {
-  name: string
-  description: string
-  snapshot: string | SnapshotType
+  readonly name: string
+  readonly description: string
+  readonly snapshot: string | SnapshotType
 }
 
 export interface SolidarityRunContext extends GluegunRunContext {
@@ -33,27 +33,30 @@ export interface SolidarityRunContext extends GluegunRunContext {
 export type SnapshotType = (context: SolidarityRunContext) => Promise<void>
 
 export interface SolidarityRule {
-  rule: 'cli' | 'env' | 'dir' | 'file'
-  binary?: string
-  semver?: string
-  version?: string
-  line?: string | number
-  variable?: string
-  location?: string
-  error?: string
-  platform?: string | string[]
-  matchIndex?: number
-}
-
-export type SolidarityRequirement = SolidarityRule[]
-
-export interface SolidaritySettings {
-  requirements: object
-  config: object
+  readonly rule: 'cli' | 'env' | 'dir' | 'file'
+  readonly binary?: string
+  semver?: string   // updatable
+  readonly version?: string
+  readonly line?: string | number
+  readonly variable?: string
+  readonly location?: string
+  readonly error?: string
+  readonly platform?: string | string[]
+  readonly matchIndex?: number
 }
 
 export enum SolidarityOutputMode {
   MODERATE,
   VERBOSE,
   SILENT
+}
+
+export type SolidarityRequirement = SolidarityRule[]
+export interface SolidarityConfig {
+  output: SolidarityOutputMode
+}
+
+export interface SolidaritySettings {
+  readonly requirements: object
+  readonly config: SolidarityConfig
 }
