@@ -15,6 +15,9 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
   let ruleString = ''
   // Hide spinner if silent outputmode is set
   const spinner = context.outputMode !== SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
+  const assertNever = (value: never): never => {
+    throw Error(`Unexpected value '${value}'`)
+  }
 
   const printResult = (checkSuccessful, resultMessage) => {
     switch (context.outputMode) {
@@ -26,11 +29,16 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
         // Print nothing
         break
       case SolidarityOutputMode.MODERATE:
-      default:
+      case undefined:
         // Print only errors
         if (!checkSuccessful) {
           spinner.fail(resultMessage)
         }
+        break
+      default:
+        // enforce via typescript, no unhandled modes
+        // will fail tsc if new enums added
+        assertNever(context.outputMode)
         break
     }
   }
