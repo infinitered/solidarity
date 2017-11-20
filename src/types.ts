@@ -51,6 +51,11 @@ export enum SolidarityOutputMode {
   SILENT
 }
 
+export const enum FriendlyMessages {
+  NONE = 'NONE',
+  NOTHING = 'Nothing to do ¯\\_(ツ)_/¯'
+}
+
 export type SolidarityRequirement = SolidarityRule[]
 export interface SolidarityConfig {
   output: SolidarityOutputMode
