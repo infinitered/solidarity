@@ -59,6 +59,7 @@ test('check base solidarity run', async () => {
   expect(result).toMatchSnapshot()
   expect(mockContext.outputMode).toBe(SolidarityOutputMode.MODERATE)
   expect(mockContext.solidarity.getSolidaritySettings.mock.calls.length).toBe(1)
+  expect(mockContext.print.success.mock.calls.length).toBe(2)
 })
 
 test('check solidarity verbose run', async () => {
