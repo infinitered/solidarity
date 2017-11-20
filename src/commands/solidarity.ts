@@ -31,8 +31,8 @@ namespace Solidarity {
     }
 
     // Set output mode, set to default on invalid value
-    let outputModeString = settings.config ? String(settings.config.output).toUpperCase() : SolidarityOutputMode.MODERATE
-    return SolidarityOutputMode[outputModeString]
+    let outputModeString = settings.config ? String(settings.config.output).toUpperCase() : 'MODERATE'
+    return SolidarityOutputMode[outputModeString] || SolidarityOutputMode.MODERATE
   }
 
   export const run = async (context) => {
