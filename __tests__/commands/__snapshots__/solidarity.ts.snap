@@ -7,4 +7,8 @@ Object {
 }
 `;
 
+exports[`check base solidarity run 1`] = `undefined`;
+
 exports[`check solidarity run 1`] = `undefined`;
+
+exports[`check solidarity verbose run 1`] = `undefined`;

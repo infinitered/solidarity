@@ -21,6 +21,7 @@ namespace Solidarity {
   const setOutputMode = (parameters, settings: SolidaritySettings): SolidarityOutputMode => {
     const { options } = parameters
     // CLI flags override config
+    // const outputMode = settings.config && String(settings.config.output).toUpperCase()
     if (options.verbose || options.a) {
       return SolidarityOutputMode.VERBOSE
     } else if (options.silent || options.s) {

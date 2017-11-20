@@ -60,4 +60,3 @@ export interface SolidaritySettings {
   readonly requirements: object
   readonly config: SolidarityConfig
 }
-
