@@ -51,13 +51,10 @@ namespace Snapshot {
       }
     } else {
       print.error(`No solidarity plugins found!
-
       Add a plugin for a given technology:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/pluginsList.md')}
-
       OR write your own plugin for generating rules:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/plugins.md')}
-
       OR simply create a .solidarity rule-set by hand for this project:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/options.md')}
       `)
