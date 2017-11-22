@@ -105,6 +105,7 @@ namespace Snapshot {
           print.info(`Your system currently has version ${sysVersion}`)
           print.info(`Semver requirement for '${binary}' binary : ^${sysVersion}`)
           requirement[binary]['semver'] = sysVersion
+
           return requirement
         })
         .catch(() => {
@@ -115,18 +116,39 @@ namespace Snapshot {
     return requirement
   }
 
-  const buildEnvRequirement = () => {
+  const buildEnvRequirement = (context) => {
+    const { parameters } = context
 
+    const rule = parameters.first
+    const variable = parameters.second;
+
+    return {
+      [variable]: {
+        rule,
+        variable
+      }
+    }
   }
 
-  const buildFileRequirement = () => {
+  const buildFileRequirement = (context) => {
+    const { parameters } = context
 
+    const rule = parameters.first
+    const location = parameters.second;
+
+    return {
+      [location]: {
+        rule,
+        location
+      }
+    }
   }
 
   const ruleHandlers = {
     cli: buildCliRequirement,
     env: buildEnvRequirement,
-    file: buildFileRequirement
+    file: buildFileRequirement,
+    dir: buildFileRequirement
   }
 
   const buildSpecifiedRequirment = async (context) => {
@@ -136,12 +158,11 @@ namespace Snapshot {
 
     if (hasRule(solidaritySettings, parameters)) {
       return Promise.reject("This binary already exists")
-      // asks about updating this specific rule?
     } else {
       const userAnswer = await prompt.ask({
         name: 'addNewRule',
         type: 'confirm',
-        message: `Would you like to add the binary '${parameters.second}' to your Solidarity file?`
+        message: `Would you like to add the ${parameters.first} '${parameters.second}' to your Solidarity file?`
       })
 
       if (userAnswer.addNewRule) {

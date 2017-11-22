@@ -4,7 +4,6 @@ import snapshotCommand from '../../src/commands/snapshot'
 import setSolidaritySettings from '../../src/extensions/functions/setSolidaritySettings'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 
-
 import context from 'gluegun'
 
 const requirements = () => {
@@ -75,21 +74,53 @@ describe('with a .solidarity file', () => {
       }
     }
 
-    beforeAll(() => {
+
+    beforeEach(() => {
+      // enhance
+      solidarityExtension(context)
+
+      // setup .solidarity file in temp directory
       const tempDir = tempy.directory()
       process.chdir(tempDir)
       setSolidaritySettings(settings, context)
-      console.log(tempDir);
     })
 
     afterAll(() => {
       process.chdir(origCwd)
     })
 
-    describe('give a cli rule', () => {
-      beforeEach(() => {
-        solidarityExtension(context);
+    test('allows a user to decide to not add the rule', async () => {
+      const mockedPrompt = jest.fn()
+        .mockImplementationOnce(() => Promise.resolve({ addNewRule: false }))
 
+      context.prompt = {
+        ask: mockedPrompt
+      }
+
+      context.print = {
+        error: jest.fn()
+      }
+
+      context.parameters = {
+        plugin: 'solidarity',
+        command: 'snapshot',
+        first: 'file',
+        second: './nachos',
+        third: undefined,
+        raw: 'file ./nachos',
+        string: 'file ./nachos',
+        array: [ 'file', './nachos' ],
+        options: {},
+        argv: [ 'snapshot', 'file', './nachos' ]
+      }
+
+      const result = await snapshotCommand.run(context);
+      expect(requirements()).toEqual({})
+      expect(context.print.error.mock.calls).toEqual([['Your new requirement was not added.']])
+    })
+
+    describe('given an cli rule', () => {
+      beforeEach(() => {
         context.parameters = {
           plugin: 'solidarity',
           command: 'snapshot',
@@ -103,20 +134,27 @@ describe('with a .solidarity file', () => {
           argv: [ 'snapshot', 'cli', 'yarn' ]
         }
 
+        const mockedPrompt = jest.fn()
+          .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+          .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
+
         context.prompt = {
-          ask: jest.fn(
-            () => Promise.resolve({ addNewRule: true })
-          )
+          ask: mockedPrompt
+        }
+
+        context.print = {
+          error: jest.fn(),
+          info: jest.fn()
         }
       })
 
-      it('handles a binary without a version', async () => {
+      it('handles a binary enforceVersion: false', async () => {
         expect(requirements()).toEqual({})
 
         const result = await snapshotCommand.run(context);
         expect(context.prompt.ask.mock.calls).toEqual([
           [{
-            message: "Would you like to add the binary 'yarn' to your Solidarity file?",
+            message: "Would you like to add the cli 'yarn' to your Solidarity file?",
             name: "addNewRule",
             type: "confirm"
           }],
@@ -127,11 +165,144 @@ describe('with a .solidarity file', () => {
           }]
         ])
         expect(requirements().yarn).toBeTruthy()
+        expect(requirements().yarn.semver).toBeFalsy()
       })
 
-      // it('handles a binary with a version', () => {
+      it('handles a binary with enforceVersion: true', async () => {
+        const mockedPrompt = jest.fn()
+        .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+        .mockImplementationOnce(() => Promise.resolve({ enforceVersion: true }))
 
-      // })
+        context.prompt = {
+          ask: mockedPrompt
+        }
+
+        expect(requirements()).toEqual({})
+
+        const result = await snapshotCommand.run(context);
+        expect(context.prompt.ask.mock.calls).toEqual([
+          [{
+            message: "Would you like to add the cli 'yarn' to your Solidarity file?",
+            name: "addNewRule",
+            type: "confirm"
+          }],
+          [{
+            message: "Would you like to enforce a version requirement?",
+            name: "enforceVersion",
+            type: "confirm"
+          }]
+        ])
+        expect(requirements().yarn).toBeTruthy()
+        expect(requirements().yarn.semver).toBeTruthy()
+      })
+    })
+
+    describe('given an env rule', () => {
+      it('adds the rule', async () => {
+        context.parameters = {
+          plugin: 'solidarity',
+          command: 'snapshot',
+          first: 'env',
+          second: 'PATH',
+          third: undefined,
+          raw: 'env PATH',
+          string: 'env PATH',
+          array: [ 'env', 'PATH' ],
+          options: {},
+          argv: [ 'snapshot', 'env', 'PATH' ]
+        }
+
+        const mockedPrompt = jest.fn()
+          .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+
+        context.prompt = {
+          ask: mockedPrompt
+        }
+
+        expect(requirements()).toEqual({})
+        const result = await snapshotCommand.run(context);
+
+        expect(context.prompt.ask.mock.calls).toEqual([
+          [{
+            message: "Would you like to add the env 'PATH' to your Solidarity file?",
+            name: "addNewRule",
+            type: "confirm"
+          }]
+        ])
+        expect(requirements().PATH).toBeTruthy()
+      })
+    })
+
+    describe('given a file rule', () => {
+      it('adds the rule', async () => {
+        context.parameters = {
+          plugin: 'solidarity',
+          command: 'snapshot',
+          first: 'file',
+          second: './nachos',
+          third: undefined,
+          raw: 'file ./nachos',
+          string: 'file ./nachos',
+          array: [ 'file', './nachos' ],
+          options: {},
+          argv: [ 'snapshot', 'file', './nachos' ]
+        }
+
+        const mockedPrompt = jest.fn()
+          .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+
+        context.prompt = {
+          ask: mockedPrompt
+        }
+
+        expect(requirements()).toEqual({})
+        const result = await snapshotCommand.run(context);
+
+        expect(context.prompt.ask.mock.calls).toEqual([
+          [{
+            message: "Would you like to add the file './nachos' to your Solidarity file?",
+            name: "addNewRule",
+            type: "confirm"
+          }]
+        ])
+        expect(requirements()['./nachos']).toBeTruthy()
+      })
+    })
+
+    describe('given a dir rule', () => {
+      it('adds the rule', async () => {
+        context.parameters = {
+          plugin: 'solidarity',
+          command: 'snapshot',
+          first: 'dir',
+          second: './config',
+          third: undefined,
+          raw: 'dir ./config',
+          string: 'dir ./config',
+          array: [ 'dir', './config' ],
+          options: {},
+          argv: [ 'snapshot', 'dir', './config' ]
+        }
+
+        const mockedPrompt = jest.fn()
+          .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+
+        context.prompt = {
+          ask: mockedPrompt
+        }
+
+        expect(requirements()).toEqual({})
+        const result = await snapshotCommand.run(context);
+
+        expect(context.prompt.ask.mock.calls).toEqual([
+          [{
+            message: "Would you like to add the dir './config' to your Solidarity file?",
+            name: "addNewRule",
+            type: "confirm"
+          }]
+        ])
+        expect(requirements()['./config']).toBeTruthy()
+      })
     })
   })
 })
