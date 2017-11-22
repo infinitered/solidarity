@@ -1,5 +1,5 @@
-import { SolidarityRunContext, SolidarityRule } from '../../types'
-module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Promise<string | undefined> => {
+import { SolidarityRunContext, CLIRule } from '../../types'
+module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string | undefined> => {
   const { semver, solidarity } = context
   const binaryExists = require('./binaryExists')
 

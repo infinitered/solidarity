@@ -1,10 +1,9 @@
-import { GluegunCommand } from 'gluegun'
+import { GluegunCommand, GluegunRunContext } from 'gluegun'
+import { FriendlyMessages, SolidarityRunContext } from '../types'
 
 namespace Snapshot {
   const { propEq, filter, head } = require('ramda')
-  const NONE = 'None'
-  const DO_NOTHING = 'Nothing to do ¯\\_(ツ)_/¯'
-  const runPluginSnapshot = async (runPlugin, context) => {
+  const runPluginSnapshot = async (runPlugin, context: GluegunRunContext): Promise<void> => {
     if (typeof runPlugin.snapshot === 'string') {
       // Just a file copy
       const { filesystem, system } = context
@@ -20,13 +19,13 @@ namespace Snapshot {
     }
   }
 
-  const createSolidarityFile = async (context) => {
+  const createSolidarityFile = async (context: SolidarityRunContext): Promise<void> => {
     const { print, printSeparator } = context
     // list visible plugins
     printSeparator()
     print.info('Available technology plugins:\n')
     if (context._pluginsList.length > 0) {
-      const pluginOptions = [NONE]
+      const pluginOptions: string[] = [FriendlyMessages.NONE]
       context._pluginsList.map((plugin) => {
         print.info(`   ${plugin.name}:\t ${plugin.description}`)
         pluginOptions.unshift(plugin.name)
@@ -39,8 +38,8 @@ namespace Snapshot {
         choices: pluginOptions
       })
 
-      if (answer.selectedPlugin === NONE) {
-        print.info(DO_NOTHING)
+      if (answer.selectedPlugin === FriendlyMessages.NONE) {
+        print.info(FriendlyMessages.NOTHING)
       } else {
         const pluginSpinner = print.spin(`Running ${answer.selectedPlugin} Snapshot`)
         // Config for selected plugin only
@@ -62,7 +61,7 @@ namespace Snapshot {
     }
   }
 
-  export const run = async function (context) {
+  export const run = async function (context: SolidarityRunContext) {
     const { print, prompt, filesystem, solidarity } = context
 
     // check is there an existing .solidarity file?
@@ -81,7 +80,7 @@ namespace Snapshot {
       if (userAnswer.createFile) {
         await createSolidarityFile(context)
       } else {
-        print.info(DO_NOTHING)
+        print.info(FriendlyMessages.NOTHING)
       }
     }
   }

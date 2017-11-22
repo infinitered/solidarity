@@ -57,7 +57,7 @@ describe('checkRequirement', () => {
 
   test('when an invalid rule is given', async () => {
     const result = await checkRequirement(badRule, context)
-    expect(result).toEqual(['Encountered unknown rule \'knope\''])
+    expect(result).toEqual(['Encountered unknown rule'])
   })
 
   describe('when rule: cli', () => {

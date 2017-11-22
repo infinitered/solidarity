@@ -1,5 +1,5 @@
-import { SolidarityRule } from '../../types'
-module.exports = (rule: SolidarityRule, line: string): string => {
+import { CLIRule } from '../../types'
+module.exports = (rule: CLIRule, line: string): string => {
   const foundVersions = line.match(/(\d+\.)?(\d+\.)?(\d+)([^\sa-zA-Z0-9]+\w+)?/g)
 
   if (Array.isArray(foundVersions)) {

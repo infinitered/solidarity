@@ -24,7 +24,7 @@ export interface SolidarityPlugin {
 
 export interface SolidarityRunContext extends GluegunRunContext {
   solidarity: typeof solidarity
-  _pluginsList: Array<SolidarityPlugin & {templateDirectory: string}>
+  _pluginsList: Array<SolidarityPlugin & { templateDirectory: string }>
   addPlugin: (config: SolidarityPlugin) => void
   printSeparator: () => void
   outputMode: SolidarityOutputMode
@@ -32,23 +32,43 @@ export interface SolidarityRunContext extends GluegunRunContext {
 
 export type SnapshotType = (context: SolidarityRunContext) => Promise<void>
 
-export interface SolidarityRule {
-  readonly rule: 'cli' | 'env' | 'dir' | 'file'
-  readonly binary?: string
-  semver?: string   // updatable
+export interface CLIRule {
+  readonly rule: 'cli'
+  readonly binary: string
+  semver?: string // updatable
   readonly version?: string
   readonly line?: string | number
-  readonly variable?: string
-  readonly location?: string
+  readonly error?: string
+  readonly matchIndex?: number
+  readonly platform?: string | string[]
+}
+
+export interface ENVRule {
+  readonly rule: 'env'
+  readonly variable: string
   readonly error?: string
   readonly platform?: string | string[]
-  readonly matchIndex?: number
 }
+
+export interface FSRule {
+  readonly rule: 'dir' | 'directory' | 'file'
+  readonly location: string
+  readonly error?: string
+  readonly platform?: string | string[]
+}
+
+// discriminated union for rule sets
+export type SolidarityRule = CLIRule | ENVRule | FSRule
 
 export enum SolidarityOutputMode {
   MODERATE,
   VERBOSE,
   SILENT
+}
+
+export const enum FriendlyMessages {
+  NONE = 'NONE',
+  NOTHING = 'Nothing to do ¯\\_(ツ)_/¯'
 }
 
 export type SolidarityRequirement = SolidarityRule[]

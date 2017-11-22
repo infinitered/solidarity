@@ -1,12 +1,13 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityOutputMode, SolidaritySettings } from '../types'
+import { SolidarityOutputMode, SolidaritySettings, SolidarityRunContext } from '../types'
 
 namespace Solidarity {
   const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
 
-  const checkForEscapeHatchFlags = async (context) => {
+  const checkForEscapeHatchFlags = async (context: SolidarityRunContext) => {
     const { print, parameters } = context
     const { options } = parameters
+    if (!options) return
     if (options.help || options.h) {
       // Just looking for help
       print.printCommands(context)
@@ -34,7 +35,7 @@ namespace Solidarity {
     return SolidarityOutputMode[outputModeString] || SolidarityOutputMode.MODERATE
   }
 
-  export const run = async (context) => {
+  export const run = async (context: SolidarityRunContext) => {
     // drop out fast in these situations
     await checkForEscapeHatchFlags(context)
 
