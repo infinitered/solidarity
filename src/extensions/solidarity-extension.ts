@@ -3,7 +3,7 @@ import { SolidarityRunContext, solidarity, SolidarityPlugin } from '../types'
 const callsite = require('callsite')
 const path = require('path')
 // Adding our goodies to the context
-module.exports = (context: SolidarityRunContext) => {
+module.exports = (context: SolidarityRunContext): void => {
   context.solidarity = solidarity
   // place for plugins
   context._pluginsList = []
@@ -21,6 +21,6 @@ module.exports = (context: SolidarityRunContext) => {
   }
 
   // Flavored separator
-  context.printSeparator = () =>
+  context.printSeparator = (): void =>
     context.print.info(context.print.colors.america('-----------------------------------------------------------------------------------'))
 }
