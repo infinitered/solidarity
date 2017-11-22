@@ -1,4 +1,5 @@
 import { SolidarityRequirement, SolidarityRunContext, SolidarityOutputMode } from '../../types'
+import { SolidarityRule } from '../../types'
 const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
 const checkDir = require('./checkDir')
@@ -19,7 +20,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
     throw Error(`Unexpected value '${value}'`)
   }
 
-  const printResult = (checkSuccessful, resultMessage) => {
+  const printResult = (checkSuccessful: boolean, resultMessage: string) => {
     switch (context.outputMode) {
       case SolidarityOutputMode.VERBOSE:
         // Print everything
@@ -43,13 +44,13 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
     }
   }
 
-  const addFailure = (failureMessage) => {
+  const addFailure = (failureMessage: string) => {
     printResult(false, failureMessage)
     return failureMessage
   }
 
   // check each rule for requirement
-  const ruleChecks = await map(async (rule) => {
+  const ruleChecks = await map(async (rule: SolidarityRule) => {
     // Make sure this rule is active
     if (skipRule(rule.platform)) return []
 
@@ -96,7 +97,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
           return addFailure(rule.error || `'${rule.location}' file not found`)
         }
       default:
-        return addFailure(rule.error || `Encountered unknown rule '${rule.rule}'`)
+        return addFailure(`Encountered unknown rule '${rule}'`)
     }
   }, rules)
 
