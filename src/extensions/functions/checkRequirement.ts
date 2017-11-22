@@ -97,7 +97,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
           return addFailure(rule.error || `'${rule.location}' file not found`)
         }
       default:
-        return addFailure(`Encountered unknown rule '${rule}'`)
+        return addFailure(`Encountered unknown rule`)
     }
   }, rules)
 
