@@ -1,5 +1,7 @@
+import { SolidaritySettings } from '../types'
+
 import { GluegunCommand, semver } from 'gluegun'
-import { toPairs, flatten, filter } from 'ramda'
+import { toPairs, flatten, filter, keys } from 'ramda'
 import { request } from 'http';
 
 namespace Snapshot {
@@ -79,14 +81,14 @@ namespace Snapshot {
     return rule.length !== 0
   }
 
-  const buildCliRequirement = async (context) => {
+  const buildCliRequirement = async (context, requirementName) => {
     const { parameters, solidarity, prompt, print } = context
     const { getVersion } = solidarity
 
     const rule = parameters.first
     const binary = parameters.second;
     const requirement = {
-      [binary]: {
+      [requirementName]: {
         rule,
         binary
       }
@@ -100,11 +102,11 @@ namespace Snapshot {
     })
 
     if (userAnswer.enforceVersion) {
-      return await getVersion(requirement[binary], context)
+      return await getVersion(requirement[requirementName], context)
         .then((sysVersion) => {
           print.info(`Your system currently has version ${sysVersion}`)
           print.info(`Semver requirement for '${binary}' binary : ^${sysVersion}`)
-          requirement[binary]['semver'] = sysVersion
+          requirement[requirementName]['semver'] = sysVersion
 
           return requirement
         })
@@ -116,28 +118,28 @@ namespace Snapshot {
     return requirement
   }
 
-  const buildEnvRequirement = (context) => {
+  const buildEnvRequirement = (context, requirementName) => {
     const { parameters } = context
 
     const rule = parameters.first
     const variable = parameters.second;
 
     return {
-      [variable]: {
+      [requirementName]: {
         rule,
         variable
       }
     }
   }
 
-  const buildFileRequirement = (context) => {
+  const buildFileRequirement = (context, requirementName) => {
     const { parameters } = context
 
     const rule = parameters.first
     const location = parameters.second;
 
     return {
-      [location]: {
+      [requirementName]: {
         rule,
         location
       }
@@ -167,12 +169,43 @@ namespace Snapshot {
 
       if (userAnswer.addNewRule) {
         // maybe ask about setting up the new rule w/ a specific version?
-        return await ruleHandlers[parameters.first](context)
+        const requirementName = await chooseRequirement(prompt, solidaritySettings)
+        return ruleHandlers[parameters.first](context, requirementName)
       } else {
         return Promise.reject('Rule not added.')
       }
     }
   }
+
+  const chooseRequirement = async (prompt, solidaritySettings:SolidaritySettings): Promise<String> => {
+    return prompt.ask({
+      name: 'makeNewRequirement',
+      type: 'confirm',
+      message: 'Would you like to add to an existing requirement or create a new one?'
+    }).then(async ({ makeNewRequirement }) => {
+      let requirementName;
+      if (makeNewRequirement) {
+        const answer = await prompt.ask({
+          name: 'newRequirement',
+          type: 'question',
+          message: 'What would you like to call this new requirement?'
+        })
+        requirementName = answer.newRequirement
+      } else {
+        const requirementOptions = getRequirementNames(solidaritySettings)
+        const answer = await prompt.ask({
+          name: 'selectedRequirement',
+          message: 'Which of the above technology snapshots will you use for this project?',
+          type: 'list',
+          choices: requirementOptions
+        })
+        requirementName = answer.selectedRequirement
+      }
+      return requirementName
+    })
+  }
+
+  const getRequirementNames = (solidaritySettings:SolidaritySettings): String => keys(solidaritySettings.requirements)
 
   const appendSolidaritySettings = (solidaritySettings, newRequirement) => {
     return {

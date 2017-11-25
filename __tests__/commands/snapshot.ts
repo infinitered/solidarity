@@ -67,6 +67,7 @@ describe('with a .solidarity file', () => {
   })
 
   describe('given a new rule to add', () => {
+
     const origCwd = process.cwd();
     const settings = {
       requirements: {
@@ -136,6 +137,10 @@ describe('with a .solidarity file', () => {
 
         const mockedPrompt = jest.fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+          .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+          .mockImplementationOnce(() => Promise.resolve({
+            newRequirement: 'Testorson'
+          }))
           .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
 
         context.prompt = {
@@ -152,25 +157,18 @@ describe('with a .solidarity file', () => {
         expect(requirements()).toEqual({})
 
         const result = await snapshotCommand.run(context);
-        expect(context.prompt.ask.mock.calls).toEqual([
-          [{
-            message: "Would you like to add the cli 'yarn' to your Solidarity file?",
-            name: "addNewRule",
-            type: "confirm"
-          }],
-          [{
-            message: "Would you like to enforce a version requirement?",
-            name: "enforceVersion",
-            type: "confirm"
-          }]
-        ])
-        expect(requirements().yarn).toBeTruthy()
-        expect(requirements().yarn.semver).toBeFalsy()
+        expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+        expect(requirements().Testorson).toBeTruthy()
+        expect(requirements().Testorson.semver).toBeFalsy()
       })
 
       it('handles a binary with enforceVersion: true', async () => {
         const mockedPrompt = jest.fn()
         .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+        .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+        .mockImplementationOnce(() => Promise.resolve({
+          newRequirement: 'Testorson'
+        }))
         .mockImplementationOnce(() => Promise.resolve({ enforceVersion: true }))
 
         context.prompt = {
@@ -180,20 +178,9 @@ describe('with a .solidarity file', () => {
         expect(requirements()).toEqual({})
 
         const result = await snapshotCommand.run(context);
-        expect(context.prompt.ask.mock.calls).toEqual([
-          [{
-            message: "Would you like to add the cli 'yarn' to your Solidarity file?",
-            name: "addNewRule",
-            type: "confirm"
-          }],
-          [{
-            message: "Would you like to enforce a version requirement?",
-            name: "enforceVersion",
-            type: "confirm"
-          }]
-        ])
-        expect(requirements().yarn).toBeTruthy()
-        expect(requirements().yarn.semver).toBeTruthy()
+        expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+        expect(requirements().Testorson).toBeTruthy()
+        expect(requirements().Testorson.semver).toBeTruthy()
       })
     })
 
@@ -214,6 +201,10 @@ describe('with a .solidarity file', () => {
 
         const mockedPrompt = jest.fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+          .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+          .mockImplementationOnce(() => Promise.resolve({
+            newRequirement: 'Testorson'
+          }))
 
         context.prompt = {
           ask: mockedPrompt
@@ -222,14 +213,8 @@ describe('with a .solidarity file', () => {
         expect(requirements()).toEqual({})
         const result = await snapshotCommand.run(context);
 
-        expect(context.prompt.ask.mock.calls).toEqual([
-          [{
-            message: "Would you like to add the env 'PATH' to your Solidarity file?",
-            name: "addNewRule",
-            type: "confirm"
-          }]
-        ])
-        expect(requirements().PATH).toBeTruthy()
+        expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+        expect(requirements().Testorson).toBeTruthy()
       })
     })
 
@@ -250,6 +235,10 @@ describe('with a .solidarity file', () => {
 
         const mockedPrompt = jest.fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+          .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+          .mockImplementationOnce(() => Promise.resolve({
+            newRequirement: 'Testorson'
+          }))
 
         context.prompt = {
           ask: mockedPrompt
@@ -258,14 +247,8 @@ describe('with a .solidarity file', () => {
         expect(requirements()).toEqual({})
         const result = await snapshotCommand.run(context);
 
-        expect(context.prompt.ask.mock.calls).toEqual([
-          [{
-            message: "Would you like to add the file './nachos' to your Solidarity file?",
-            name: "addNewRule",
-            type: "confirm"
-          }]
-        ])
-        expect(requirements()['./nachos']).toBeTruthy()
+        expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+        expect(requirements().Testorson).toBeTruthy()
       })
     })
 
@@ -286,6 +269,10 @@ describe('with a .solidarity file', () => {
 
         const mockedPrompt = jest.fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+          .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+          .mockImplementationOnce(() => Promise.resolve({
+            newRequirement: 'Testorson'
+          }))
 
         context.prompt = {
           ask: mockedPrompt
@@ -294,14 +281,8 @@ describe('with a .solidarity file', () => {
         expect(requirements()).toEqual({})
         const result = await snapshotCommand.run(context);
 
-        expect(context.prompt.ask.mock.calls).toEqual([
-          [{
-            message: "Would you like to add the dir './config' to your Solidarity file?",
-            name: "addNewRule",
-            type: "confirm"
-          }]
-        ])
-        expect(requirements()['./config']).toBeTruthy()
+        expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+        expect(requirements().Testorson).toBeTruthy()
       })
     })
   })
