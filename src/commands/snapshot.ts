@@ -181,7 +181,7 @@ namespace Snapshot {
     return prompt.ask({
       name: 'makeNewRequirement',
       type: 'confirm',
-      message: 'Would you like to add to an existing requirement or create a new one?'
+      message: 'Would you like to create a new requirement set?'
     }).then(async ({ makeNewRequirement }) => {
       let requirementName;
       if (makeNewRequirement) {
