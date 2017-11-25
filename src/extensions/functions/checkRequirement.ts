@@ -1,4 +1,5 @@
 import { SolidarityRequirement, SolidarityRunContext, SolidarityOutputMode } from '../../types'
+import { SolidarityRule } from '../../types'
 const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
 const checkDir = require('./checkDir')
@@ -15,8 +16,11 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
   let ruleString = ''
   // Hide spinner if silent outputmode is set
   const spinner = context.outputMode !== SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
+  const assertNever = (value: never): never => {
+    throw Error(`Unexpected value '${value}'`)
+  }
 
-  const printResult = (checkSuccessful, resultMessage) => {
+  const printResult = (checkSuccessful: boolean, resultMessage: string) => {
     switch (context.outputMode) {
       case SolidarityOutputMode.VERBOSE:
         // Print everything
@@ -26,22 +30,27 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
         // Print nothing
         break
       case SolidarityOutputMode.MODERATE:
-      default:
+      case undefined:
         // Print only errors
         if (!checkSuccessful) {
           spinner.fail(resultMessage)
         }
         break
+      default:
+        // enforce via typescript, no unhandled modes
+        // will fail tsc if new enums added
+        assertNever(context.outputMode)
+        break
     }
   }
 
-  const addFailure = (failureMessage) => {
+  const addFailure = (failureMessage: string) => {
     printResult(false, failureMessage)
     return failureMessage
   }
 
   // check each rule for requirement
-  const ruleChecks = await map(async (rule) => {
+  const ruleChecks = await map(async (rule: SolidarityRule) => {
     // Make sure this rule is active
     if (skipRule(rule.platform)) return []
 
@@ -88,7 +97,7 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
           return addFailure(rule.error || `'${rule.location}' file not found`)
         }
       default:
-        return addFailure(rule.error || `Encountered unknown rule '${rule.rule}'`)
+        return addFailure(`Encountered unknown rule`)
     }
   }, rules)
 

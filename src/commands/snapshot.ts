@@ -1,14 +1,12 @@
-import { SolidaritySettings } from '../types'
 
-import { GluegunCommand, semver } from 'gluegun'
+import { GluegunCommand, GluegunRunContext } from 'gluegun'
 import { toPairs, flatten, filter, keys } from 'ramda'
-import { request } from 'http';
+
+import { SolidaritySettings, FriendlyMessages, SolidarityRunContext } from '../types'
 
 namespace Snapshot {
   const { propEq, filter, head } = require('ramda')
-  const NONE = 'None'
-  const DO_NOTHING = 'Nothing to do ¯\\_(ツ)_/¯'
-  const runPluginSnapshot = async (runPlugin, context) => {
+  const runPluginSnapshot = async (runPlugin, context: GluegunRunContext): Promise<void> => {
     if (typeof runPlugin.snapshot === 'string') {
       // Just a file copy
       const { filesystem, system } = context
@@ -24,13 +22,13 @@ namespace Snapshot {
     }
   }
 
-  const createSolidarityFile = async (context) => {
+  const createSolidarityFile = async (context: SolidarityRunContext): Promise<void> => {
     const { print, printSeparator } = context
     // list visible plugins
     printSeparator()
     print.info('Available technology plugins:\n')
     if (context._pluginsList.length > 0) {
-      const pluginOptions = [NONE]
+      const pluginOptions: string[] = [FriendlyMessages.NONE]
       context._pluginsList.map((plugin) => {
         print.info(`   ${plugin.name}:\t ${plugin.description}`)
         pluginOptions.unshift(plugin.name)
@@ -43,8 +41,8 @@ namespace Snapshot {
         choices: pluginOptions
       })
 
-      if (answer.selectedPlugin === NONE) {
-        print.info(DO_NOTHING)
+      if (answer.selectedPlugin === FriendlyMessages.NONE) {
+        print.info(FriendlyMessages.NOTHING)
       } else {
         const pluginSpinner = print.spin(`Running ${answer.selectedPlugin} Snapshot`)
         // Config for selected plugin only
@@ -55,13 +53,10 @@ namespace Snapshot {
       }
     } else {
       print.error(`No solidarity plugins found!
-
       Add a plugin for a given technology:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/pluginsList.md')}
-
       OR write your own plugin for generating rules:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/plugins.md')}
-
       OR simply create a .solidarity rule-set by hand for this project:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/options.md')}
       `)
@@ -217,7 +212,7 @@ namespace Snapshot {
     }
   }
 
-  export const run = async function (context) {
+  export const run = async function (context: SolidarityRunContext) {
     const { print, prompt, filesystem, solidarity, parameters } = context
     const { first, second } = parameters;
     const { getSolidaritySettings, setSolidaritySettings } = solidarity
@@ -251,7 +246,7 @@ namespace Snapshot {
       if (userAnswer.createFile) {
         await createSolidarityFile(context)
       } else {
-        print.info(DO_NOTHING)
+        print.info(FriendlyMessages.NOTHING)
       }
     }
   }

@@ -1,5 +1,5 @@
-import { SolidarityRule } from '../../types'
-module.exports = (rule: SolidarityRule, versionOutput: string): string => {
+import { CLIRule } from '../../types'
+module.exports = (rule: CLIRule, versionOutput: string): string => {
   let result
   if (typeof rule.line === 'number') {
     result = versionOutput.split('\n')[rule.line - 1]

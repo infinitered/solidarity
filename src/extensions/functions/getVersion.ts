@@ -1,6 +1,6 @@
-import { SolidarityRule, SolidarityRunContext } from '../../types'
+import { CLIRule, SolidarityRunContext } from '../../types'
 // Get the version of a specific CLI
-module.exports = async (rule: SolidarityRule, context: SolidarityRunContext): Promise<string> => {
+module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string> => {
   const { system, solidarity } = context
 
   let versionOutput

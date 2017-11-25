@@ -38,6 +38,7 @@ describe('checkCLIForUpdates', () => {
 
       const result = await checkCLIForUpdates(rule, context)
       expect(result).toEqual("Setting yarn to '1.0'")
+      expect(context.print.color.green).toHaveBeenCalled()
     })
 
     it('does nothing if there was no original semver', async () => {

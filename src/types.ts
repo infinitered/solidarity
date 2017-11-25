@@ -17,14 +17,14 @@ export const solidarity = {
 }
 
 export interface SolidarityPlugin {
-  name: string
-  description: string
-  snapshot: string | SnapshotType
+  readonly name: string
+  readonly description: string
+  readonly snapshot: string | SnapshotType
 }
 
 export interface SolidarityRunContext extends GluegunRunContext {
   solidarity: typeof solidarity
-  _pluginsList: Array<SolidarityPlugin & {templateDirectory: string}>
+  _pluginsList: Array<SolidarityPlugin & { templateDirectory: string }>
   addPlugin: (config: SolidarityPlugin) => void
   printSeparator: () => void
   outputMode: SolidarityOutputMode
@@ -32,28 +32,51 @@ export interface SolidarityRunContext extends GluegunRunContext {
 
 export type SnapshotType = (context: SolidarityRunContext) => Promise<void>
 
-export interface SolidarityRule {
-  rule: 'cli' | 'env' | 'dir' | 'file'
-  binary?: string
-  semver?: string
-  version?: string
-  line?: string | number
-  variable?: string
-  location?: string
-  error?: string
-  platform?: string | string[]
-  matchIndex?: number
+export interface CLIRule {
+  readonly rule: 'cli'
+  readonly binary: string
+  semver?: string // updatable
+  readonly version?: string
+  readonly line?: string | number
+  readonly error?: string
+  readonly matchIndex?: number
+  readonly platform?: string | string[]
 }
 
-export type SolidarityRequirement = SolidarityRule[]
-
-export interface SolidaritySettings {
-  requirements: object
-  config: object
+export interface ENVRule {
+  readonly rule: 'env'
+  readonly variable: string
+  readonly error?: string
+  readonly platform?: string | string[]
 }
+
+export interface FSRule {
+  readonly rule: 'dir' | 'directory' | 'file'
+  readonly location: string
+  readonly error?: string
+  readonly platform?: string | string[]
+}
+
+// discriminated union for rule sets
+export type SolidarityRule = CLIRule | ENVRule | FSRule
 
 export enum SolidarityOutputMode {
   MODERATE,
   VERBOSE,
   SILENT
+}
+
+export const enum FriendlyMessages {
+  NONE = 'NONE',
+  NOTHING = 'Nothing to do ¯\\_(ツ)_/¯'
+}
+
+export type SolidarityRequirement = SolidarityRule[]
+export interface SolidarityConfig {
+  output: SolidarityOutputMode
+}
+
+export interface SolidaritySettings {
+  readonly requirements: object
+  readonly config: SolidarityConfig
 }
