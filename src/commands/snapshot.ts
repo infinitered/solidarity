@@ -1,11 +1,10 @@
 
 import { GluegunCommand, GluegunRunContext } from 'gluegun'
-import { toPairs, flatten, filter, keys } from 'ramda'
+import { toPairs, flatten, filter, keys, propEq, head } from 'ramda'
 
 import { SolidaritySettings, FriendlyMessages, SolidarityRunContext } from '../types'
 
 namespace Snapshot {
-  const { propEq, filter, head } = require('ramda')
   const runPluginSnapshot = async (runPlugin, context: GluegunRunContext): Promise<void> => {
     if (typeof runPlugin.snapshot === 'string') {
       // Just a file copy
@@ -81,14 +80,13 @@ namespace Snapshot {
     const { getVersion } = solidarity
 
     const rule = parameters.first
-    const binary = parameters.second;
+    const binary = parameters.second
     const requirement = {
       [requirementName]: {
         rule,
         binary
       }
     }
-    let semver;
 
     const userAnswer = await prompt.ask({
       name: 'enforceVersion',
@@ -106,7 +104,7 @@ namespace Snapshot {
           return requirement
         })
         .catch(() => {
-          print.error("Seems as though you do not have this binary istalled. Please install this binary first")
+          print.error('Seems as though you do not have this binary istalled. Please install this binary first')
         })
     }
 
@@ -117,7 +115,7 @@ namespace Snapshot {
     const { parameters } = context
 
     const rule = parameters.first
-    const variable = parameters.second;
+    const variable = parameters.second
 
     return {
       [requirementName]: {
@@ -131,7 +129,7 @@ namespace Snapshot {
     const { parameters } = context
 
     const rule = parameters.first
-    const location = parameters.second;
+    const location = parameters.second
 
     return {
       [requirementName]: {
@@ -148,37 +146,15 @@ namespace Snapshot {
     dir: buildFileRequirement
   }
 
-  const buildSpecifiedRequirment = async (context) => {
-    const { parameters, print, prompt, solidarity } = context
-    const { getSolidaritySettings, getVersion } = solidarity
-    const solidaritySettings = getSolidaritySettings(context)
+  const getRequirementNames = (solidaritySettings: SolidaritySettings): String => keys(solidaritySettings.requirements)
 
-    if (hasRule(solidaritySettings, parameters)) {
-      return Promise.reject("This binary already exists")
-    } else {
-      const userAnswer = await prompt.ask({
-        name: 'addNewRule',
-        type: 'confirm',
-        message: `Would you like to add the ${parameters.first} '${parameters.second}' to your Solidarity file?`
-      })
-
-      if (userAnswer.addNewRule) {
-        // maybe ask about setting up the new rule w/ a specific version?
-        const requirementName = await chooseRequirement(prompt, solidaritySettings)
-        return ruleHandlers[parameters.first](context, requirementName)
-      } else {
-        return Promise.reject('Rule not added.')
-      }
-    }
-  }
-
-  const chooseRequirement = async (prompt, solidaritySettings:SolidaritySettings): Promise<String> => {
+  const chooseRequirement = async (prompt, solidaritySettings: SolidaritySettings): Promise<String> => {
     return prompt.ask({
       name: 'makeNewRequirement',
       type: 'confirm',
       message: 'Would you like to create a new requirement set?'
     }).then(async ({ makeNewRequirement }) => {
-      let requirementName;
+      let requirementName
       if (makeNewRequirement) {
         const answer = await prompt.ask({
           name: 'newRequirement',
@@ -200,7 +176,29 @@ namespace Snapshot {
     })
   }
 
-  const getRequirementNames = (solidaritySettings:SolidaritySettings): String => keys(solidaritySettings.requirements)
+  const buildSpecifiedRequirment = async (context) => {
+    const { parameters, prompt, solidarity } = context
+    const { getSolidaritySettings } = solidarity
+    const solidaritySettings = getSolidaritySettings(context)
+
+    if (hasRule(solidaritySettings, parameters)) {
+      return Promise.reject('This binary already exists')
+    } else {
+      const userAnswer = await prompt.ask({
+        name: 'addNewRule',
+        type: 'confirm',
+        message: `Would you like to add the ${parameters.first} '${parameters.second}' to your Solidarity file?`
+      })
+
+      if (userAnswer.addNewRule) {
+        // maybe ask about setting up the new rule w/ a specific version?
+        const requirementName = await chooseRequirement(prompt, solidaritySettings)
+        return ruleHandlers[parameters.first](context, requirementName)
+      } else {
+        return Promise.reject('Rule not added.')
+      }
+    }
+  }
 
   const appendSolidaritySettings = (solidaritySettings, newRequirement) => {
     return {
@@ -214,7 +212,7 @@ namespace Snapshot {
 
   export const run = async function (context: SolidarityRunContext) {
     const { print, prompt, filesystem, solidarity, parameters } = context
-    const { first, second } = parameters;
+    const { first, second } = parameters
     const { getSolidaritySettings, setSolidaritySettings } = solidarity
 
     // check is there an existing .solidarity file?
@@ -228,7 +226,7 @@ namespace Snapshot {
             const updatedSolidaritySettings = appendSolidaritySettings(solidaritySettings, newRequirement)
             setSolidaritySettings(updatedSolidaritySettings, context)
           })
-          .catch((error) => {
+          .catch(() => {
             print.error('Your new requirement was not added.')
           })
       } else {
