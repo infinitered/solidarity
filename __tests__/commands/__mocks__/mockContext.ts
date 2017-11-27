@@ -1,0 +1,27 @@
+const noConfigSolidarity = {
+  checkRequirement: jest.fn(),
+  getSolidaritySettings: jest.fn(() => ({}))
+}
+
+const mockContext = {
+  outputMode: null,
+  system: {
+    startTimer: jest.fn(() => jest.fn())
+  },
+  print: {
+    error: jest.fn(),
+    success: jest.fn(),
+    info: jest.fn(),
+    spin: jest.fn(() => ({
+      stop: jest.fn()
+    })),
+    table: jest.fn()
+  },
+  printSeparator: jest.fn(),
+  parameters: {
+    options: {}
+  },
+  solidarity: noConfigSolidarity
+}
+
+module.exports = mockContext
