@@ -48,7 +48,7 @@ module.exports = async (requirement: SolidarityRequirementChunk, report: Solidar
         break
       // Handle file rule report
       case 'file':
-        const fileExists = prettyBool(checkDir(rule, context))
+        const fileExists = prettyBool(checkFile(rule, context))
         report.filesystemRules.push([rule.location, 'File', fileExists])
         break
       default:
