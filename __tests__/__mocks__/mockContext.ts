@@ -16,7 +16,13 @@ const mockContext = {
     spin: jest.fn(() => ({
       stop: jest.fn()
     })),
-    table: jest.fn()
+    table: jest.fn(),
+    xmark: jest.fn(),
+    checkmark: jest.fn(),
+    color: {
+      green: jest.fn(),
+      red: jest.fn()
+    }
   },
   printSeparator: jest.fn(),
   parameters: {
