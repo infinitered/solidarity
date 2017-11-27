@@ -6,20 +6,20 @@ import { map, toPairs, isEmpty, flatten, reject, isNil } from 'ramda'
 const printResults = (results: SolidarityReportResults, context: SolidarityRunContext) => {
   const { print, printSeparator } = context
   const { info } = print
-  const printSpacedTable = (table) => {
-    info('')
+  const printSpacedTable = (table, header) => {
+    info(`### ${header}\n`)
     print.table(table, {format: 'markdown'})
-    info('')
+    info('\n')
   }
-  const printIfData = (reportItem: Array<Array<string>>) =>
-    (reportItem.length > 1) && printSpacedTable(reportItem)
+  const printIfData = (reportItem: Array<Array<string>>, header: string) =>
+    (reportItem.length > 1) && printSpacedTable(reportItem, header)
 
-  info('# ⚠️ System Report:')
+  info('# ⚠️ Environment Report:')
   printSeparator()
-  printIfData(results.basicInfo)
-  printIfData(results.cliRules)
-  printIfData(results.envRules)
-  printIfData(results.filesystemRules)
+  printIfData(results.basicInfo, 'System')
+  printIfData(results.cliRules, 'Commands')
+  printIfData(results.envRules, 'Environment Variable')
+  printIfData(results.filesystemRules, 'Filesystem')
   printSeparator()
 }
 
@@ -52,7 +52,7 @@ module.exports = {
         ['Report Date', new Date().toLocaleString()],
       ],
       cliRules: [
-        ['Command', 'Location', 'Version', 'Desired']
+        ['Binary', 'Location', 'Version', 'Desired']
       ],
       envRules: [
         ['Environment Var', 'Value']
