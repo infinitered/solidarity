@@ -11,6 +11,7 @@ Object {
   "getLineWithVersion": [Function],
   "getSolidaritySettings": [Function],
   "getVersion": [Function],
+  "printResults": [Function],
   "removeNonVersionCharacters": [Function],
   "reviewRule": [Function],
   "setSolidaritySettings": [Function],

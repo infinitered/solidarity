@@ -3,33 +3,13 @@ import { helpers } from 'envinfo'
 import { SolidarityRunContext, SolidarityReportResults } from '../types'
 import { map, toPairs } from 'ramda'
 
-const printResults = (results: SolidarityReportResults, context: SolidarityRunContext) => {
-  const { print, printSeparator } = context
-  const { info } = print
-  const printSpacedTable = (table, header) => {
-    info(`### ${header}\n`)
-    print.table(table, {format: 'markdown'})
-    info('\n')
-  }
-  const printIfData = (reportItem: Array<Array<string>>, header: string) =>
-    (reportItem.length > 1) && printSpacedTable(reportItem, header)
-
-  info('# ⚠️ Environment Report:')
-  printSeparator()
-  printIfData(results.basicInfo, 'System')
-  printIfData(results.cliRules, 'Commands')
-  printIfData(results.envRules, 'Environment Variable')
-  printIfData(results.filesystemRules, 'Filesystem')
-  printSeparator()
-}
-
 module.exports = {
   alias: 'r',
   description: 'Report solidarity info about the current machine',
   run: async (context: SolidarityRunContext) => {
     const { print, solidarity, system } = context
     const reportTimer = system.startTimer()
-    const { getSolidaritySettings, reviewRule } = solidarity
+    const { getSolidaritySettings, reviewRule, printResults } = solidarity
 
     const spinner = print.spin('Building Report')
 

@@ -14,6 +14,7 @@ export const solidarity = {
   removeNonVersionCharacters: require('./extensions/functions/removeNonVersionCharacters'),
   getVersion: require('./extensions/functions/getVersion'),
   getLineWithVersion: require('./extensions/functions/getLineWithVersion'),
+  printResults: require('./extensions/functions/printResults'),
   reviewRule: require('./extensions/functions/reviewRule')
 }
 
