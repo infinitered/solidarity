@@ -1,17 +1,16 @@
-import { SolidarityRequirement, SolidarityRunContext, SolidarityOutputMode } from '../../types'
-import { SolidarityRule } from '../../types'
+import { SolidarityRequirementChunk, SolidarityRequirement, SolidarityRunContext, SolidarityOutputMode, SolidarityRule } from '../../types'
 const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
 const checkDir = require('./checkDir')
 const checkFile = require('./checkFile')
 const skipRule = require('./skipRule')
 
-module.exports = async (requirement: SolidarityRequirement, context: SolidarityRunContext): Promise<void | object[]> => {
+module.exports = async (requirement: SolidarityRequirementChunk, context: SolidarityRunContext): Promise<void | object[]> => {
   const { head, tail, pipe, flatten, map } = require('ramda')
 
   const { print } = context
   const requirementName = head(requirement)
-  const rules = pipe(tail, flatten)(requirement)
+  const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
 
   let ruleString = ''
   // Hide spinner if silent outputmode is set

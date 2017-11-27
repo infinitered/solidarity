@@ -1,13 +1,7 @@
 import { GluegunCommand } from 'gluegun'
 import { helpers } from 'envinfo'
-import { SolidarityRunContext } from '../types'
-
-interface SolidarityReportResults {
-  basicInfo: Array<Array<string>>
-  cliRules: Array<Array<string>>
-  envRules: Array<Array<string>>
-  filesystemRules: Array<Array<string>>
-}
+import { SolidarityRunContext, SolidarityReportResults } from '../types'
+import { map, toPairs, isEmpty, flatten, reject, isNil } from 'ramda'
 
 const printResults = (results: SolidarityReportResults, context: SolidarityRunContext) => {
   const { print, printSeparator } = context
@@ -31,8 +25,8 @@ const printResults = (results: SolidarityReportResults, context: SolidarityRunCo
 
 module.exports = {
   alias: 'r',
-  description: 'Report identify info about the current machine',
-  run: (context: SolidarityRunContext) => {
+  description: 'Report solidarity info about the current machine',
+  run: async (context: SolidarityRunContext) => {
     const { print, solidarity } = context
     const { checkRequirement, getSolidaritySettings } = solidarity
     const { info } = print
@@ -67,6 +61,22 @@ module.exports = {
         ['Location', 'Type', 'Exists']
       ]
     }
+
+    // break all rules into requirements
+    const checks = await map(
+      async requirement => info(JSON.stringify(requirement)), // checkRequirement(requirement, context),
+      toPairs(solidaritySettings.requirements)
+    )
+
+    // run the array of promises you just created
+    await Promise.all(checks)
+      .then(results => {
+        // stuff
+      })
+      .catch(err => {
+        print.error(err)
+        process.exit(2)
+      })
 
     spinner.stop()
     printResults(results, context)

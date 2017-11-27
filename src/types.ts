@@ -72,6 +72,7 @@ export const enum FriendlyMessages {
 }
 
 export type SolidarityRequirement = SolidarityRule[]
+export type SolidarityRequirementChunk = [string, SolidarityRequirement]
 export interface SolidarityConfig {
   output: SolidarityOutputMode
 }
@@ -79,4 +80,11 @@ export interface SolidarityConfig {
 export interface SolidaritySettings {
   readonly requirements: object
   readonly config: SolidarityConfig
+}
+
+export interface SolidarityReportResults {
+  basicInfo: Array<Array<string>>
+  cliRules: Array<Array<string>>
+  envRules: Array<Array<string>>
+  filesystemRules: Array<Array<string>>
 }
