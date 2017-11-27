@@ -10,7 +10,7 @@ describe('reviewRule', () => {
       basicInfo: [
         ['System Basics', 'Value'],
         ['OS', 'tacoOS'],
-        ['CPU', 'hampsters in a wheel']
+        ['CPU', 'hamsters in a wheel']
       ],
       cliRules: [
         ['Binary', 'Location', 'Version', 'Desired']
