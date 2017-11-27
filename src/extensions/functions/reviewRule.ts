@@ -1,6 +1,6 @@
 
-import { SolidarityRequirementChunk, SolidarityRequirement, SolidarityRunContext, SolidarityOutputMode, SolidarityRule, SolidarityReportResults } from '../../types'
-import { head, tail, pipe, flatten, map } from 'ramda'
+import { SolidarityRequirementChunk, SolidarityRequirement, SolidarityRunContext, SolidarityRule, SolidarityReportResults } from '../../types'
+import { tail, pipe, flatten, map } from 'ramda'
 const skipRule = require('./skipRule')
 const checkDir = require('./checkDir')
 const checkFile = require('./checkFile')
@@ -9,7 +9,6 @@ module.exports = async (requirement: SolidarityRequirementChunk, report: Solidar
   const { print, system, solidarity } = context
   const { color, checkmark, xmark } = print
   const prettyBool = (bl: boolean) => bl ? checkmark + color.green(' YES') : xmark + color.red(' NO')
-  const requirementName: string = head(requirement)
   const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
   // check each rule for report
   const ruleChecks = await map(async (rule: SolidarityRule) => {

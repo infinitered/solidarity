@@ -12,6 +12,7 @@ Object {
   "getSolidaritySettings": [Function],
   "getVersion": [Function],
   "removeNonVersionCharacters": [Function],
+  "reviewRule": [Function],
   "setSolidaritySettings": [Function],
   "skipRule": [Function],
   "updateRequirement": [Function],

@@ -1,7 +1,7 @@
 import { GluegunCommand } from 'gluegun'
 import { helpers } from 'envinfo'
 import { SolidarityRunContext, SolidarityReportResults } from '../types'
-import { map, toPairs, isEmpty, flatten, reject, isNil } from 'ramda'
+import { map, toPairs } from 'ramda'
 
 const printResults = (results: SolidarityReportResults, context: SolidarityRunContext) => {
   const { print, printSeparator } = context
@@ -29,7 +29,7 @@ module.exports = {
   run: async (context: SolidarityRunContext) => {
     const { print, solidarity, system } = context
     const reportTimer = system.startTimer()
-    const { checkRequirement, getSolidaritySettings, reviewRule } = solidarity
+    const { getSolidaritySettings, reviewRule } = solidarity
 
     const spinner = print.spin('Building Report')
 
