@@ -27,9 +27,9 @@ module.exports = {
   alias: 'r',
   description: 'Report solidarity info about the current machine',
   run: async (context: SolidarityRunContext) => {
-    const { print, solidarity } = context
+    const { print, solidarity, system } = context
+    const reportTimer = system.startTimer()
     const { checkRequirement, getSolidaritySettings, reviewRule } = solidarity
-    const { info } = print
 
     const spinner = print.spin('Building Report')
 
@@ -71,6 +71,10 @@ module.exports = {
     // run the array of promises you just created
     await Promise.all(reportCalls)
       .then(reportResults => {
+        results.basicInfo.push([
+          'Report Duration',
+          `${(reportTimer() / 1000).toFixed(2)}s`
+        ])
         spinner.stop()
         printResults(results, context)
       })

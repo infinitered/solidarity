@@ -7,8 +7,8 @@ const checkFile = require('./checkFile')
 
 module.exports = async (requirement: SolidarityRequirementChunk, report: SolidarityReportResults, context: SolidarityRunContext) => {
   const { print, system, solidarity } = context
-  const { color } = print
-  const prettyBool = (bl: boolean) => bl ? color.green('TRUE') : color.red('FALSE')
+  const { color, checkmark, xmark } = print
+  const prettyBool = (bl: boolean) => bl ? checkmark + color.green(' YES') : xmark + color.red(' NO')
   const requirementName: string = head(requirement)
   const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
   // check each rule for report
@@ -19,26 +19,26 @@ module.exports = async (requirement: SolidarityRequirementChunk, report: Solidar
     switch (rule.rule) {
       // Handle CLI rule report
       case 'cli':
-        const desired = rule.semver ? rule.semver : color.green('ANY')
+        const desired = rule.semver ? rule.semver : color.green('*ANY*')
         let location
         try {
           location = system.which(rule.binary)
         } catch (_e) {
-          location = color.red('MISSING')
+          location = color.red('*MISSING*')
         }
 
         let binaryVersion
         try {
           binaryVersion = await solidarity.getVersion(rule, context)
         } catch (_e) {
-          binaryVersion = color.red('UNKNOWN')
+          binaryVersion = color.red('*UNKNOWN*')
         }
         report.cliRules.push([rule.binary, location, binaryVersion, desired])
         break
       // Handle ENV rule report
       case 'env':
-        const envValue = process.env[rule.variable] || color.red('UNDEFINED')
-        report.envRules.push([rule.variable, envValue])
+        const envValue = process.env[rule.variable] || color.red('*UNDEFINED*')
+        report.envRules.push([`$${rule.variable}`, envValue])
         break
       // Handle dir rule report
       case 'directory':
