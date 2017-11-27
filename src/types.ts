@@ -13,7 +13,8 @@ export const solidarity = {
   updateVersions: require('./extensions/functions/updateVersions'),
   removeNonVersionCharacters: require('./extensions/functions/removeNonVersionCharacters'),
   getVersion: require('./extensions/functions/getVersion'),
-  getLineWithVersion: require('./extensions/functions/getLineWithVersion')
+  getLineWithVersion: require('./extensions/functions/getLineWithVersion'),
+  reviewRule: require('./extensions/functions/reviewRule')
 }
 
 export interface SolidarityPlugin {

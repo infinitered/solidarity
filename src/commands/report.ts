@@ -28,7 +28,7 @@ module.exports = {
   description: 'Report solidarity info about the current machine',
   run: async (context: SolidarityRunContext) => {
     const { print, solidarity } = context
-    const { checkRequirement, getSolidaritySettings } = solidarity
+    const { checkRequirement, getSolidaritySettings, reviewRule } = solidarity
     const { info } = print
 
     const spinner = print.spin('Building Report')
@@ -63,22 +63,21 @@ module.exports = {
     }
 
     // break all rules into requirements
-    const checks = await map(
-      async requirement => info(JSON.stringify(requirement)), // checkRequirement(requirement, context),
+    const reportCalls = await map(
+      async requirement => reviewRule(requirement, results, context),
       toPairs(solidaritySettings.requirements)
     )
 
     // run the array of promises you just created
-    await Promise.all(checks)
-      .then(results => {
-        // stuff
+    await Promise.all(reportCalls)
+      .then(reportResults => {
+        spinner.stop()
+        printResults(results, context)
       })
       .catch(err => {
         print.error(err)
         process.exit(2)
       })
 
-    spinner.stop()
-    printResults(results, context)
   }
 } as GluegunCommand

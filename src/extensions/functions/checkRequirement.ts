@@ -9,7 +9,7 @@ module.exports = async (requirement: SolidarityRequirementChunk, context: Solida
   const { head, tail, pipe, flatten, map } = require('ramda')
 
   const { print } = context
-  const requirementName = head(requirement)
+  const requirementName: string = head(requirement)
   const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
 
   let ruleString = ''
@@ -85,7 +85,7 @@ module.exports = async (requirement: SolidarityRequirementChunk, context: Solida
         } else {
           return addFailure(rule.error || `'${rule.location}' directory not found`)
         }
-      // Handle dir rule check
+      // Handle file rule check
       case 'file':
         const fileResult = checkFile(rule, context)
         ruleString = `${requirementName} - ${rule.location} file`
