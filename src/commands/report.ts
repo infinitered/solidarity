@@ -48,8 +48,7 @@ module.exports = {
       basicInfo: [
         ['System Basics', 'Value'],
         ['OS', helpers.getOperatingSystemInfo()],
-        ['CPU', helpers.getCPUInfo()],
-        ['Report Date', new Date().toLocaleString()],
+        ['CPU', helpers.getCPUInfo()]
       ],
       cliRules: [
         ['Binary', 'Location', 'Version', 'Desired']
@@ -72,8 +71,8 @@ module.exports = {
     await Promise.all(reportCalls)
       .then(reportResults => {
         results.basicInfo.push([
-          'Report Duration',
-          `${(reportTimer() / 1000).toFixed(2)}s`
+          'Report Info',
+          `${new Date().toLocaleString()} (in ${(reportTimer() / 1000).toFixed(2)}s)`
         ])
         spinner.stop()
         printResults(results, context)
