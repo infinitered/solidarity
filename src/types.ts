@@ -57,8 +57,37 @@ export interface FSRule {
   readonly platform?: string | string[]
 }
 
+/**
+ * Runs a shell command and evaluates the output is what we expect.
+ */
+export interface ShellRule {
+  /**
+   * We're a shell rule.
+   */
+  readonly rule: 'shell'
+  /**
+   * The command to execute.
+   */
+  readonly command: string
+  /**
+   * A regular expression to match the output against.
+   *
+   * If you add a capture group, it will only target that instead of the whole
+   * expression. This is great for selecting a subset.
+   */
+  readonly match: string
+  /**
+   * An optional error message to override.
+   */
+  readonly error?: string
+  /**
+   * An optional platform or platforms to target.
+   */
+  readonly platform?: string | string[]
+}
+
 // discriminated union for rule sets
-export type SolidarityRule = CLIRule | ENVRule | FSRule
+export type SolidarityRule = CLIRule | ENVRule | FSRule | ShellRule
 
 export enum SolidarityOutputMode {
   MODERATE,

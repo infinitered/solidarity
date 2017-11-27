@@ -4,6 +4,7 @@ const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
 const checkDir = require('./checkDir')
 const checkFile = require('./checkFile')
+const checkShell = require('./checkShell')
 const skipRule = require('./skipRule')
 
 module.exports = async (requirement: SolidarityRequirement, context: SolidarityRunContext): Promise<void | object[]> => {
@@ -96,6 +97,17 @@ module.exports = async (requirement: SolidarityRequirement, context: SolidarityR
         } else {
           return addFailure(rule.error || `'${rule.location}' file not found`)
         }
+      // Handle the shell rule
+      case 'shell':
+        const shellResult = await checkShell(rule, context)
+        if (shellResult) {
+          ruleString = `${requirementName} - '${rule.command}' matches '${rule.match}'`
+          printResult(true, ruleString)
+          return []
+        } else {
+          return addFailure(rule.error || `'${rule.command}' output did not match '${rule.match}'`)
+        }
+
       default:
         return addFailure(`Encountered unknown rule`)
     }
