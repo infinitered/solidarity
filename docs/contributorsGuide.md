@@ -56,3 +56,11 @@ Here's a friendly checklist for submitting your PR
 1. Make sure you have tests covering your new or changed functionality.
 1. Make sure `yarn test` passes.  Otherwise, your PR cannot be merged.
 1. Reference your Gihub issue in your final PR
+
+## Changing or Adding Rules
+The system is tightly coupled to the existing rules, so making any new rules have a large impact on the existing contract and its enforcement.  Note that you have identified the following have changed in accordance.
+1. The TypeScript enumeration of rule types
+1. The JSON Schema of rule types
+1. The Documentation of rule types
+1. Report configuration of rule types
+1. Solidarity core configuration of rule types
