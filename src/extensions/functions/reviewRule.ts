@@ -26,7 +26,13 @@ module.exports = async (requirement: SolidarityRequirementChunk, report: Solidar
         } catch (_e) {
           location = color.red('MISSING')
         }
-        const binaryVersion = await solidarity.getVersion(rule, context)
+
+        let binaryVersion
+        try {
+          binaryVersion = await solidarity.getVersion(rule, context)
+        } catch (_e) {
+          binaryVersion = color.red('UNKNOWN')
+        }
         report.cliRules.push([rule.binary, location, binaryVersion, desired])
         break
       // Handle ENV rule report
