@@ -25,7 +25,7 @@ describe('reviewRule', () => {
   })
 
   describe('when rule: cli', () => {
-    test('happy path' async () => {
+    test('rule gets added' async () => {
       const rule = ['NPM', [{ rule: 'cli', binary: 'npm' }]]
 
       const result = await reviewRule(rule, reportResults, mockContext)
@@ -35,14 +35,32 @@ describe('reviewRule', () => {
   })
 
   describe('when rule: env', () => {
-    // ADD TEST e.g. expect(true).toBeTruthy()
+    test('rule gets added' async () => {
+      const rule = ['ANDROID', [{ rule: 'env', value: 'ANDROID_HOME' }]]
+
+      const result = await reviewRule(rule, reportResults, mockContext)
+      // CLI rule was added
+      expect(reportResults.envRules.length).toBe(2)
+    })
   })
 
   describe('when rule: dir', () => {
-    // ADD TEST e.g. expect(true).toBeTruthy()
+    test('rule gets added' async () => {
+      const rule = ['DIRECTORY', [{ rule: 'dir', binary: 'random' }]]
+
+      const result = await reviewRule(rule, reportResults, mockContext)
+      // CLI rule was added
+      expect(reportResults.filesystemRules.length).toBe(2)
+    })
   })
 
   describe('when rule: file', () => {
-    // ADD TEST e.g. expect(true).toBeTruthy()
+    test('rule gets added' async () => {
+      const rule = ['FILE', [{ rule: 'file', binary: 'random' }]]
+
+      const result = await reviewRule(rule, reportResults, mockContext)
+      // CLI rule was added
+      expect(reportResults.filesystemRules.length).toBe(2)
+    })
   })
 })
