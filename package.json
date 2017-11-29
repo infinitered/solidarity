@@ -27,7 +27,7 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "envinfo": "^3.10.0",
-    "gluegun": "2.0.0-alpha.15",
+    "gluegun": "^2.0.0-alpha.16",
     "minimist": "^1.2.0",
     "pluralize": "^7.0.0",
     "ramda": "0.25.0"
@@ -56,7 +56,9 @@
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "testPathIgnorePatterns":["__mocks__"],
+    "testPathIgnorePatterns": [
+      "__mocks__"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
