@@ -1,6 +1,6 @@
 import { SolidarityRunContext } from '../../types'
-import * as pluralize from 'pluralize'
-
+// using import causes strange errors in tests
+const pluralize = require('pluralize')
 module.exports = async (context: SolidarityRunContext): Promise<void> => {
   const { map, toPairs, isEmpty, flatten } = require('ramda')
   const { solidarity, print } = context

@@ -972,6 +972,15 @@ cli-table2@^0.2.0:
   optionalDependencies:
     colors "^1.1.2"
 
+cli-table2@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/cli-table2/-/cli-table2-0.2.0.tgz#2d1ef7f218a0e786e214540562d4bd177fe32d97"
+  dependencies:
+    lodash "^3.10.1"
+    string-width "^1.0.1"
+  optionalDependencies:
+    colors "^1.1.2"
+
 cli-truncate@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/cli-truncate/-/cli-truncate-0.2.1.tgz#9f15cfbb0705005369216c626ac7d05ab90dd574"
@@ -1452,7 +1461,7 @@ enquirer@^1.0.2:
     readline-ui "^2.2.2"
     set-value "^1.0.0"
 
-envinfo@3.10.0:
+envinfo@^3.10.0:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-3.10.0.tgz#24b52a5c19af379dc32465d1909e37344dc41c20"
   dependencies:
@@ -1908,7 +1917,8 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gluegun@^2.0.0-alpha.14:
+
+gluegun@^2.0.0-alpha.16:
   version "2.0.0-alpha.16"
   resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.0-alpha.16.tgz#508cd42ae50719c05130b8be141bc4ab2d126633"
   dependencies:
