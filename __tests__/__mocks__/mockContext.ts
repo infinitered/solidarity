@@ -1,7 +1,9 @@
 const noConfigSolidarity = {
   checkRequirement: jest.fn(),
   getSolidaritySettings: jest.fn(() => ({})),
-  printResults: jest.fn()
+  printResults: jest.fn(),
+  setSolidaritySettings: jest.fn(),
+  updateRequirement: jest.fn()
 }
 
 const mockContext = {
