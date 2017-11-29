@@ -200,20 +200,10 @@ namespace Snapshot {
     }
   }
 
-  const appendSolidaritySettings = (solidaritySettings, newRequirement) => {
-    return {
-      ...solidaritySettings,
-      requirements: {
-        ...solidaritySettings.requirements,
-        ...newRequirement
-      }
-    }
-  }
-
   export const run = async function (context: SolidarityRunContext) {
     const { print, prompt, filesystem, solidarity, parameters } = context
     const { first, second } = parameters
-    const { getSolidaritySettings, setSolidaritySettings } = solidarity
+    const { getSolidaritySettings, setSolidaritySettings, appendSolidaritySettings } = solidarity
 
     // check is there an existing .solidarity file?
     if (filesystem.exists('.solidarity')) {
