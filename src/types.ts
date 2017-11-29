@@ -13,7 +13,9 @@ export const solidarity = {
   updateVersions: require('./extensions/functions/updateVersions'),
   removeNonVersionCharacters: require('./extensions/functions/removeNonVersionCharacters'),
   getVersion: require('./extensions/functions/getVersion'),
-  getLineWithVersion: require('./extensions/functions/getLineWithVersion')
+  getLineWithVersion: require('./extensions/functions/getLineWithVersion'),
+  printResults: require('./extensions/functions/printResults'),
+  reviewRule: require('./extensions/functions/reviewRule')
 }
 
 export interface SolidarityPlugin {
@@ -72,6 +74,7 @@ export const enum FriendlyMessages {
 }
 
 export type SolidarityRequirement = SolidarityRule[]
+export type SolidarityRequirementChunk = [string, SolidarityRequirement]
 export interface SolidarityConfig {
   output: SolidarityOutputMode
 }
@@ -79,4 +82,11 @@ export interface SolidarityConfig {
 export interface SolidaritySettings {
   readonly requirements: object
   readonly config: SolidarityConfig
+}
+
+export interface SolidarityReportResults {
+  basicInfo: Array<Array<string>>
+  cliRules: Array<Array<string>>
+  envRules: Array<Array<string>>
+  filesystemRules: Array<Array<string>>
 }
