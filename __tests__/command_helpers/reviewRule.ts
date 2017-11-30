@@ -20,6 +20,9 @@ describe('reviewRule', () => {
       ],
       filesystemRules: [
         ['Location', 'Type', 'Exists']
+      ],
+      shellRules: [
+        ['Command', 'Pattern', 'Matches']
       ]
     }
   })
@@ -61,6 +64,16 @@ describe('reviewRule', () => {
       const result = await reviewRule(rule, reportResults, mockContext)
       // CLI rule was added
       expect(reportResults.filesystemRules.length).toBe(2)
+    })
+  })
+
+  describe('when rule: shell', () => {
+    test('rule gets added' async () => {
+      const rule = ['SHELL', [{ rule: 'shell', command: 'ls', match: '.+' }]]
+
+      const result = await reviewRule(rule, reportResults, mockContext)
+      // CLI rule was added
+      expect(reportResults.shellRules.length).toBe(2)
     })
   })
 })
