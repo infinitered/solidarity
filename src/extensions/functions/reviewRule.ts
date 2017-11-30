@@ -4,6 +4,7 @@ import { tail, pipe, flatten, map } from 'ramda'
 const skipRule = require('./skipRule')
 const checkDir = require('./checkDir')
 const checkFile = require('./checkFile')
+const checkShell = require('./checkShell')
 
 module.exports = async (requirement: SolidarityRequirementChunk, report: SolidarityReportResults, context: SolidarityRunContext) => {
   const { print, system, solidarity } = context
@@ -49,6 +50,10 @@ module.exports = async (requirement: SolidarityRequirementChunk, report: Solidar
       case 'file':
         const fileExists = prettyBool(checkFile(rule, context))
         report.filesystemRules.push([rule.location, 'File', fileExists])
+        break
+      case 'shell':
+        const shellCheckPass = prettyBool(await checkShell(rule, context))
+        report.shellRules.push([rule.command, rule.match, shellCheckPass])
         break
       default:
         throw 'Encountered unknown rule'

@@ -38,6 +38,9 @@ module.exports = {
       ],
       filesystemRules: [
         ['Location', 'Type', 'Exists']
+      ],
+      shellRules: [
+        ['Command', 'Pattern', 'Matches']
       ]
     }
 
@@ -58,7 +61,7 @@ module.exports = {
         printResults(results, context)
       })
       .catch(err => {
-        print.error(err)
+        print.error(`\n\n${err}`)
         process.exit(2)
       })
 

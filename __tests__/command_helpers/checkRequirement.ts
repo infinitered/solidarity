@@ -1,5 +1,6 @@
 import { SolidarityRequirement } from '../../dist/types'
 import { toPairs } from 'ramda'
+import { strings } from 'gluegun'
 
 import checkRequirement from '../../src/extensions/functions/checkRequirement'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
@@ -45,6 +46,13 @@ describe('checkRequirement', () => {
     context.print = {
       spin: jest.fn(() => spinner),
       error: jest.fn()
+    }
+    context.strings = strings
+    context.system = {
+      spawn: jest.fn().mockReturnValue(Promise.resolve({
+        stdout: 'you did it!',
+        status: 0,
+      }))
     }
   })
 
@@ -206,5 +214,14 @@ describe('checkRequirement', () => {
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([customError])
     })
+
+    test('failed SHELL rule with custom message', async () => {
+      const rule = toPairs({
+        YARN: [{ rule: 'shell', match: 'hello', command: 'mocked', error: customError }]
+      })[0]
+      const result = await checkRequirement(rule, context)
+      expect(result).toEqual([customError])
+    })
+
   })
 })
