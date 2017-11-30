@@ -75,7 +75,6 @@ describe('with a .solidarity file', () => {
       }
     }
 
-
     beforeEach(() => {
       // enhance
       solidarityExtension(context)
@@ -180,7 +179,7 @@ describe('with a .solidarity file', () => {
         const result = await snapshotCommand.run(context);
         expect(context.prompt.ask.mock.calls).toMatchSnapshot()
         expect(requirements().Testorson).toBeTruthy()
-        expect(requirements().Testorson.semver).toBeTruthy()
+        expect(requirements().Testorson[0].semver).toBeTruthy()
       })
     })
 

@@ -1,9 +1,17 @@
+import { keys, isNil, append, reject } from 'ramda'
+
 module.exports = (solidaritySettings, newRequirement) => {
+  const newRequirementKey = keys(newRequirement)
+
   return {
     ...solidaritySettings,
     requirements: {
       ...solidaritySettings.requirements,
-      ...newRequirement
+      [newRequirementKey]:
+        reject(isNil, append(
+          solidaritySettings.requirements[newRequirementKey],
+          newRequirement[newRequirementKey]
+        ))
     }
   }
 }

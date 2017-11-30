@@ -2,20 +2,40 @@ import appendSolidaritySettings from '../../src/extensions/functions/appendSolid
 import { keys } from 'ramda'
 
 describe('appendSolidaritySettings', () => {
-  it('appends the given setting to the existing settings', () => {
+  it('appends the given requirement to the existing settings', () => {
     const solidaritySettings = {
       $schema: './solidaritySchema.json',
       requirements: {
-        ['Some requirement']: [{ rule: 'env' }],
-        ['Some other requirement']: [{ rule: 'env' }]
+        oneTest: [{ rule: 'env' }],
+        twoTest: [{ rule: 'env' }]
       }
     }
 
     const newRequirement = {
-      ['Some New Requirement']: [{ rule: 'cli' }]
+      twoTest: [{ rule: 'cli' }]
     }
 
     const newSettings = appendSolidaritySettings(solidaritySettings, newRequirement)
-    expect(keys(newSettings.requirements).length).toEqual(3)
+
+    expect(keys(newSettings.requirements).length).toEqual(2)
+  })
+
+  it('will append the given requirement to and existing requirement', () => {
+    const solidaritySettings = {
+      $schema: './solidaritySchema.json',
+      requirements: {
+        oneTest: [{ rule: 'env' }],
+        twoTest: [{ rule: 'env' }]
+      }
+    }
+
+    const newRequirement = {
+      twoTest: [{ rule: 'cli' }]
+    }
+
+    let newSettings = appendSolidaritySettings(solidaritySettings, newRequirement)
+
+    expect(keys(newSettings.requirements).length).toEqual(2)
+    expect(newSettings.requirements.twoTest.length).toEqual(2)
   })
 })

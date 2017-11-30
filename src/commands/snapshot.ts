@@ -82,10 +82,10 @@ namespace Snapshot {
     const rule = parameters.first
     const binary = parameters.second
     const requirement = {
-      [requirementName]: {
+      [requirementName]: [{
         rule,
         binary
-      }
+      }]
     }
 
     const userAnswer = await prompt.ask({
@@ -95,11 +95,11 @@ namespace Snapshot {
     })
 
     if (userAnswer.enforceVersion) {
-      return await getVersion(requirement[requirementName], context)
+      return await getVersion(requirement[requirementName][0], context)
         .then((sysVersion) => {
           print.info(`Your system currently has version ${sysVersion}`)
           print.info(`Semver requirement for '${binary}' binary : ^${sysVersion}`)
-          requirement[requirementName]['semver'] = sysVersion
+          requirement[requirementName][0]['semver'] = sysVersion
 
           return requirement
         })
@@ -118,10 +118,10 @@ namespace Snapshot {
     const variable = parameters.second
 
     return {
-      [requirementName]: {
+      [requirementName]: [{
         rule,
         variable
-      }
+      }]
     }
   }
 
@@ -132,10 +132,10 @@ namespace Snapshot {
     const location = parameters.second
 
     return {
-      [requirementName]: {
+      [requirementName]: [{
         rule,
         location
-      }
+      }]
     }
   }
 
