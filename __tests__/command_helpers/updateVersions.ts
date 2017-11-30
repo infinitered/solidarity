@@ -9,7 +9,10 @@ const solidarity = {
   updateRequirement: jest.fn()
 }
 
-const mockContext = { solidarity, print: jest.fn() }
+const mockContext = {
+  ...require('mockContext'),
+  solidarity
+}
 
 test('updateVersions exists', () => expect(updateVersions).toMatchSnapshot())
 

@@ -1,7 +1,7 @@
 jest.mock('envinfo')
 
 import reportCommand from '../../src/commands/report'
-import { print as envinfoPrint } from 'envinfo'
+const mockContext = require('mockContext')
 
 test('Snapshot check help command', () => {
   expect(reportCommand).toMatchSnapshot()
@@ -14,6 +14,8 @@ it('enforces required properties', () => {
 })
 
 test('check solidarity report', async () => {
-  const result = await reportCommand.run()
-  expect(envinfoPrint.mock.calls.length).toBe(1)
+  const result = await reportCommand.run(mockContext)
+  expect(mockContext.print.spin.mock.calls).toEqual([
+    ['Building Report']
+  ])
 })
