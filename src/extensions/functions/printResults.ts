@@ -16,5 +16,6 @@ module.exports = (results: SolidarityReportResults, context: SolidarityRunContex
   printIfData(results.cliRules, 'Commands')
   printIfData(results.envRules, 'Environment Variables')
   printIfData(results.filesystemRules, 'Filesystem')
+  printIfData(results.shellRules, 'Shell Checks')
   printSeparator()
 }

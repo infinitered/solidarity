@@ -118,4 +118,5 @@ export interface SolidarityReportResults {
   cliRules: Array<Array<string>>
   envRules: Array<Array<string>>
   filesystemRules: Array<Array<string>>
+  shellRules: Array<Array<string>>
 }
