@@ -28,7 +28,7 @@ Array [
     Object {
       "message": "What would you like to call this new requirement?",
       "name": "newRequirement",
-      "type": "question",
+      "type": "input",
     },
   ],
 ]
@@ -54,7 +54,7 @@ Array [
     Object {
       "message": "What would you like to call this new requirement?",
       "name": "newRequirement",
-      "type": "question",
+      "type": "input",
     },
   ],
 ]
@@ -80,7 +80,7 @@ Array [
     Object {
       "message": "What would you like to call this new requirement?",
       "name": "newRequirement",
-      "type": "question",
+      "type": "input",
     },
   ],
   Array [
@@ -113,7 +113,7 @@ Array [
     Object {
       "message": "What would you like to call this new requirement?",
       "name": "newRequirement",
-      "type": "question",
+      "type": "input",
     },
   ],
   Array [
@@ -146,7 +146,7 @@ Array [
     Object {
       "message": "What would you like to call this new requirement?",
       "name": "newRequirement",
-      "type": "question",
+      "type": "input",
     },
   ],
 ]

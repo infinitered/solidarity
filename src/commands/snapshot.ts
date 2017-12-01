@@ -104,7 +104,7 @@ namespace Snapshot {
           return requirement
         })
         .catch(() => {
-          print.error('Seems as though you do not have this binary istalled. Please install this binary first')
+          print.error('Seems as though you do not have this binary installed. Please install this binary first')
         })
     }
 
@@ -149,31 +149,34 @@ namespace Snapshot {
   const getRequirementNames = (solidaritySettings: SolidaritySettings): String => keys(solidaritySettings.requirements)
 
   const chooseRequirement = async (prompt, solidaritySettings: SolidaritySettings): Promise<String> => {
-    return prompt.ask({
+
+    const shouldMakeNewRequirement = await prompt.ask({
       name: 'makeNewRequirement',
       type: 'confirm',
       message: 'Would you like to create a new requirement set?'
-    }).then(async ({ makeNewRequirement }) => {
-      let requirementName
-      if (makeNewRequirement) {
-        const answer = await prompt.ask({
-          name: 'newRequirement',
-          type: 'question',
-          message: 'What would you like to call this new requirement?'
-        })
-        requirementName = answer.newRequirement
-      } else {
-        const requirementOptions = getRequirementNames(solidaritySettings)
-        const answer = await prompt.ask({
-          name: 'selectedRequirement',
-          message: 'Which of the above technology snapshots will you use for this project?',
-          type: 'list',
-          choices: requirementOptions
-        })
-        requirementName = answer.selectedRequirement
-      }
-      return requirementName
     })
+
+    let requirementName
+
+    if (shouldMakeNewRequirement.makeNewRequirement) {
+      const answer = await prompt.ask({
+        name: 'newRequirement',
+        type: 'input',
+        message: 'What would you like to call this new requirement?'
+      })
+      requirementName = answer.newRequirement
+    } else {
+      const requirementOptions = getRequirementNames(solidaritySettings)
+      const answer = await prompt.ask({
+        name: 'selectedRequirement',
+        message: 'Which of the above technology snapshots will you use for this project?',
+        type: 'list',
+        choices: requirementOptions
+      })
+      requirementName = answer.selectedRequirement
+    }
+
+    return requirementName
   }
 
   const buildSpecifiedRequirment = async (context) => {
