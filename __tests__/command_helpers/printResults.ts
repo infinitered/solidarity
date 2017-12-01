@@ -21,6 +21,9 @@ describe('reviewRule', () => {
       ],
       filesystemRules: [
         ['Location', 'Type', 'Exists']
+      ],
+      shellRules: [
+        ['Command', 'Pattern', 'Matches']
       ]
     }
   })

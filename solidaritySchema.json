@@ -22,7 +22,8 @@
             { "$ref": "#/definitions/cli" },
             { "$ref": "#/definitions/dir" },
             { "$ref": "#/definitions/file" },
-            { "$ref": "#/definitions/env" }
+            { "$ref": "#/definitions/env" },
+            { "$ref": "#/definitions/shell" }
           ]
         },
         "minItems": 1,
@@ -80,6 +81,17 @@
         "error": { "type": "string"}
       },
       "required": ["rule", "variable"]
+    },
+    "shell": {
+      "description": "Shell Rule",
+      "type": "object",
+      "properties": {
+        "rule": { "enum": [ "shell" ] },
+        "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
+        "error": { "type": "string" },
+        "match": { "type": "string", "description": "A regexp to search the output." }
+      },
+      "required": ["rule", "match"]
     }
   }
 }
