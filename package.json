@@ -17,7 +17,7 @@
     "lint": "tslint -p .",
     "newclear": "rm -rf node_modules && yarn && tsc",
     "watch": "jest --watch",
-    "coverage": "jest --coverage",
+    "coverage": "jest --no-cache --ci --coverage",
     "snapupdate": "jest -u",
     "welcome": "yarn tsc && npm link",
     "serve:docs": "docsify serve docs"
@@ -59,6 +59,15 @@
     "testPathIgnorePatterns": [
       "__mocks__"
     ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 84,
+        "branches": 77,
+        "lines": 85,
+        "functions": 81
+      }
+    },
+    "mapCoverage": true,
     "moduleFileExtensions": [
       "ts",
       "tsx",
