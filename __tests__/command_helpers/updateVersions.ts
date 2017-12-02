@@ -2,7 +2,7 @@ import updateVersions from '../../src/extensions/functions/updateVersions'
 const solidarity = {
   getSolidaritySettings: jest.fn(() => ({
     requirements: {
-      nachos: [{ rule: 'cli', binary: 'tacos'}]
+      nachos: [{ rule: 'cli', binary: 'node', semver: '0.0.0'}]
     }
   })),
   setSolidaritySettings: jest.fn(),
@@ -16,7 +16,15 @@ const mockContext = {
 
 test('updateVersions exists', () => expect(updateVersions).toMatchSnapshot())
 
-test('updateVersions pulls solidarity settings', () => {
-  const theVoid = updateVersions(mockContext)
+test('updateVersions pulls solidarity settings', async () => {
+  const theVoid = await updateVersions(mockContext)
+  expect(solidarity.getSolidaritySettings).toHaveBeenCalled()
+  // expect(mockContext.print.success).toHaveBeenCalled()
   expect(theVoid).toMatchSnapshot()
+})
+
+test('updateVersions prints success', async () => {
+  await updateVersions(mockContext)
+  // expect(mockContext.print.success).toHaveBeenCalled()
+
 })
