@@ -3,21 +3,7 @@ import tempy from 'tempy'
 import snapshotCommand from '../../src/commands/snapshot'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 
-const context = require('gluegun')
-
-beforeAll(() => {
-  context.prompt = {
-    ask: jest.fn(
-      () => Promise.resolve({ createFile: true })
-    )
-  },
-  context.solidarity = {
-    updateVersions: jest.fn(() => Promise.resolve())
-  }
-
-  context.printSeparator = jest.fn()
-  context._pluginsList = []
-})
+const context = require('mockContext')
 
 test('Snapshot check snapshot command', () => {
   expect(snapshotCommand).toMatchSnapshot()
