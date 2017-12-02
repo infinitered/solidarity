@@ -2,4 +2,4 @@
 
 exports[`updateVersions exists 1`] = `[Function]`;
 
-exports[`updateVersions pulls solidarity settings 1`] = `Promise {}`;
+exports[`updateVersions pulls solidarity settings 1`] = `undefined`;
