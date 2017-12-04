@@ -79,11 +79,35 @@ namespace buildSpecificRequirement {
     }
   }
 
+  const buildShellRequirement = async (context, requirementName) => {
+    const { parameters, prompt } = context
+
+    const rule = parameters.first
+    const shellCommand = parameters.second
+
+    if (rule && shellCommand) {
+      const response = await prompt.ask({
+        name: 'shellMatch',
+        type: 'input',
+        message: 'What would you like the shell command to match on?'
+      })
+
+      return {
+        [requirementName]: [{
+          rule,
+          command: shellCommand,
+          match: response.shallMatch
+        }]
+      }
+    }
+  }
+
   const ruleHandlers = {
     cli: buildCliRequirement,
     env: buildEnvRequirement,
     file: buildFileRequirement,
-    dir: buildFileRequirement
+    dir: buildFileRequirement,
+    shell: buildShellRequirement
   }
 
   const getRequirementNames = (solidaritySettings: SolidaritySettings): String => keys(solidaritySettings.requirements)

@@ -297,6 +297,47 @@ describe('with a .solidarity file', () => {
         expect(requirements().Testorson).toBeTruthy()
       })
     })
+
+    describe('given a shell rule', () => {
+      beforeEach(() => {
+        context.parameters = {
+          plugin: 'solidarity',
+          command: 'snapshot',
+          first: 'shell',
+          raw: 'shell',
+          string: 'shell',
+          array: [ 'shell' ],
+          options: {},
+          argv: [ 'snapshot', 'shell']
+        }
+
+        const mockedPrompt = jest.fn()
+          .mockImplementationOnce(() => Promise.resolve({ whatRule: 'git config user.email' }))
+          .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+          .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+          .mockImplementationOnce(() => Promise.resolve({
+            newRequirement: 'Git Email'
+          }))
+          .mockImplementationOnce(() => Promise.resolve({ shellMatch: '.+@.+' }))
+
+        context.prompt = {
+          ask: mockedPrompt
+        }
+
+        context.print = {
+          error: jest.fn(),
+          info: jest.fn()
+        }
+      })
+
+      it('should add the new shell rule', async () => {
+        expect(requirements()).toEqual({})
+
+        const result = await snapshotCommand.run(context)
+        expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+        expect(requirements()['Git Email']).toBeTruthy()
+        expect(requirements()['Git Email'].length).toEqual(1)
+      })
+    })
   })
 })
-
