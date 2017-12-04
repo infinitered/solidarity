@@ -63,157 +63,22 @@ namespace Snapshot {
     }
   }
 
-  const findRule = (requirements, binary) => (
-    flatten(toPairs(requirements))
-      .filter((x) => x instanceof Object && binary === x.binary)
-  )
-
-  const hasRule = (solidaritySettings, parameters) => {
-    const { second } = parameters
-    const rule = findRule(solidaritySettings.requirements, second)
-
-    return rule.length !== 0
-  }
-
-  const buildCliRequirement = async (context, requirementName) => {
-    const { parameters, solidarity, prompt, print } = context
-    const { getVersion } = solidarity
-
-    const rule = parameters.first
-    const binary = parameters.second
-    const requirement = {
-      [requirementName]: [{
-        rule,
-        binary
-      }]
-    }
-
-    const userAnswer = await prompt.ask({
-      name: 'enforceVersion',
-      type: 'confirm',
-      message: 'Would you like to enforce a version requirement?'
-    })
-
-    if (userAnswer.enforceVersion) {
-      return await getVersion(requirement[requirementName][0], context)
-        .then((sysVersion) => {
-          print.info(`Your system currently has version ${sysVersion}`)
-          print.info(`Semver requirement for '${binary}' binary : ^${sysVersion}`)
-          requirement[requirementName][0]['semver'] = sysVersion
-
-          return requirement
-        })
-        .catch(() => {
-          print.error('Seems as though you do not have this binary installed. Please install this binary first')
-        })
-    }
-
-    return requirement
-  }
-
-  const buildEnvRequirement = (context, requirementName) => {
-    const { parameters } = context
-
-    const rule = parameters.first
-    const variable = parameters.second
-
-    return {
-      [requirementName]: [{
-        rule,
-        variable
-      }]
-    }
-  }
-
-  const buildFileRequirement = (context, requirementName) => {
-    const { parameters } = context
-
-    const rule = parameters.first
-    const location = parameters.second
-
-    return {
-      [requirementName]: [{
-        rule,
-        location
-      }]
-    }
-  }
-
-  const ruleHandlers = {
-    cli: buildCliRequirement,
-    env: buildEnvRequirement,
-    file: buildFileRequirement,
-    dir: buildFileRequirement
-  }
-
-  const getRequirementNames = (solidaritySettings: SolidaritySettings): String => keys(solidaritySettings.requirements)
-
-  const chooseRequirement = async (prompt, solidaritySettings: SolidaritySettings): Promise<String> => {
-
-    const shouldMakeNewRequirement = await prompt.ask({
-      name: 'makeNewRequirement',
-      type: 'confirm',
-      message: 'Would you like to create a new requirement set?'
-    })
-
-    let requirementName
-
-    if (shouldMakeNewRequirement.makeNewRequirement) {
-      const answer = await prompt.ask({
-        name: 'newRequirement',
-        type: 'input',
-        message: 'What would you like to call this new requirement?'
-      })
-      requirementName = answer.newRequirement
-    } else {
-      const requirementOptions = getRequirementNames(solidaritySettings)
-      const answer = await prompt.ask({
-        name: 'selectedRequirement',
-        message: 'Which of the above technology snapshots will you use for this project?',
-        type: 'list',
-        choices: requirementOptions
-      })
-      requirementName = answer.selectedRequirement
-    }
-
-    return requirementName
-  }
-
-  const buildSpecifiedRequirment = async (context) => {
-    const { parameters, prompt, solidarity } = context
-    const { getSolidaritySettings } = solidarity
-    const solidaritySettings = getSolidaritySettings(context)
-
-    if (hasRule(solidaritySettings, parameters)) {
-      return Promise.reject('This binary already exists')
-    } else {
-      const userAnswer = await prompt.ask({
-        name: 'addNewRule',
-        type: 'confirm',
-        message: `Would you like to add the ${parameters.first} '${parameters.second}' to your Solidarity file?`
-      })
-
-      if (userAnswer.addNewRule) {
-        // maybe ask about setting up the new rule w/ a specific version?
-        const requirementName = await chooseRequirement(prompt, solidaritySettings)
-        return ruleHandlers[parameters.first](context, requirementName)
-      } else {
-        return Promise.reject('Rule not added.')
-      }
-    }
-  }
-
   export const run = async function (context: SolidarityRunContext) {
     const { print, prompt, filesystem, solidarity, parameters } = context
     const { first, second } = parameters
-    const { getSolidaritySettings, setSolidaritySettings, appendSolidaritySettings } = solidarity
+    const {
+      getSolidaritySettings,
+      setSolidaritySettings,
+      appendSolidaritySettings,
+      buildSpecificRequirement
+    } = solidarity
 
     // check is there an existing .solidarity file?
     if (filesystem.exists('.solidarity')) {
       // load existing file and update rule versions
 
-      if (first && second) {
-        await buildSpecifiedRequirment(context)
+      if (first) {
+        await buildSpecificRequirement(context)
           .then((newRequirement) => {
             const solidaritySettings = getSolidaritySettings(context)
             const updatedSolidaritySettings = appendSolidaritySettings(solidaritySettings, newRequirement)

@@ -16,6 +16,7 @@ export const solidarity = {
   getLineWithVersion: require('./extensions/functions/getLineWithVersion'),
   printResults: require('./extensions/functions/printResults'),
   reviewRule: require('./extensions/functions/reviewRule'),
+  buildSpecificRequirement: require('./extensions/functions/buildSpecificRequirement'),
   appendSolidaritySettings: require('./extensions/functions/appendSolidaritySettings')
 }
 

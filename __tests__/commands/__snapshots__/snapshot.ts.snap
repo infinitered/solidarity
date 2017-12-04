@@ -151,3 +151,43 @@ Array [
   ],
 ]
 `;
+
+exports[`with a .solidarity file given a new rule to add should work if given an incomplete rule  1`] = `
+Array [
+  Array [
+    Object {
+      "message": "What's the name of the cli you'd like to add a rule for?",
+      "name": "whatRule",
+      "type": "input",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to add the cli 'undefined' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like to call this new requirement?",
+      "name": "newRequirement",
+      "type": "input",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to enforce a version requirement?",
+      "name": "enforceVersion",
+      "type": "confirm",
+    },
+  ],
+]
+`;

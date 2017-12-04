@@ -4,6 +4,7 @@ exports[`Snapshot of solidarity extension 1`] = `
 Object {
   "appendSolidaritySettings": [Function],
   "binaryExists": [Function],
+  "buildSpecificRequirement": [Function],
   "checkCLI": [Function],
   "checkDir": [Function],
   "checkENV": [Function],

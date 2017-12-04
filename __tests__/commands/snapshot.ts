@@ -89,34 +89,47 @@ describe('with a .solidarity file', () => {
       process.chdir(origCwd)
     })
 
-    test('allows a user to decide to not add the rule', async () => {
+    it('should work if given an incomplete rule ', async () => {
+      expect(requirements()).toEqual({})
+
       const mockedPrompt = jest.fn()
-        .mockImplementationOnce(() => Promise.resolve({ addNewRule: false }))
+        .mockImplementationOnce(() => Promise.resolve({ nameTheRule: 'ruby' }))
+        .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+        .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+        .mockImplementationOnce(() => Promise.resolve({
+          newRequirement: 'Testorson'
+        }))
+        .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
 
       context.prompt = {
         ask: mockedPrompt
       }
 
       context.print = {
-        error: jest.fn()
+        error: jest.fn(),
+        info: jest.fn()
       }
 
       context.parameters = {
         plugin: 'solidarity',
         command: 'snapshot',
-        first: 'file',
-        second: './nachos',
-        third: undefined,
-        raw: 'file ./nachos',
-        string: 'file ./nachos',
-        array: [ 'file', './nachos' ],
+        first: 'cli',
+        raw: 'cli',
+        string: 'cli',
+        array: [ 'cli'],
         options: {},
-        argv: [ 'snapshot', 'file', './nachos' ]
+        argv: [ 'snapshot', 'cli']
       }
 
-      const result = await snapshotCommand.run(context);
-      expect(requirements()).toEqual({})
-      expect(context.print.error.mock.calls).toEqual([['Your new requirement was not added.']])
+      const result = await snapshotCommand.run(context)
+      expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+      expect(requirements().Testorson).toBeTruthy()
+    })
+
+    describe('given a rule that already exists', () => {
+      it('should not prompt the user to choose a requirement to update')
+
+      it('should update the existing rule')
     })
 
     describe('given an cli rule', () => {
@@ -155,7 +168,7 @@ describe('with a .solidarity file', () => {
       it('handles a binary enforceVersion: false', async () => {
         expect(requirements()).toEqual({})
 
-        const result = await snapshotCommand.run(context);
+        const result = await snapshotCommand.run(context)
         expect(context.prompt.ask.mock.calls).toMatchSnapshot()
         expect(requirements().Testorson).toBeTruthy()
         expect(requirements().Testorson.semver).toBeFalsy()
