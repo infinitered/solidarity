@@ -37,5 +37,8 @@ describe('appendSolidaritySettings', () => {
 
     expect(keys(newSettings.requirements).length).toEqual(2)
     expect(newSettings.requirements.twoTest.length).toEqual(2)
+
+    expect(Array.isArray(newSettings.requirements.twoTest[0])).toBe(false)
+    expect(Array.isArray(newSettings.requirements.twoTest[1])).toBe(false)
   })
 })

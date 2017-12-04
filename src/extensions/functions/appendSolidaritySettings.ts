@@ -9,7 +9,7 @@ module.exports = (solidaritySettings, newRequirement) => {
       ...solidaritySettings.requirements,
       [newRequirementKey]:
         reject(isNil, append(
-          solidaritySettings.requirements[newRequirementKey],
+          solidaritySettings.requirements[newRequirementKey][0],
           newRequirement[newRequirementKey]
         ))
     }
