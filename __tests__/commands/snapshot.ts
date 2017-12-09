@@ -4,11 +4,11 @@ import snapshotCommand from '../../src/commands/snapshot'
 import setSolidaritySettings from '../../src/extensions/functions/setSolidaritySettings'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 
+const context = require('mockContext')
+
 const requirements = () => {
   return JSON.parse(context.filesystem.read('.solidarity')).requirements
 }
-
-const context = require('mockContext')
 
 beforeAll(() => {
   context.prompt = {
