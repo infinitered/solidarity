@@ -12,12 +12,14 @@ describe('appendSolidaritySettings', () => {
     }
 
     const newRequirement = {
-      twoTest: [{ rule: 'cli' }]
+      three: [{ rule: 'cli' }]
     }
 
     const newSettings = appendSolidaritySettings(solidaritySettings, newRequirement)
 
-    expect(keys(newSettings.requirements).length).toEqual(2)
+    expect(keys(newSettings.requirements).length).toEqual(3)
+    expect(keys(newSettings.requirements.three).length).toEqual(1)
+
   })
 
   it('will append the given requirement to and existing requirement', () => {

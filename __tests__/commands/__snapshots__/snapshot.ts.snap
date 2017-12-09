@@ -203,7 +203,7 @@ Array [
   ],
   Array [
     Object {
-      "message": "Would you like to add the cli 'undefined' to your Solidarity file?",
+      "message": "Would you like to add the cli 'ruby' to your Solidarity file?",
       "name": "addNewRule",
       "type": "confirm",
     },

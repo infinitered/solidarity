@@ -82,6 +82,7 @@ namespace Snapshot {
           .then((newRequirement) => {
             const solidaritySettings = getSolidaritySettings(context)
             const updatedSolidaritySettings = appendSolidaritySettings(solidaritySettings, newRequirement)
+
             setSolidaritySettings(updatedSolidaritySettings, context)
           })
           .catch(() => {

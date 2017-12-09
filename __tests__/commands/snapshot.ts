@@ -93,7 +93,7 @@ describe('with a .solidarity file', () => {
       expect(requirements()).toEqual({})
 
       const mockedPrompt = jest.fn()
-        .mockImplementationOnce(() => Promise.resolve({ nameTheRule: 'ruby' }))
+        .mockImplementationOnce(() => Promise.resolve({ whatRule: 'ruby' }))
         .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
         .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
         .mockImplementationOnce(() => Promise.resolve({
@@ -176,20 +176,25 @@ describe('with a .solidarity file', () => {
 
       it('handles a binary with enforceVersion: true', async () => {
         const mockedPrompt = jest.fn()
-        .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
-        .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-        .mockImplementationOnce(() => Promise.resolve({
-          newRequirement: 'Testorson'
-        }))
-        .mockImplementationOnce(() => Promise.resolve({ enforceVersion: true }))
+          .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+          .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+          .mockImplementationOnce(() => Promise.resolve({
+            newRequirement: 'Testorson'
+          }))
+          .mockImplementationOnce(() => Promise.resolve({ enforceVersion: true }))
 
         context.prompt = {
           ask: mockedPrompt
         }
 
+        context.system = {
+          run: jest.fn(() => Promise.resolve('1.3.2'))
+        }
+
         expect(requirements()).toEqual({})
 
-        const result = await snapshotCommand.run(context);
+        const result = await snapshotCommand.run(context)
+
         expect(context.prompt.ask.mock.calls).toMatchSnapshot()
         expect(requirements().Testorson).toBeTruthy()
         expect(requirements().Testorson[0].semver).toBeTruthy()
@@ -203,7 +208,6 @@ describe('with a .solidarity file', () => {
           command: 'snapshot',
           first: 'env',
           second: 'PATH',
-          third: undefined,
           raw: 'env PATH',
           string: 'env PATH',
           array: [ 'env', 'PATH' ],
