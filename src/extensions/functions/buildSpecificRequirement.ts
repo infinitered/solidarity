@@ -164,7 +164,7 @@ namespace buildSpecificRequirement {
   }
 
   export const run = async (context: SolidarityRunContext) => {
-    const { parameters, prompt, solidarity } = context
+    const { parameters, prompt } = context
     const { first } = parameters
     const second = await resolveParameters({ parameters, prompt })
 

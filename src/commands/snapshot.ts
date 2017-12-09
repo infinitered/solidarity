@@ -1,8 +1,8 @@
 
 import { GluegunCommand, GluegunRunContext } from 'gluegun'
-import { toPairs, flatten, filter, keys, propEq, head } from 'ramda'
+import { filter, propEq, head } from 'ramda'
 
-import { SolidaritySettings, FriendlyMessages, SolidarityRunContext } from '../types'
+import { FriendlyMessages, SolidarityRunContext } from '../types'
 
 namespace Snapshot {
   const runPluginSnapshot = async (runPlugin, context: GluegunRunContext): Promise<void> => {
@@ -65,7 +65,7 @@ namespace Snapshot {
 
   export const run = async function (context: SolidarityRunContext) {
     const { print, prompt, filesystem, solidarity, parameters } = context
-    const { first, second } = parameters
+    const { first } = parameters
     const {
       getSolidaritySettings,
       setSolidaritySettings,
