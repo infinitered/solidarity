@@ -65,7 +65,7 @@ $ solidarity snapshot
 No `.solidarity` file found for this project.  Would you like to create one? (Y/n)
 ```
 
-Custom rule-sets can be created by modifying the `.solidarity` file by hand, or by creating a solidarity plugin for a given technology.  See documentation for how you can create your own.
+Custom rule-sets can be created by modifying the `.solidarity` file by hand, or by creating a solidarity plugin for a given technology.  [See documentation](https://infinitered.github.io/solidarity/) for how you can create your own.
 
 ## Cross Platform
 Solidarity works with Mac/Linux/Windows environments. CI tests all rules with each platform on every update.

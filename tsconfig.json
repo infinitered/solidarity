@@ -21,9 +21,10 @@
     "allowSyntheticDefaultImports": true,
 
     // Don't let sneaky null/undefined through
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "sourceMap": true
   },
   "include": [
-    "./src/**/*"
+    "src"
   ]
 }
