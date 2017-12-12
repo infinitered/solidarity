@@ -1,14 +1,21 @@
 language: node_js
 node_js:
-- 'node'
-- '8'
-
+  - node
+  - '8'
 before_install:
-  - npm i -g typescript
+  - 'npm i -g typescript'
 before_script:
   - tsc
 script:
-  - npm run test:ci
-
+  - 'npm run test:ci'
 after_success:
   - './node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/codecov'
+notifications:
+  webhooks:
+    urls:
+      - 'https://www.travisbuddy.com/'
+    on_success: never
+    on_failure: always
+    on_start: never
+    on_cancel: never
+    on_error: never
