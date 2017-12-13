@@ -27,9 +27,8 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "envinfo": "^3.10.0",
-    "gluegun": "^2.0.0-alpha.16",
+    "gluegun": "^2.0.0-alpha.17",
     "minimist": "^1.2.0",
-    "pluralize": "^7.0.0",
     "ramda": "0.25.0"
   },
   "devDependencies": {

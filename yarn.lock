@@ -1908,9 +1908,9 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gluegun@^2.0.0-alpha.16:
-  version "2.0.0-alpha.16"
-  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.0-alpha.16.tgz#508cd42ae50719c05130b8be141bc4ab2d126633"
+gluegun@^2.0.0-alpha.17:
+  version "2.0.0-alpha.17"
+  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.0-alpha.17.tgz#a9fc609e630d707450bdc89e79ceaafbf9d6b480"
   dependencies:
     apisauce "^0.14.1"
     app-module-path "^2.2.0"
@@ -1938,6 +1938,7 @@ gluegun@^2.0.0-alpha.16:
     lodash.upperfirst "^4.3.1"
     minimist "^1.2.0"
     ora "^1.2.0"
+    pluralize "^7.0.0"
     prompt-autocompletion "^0.1.1"
     prompt-checkbox "^2.2.0"
     prompt-confirm "^1.2.0"
