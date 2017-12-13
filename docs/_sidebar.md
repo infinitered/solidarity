@@ -16,4 +16,4 @@
 - [Existing Contributors](/docs/existingContributors.md)
 - Blog Posts
   - [Introducing Solidarity](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9)
-  - [Environment Reports](https://shift.infinite.red/effortless-environment-reports-d129d53eb405])
+  - [Environment Reports](https://shift.infinite.red/effortless-environment-reports-d129d53eb405)
