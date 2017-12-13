@@ -46,7 +46,7 @@
     "tempy": "^0.2.1",
     "ts-jest": "21.2.4",
     "tslint": "^5.8.0",
-    "tslint-config-standard": "6.0.1",
+    "tslint-config-standard": "^7.0.0",
     "typescript": "2.6.2",
     "updtr": "^2.0.0"
   },
