@@ -55,13 +55,39 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@types/callsite@^1.0.30":
+  version "1.0.30"
+  resolved "https://registry.yarnpkg.com/@types/callsite/-/callsite-1.0.30.tgz#0854343ffc2141a48bf541a3afbb67cfe07562aa"
+
+"@types/execa@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@types/execa/-/execa-0.8.0.tgz#2c717dbcb4a593e31c3b1d40180a0926f77f5355"
+  dependencies:
+    "@types/node" "*"
+
 "@types/jest@21.1.8":
   version "21.1.8"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.8.tgz#d497213725684f1e5a37900b17a47c9c018f1a97"
 
+"@types/minimist@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
+
+"@types/node@*":
+  version "8.5.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.1.tgz#4ec3020bcdfe2abffeef9ba3fbf26fca097514b5"
+
 "@types/node@8.0.58":
   version "8.0.58"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.58.tgz#5b3881c0be3a646874803fee3197ea7f1ed6df90"
+
+"@types/ramda@^0.25.8":
+  version "0.25.8"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.8.tgz#d95e7e9a47ed4a0fcb1b4bbb7f6ffac71276c619"
+
+"@types/tempy@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@types/tempy/-/tempy-0.1.0.tgz#8ba0339dcd5abb554f301683dc3396d153ec5bfd"
 
 abab@^1.0.3:
   version "1.0.4"

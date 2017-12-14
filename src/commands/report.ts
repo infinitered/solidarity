@@ -45,7 +45,7 @@ module.exports = {
     }
 
     // break all rules into requirements
-    const reportCalls = await map(
+    const reportCalls = map(
       async requirement => reviewRule(requirement, results, context),
       toPairs(solidaritySettings.requirements)
     )
