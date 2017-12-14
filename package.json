@@ -32,8 +32,13 @@
     "ramda": "0.25.0"
   },
   "devDependencies": {
+    "@types/callsite": "^1.0.30",
+    "@types/execa": "^0.8.0",
     "@types/jest": "21.1.8",
+    "@types/minimist": "^1.2.0",
     "@types/node": "8.0.58",
+    "@types/ramda": "^0.25.8",
+    "@types/tempy": "^0.1.0",
     "ajv": "5.5.1",
     "all-contributors-cli": "4.10.0",
     "babel-eslint": "8.0.3",
