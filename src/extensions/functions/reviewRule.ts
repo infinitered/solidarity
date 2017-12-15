@@ -10,9 +10,10 @@ module.exports = async (requirement: SolidarityRequirementChunk, report: Solidar
   const { print, system, solidarity } = context
   const { color, checkmark, xmark } = print
   const prettyBool = (bl: boolean) => bl ? checkmark + color.green(' YES') : xmark + color.red(' NO')
+  // @ts-ignore - flatten will never get a string bc tail is called first
   const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
   // check each rule for report
-  const ruleChecks = await map(async (rule: SolidarityRule) => {
+  const ruleChecks = map(async (rule: SolidarityRule) => {
     // Make sure this rule is active
     if (skipRule(rule.platform)) return false
 

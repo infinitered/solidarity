@@ -22,7 +22,10 @@
 
     // Don't let sneaky null/undefined through
     "strictNullChecks": true,
-    "sourceMap": true
+    // Yes plz
+    "sourceMap": true,
+    // Don't update JS dist with failing TS src
+    "noEmitOnError": true
   },
   "include": [
     "src"

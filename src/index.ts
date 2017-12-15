@@ -9,7 +9,7 @@ module.exports = async (): Promise<void> => {
     .plugins('./node_modules', { matching: 'solidarity-*', hidden: true })
     // global installs
     .plugins('/usr/local/lib/node_modules', { matching: 'solidarity-*', hidden: true }) // Darwin
-    .plugins(`${process.env.appdata}/npm/node_modules`, { matching: 'solidarity-*', hidden: true}) // Windows
+    .plugins(`${process.env.appdata}/npm/node_modules`, { matching: 'solidarity-*', hidden: true }) // Windows
     // for testing - force load a local plugin
     // .plugin('../solidarity-react-native')
     .create()

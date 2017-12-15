@@ -4,7 +4,7 @@ module.exports = (results: SolidarityReportResults, context: SolidarityRunContex
   const { info } = print
   const printSpacedTable = (table, header) => {
     info(`### ${header}\n`)
-    print.table(table, {format: 'markdown'})
+    print.table(table, { format: 'markdown' })
     info('\n')
   }
   const printIfData = (reportItem: Array<Array<string>>, header: string) =>

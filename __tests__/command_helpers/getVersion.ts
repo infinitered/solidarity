@@ -3,9 +3,21 @@ import getVersion from '../../src/extensions/functions/getVersion'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 
 const context = require('gluegun')
+let originalTimeout
 solidarityExtension(context)
 
 describe('getVersion', () => {
+  beforeAll(() => {
+    // These can be slow on CI
+    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
+  })
+
+  afterAll(function () {
+    // Fix timeout change
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
+  })
+
   test('returns version for a given binary if not specified', async () => {
     const rule = { rule: "cli", binary: "yarn" }
     const output = await getVersion(rule, context)
