@@ -67,7 +67,6 @@ namespace Snapshot {
     const { print, prompt, filesystem, solidarity, parameters } = context
     const { first } = parameters
     const {
-      getSolidaritySettings,
       setSolidaritySettings,
       appendSolidaritySettings,
       buildSpecificRequirement
@@ -80,8 +79,7 @@ namespace Snapshot {
       if (first) {
         await buildSpecificRequirement(context)
           .then((newRequirement) => {
-            const solidaritySettings = getSolidaritySettings(context)
-            const updatedSolidaritySettings = appendSolidaritySettings(solidaritySettings, newRequirement)
+            const updatedSolidaritySettings = appendSolidaritySettings(context, newRequirement)
 
             setSolidaritySettings(updatedSolidaritySettings, context)
           })

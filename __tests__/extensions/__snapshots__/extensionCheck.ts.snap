@@ -16,6 +16,28 @@ Object {
   "printResults": [Function],
   "removeNonVersionCharacters": [Function],
   "reviewRule": [Function],
+  "ruleHandlers": Object {
+    "cli": Object {
+      "callback": [Function],
+      "key": "binary",
+    },
+    "dir": Object {
+      "callback": [Function],
+      "key": "location",
+    },
+    "env": Object {
+      "callback": [Function],
+      "key": "variable",
+    },
+    "file": Object {
+      "callback": [Function],
+      "key": "location",
+    },
+    "shell": Object {
+      "callback": [Function],
+      "key": "command",
+    },
+  },
   "setSolidaritySettings": [Function],
   "skipRule": [Function],
   "updateRequirement": [Function],

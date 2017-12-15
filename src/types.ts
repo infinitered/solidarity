@@ -17,7 +17,8 @@ export const solidarity = {
   printResults: require('./extensions/functions/printResults'),
   reviewRule: require('./extensions/functions/reviewRule'),
   buildSpecificRequirement: require('./extensions/functions/buildSpecificRequirement'),
-  appendSolidaritySettings: require('./extensions/functions/appendSolidaritySettings')
+  appendSolidaritySettings: require('./extensions/functions/appendSolidaritySettings'),
+  ruleHandlers: require('./extensions/functions/ruleHandlers')
 }
 
 export interface SolidarityPlugin {
