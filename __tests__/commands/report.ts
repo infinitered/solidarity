@@ -15,7 +15,5 @@ it('enforces required properties', () => {
 
 test('check solidarity report', async () => {
   const result = await reportCommand.run(mockContext)
-  expect(mockContext.print.spin.mock.calls).toEqual([
-    ['Building Report']
-  ])
+  expect(mockContext.print.spin.mock.calls).toEqual([['Building Report']])
 })

@@ -3,11 +3,7 @@ module.exports = async (context: SolidarityRunContext): Promise<void> => {
   const { map, toPairs, isEmpty, flatten } = require('ramda')
   const { solidarity, print, strings } = context
   const { pluralize } = strings
-  const {
-    getSolidaritySettings,
-    setSolidaritySettings,
-    updateRequirement
-  } = solidarity
+  const { getSolidaritySettings, setSolidaritySettings, updateRequirement } = solidarity
 
   // load current solidarity file
   const solidaritySettings = getSolidaritySettings(context)
@@ -34,5 +30,4 @@ module.exports = async (context: SolidarityRunContext): Promise<void> => {
       print.error(err)
       process.exit(2)
     })
-
 }

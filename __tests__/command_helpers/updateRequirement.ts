@@ -1,4 +1,4 @@
-import { platform } from 'os';
+import { platform } from 'os'
 import { toPairs } from 'ramda'
 import context from 'gluegun'
 
@@ -13,12 +13,11 @@ let spinner
 
 test('updateRequirement exists', () => expect(updateRequirement).toMatchSnapshot())
 
-
 describe('updateRequirement', () => {
   beforeEach(() => {
     spinner = {
       succeed: jest.fn(),
-      stop: jest.fn()
+      stop: jest.fn(),
     }
 
     context.print = {
@@ -36,13 +35,15 @@ describe('updateRequirement', () => {
   describe('given skipRule returns true', () => {
     it('returns an empty []', async () => {
       const requirement = toPairs({
-        Yarn: [{
-          "rule": "cli",
-          "binary": "yarn",
-          "version": "--version",
-          "platform": "windows",
-          "semver": "6.1.0"
-        }]
+        Yarn: [
+          {
+            rule: 'cli',
+            binary: 'yarn',
+            version: '--version',
+            platform: 'windows',
+            semver: '6.1.0',
+          },
+        ],
       })[0]
 
       const result = await updateRequirement(requirement, settings, context)
@@ -53,11 +54,13 @@ describe('updateRequirement', () => {
   describe('without a semver returns', () => {
     it('returns an empty []', async () => {
       const requirement = toPairs({
-        Yarn: [{
-          "rule": "cli",
-          "binary": "yarn",
-          "version": "--version"
-        }]
+        Yarn: [
+          {
+            rule: 'cli',
+            binary: 'yarn',
+            version: '--version',
+          },
+        ],
       })[0]
 
       const result = await updateRequirement(requirement, settings, context)
@@ -73,22 +76,24 @@ describe('updateRequirement', () => {
 
       describe('when checkCLIForUpdates => true', () => {
         beforeEach(() => {
-          checkCLIForUpdates.mockImplementation(() => Promise.resolve("Updated"))
+          checkCLIForUpdates.mockImplementation(() => Promise.resolve('Updated'))
         })
 
         it('returns the missing binary', async () => {
           const requirement = toPairs({
-            Yarn: [{
-              "rule": "cli",
-              "binary": "yarn",
-              "version": "--version",
-              "semver": "1.1.0"
-            }]
+            Yarn: [
+              {
+                rule: 'cli',
+                binary: 'yarn',
+                version: '--version',
+                semver: '1.1.0',
+              },
+            ],
           })[0]
 
           const result = await updateRequirement(requirement, settings, context)
-          expect(result).toEqual(["Updated"])
-          expect(spinner.succeed.mock.calls).toEqual([["Updated"]])
+          expect(result).toEqual(['Updated'])
+          expect(spinner.succeed.mock.calls).toEqual([['Updated']])
         })
       })
 
@@ -97,14 +102,16 @@ describe('updateRequirement', () => {
           checkCLIForUpdates.mockImplementation(() => false)
         })
 
-        it("should return an empty array", async () => {
+        it('should return an empty array', async () => {
           const requirement = toPairs({
-            Yarn: [{
-              "rule": "cli",
-              "binary": "yarn",
-              "version": "--version",
-              "semver": "1.1.0"
-            }]
+            Yarn: [
+              {
+                rule: 'cli',
+                binary: 'yarn',
+                version: '--version',
+                semver: '1.1.0',
+              },
+            ],
           })[0]
 
           const result = await updateRequirement(requirement, settings, context)
@@ -117,10 +124,12 @@ describe('updateRequirement', () => {
     describe('rule: !cli', () => {
       it('returns an empty array', async () => {
         const requirement = toPairs({
-          Yarn: [{
-            "rule": "dir",
-            "location": "./src",
-          }]
+          Yarn: [
+            {
+              rule: 'dir',
+              location: './src',
+            },
+          ],
         })[0]
 
         const result = await updateRequirement(requirement, settings, context)
@@ -129,3 +138,4 @@ describe('updateRequirement', () => {
       })
     })
   })
+})

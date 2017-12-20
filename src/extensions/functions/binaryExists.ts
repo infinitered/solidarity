@@ -9,5 +9,4 @@ module.exports = (binary: string, context: SolidarityRunContext): boolean => {
   } catch (_e) {
     return false
   }
-
 }

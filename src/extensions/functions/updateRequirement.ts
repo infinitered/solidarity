@@ -1,6 +1,9 @@
 import { SolidarityRequirement, SolidarityRunContext } from '../../types'
-module.exports = async (requirement: SolidarityRequirement, settings: object, context: SolidarityRunContext): Promise<void | object[]> => {
-
+module.exports = async (
+  requirement: SolidarityRequirement,
+  settings: object,
+  context: SolidarityRunContext
+): Promise<void | object[]> => {
   const { head, tail, pipe, flatten, map } = require('ramda')
   const checkCLIForUpdates = require('./checkCLIForUpdates')
   const skipRule = require('./skipRule')
@@ -13,7 +16,7 @@ module.exports = async (requirement: SolidarityRequirement, settings: object, co
   const spinner = print.spin(`Updating ${requirementName}`)
 
   // check each rule for requirement
-  const ruleChecks = await map(async (rule) => {
+  const ruleChecks = await map(async rule => {
     // skip if we can't update
     if (skipRule(rule.platform) || !rule.semver) return []
     switch (rule.rule) {

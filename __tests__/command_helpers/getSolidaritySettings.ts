@@ -1,4 +1,4 @@
-import { solidarity } from '../../src';
+import { solidarity } from '../../src'
 import getSolidaritySettings from '../../src/extensions/functions/getSolidaritySettings'
 
 const context = require('gluegun')
@@ -10,14 +10,14 @@ describe('getSolidaritySettings', () => {
     test('getSolidaritySettings succeeds', async () => {
       const resultSettings = getSolidaritySettings(context)
       // we got an object with requirements defined
-      expect(resultSettings).toMatchObject({requirements: {}})
+      expect(resultSettings).toMatchObject({ requirements: {} })
     })
 
     test('getSolidaritySettings succeeds', async () => {
       process.chdir('__tests__/sandbox/solidarity_json')
       const resultSettings = getSolidaritySettings(context)
       // we got an object with requirements defined
-      expect(resultSettings).toMatchObject({requirements: {}})
+      expect(resultSettings).toMatchObject({ requirements: {} })
       process.chdir('../../../')
     })
   })

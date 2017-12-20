@@ -11,6 +11,7 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "build": "tsc",
+    "format": "prettier --write \"**/*.ts\" -l \"warn\" && standard --fix",
     "shipit": "tsc && np",
     "test": "jest && tslint -p .",
     "test:ci": "jest --ci && tslint -p .",
@@ -48,12 +49,25 @@
     "execa": "^0.8.0",
     "jest": "^21.2.1",
     "np": "2.18.2",
+    "prettier": "^1.9.2",
     "tempy": "^0.2.1",
     "ts-jest": "21.2.4",
     "tslint": "^5.8.0",
     "tslint-config-standard": "^7.0.0",
     "typescript": "2.6.2",
     "updtr": "^2.0.0"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "docs/"
+    ]
   },
   "jest": {
     "transform": {
