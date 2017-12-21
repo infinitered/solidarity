@@ -5,12 +5,12 @@ const rule = {
   rule: 'cli',
   binary: 'bananas',
   semver: '1.1.0',
-  version: '--version'
+  version: '--version',
 }
 
 const ruleNoSemver = {
   rule: 'cli',
-  binary: 'yarn'
+  binary: 'yarn',
 }
 
 describe('checkCLIForUpdates', () => {
@@ -26,14 +26,14 @@ describe('checkCLIForUpdates', () => {
       rule.binary = 'yarn'
       context.print = {
         color: {
-          green: jest.fn((string) => string)
-        }
+          green: jest.fn(string => string),
+        },
       }
     })
 
     it('pads zeros for non-semver versions', async () => {
       context.solidarity = {
-        getVersion: jest.fn(() => '1.0')
+        getVersion: jest.fn(() => '1.0'),
       }
 
       const result = await checkCLIForUpdates(rule, context)
@@ -43,7 +43,7 @@ describe('checkCLIForUpdates', () => {
 
     it('does nothing if there was no original semver', async () => {
       context.solidarity = {
-        getVersion: jest.fn(() => '1.0')
+        getVersion: jest.fn(() => '1.0'),
       }
 
       const result = await checkCLIForUpdates(ruleNoSemver, context)

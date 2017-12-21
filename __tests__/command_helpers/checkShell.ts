@@ -10,9 +10,9 @@ const checkShell: any = require('../../src/extensions/functions/checkShell')
  */
 const createContext = (stdout: string, status: number = 0) => ({
   system: {
-    spawn: jest.fn().mockReturnValue(Promise.resolve({ stdout, status }))
+    spawn: jest.fn().mockReturnValue(Promise.resolve({ stdout, status })),
   },
-  strings
+  strings,
 })
 
 describe('match', () => {
@@ -39,9 +39,7 @@ describe('match', () => {
     })
 
     it('works with capture groups', async () => {
-      expect(await checkShell({ match: '.*(look).*(100).*' }, context)).toBe(
-        true
-      )
+      expect(await checkShell({ match: '.*(look).*(100).*' }, context)).toBe(true)
     })
   })
 

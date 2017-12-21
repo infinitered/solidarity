@@ -13,13 +13,13 @@ describe('getVersion', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
   })
 
-  afterAll(function () {
+  afterAll(function() {
     // Fix timeout change
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
   })
 
   test('returns version for a given binary if not specified', async () => {
-    const rule = { rule: "cli", binary: "yarn" }
+    const rule = { rule: 'cli', binary: 'yarn' }
     const output = await getVersion(rule, context)
 
     expect(typeof output).toBe('string')
@@ -27,23 +27,22 @@ describe('getVersion', () => {
   })
 
   test('returns version for a given binary using specified option', async () => {
-    const rule = { rule: "cli", binary: "yarn", version: "--version" }
+    const rule = { rule: 'cli', binary: 'yarn', version: '--version' }
     const output = await getVersion(rule, context)
 
     expect(typeof output).toBe('string')
     expect(output.length).toBeGreaterThan(0)
   })
 
-
-  test('throws an error if no version flag works', async() => {
-    const rule = { rule: "cli", binary: "ls" }
+  test('throws an error if no version flag works', async () => {
+    const rule = { rule: 'cli', binary: 'ls' }
     let result
 
     try {
       await getVersion(rule, context)
-    } catch(e) {
+    } catch (e) {
       result = e
     }
-    expect(result).toEqual( " No version was detected from the output of the binary 'ls'")
+    expect(result).toEqual(" No version was detected from the output of the binary 'ls'")
   })
 })

@@ -1,16 +1,16 @@
 import setSolidaritySettings from '../../src/extensions/functions/setSolidaritySettings'
 
 const goodSettings = {
-  requirements: []
+  requirements: [],
 }
 const badSettings = {}
 const mockContext = {
   print: {
-    error: jest.fn()
+    error: jest.fn(),
   },
   filesystem: {
-    write: jest.fn()
-  }
+    write: jest.fn(),
+  },
 }
 
 test('setSolidaritySettings exists', () => expect(setSolidaritySettings).toMatchSnapshot())

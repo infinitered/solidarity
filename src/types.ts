@@ -15,7 +15,7 @@ export const solidarity = {
   getVersion: require('./extensions/functions/getVersion'),
   getLineWithVersion: require('./extensions/functions/getLineWithVersion'),
   printResults: require('./extensions/functions/printResults'),
-  reviewRule: require('./extensions/functions/reviewRule')
+  reviewRule: require('./extensions/functions/reviewRule'),
 }
 
 export interface SolidarityPlugin {
@@ -94,12 +94,12 @@ export type SolidarityRule = CLIRule | ENVRule | FSRule | ShellRule
 export enum SolidarityOutputMode {
   MODERATE,
   VERBOSE,
-  SILENT
+  SILENT,
 }
 
 export const enum FriendlyMessages {
   NONE = 'NONE',
-  NOTHING = 'Nothing to do ¯\\_(ツ)_/¯'
+  NOTHING = 'Nothing to do ¯\\_(ツ)_/¯',
 }
 
 export type SolidarityRequirement = SolidarityRule[]

@@ -1,5 +1,8 @@
 import { SolidarityRunContext, CLIRule } from '../../types'
-module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string | undefined> => {
+module.exports = async (
+  rule: CLIRule,
+  context: SolidarityRunContext
+): Promise<string | undefined> => {
   const { semver, solidarity } = context
   const binaryExists = require('./binaryExists')
 
@@ -16,11 +19,15 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
     const binaryVersion = await solidarity.getVersion(rule, context)
     // pad zeros for any non-semver version systems (rules still work)
     let binarySemantic = binaryVersion
-    while (binarySemantic.split('.').length < 3) { binarySemantic += '.0' }
+    while (binarySemantic.split('.').length < 3) {
+      binarySemantic += '.0'
+    }
 
     // I can't get no satisfaction
     if (!semver.satisfies(binarySemantic, rule.semver)) {
-      return `${rule.binary}: you have '${binaryVersion}', but the project requires '${rule.semver}'`
+      return `${rule.binary}: you have '${binaryVersion}', but the project requires '${
+        rule.semver
+      }'`
     }
   }
 }

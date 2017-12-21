@@ -14,7 +14,7 @@ beforeAll(() => {
   process.chdir(tempDir)
 })
 
-afterAll(function () {
+afterAll(function() {
   // Fix timeout change
   jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
 })

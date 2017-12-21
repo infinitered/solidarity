@@ -6,21 +6,21 @@ const noConfigSolidarity = {
   printResults: jest.fn(),
   setSolidaritySettings: jest.fn(),
   updateRequirement: jest.fn(),
-  updateVersions: jest.fn(() => Promise.resolve())
+  updateVersions: jest.fn(() => Promise.resolve()),
 }
 
 const mockContext = {
   ...realThing,
   outputMode: null,
   system: {
-    startTimer: jest.fn(() => jest.fn())
+    startTimer: jest.fn(() => jest.fn()),
   },
   print: {
     error: jest.fn(),
     success: jest.fn(),
     info: jest.fn(),
     spin: jest.fn(() => ({
-      stop: jest.fn()
+      stop: jest.fn(),
     })),
     table: jest.fn(),
     xmark: jest.fn(),
@@ -28,25 +28,23 @@ const mockContext = {
     color: {
       green: jest.fn(),
       red: jest.fn(),
-      blue: jest.fn()
+      blue: jest.fn(),
     },
     colors: {
       green: jest.fn(),
       red: jest.fn(),
-      blue: jest.fn()
-    }
+      blue: jest.fn(),
+    },
   },
   printSeparator: jest.fn(),
   _pluginsList: [],
   parameters: {
-    options: {}
+    options: {},
   },
   prompt: {
-    ask: jest.fn(
-      () => Promise.resolve({ createFile: true })
-    )
+    ask: jest.fn(() => Promise.resolve({ createFile: true })),
   },
-  solidarity: noConfigSolidarity
+  solidarity: noConfigSolidarity,
 }
 
 module.exports = mockContext

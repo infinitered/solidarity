@@ -1,9 +1,6 @@
 import { ShellRule, SolidarityRunContext } from '../../types'
 
-module.exports = async (
-  rule: ShellRule,
-  context: SolidarityRunContext
-): Promise<boolean> => {
+module.exports = async (rule: ShellRule, context: SolidarityRunContext): Promise<boolean> => {
   const { system, strings } = context
   try {
     // execute the command

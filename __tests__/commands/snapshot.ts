@@ -27,15 +27,17 @@ describe('without a .solidarity file', () => {
     process.chdir(origCwd)
   })
 
-  it('should prompt the user', async() => {
+  it('should prompt the user', async () => {
     await snapshotCommand.run(context)
-    expect(context.prompt.ask.mock.calls).toEqual(
-      [[{
-        message: "No `.solidarity` file found for this project.  Would you like to create one?",
-        name: "createFile",
-        type: "confirm"
-      }]]
-    )
+    expect(context.prompt.ask.mock.calls).toEqual([
+      [
+        {
+          message: 'No `.solidarity` file found for this project.  Would you like to create one?',
+          name: 'createFile',
+          type: 'confirm',
+        },
+      ],
+    ])
   })
 })
 
@@ -46,4 +48,3 @@ describe('with a .solidarity file', () => {
     expect(context.solidarity.updateVersions.mock.calls).toEqual([[context]])
   })
 })
-
