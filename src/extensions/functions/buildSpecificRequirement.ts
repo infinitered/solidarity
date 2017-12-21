@@ -15,7 +15,7 @@ namespace buildSpecificRequirement {
     return response.whatRule
   }
 
-  const getRequirementNames = (solidaritySettings: SolidaritySettings): String => keys(solidaritySettings.requirements)
+  const getRequirementNames = (solidaritySettings: SolidaritySettings): Array<string> => keys(solidaritySettings.requirements)
 
   const chooseRequirement = async (prompt, solidaritySettings: SolidaritySettings): Promise<String> => {
 
@@ -73,7 +73,7 @@ namespace buildSpecificRequirement {
     const { first } = parameters
     const second = await resolveParameters({ parameters, prompt })
 
-    return await constructRequirment({
+    return constructRequirment({
       ...context,
       parameters: {
         ...parameters,

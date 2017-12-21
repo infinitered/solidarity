@@ -30,10 +30,11 @@ module.exports = (context, newRequirement) => {
 
   const solidaritySettings = getSolidaritySettings(context)
 
-  const newRequirementKey = keys(newRequirement)
+  const newRequirementKey = keys(newRequirement)[0]
   const existingRequirementRules = solidaritySettings.requirements[newRequirementKey] || []
+
   let existingRule
-  let existingRuleIndex
+  let existingRuleIndex = -1
 
   if (existingRequirementRules.length) {
     const primaryRuleKey = ruleHandlers[first].key
@@ -41,6 +42,7 @@ module.exports = (context, newRequirement) => {
       (obj) => propEq('rule', first),
       (obj) => propEq(primaryRuleKey, newRequirement[newRequirementKey][0][primaryRuleKey])
     )
+    // @ts-ignore - filterFunction not playing well with filter.
     existingRule = filter(filterFunction, existingRequirementRules)
     existingRuleIndex = findIndex(
       propEq(primaryRuleKey, newRequirement[newRequirementKey][0][primaryRuleKey]),

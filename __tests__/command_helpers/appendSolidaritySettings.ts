@@ -45,11 +45,12 @@ describe('appendSolidaritySettings', () => {
 
   it('will append the given requirement to and existing requirement', () => {
     context.parameters = {
-      first: 'cli'
+      first: 'cli',
+      second: 'ruby'
     }
 
     const newRequirement = {
-      twoTest: [{ rule: 'cli' }]
+      twoTest: [{ rule: 'cli', binary: 'ruby' }]
     }
 
     let newSettings = appendSolidaritySettings(context, newRequirement)
