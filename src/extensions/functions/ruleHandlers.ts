@@ -19,7 +19,7 @@ const buildCliRequirement = async (context, requirementName) => {
   })
 
   if (userAnswer.enforceVersion) {
-    return await getVersion(requirement[requirementName][0], context)
+    return getVersion(requirement[requirementName][0], context)
       .then((sysVersion) => {
         print.info(`Your system currently has version ${sysVersion}`)
         print.info(`Semver requirement for '${binary}' binary : ^${sysVersion}`)
