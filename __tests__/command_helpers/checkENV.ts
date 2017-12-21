@@ -14,13 +14,14 @@ test('checkENV detects set ENV', async () => {
       i++
     }
     // Use checkENV to make sure it exists
-    expect(await checkENV({variable: someRealEnvVar})).toBeTruthy()
-  } else {}
+    expect(await checkENV({ variable: someRealEnvVar })).toBeTruthy()
+  } else {
+  }
 })
 
 test('checkENV can fail', async () => {
   // Use checkENV to make sure it exists
-  expect(await checkENV({variable: 'THIS_SHOULD_NOT_EXIST_VERIFIER'})).toBeFalsy()
+  expect(await checkENV({ variable: 'THIS_SHOULD_NOT_EXIST_VERIFIER' })).toBeFalsy()
 })
 
 test('checkENV fails if no variable is set', async () => {

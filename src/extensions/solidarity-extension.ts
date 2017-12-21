@@ -16,11 +16,15 @@ module.exports = (context: SolidarityRunContext): void => {
 
     context._pluginsList.push({
       templateDirectory,
-      ...pluginConfig
+      ...pluginConfig,
     })
   }
 
   // Flavored separator
   context.printSeparator = (): void =>
-    context.print.info(context.print.colors.america('-----------------------------------------------------------------------------------'))
+    context.print.info(
+      context.print.colors.america(
+        '-----------------------------------------------------------------------------------'
+      )
+    )
 }

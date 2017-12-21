@@ -10,9 +10,15 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
   } else {
     // We try the following in this order
     // -v, --version, -version
-    try { versionOutput = await system.run(`${rule.binary} -v`) } catch (_e) {
-      try { versionOutput = await system.run(`${rule.binary} --version`) } catch (_e) {
-        try { versionOutput = await system.run(`${rule.binary} -version`) } catch (_e) {
+    try {
+      versionOutput = await system.run(`${rule.binary} -v`)
+    } catch (_e) {
+      try {
+        versionOutput = await system.run(`${rule.binary} --version`)
+      } catch (_e) {
+        try {
+          versionOutput = await system.run(`${rule.binary} -version`)
+        } catch (_e) {
           throw ' No version identifier flag for this binary was found'
         }
       }

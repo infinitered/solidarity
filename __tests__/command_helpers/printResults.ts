@@ -8,28 +8,16 @@ describe('reviewRule', () => {
     // fresh mock context
     mockContext = require('mockContext')
     reportResults = {
-      basicInfo: [
-        ['System Basics', 'Value'],
-        ['OS', 'tacoOS'],
-        ['CPU', 'hamsters in a wheel']
-      ],
-      cliRules: [
-        ['Binary', 'Location', 'Version', 'Desired']
-      ],
-      envRules: [
-        ['Environment Var', 'Value']
-      ],
-      filesystemRules: [
-        ['Location', 'Type', 'Exists']
-      ],
-      shellRules: [
-        ['Command', 'Pattern', 'Matches']
-      ]
+      basicInfo: [['System Basics', 'Value'], ['OS', 'tacoOS'], ['CPU', 'hamsters in a wheel']],
+      cliRules: [['Binary', 'Location', 'Version', 'Desired']],
+      envRules: [['Environment Var', 'Value']],
+      filesystemRules: [['Location', 'Type', 'Exists']],
+      shellRules: [['Command', 'Pattern', 'Matches']],
     }
   })
 
-  test('printResults uses table' async () => {
-    const result = await printResults(reportResults, mockContext)
+  test('printResults uses table', async () => {
+    printResults(reportResults, mockContext)
     // print table was called
     expect(mockContext.print.table).toHaveBeenCalled()
   })

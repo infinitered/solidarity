@@ -49,13 +49,15 @@ describe('without a .solidarity file', () => {
 
   it('should prompt the user', async () => {
     await snapshotCommand.run(context)
-    expect(context.prompt.ask.mock.calls).toEqual(
-      [[{
-        message: "No `.solidarity` file found for this project.  Would you like to create one?",
-        name: "createFile",
-        type: "confirm"
-      }]]
-    )
+    expect(context.prompt.ask.mock.calls).toEqual([
+      [
+        {
+          message: 'No `.solidarity` file found for this project.  Would you like to create one?',
+          name: 'createFile',
+          type: 'confirm',
+        },
+      ],
+    ])
   })
 })
 

@@ -31,7 +31,9 @@ namespace Solidarity {
     }
 
     // Set output mode, set to default on invalid value
-    let outputModeString = settings.config ? String(settings.config.output).toUpperCase() : 'MODERATE'
+    let outputModeString = settings.config
+      ? String(settings.config.output).toUpperCase()
+      : 'MODERATE'
     return SolidarityOutputMode[outputModeString] || SolidarityOutputMode.MODERATE
   }
 
@@ -89,5 +91,5 @@ namespace Solidarity {
 // Export command
 module.exports = {
   description: 'Check environment against solidarity rules',
-  run: Solidarity.run
+  run: Solidarity.run,
 } as GluegunCommand

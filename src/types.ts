@@ -97,12 +97,12 @@ export type SolidarityRule = CLIRule | ENVRule | FSRule | ShellRule
 export enum SolidarityOutputMode {
   MODERATE,
   VERBOSE,
-  SILENT
+  SILENT,
 }
 
 export const enum FriendlyMessages {
   NONE = 'NONE',
-  NOTHING = 'Nothing to do ¯\\_(ツ)_/¯'
+  NOTHING = 'Nothing to do ¯\\_(ツ)_/¯',
 }
 
 export type SolidarityRequirement = SolidarityRule[]

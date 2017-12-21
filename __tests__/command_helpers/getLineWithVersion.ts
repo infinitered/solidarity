@@ -8,7 +8,7 @@ describe('getLineWithVersion', () => {
       semver: '>=7.6.0',
       error: 'Upgrade to latest node >= 7.6 please.',
       number: 'this',
-      line: 2
+      line: 2,
     }
 
     const versionOutput = `Node js \n 7.6.0`
@@ -24,7 +24,7 @@ describe('getLineWithVersion', () => {
       semver: '>=7.6.0',
       error: 'Upgrade to latest node >= 7.6 please.',
       number: 'this',
-      line: 'version:'
+      line: 'version:',
     }
 
     const versionOutput = `Node js \n version: 7.6.0`
@@ -39,7 +39,7 @@ describe('getLineWithVersion', () => {
       binary: 'node',
       semver: '>=7.6.0',
       error: 'Upgrade to latest node >= 7.6 please.',
-      number: 'this'
+      number: 'this',
     }
 
     const versionOutput = `Node js \n 7.6.0`

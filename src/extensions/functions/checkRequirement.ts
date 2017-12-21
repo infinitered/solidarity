@@ -1,4 +1,10 @@
-import { SolidarityRequirementChunk, SolidarityRequirement, SolidarityRunContext, SolidarityOutputMode, SolidarityRule } from '../../types'
+import {
+  SolidarityRequirementChunk,
+  SolidarityRequirement,
+  SolidarityRunContext,
+  SolidarityOutputMode,
+  SolidarityRule,
+} from '../../types'
 const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
 const checkDir = require('./checkDir')
@@ -6,7 +12,10 @@ const checkFile = require('./checkFile')
 const checkShell = require('./checkShell')
 const skipRule = require('./skipRule')
 
-module.exports = async (requirement: SolidarityRequirementChunk, context: SolidarityRunContext): Promise<void | object[]> => {
+module.exports = async (
+  requirement: SolidarityRequirementChunk,
+  context: SolidarityRunContext
+): Promise<void | object[]> => {
   const { head, tail, pipe, flatten, map } = require('ramda')
 
   const { print } = context
@@ -15,7 +24,10 @@ module.exports = async (requirement: SolidarityRequirementChunk, context: Solida
 
   let ruleString = ''
   // Hide spinner if silent outputmode is set
-  const spinner = context.outputMode !== SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
+  const spinner =
+    context.outputMode !== SolidarityOutputMode.SILENT
+      ? print.spin(`Verifying ${requirementName}`)
+      : null
   const assertNever = (value: never): never => {
     throw Error(`Unexpected value '${value}'`)
   }

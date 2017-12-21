@@ -3,45 +3,45 @@ import { SolidarityOutputMode } from '../../src/types'
 
 const noConfigSolidarity = {
   checkRequirement: jest.fn(),
-  getSolidaritySettings: jest.fn(() => ({}))
+  getSolidaritySettings: jest.fn(() => ({})),
 }
 
 const verboseConfigSolidarity = {
   ...noConfigSolidarity,
   getSolidaritySettings: jest.fn(() => ({
     config: {
-      output: 'verbose'
-    }
-  }))
+      output: 'verbose',
+    },
+  })),
 }
 
 const configNoOutput = {
   ...noConfigSolidarity,
   getSolidaritySettings: jest.fn(() => ({
-    config: {}
-  }))
+    config: {},
+  })),
 }
 
 const mockContext = {
   outputMode: null,
   print: {
     error: jest.fn(),
-    success: jest.fn()
+    success: jest.fn(),
   },
   parameters: {
-    options: {}
+    options: {},
   },
-  solidarity: noConfigSolidarity
+  solidarity: noConfigSolidarity,
 }
 
 const verboseMockContext = {
   ...mockContext,
-  solidarity: verboseConfigSolidarity
+  solidarity: verboseConfigSolidarity,
 }
 
 const noConfigMockContext = {
   ...mockContext,
-  solidarity: configNoOutput
+  solidarity: configNoOutput,
 }
 
 test('Snapshot check default command', () => {

@@ -8,7 +8,7 @@ module.exports = (results: SolidarityReportResults, context: SolidarityRunContex
     info('\n')
   }
   const printIfData = (reportItem: Array<Array<string>>, header: string) =>
-    (reportItem.length > 1) && printSpacedTable(reportItem, header)
+    reportItem.length > 1 && printSpacedTable(reportItem, header)
 
   info('# ⚠️ Environment Report:')
   printSeparator()

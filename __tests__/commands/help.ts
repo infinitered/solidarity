@@ -6,9 +6,9 @@ const context = {
     printCommands: jest.fn(),
     success: jest.fn(),
     colors: {
-      magenta: jest.fn()
-    }
-  }
+      magenta: jest.fn(),
+    },
+  },
 }
 
 test('Snapshot check help command', () => {

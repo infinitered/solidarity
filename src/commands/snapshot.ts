@@ -9,10 +9,7 @@ namespace Snapshot {
     if (typeof runPlugin.snapshot === 'string') {
       // Just a file copy
       const { filesystem, system } = context
-      filesystem.copy(
-        `${runPlugin.templateDirectory}${runPlugin.snapshot}`,
-        '.solidarity'
-      )
+      filesystem.copy(`${runPlugin.templateDirectory}${runPlugin.snapshot}`, '.solidarity')
       // force local version update
       await system.run('solidarity snapshot')
     } else {
@@ -28,7 +25,7 @@ namespace Snapshot {
     print.info('Available technology plugins:\n')
     if (context._pluginsList.length > 0) {
       const pluginOptions: string[] = [FriendlyMessages.NONE]
-      context._pluginsList.map((plugin) => {
+      context._pluginsList.map(plugin => {
         print.info(`   ${plugin.name}:\t ${plugin.description}`)
         pluginOptions.unshift(plugin.name)
       })
@@ -37,7 +34,7 @@ namespace Snapshot {
         name: 'selectedPlugin',
         message: 'Which of the above technology snapshots will you use for this project?',
         type: 'list',
-        choices: pluginOptions
+        choices: pluginOptions,
       })
 
       if (answer.selectedPlugin === FriendlyMessages.NONE) {
@@ -53,7 +50,9 @@ namespace Snapshot {
     } else {
       print.error(`No solidarity plugins found!
       Add a plugin for a given technology:
-      ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/pluginsList.md')}
+      ${print.colors.blue(
+        'https://github.com/infinitered/solidarity/blob/master/docs/pluginsList.md'
+      )}
       OR write your own plugin for generating rules:
       ${print.colors.blue('https://github.com/infinitered/solidarity/blob/master/docs/plugins.md')}
       OR simply create a .solidarity rule-set by hand for this project:
@@ -63,7 +62,7 @@ namespace Snapshot {
     }
   }
 
-  export const run = async function (context: SolidarityRunContext) {
+  export const run = async (context: SolidarityRunContext) => {
     const { print, prompt, filesystem, solidarity, parameters } = context
     const { first } = parameters
     const {
@@ -95,7 +94,7 @@ namespace Snapshot {
       const userAnswer = await prompt.ask({
         name: 'createFile',
         type: 'confirm',
-        message: 'No `.solidarity` file found for this project.  Would you like to create one?'
+        message: 'No `.solidarity` file found for this project.  Would you like to create one?',
       })
 
       if (userAnswer.createFile) {
@@ -110,5 +109,5 @@ namespace Snapshot {
 module.exports = {
   description: 'Take a snapshot of the versions and store in solidarity file',
   alias: 's',
-  run: Snapshot.run
+  run: Snapshot.run,
 } as GluegunCommand

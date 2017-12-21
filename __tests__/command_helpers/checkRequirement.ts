@@ -24,7 +24,7 @@ const checkFile = require('../../src/extensions/functions/checkFile')
 const context = require('gluegun')
 
 const badRule = toPairs({
-  YARN: [{ rule: 'knope', binary: 'yarn' }]
+  YARN: [{ rule: 'knope', binary: 'yarn' }],
 })[0]
 
 let fail
@@ -39,28 +39,28 @@ describe('checkRequirement', () => {
     const spinner = {
       fail,
       stop,
-      succeed
+      succeed,
     }
 
     solidarityExtension(context)
     context.print = {
       spin: jest.fn(() => spinner),
-      error: jest.fn()
+      error: jest.fn(),
     }
     context.strings = strings
     context.system = {
-      spawn: jest.fn().mockReturnValue(Promise.resolve({
-        stdout: 'you did it!',
-        status: 0,
-      }))
+      spawn: jest.fn().mockReturnValue(
+        Promise.resolve({
+          stdout: 'you did it!',
+          status: 0,
+        })
+      ),
     }
   })
 
   test('there is a spinner message', async () => {
     const result = await checkRequirement(badRule, context)
-    expect(context.print.spin.mock.calls).toEqual([
-      ['Verifying YARN']
-    ])
+    expect(context.print.spin.mock.calls).toEqual([['Verifying YARN']])
   })
 
   test('when an invalid rule is given', async () => {
@@ -75,7 +75,7 @@ describe('checkRequirement', () => {
       checkCLI.mockImplementation(async () => 'Everything is broken')
 
       const rule = toPairs({
-        YARN: [{ rule: 'cli', binary: 'yarn' }]
+        YARN: [{ rule: 'cli', binary: 'yarn' }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual(['Everything is broken'])
@@ -85,7 +85,7 @@ describe('checkRequirement', () => {
       checkCLI.mockImplementation(async () => false)
 
       const rule = toPairs({
-        YARN: [{ rule: 'cli', binary: 'yarn' }]
+        YARN: [{ rule: 'cli', binary: 'yarn' }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([[]])
@@ -99,7 +99,7 @@ describe('checkRequirement', () => {
       checkDir.mockImplementation(() => 'It worked!')
 
       const rule = toPairs({
-        YARN: [{ rule: 'dir', location: 'yarn' }]
+        YARN: [{ rule: 'dir', location: 'yarn' }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([[]])
@@ -109,7 +109,7 @@ describe('checkRequirement', () => {
       checkDir.mockImplementation(() => 'It worked!')
 
       const rule = toPairs({
-        YARN: [{ rule: 'directory', location: 'yarn' }]
+        YARN: [{ rule: 'directory', location: 'yarn' }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([[]])
@@ -119,7 +119,7 @@ describe('checkRequirement', () => {
       checkDir.mockImplementation(() => false)
 
       const rule = toPairs({
-        YARN: [{ rule: 'dir', location: 'yarn' }]
+        YARN: [{ rule: 'dir', location: 'yarn' }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual(["'yarn' directory not found"])
@@ -133,7 +133,7 @@ describe('checkRequirement', () => {
       checkENV.mockImplementation(async () => 'It worked!')
 
       const rule = toPairs({
-        YARN: [{ rule: 'env', variable: 'yarn' }]
+        YARN: [{ rule: 'env', variable: 'yarn' }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([[]])
@@ -143,7 +143,7 @@ describe('checkRequirement', () => {
       checkENV.mockImplementation(async () => undefined)
 
       const rule = toPairs({
-        YARN: [{ rule: 'env', variable: 'yarn' }]
+        YARN: [{ rule: 'env', variable: 'yarn' }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual(["'$yarn' environment variable not found"])
@@ -157,7 +157,7 @@ describe('checkRequirement', () => {
       checkFile.mockImplementation(() => 'It worked!')
 
       const rule = toPairs({
-        YARN: [{ rule: 'file', location: 'yarn' }]
+        YARN: [{ rule: 'file', location: 'yarn' }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([[]])
@@ -167,7 +167,7 @@ describe('checkRequirement', () => {
       checkFile.mockImplementation(() => undefined)
 
       const rule = toPairs({
-        YARN: [{ rule: 'file', location: 'yarn' }]
+        YARN: [{ rule: 'file', location: 'yarn' }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual(["'yarn' file not found"])
@@ -181,7 +181,7 @@ describe('checkRequirement', () => {
       checkCLI.mockClear()
       checkCLI.mockImplementation(() => true)
       const rule = toPairs({
-        YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }]
+        YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }],
       })[0]
 
       const result = await checkRequirement(rule, context)
@@ -190,7 +190,7 @@ describe('checkRequirement', () => {
 
     test('failed ENV rule with custom message', async () => {
       const rule = toPairs({
-        YARN: [{ rule: 'env', variable: 'gazorpazorp', error: customError }]
+        YARN: [{ rule: 'env', variable: 'gazorpazorp', error: customError }],
       })[0]
 
       const result = await checkRequirement(rule, context)
@@ -199,7 +199,7 @@ describe('checkRequirement', () => {
 
     test('failed DIR rule with custom message', async () => {
       const rule = toPairs({
-        YARN: [{ rule: 'dir', location: 'gazorpazorp', error: customError }]
+        YARN: [{ rule: 'dir', location: 'gazorpazorp', error: customError }],
       })[0]
 
       const result = await checkRequirement(rule, context)
@@ -208,7 +208,7 @@ describe('checkRequirement', () => {
 
     test('failed FILE rule with custom message', async () => {
       const rule = toPairs({
-        YARN: [{ rule: 'file', location: 'gazorpazorp', error: customError }]
+        YARN: [{ rule: 'file', location: 'gazorpazorp', error: customError }],
       })[0]
 
       const result = await checkRequirement(rule, context)
@@ -217,11 +217,10 @@ describe('checkRequirement', () => {
 
     test('failed SHELL rule with custom message', async () => {
       const rule = toPairs({
-        YARN: [{ rule: 'shell', match: 'hello', command: 'mocked', error: customError }]
+        YARN: [{ rule: 'shell', match: 'hello', command: 'mocked', error: customError }],
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([customError])
     })
-
   })
 })
