@@ -126,12 +126,6 @@ describe('with a .solidarity file', () => {
       expect(requirements().Testorson).toBeTruthy()
     })
 
-    describe('given a rule that already exists', () => {
-      it('should not prompt the user to choose a requirement to update')
-
-      it('should update the existing rule')
-    })
-
     describe('given an cli rule', () => {
       beforeEach(() => {
         context.parameters = {
