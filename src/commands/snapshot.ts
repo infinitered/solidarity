@@ -60,7 +60,7 @@ namespace Snapshot {
     }
   }
 
-  export const run = async function(context: SolidarityRunContext) {
+  export const run = async (context: SolidarityRunContext) => {
     const { print, prompt, filesystem, solidarity } = context
 
     // check is there an existing .solidarity file?

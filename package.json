@@ -10,8 +10,8 @@
     "start": "node bin/solidarity",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
-    "build": "tsc",
-    "format": "prettier --write \"**/*.ts\" -l \"warn\" && standard --fix",
+    "build": "yarn format && tsc",
+    "format": "prettier --write \"**/*.ts\" -l \"warn\" && tslint -p . --fix",
     "shipit": "tsc && np",
     "test": "jest && tslint -p .",
     "test:ci": "jest --ci && tslint -p .",
@@ -21,7 +21,8 @@
     "coverage": "jest --no-cache --ci --coverage",
     "snapupdate": "jest -u",
     "welcome": "yarn tsc && npm link",
-    "serve:docs": "docsify serve docs"
+    "serve:docs": "docsify serve docs",
+    "tryupdate": "updtr"
   },
   "author": "Gant Laborde",
   "license": "MIT",
