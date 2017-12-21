@@ -64,12 +64,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "docs/"
-    ]
-  },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
