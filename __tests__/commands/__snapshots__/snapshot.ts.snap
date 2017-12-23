@@ -64,7 +64,7 @@ exports[`with a .solidarity file given a new rule to add given a shell rule shou
 Array [
   Array [
     Object {
-      "message": "What's the name of the shell you'd like to add a rule for?",
+      "message": "What's the command for the shell rule you'd like to add?",
       "name": "whatRule",
       "type": "input",
     },
@@ -196,7 +196,7 @@ exports[`with a .solidarity file given a new rule to add should work if given an
 Array [
   Array [
     Object {
-      "message": "What's the name of the cli you'd like to add a rule for?",
+      "message": "What's the binary for the cli rule you'd like to add?",
       "name": "whatRule",
       "type": "input",
     },
