@@ -81,8 +81,8 @@ namespace Snapshot {
             const updatedSolidaritySettings = appendSolidaritySettings(context, newRequirement)
 
             setSolidaritySettings(updatedSolidaritySettings, context)
-          })
-          .catch(() => {
+          }).catch((error) => {
+            if (error) print.error(error)
             print.error('Your new requirement was not added.')
           })
       } else {

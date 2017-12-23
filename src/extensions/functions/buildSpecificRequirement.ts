@@ -2,17 +2,28 @@ import { SolidarityRunContext, SolidaritySettings } from '../../types'
 import { keys } from 'ramda'
 
 namespace buildSpecificRequirement {
-  const resolveParameters = async ({ parameters, prompt, ruleHandlers }) => {
-    const { first, second } = parameters
-    if (second) { return Promise.resolve(second) }
-
-    const response = await prompt.ask({
-      name: 'whatRule',
+  const requiredInputQuestion = async ({ name, message, prompt }) => {
+    const result = await prompt.ask({
+      name,
       type: 'input',
-      message: `What's the ${first} ${ruleHandlers[first].key} you'd like to add a rule for?`
+      message
     })
 
-    return response.whatRule
+    if (!result[name]) return Promise.reject('An input is required')
+    return result
+  }
+
+  const resolveParameters = async ({ parameters, prompt, ruleHandlers }) => {
+    const { first, second } = parameters
+    if (second) { return Promise.resolve({ whatRule: second }) }
+
+    const message = `What's the ${first} ${ruleHandlers[first].key} you'd like to add a rule for?`
+
+    return requiredInputQuestion({
+      name: 'whatRule',
+      message,
+      prompt
+    })
   }
 
   const getRequirementNames = (solidaritySettings: SolidaritySettings): Array<string> => keys(solidaritySettings.requirements)
@@ -72,13 +83,15 @@ namespace buildSpecificRequirement {
     const { parameters, prompt, solidarity } = context
     const { first } = parameters
     const { ruleHandlers } = solidarity
-    const second = await resolveParameters({ parameters, prompt, ruleHandlers })
+    const resolvedParam = await resolveParameters({ parameters, prompt, ruleHandlers }).catch(() => {
+      return Promise.reject('Missing required parameters.')
+    })
 
     return constructRequirment({
       ...context,
       parameters: {
         ...parameters,
-        first, second
+        first, second: resolvedParam.whatRule
       }
     })
   }

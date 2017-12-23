@@ -192,7 +192,7 @@ Array [
 ]
 `;
 
-exports[`with a .solidarity file given a new rule to add should work if given an incomplete rule  1`] = `
+exports[`with a .solidarity file given a new rule to add given an incomplete rule should work if given an incomplete rule  1`] = `
 Array [
   Array [
     Object {
@@ -227,6 +227,18 @@ Array [
       "message": "Would you like to enforce a version requirement?",
       "name": "enforceVersion",
       "type": "confirm",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given an incomplete rule will error message if prompt to complete rule is empty 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "What's the cli binary you'd like to add a rule for?",
+      "name": "whatRule",
+      "type": "input",
     },
   ],
 ]

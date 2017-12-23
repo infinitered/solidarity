@@ -91,41 +91,78 @@ describe('with a .solidarity file', () => {
       process.chdir(origCwd)
     })
 
-    it('should work if given an incomplete rule ', async () => {
-      expect(requirements()).toEqual({})
+    describe('given an incomplete rule', () => {
+      it('should work if given an incomplete rule ', async () => {
+        expect(requirements()).toEqual({})
 
-      const mockedPrompt = jest.fn()
-        .mockImplementationOnce(() => Promise.resolve({ whatRule: 'ruby' }))
-        .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
-        .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-        .mockImplementationOnce(() => Promise.resolve({
-          newRequirement: 'Testorson'
-        }))
-        .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
+        const mockedPrompt = jest.fn()
+          .mockImplementationOnce(() => Promise.resolve({ whatRule: 'ruby' }))
+          .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+          .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+          .mockImplementationOnce(() => Promise.resolve({
+            newRequirement: 'Testorson'
+          }))
+          .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
 
-      context.prompt = {
-        ask: mockedPrompt
-      }
+        context.prompt = {
+          ask: mockedPrompt
+        }
 
-      context.print = {
-        error: jest.fn(),
-        info: jest.fn()
-      }
+        context.print = {
+          error: jest.fn(),
+          info: jest.fn()
+        }
 
-      context.parameters = {
-        plugin: 'solidarity',
-        command: 'snapshot',
-        first: 'cli',
-        raw: 'cli',
-        string: 'cli',
-        array: [ 'cli'],
-        options: {},
-        argv: [ 'snapshot', 'cli']
-      }
+        context.parameters = {
+          plugin: 'solidarity',
+          command: 'snapshot',
+          first: 'cli',
+          raw: 'cli',
+          string: 'cli',
+          array: [ 'cli'],
+          options: {},
+          argv: [ 'snapshot', 'cli']
+        }
 
-      const result = await snapshotCommand.run(context)
-      expect(context.prompt.ask.mock.calls).toMatchSnapshot()
-      expect(requirements().Testorson).toBeTruthy()
+        await snapshotCommand.run(context)
+        expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+        expect(requirements().Testorson).toBeTruthy()
+      })
+
+      it('will error message if prompt to complete rule is empty', async () => {
+        expect(requirements()).toEqual({})
+
+        const mockedPrompt = jest.fn()
+          .mockImplementationOnce(() => Promise.resolve({ whatRule: undefined }))
+
+        context.prompt = {
+          ask: mockedPrompt
+        }
+
+        context.print = {
+          error: jest.fn(),
+          info: jest.fn()
+        }
+
+        context.parameters = {
+          plugin: 'solidarity',
+          command: 'snapshot',
+          first: 'cli',
+          raw: 'cli',
+          string: 'cli',
+          array: [ 'cli'],
+          options: {},
+          argv: [ 'snapshot', 'cli']
+        }
+
+        await snapshotCommand.run(context)
+        expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+        expect(requirements().Testorson).toBeFalsy()
+        expect(context.print.error.mock.calls).toEqual([
+          ['Missing required parameters.'],
+          ['Your new requirement was not added.']
+        ])
+      })
     })
 
     describe('given an cli rule', () => {
