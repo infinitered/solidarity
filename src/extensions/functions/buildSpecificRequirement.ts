@@ -2,14 +2,14 @@ import { SolidarityRunContext, SolidaritySettings } from '../../types'
 import { keys } from 'ramda'
 
 namespace buildSpecificRequirement {
-  const resolveParameters = async ({ parameters, prompt }) => {
+  const resolveParameters = async ({ parameters, prompt, ruleHandlers }) => {
     const { first, second } = parameters
     if (second) { return Promise.resolve(second) }
 
     const response = await prompt.ask({
       name: 'whatRule',
       type: 'input',
-      message: `What's the name of the ${first} you'd like to add a rule for?`
+      message: `What's the ${ruleHandlers[first].key} for the ${first} rule you'd like to add?`
     })
 
     return response.whatRule
@@ -69,9 +69,10 @@ namespace buildSpecificRequirement {
   }
 
   export const run = async (context: SolidarityRunContext) => {
-    const { parameters, prompt } = context
+    const { parameters, prompt, solidarity } = context
     const { first } = parameters
-    const second = await resolveParameters({ parameters, prompt })
+    const { ruleHandlers } = solidarity
+    const second = await resolveParameters({ parameters, prompt, ruleHandlers })
 
     return constructRequirment({
       ...context,
