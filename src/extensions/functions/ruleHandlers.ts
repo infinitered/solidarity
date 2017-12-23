@@ -80,7 +80,7 @@ const buildShellRequirement = async (context, requirementName) => {
       [requirementName]: [{
         rule,
         command: shellCommand,
-        match: response.shallMatch
+        match: response.shellMatch
       }]
     }
   }
