@@ -70,7 +70,7 @@ describe('with a .solidarity file', () => {
 
   describe('given a new rule to add', () => {
 
-    const origCwd = process.cwd();
+    const origCwd = process.cwd()
     const settings = {
       requirements: {
 
@@ -337,6 +337,7 @@ describe('with a .solidarity file', () => {
         expect(context.prompt.ask.mock.calls).toMatchSnapshot()
         expect(requirements()['Git Email']).toBeTruthy()
         expect(requirements()['Git Email'].length).toEqual(1)
+        expect(requirements()['Git Email'][0].match).toEqual('.+@.+')
       })
     })
   })
