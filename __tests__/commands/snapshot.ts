@@ -91,6 +91,97 @@ describe('with a .solidarity file', () => {
       process.chdir(origCwd)
     })
 
+    describe('choosing a requirement to add to', () => {
+      beforeEach(() => {
+        solidarityExtension(context)
+
+        // setup .solidarity file in temp directory
+        const tempDir = tempy.directory()
+        process.chdir(tempDir)
+        setSolidaritySettings({
+          ...settings,
+          requirements: {
+            ['existingRequirement']: [
+              { type: 'cli', binary: 'ruby' }
+            ]
+          }
+        }, context)
+      })
+
+      it('lets you choose from an existing list of requirements', async () => {
+
+        const mockedPrompt = jest.fn()
+          .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+          .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: false }))
+          .mockImplementationOnce(() => Promise.resolve({
+            selectedRequirement: 'existingRequirement'
+          }))
+          .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
+
+        context.prompt = {
+          ask: mockedPrompt
+        }
+
+        context.print = {
+          error: jest.fn(),
+          info: jest.fn()
+        }
+
+        context.parameters = {
+          plugin: 'solidarity',
+          command: 'snapshot',
+          first: 'cli',
+          second: 'ruby',
+          raw: 'cli',
+          string: 'cli',
+          array: [ 'cli'],
+          options: {},
+          argv: [ 'snapshot', 'cli']
+        }
+
+        await snapshotCommand.run(context)
+        expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+      })
+    })
+
+    test('required newRequirement input if makeNewRequirement: true', async () => {
+      expect(requirements()).toEqual({})
+
+      const mockedPrompt = jest.fn()
+        .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
+        .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
+        .mockImplementationOnce(() => Promise.resolve({
+          newRequirement: undefined
+        }))
+        .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
+
+      context.prompt = {
+        ask: mockedPrompt
+      }
+
+      context.print = {
+        error: jest.fn(),
+        info: jest.fn()
+      }
+
+      context.parameters = {
+        plugin: 'solidarity',
+        command: 'snapshot',
+        first: 'cli',
+        second: 'ruby',
+        raw: 'cli',
+        string: 'cli',
+        array: [ 'cli'],
+        options: {},
+        argv: [ 'snapshot', 'cli']
+      }
+
+      await snapshotCommand.run(context)
+      expect(context.prompt.ask.mock.calls).toMatchSnapshot()
+      expect(context.print.error.mock.calls.length).toEqual(2)
+      expect(context.print.error.mock.calls).toMatchSnapshot()
+    })
+
     describe('given an incomplete rule', () => {
       it('should work if given an incomplete rule ', async () => {
         expect(requirements()).toEqual({})
@@ -158,10 +249,7 @@ describe('with a .solidarity file', () => {
         await snapshotCommand.run(context)
         expect(context.prompt.ask.mock.calls).toMatchSnapshot()
         expect(requirements().Testorson).toBeFalsy()
-        expect(context.print.error.mock.calls).toEqual([
-          ['Missing required parameters.'],
-          ['Your new requirement was not added.']
-        ])
+        expect(context.print.error.mock.calls).toMatchSnapshot()
       })
     })
 

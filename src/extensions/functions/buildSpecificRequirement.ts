@@ -39,10 +39,12 @@ namespace buildSpecificRequirement {
     let requirementName
 
     if (shouldMakeNewRequirement.makeNewRequirement) {
-      const answer = await prompt.ask({
+      const answer = await requiredInputQuestion({
         name: 'newRequirement',
-        type: 'input',
-        message: 'What would you like to call this new requirement?'
+        message: 'What would you like to call this new requirement?',
+        prompt
+      }).catch((error) => {
+        return Promise.reject(error)
       })
       requirementName = answer.newRequirement
     } else {
