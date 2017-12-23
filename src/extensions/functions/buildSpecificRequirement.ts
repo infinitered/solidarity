@@ -9,7 +9,7 @@ namespace buildSpecificRequirement {
     const response = await prompt.ask({
       name: 'whatRule',
       type: 'input',
-      message: `What's the ${ruleHandlers[first].key} for the ${first} rule you'd like to add?`
+      message: `What's the ${first} ${ruleHandlers[first].key} you'd like to add a rule for?`
     })
 
     return response.whatRule
