@@ -1,8 +1,10 @@
+
 import { GluegunCommand, GluegunRunContext } from 'gluegun'
+import { filter, propEq, head } from 'ramda'
+
 import { FriendlyMessages, SolidarityRunContext } from '../types'
 
 namespace Snapshot {
-  const { propEq, filter, head } = require('ramda')
   const runPluginSnapshot = async (runPlugin, context: GluegunRunContext): Promise<void> => {
     if (typeof runPlugin.snapshot === 'string') {
       // Just a file copy
@@ -61,13 +63,32 @@ namespace Snapshot {
   }
 
   export const run = async (context: SolidarityRunContext) => {
-    const { print, prompt, filesystem, solidarity } = context
+    const { print, prompt, filesystem, solidarity, parameters } = context
+    const { first } = parameters
+    const {
+      setSolidaritySettings,
+      appendSolidaritySettings,
+      buildSpecificRequirement
+    } = solidarity
 
     // check is there an existing .solidarity file?
     if (filesystem.exists('.solidarity')) {
       // load existing file and update rule versions
-      print.info('Now loading latest environment')
-      solidarity.updateVersions(context)
+
+      if (first) {
+        await buildSpecificRequirement(context)
+          .then((newRequirement) => {
+            const updatedSolidaritySettings = appendSolidaritySettings(context, newRequirement)
+
+            setSolidaritySettings(updatedSolidaritySettings, context)
+          }).catch((error) => {
+            if (error) print.error(error)
+            print.error('Your new requirement was not added.')
+          })
+      } else {
+        print.info('Now loading latest environment')
+        solidarity.updateVersions(context)
+      }
     } else {
       // Find out what they wanted
       const userAnswer = await prompt.ask({

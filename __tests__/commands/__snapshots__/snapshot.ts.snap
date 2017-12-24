@@ -7,3 +7,323 @@ Object {
   "run": [Function],
 }
 `;
+
+exports[`with a .solidarity file given a new rule to add choosing a requirement to add to lets you choose from an existing list of requirements 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "Would you like to add the cli 'ruby' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "choices": Array [
+        "existingRequirement",
+      ],
+      "message": "Which of the above technology snapshots will you use for this project?",
+      "name": "selectedRequirement",
+      "type": "list",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to enforce a version requirement?",
+      "name": "enforceVersion",
+      "type": "confirm",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given a dir rule adds the rule 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "Would you like to add the dir './config' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like to call this new requirement?",
+      "name": "newRequirement",
+      "type": "input",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given a file rule adds the rule 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "Would you like to add the file './nachos' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like to call this new requirement?",
+      "name": "newRequirement",
+      "type": "input",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given a shell rule should add the new shell rule 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "What's the shell command you'd like to add a rule for?",
+      "name": "whatRule",
+      "type": "input",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to add the shell 'git config user.email' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like to call this new requirement?",
+      "name": "newRequirement",
+      "type": "input",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like the shell command to match on?",
+      "name": "shellMatch",
+      "type": "input",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given an cli rule handles a binary enforceVersion: false 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "Would you like to add the cli 'yarn' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like to call this new requirement?",
+      "name": "newRequirement",
+      "type": "input",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to enforce a version requirement?",
+      "name": "enforceVersion",
+      "type": "confirm",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given an cli rule handles a binary with enforceVersion: true 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "Would you like to add the cli 'yarn' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like to call this new requirement?",
+      "name": "newRequirement",
+      "type": "input",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to enforce a version requirement?",
+      "name": "enforceVersion",
+      "type": "confirm",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given an env rule adds the rule 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "Would you like to add the env 'PATH' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like to call this new requirement?",
+      "name": "newRequirement",
+      "type": "input",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given an incomplete rule should work if given an incomplete rule  1`] = `
+Array [
+  Array [
+    Object {
+      "message": "What's the cli binary you'd like to add a rule for?",
+      "name": "whatRule",
+      "type": "input",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to add the cli 'ruby' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like to call this new requirement?",
+      "name": "newRequirement",
+      "type": "input",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to enforce a version requirement?",
+      "name": "enforceVersion",
+      "type": "confirm",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given an incomplete rule will error message if prompt to complete rule is empty 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "What's the cli binary you'd like to add a rule for?",
+      "name": "whatRule",
+      "type": "input",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add given an incomplete rule will error message if prompt to complete rule is empty 2`] = `
+Array [
+  Array [
+    "Missing required parameters.",
+  ],
+  Array [
+    "Your new requirement was not added.",
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add required newRequirement input if makeNewRequirement: true 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "Would you like to add the cli 'ruby' to your Solidarity file?",
+      "name": "addNewRule",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "Would you like to create a new requirement set?",
+      "name": "makeNewRequirement",
+      "type": "confirm",
+    },
+  ],
+  Array [
+    Object {
+      "message": "What would you like to call this new requirement?",
+      "name": "newRequirement",
+      "type": "input",
+    },
+  ],
+]
+`;
+
+exports[`with a .solidarity file given a new rule to add required newRequirement input if makeNewRequirement: true 2`] = `
+Array [
+  Array [
+    "An input is required",
+  ],
+  Array [
+    "Your new requirement was not added.",
+  ],
+]
+`;
