@@ -1,3 +1,3 @@
-import { message, danger } from 'danger'
+import { message } from 'danger'
 
-message(':tada:, this worked @' + danger.github.pr.user.login)
+message('I would just love it if this got posted')
