@@ -1,3 +1,5 @@
-import { message } from 'danger'
+import { schedule } from 'danger'
+import spellcheck from 'danger-plugin-spellcheck'
 
-message('I would just love it if this got posted')
+// let's spellcheck
+schedule(spellcheck())
