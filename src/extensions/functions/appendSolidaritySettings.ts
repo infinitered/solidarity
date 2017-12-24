@@ -1,25 +1,32 @@
 import { keys, propEq, filter, pipe, merge, findIndex, update } from 'ramda'
 
-const appendNewRequirement = (solidaritySettings, existingRequirementRules, newRequirement, newRequirementKey) => {
+const appendNewRequirement = (
+  solidaritySettings,
+  existingRequirementRules,
+  newRequirement,
+  newRequirementKey
+) => {
   return {
     ...solidaritySettings,
     requirements: {
       ...solidaritySettings.requirements,
-      [newRequirementKey]: [
-        ...existingRequirementRules,
-        ...newRequirement[newRequirementKey]
-      ]
-    }
+      [newRequirementKey]: [...existingRequirementRules, ...newRequirement[newRequirementKey]],
+    },
   }
 }
 
-const updateExistingRule = (solidaritySettings, updatedRequirementRules, newRequirement, newRequirementKey) => {
+const updateExistingRule = (
+  solidaritySettings,
+  updatedRequirementRules,
+  newRequirement,
+  newRequirementKey
+) => {
   return {
     ...solidaritySettings,
     requirements: {
       ...solidaritySettings.requirements,
-      [newRequirementKey]: updatedRequirementRules
-    }
+      [newRequirementKey]: updatedRequirementRules,
+    },
   }
 }
 
@@ -39,8 +46,8 @@ module.exports = (context, newRequirement) => {
   if (existingRequirementRules.length) {
     const primaryRuleKey = ruleHandlers[first].key
     const filterFunction = pipe(
-      (obj) => propEq('rule', first),
-      (obj) => propEq(primaryRuleKey, newRequirement[newRequirementKey][0][primaryRuleKey])
+      obj => propEq('rule', first),
+      obj => propEq(primaryRuleKey, newRequirement[newRequirementKey][0][primaryRuleKey])
     )
     // @ts-ignore - filterFunction not playing well with filter.
     existingRule = filter(filterFunction, existingRequirementRules)
@@ -54,8 +61,18 @@ module.exports = (context, newRequirement) => {
     const updatedRule = merge(existingRule[existingRuleIndex], newRequirement[newRequirementKey][0])
     const updatedRequirementRules = update(existingRuleIndex, updatedRule)(existingRequirementRules)
 
-    return updateExistingRule(solidaritySettings, updatedRequirementRules, newRequirement, newRequirementKey)
+    return updateExistingRule(
+      solidaritySettings,
+      updatedRequirementRules,
+      newRequirement,
+      newRequirementKey
+    )
   }
 
-  return appendNewRequirement(solidaritySettings, existingRequirementRules, newRequirement, newRequirementKey)
+  return appendNewRequirement(
+    solidaritySettings,
+    existingRequirementRules,
+    newRequirement,
+    newRequirementKey
+  )
 }

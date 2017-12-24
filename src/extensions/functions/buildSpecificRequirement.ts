@@ -6,7 +6,7 @@ namespace buildSpecificRequirement {
     const result = await prompt.ask({
       name,
       type: 'input',
-      message
+      message,
     })
 
     if (!result[name]) return Promise.reject('An input is required')
@@ -15,25 +15,30 @@ namespace buildSpecificRequirement {
 
   const resolveParameters = async ({ parameters, prompt, ruleHandlers }) => {
     const { first, second } = parameters
-    if (second) { return Promise.resolve({ whatRule: second }) }
+    if (second) {
+      return Promise.resolve({ whatRule: second })
+    }
 
     const message = `What's the ${first} ${ruleHandlers[first].key} you'd like to add a rule for?`
 
     return requiredInputQuestion({
       name: 'whatRule',
       message,
-      prompt
+      prompt,
     })
   }
 
-  const getRequirementNames = (solidaritySettings: SolidaritySettings): Array<string> => keys(solidaritySettings.requirements)
+  const getRequirementNames = (solidaritySettings: SolidaritySettings): Array<string> =>
+    keys(solidaritySettings.requirements)
 
-  const chooseRequirement = async (prompt, solidaritySettings: SolidaritySettings): Promise<String> => {
-
+  const chooseRequirement = async (
+    prompt,
+    solidaritySettings: SolidaritySettings
+  ): Promise<String> => {
     const shouldMakeNewRequirement = await prompt.ask({
       name: 'makeNewRequirement',
       type: 'confirm',
-      message: 'Would you like to create a new requirement set?'
+      message: 'Would you like to create a new requirement set?',
     })
 
     let requirementName
@@ -42,8 +47,8 @@ namespace buildSpecificRequirement {
       const answer = await requiredInputQuestion({
         name: 'newRequirement',
         message: 'What would you like to call this new requirement?',
-        prompt
-      }).catch((error) => {
+        prompt,
+      }).catch(error => {
         return Promise.reject(error)
       })
       requirementName = answer.newRequirement
@@ -53,7 +58,7 @@ namespace buildSpecificRequirement {
         name: 'selectedRequirement',
         message: 'Which of the above technology snapshots will you use for this project?',
         type: 'list',
-        choices: requirementOptions
+        choices: requirementOptions,
       })
       requirementName = answer.selectedRequirement
     }
@@ -61,7 +66,7 @@ namespace buildSpecificRequirement {
     return requirementName
   }
 
-  const constructRequirment = async (context) => {
+  const constructRequirment = async context => {
     const { parameters, prompt, solidarity } = context
     const { getSolidaritySettings, ruleHandlers } = solidarity
     const solidaritySettings = getSolidaritySettings(context)
@@ -69,7 +74,9 @@ namespace buildSpecificRequirement {
     const userAnswer = await prompt.ask({
       name: 'addNewRule',
       type: 'confirm',
-      message: `Would you like to add the ${parameters.first} '${parameters.second}' to your Solidarity file?`
+      message: `Would you like to add the ${parameters.first} '${
+        parameters.second
+      }' to your Solidarity file?`,
     })
 
     if (userAnswer.addNewRule) {
@@ -85,16 +92,19 @@ namespace buildSpecificRequirement {
     const { parameters, prompt, solidarity } = context
     const { first } = parameters
     const { ruleHandlers } = solidarity
-    const resolvedParam = await resolveParameters({ parameters, prompt, ruleHandlers }).catch(() => {
-      return Promise.reject('Missing required parameters.')
-    })
+    const resolvedParam = await resolveParameters({ parameters, prompt, ruleHandlers }).catch(
+      () => {
+        return Promise.reject('Missing required parameters.')
+      }
+    )
 
     return constructRequirment({
       ...context,
       parameters: {
         ...parameters,
-        first, second: resolvedParam.whatRule
-      }
+        first,
+        second: resolvedParam.whatRule,
+      },
     })
   }
 }
