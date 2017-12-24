@@ -1,4 +1,3 @@
-
 const buildCliRequirement = async (context, requirementName) => {
   const { parameters, solidarity, prompt, print } = context
   const { getVersion } = solidarity
@@ -6,21 +5,23 @@ const buildCliRequirement = async (context, requirementName) => {
   const rule = parameters.first
   const binary = parameters.second
   const requirement = {
-    [requirementName]: [{
-      rule,
-      binary
-    }]
+    [requirementName]: [
+      {
+        rule,
+        binary,
+      },
+    ],
   }
 
   const userAnswer = await prompt.ask({
     name: 'enforceVersion',
     type: 'confirm',
-    message: 'Would you like to enforce a version requirement?'
+    message: 'Would you like to enforce a version requirement?',
   })
 
   if (userAnswer.enforceVersion) {
     return getVersion(requirement[requirementName][0], context)
-      .then((sysVersion) => {
+      .then(sysVersion => {
         print.info(`Your system currently has version ${sysVersion}`)
         print.info(`Semver requirement for '${binary}' binary : ^${sysVersion}`)
         requirement[requirementName][0]['semver'] = sysVersion
@@ -28,7 +29,9 @@ const buildCliRequirement = async (context, requirementName) => {
         return requirement
       })
       .catch(() => {
-        print.error('Seems as though you do not have this binary installed. Please install this binary first')
+        print.error(
+          'Seems as though you do not have this binary installed. Please install this binary first'
+        )
       })
   }
 
@@ -42,10 +45,12 @@ const buildEnvRequirement = (context, requirementName) => {
   const variable = parameters.second
 
   return {
-    [requirementName]: [{
-      rule,
-      variable
-    }]
+    [requirementName]: [
+      {
+        rule,
+        variable,
+      },
+    ],
   }
 }
 
@@ -56,10 +61,12 @@ const buildFileRequirement = (context, requirementName) => {
   const location = parameters.second
 
   return {
-    [requirementName]: [{
-      rule,
-      location
-    }]
+    [requirementName]: [
+      {
+        rule,
+        location,
+      },
+    ],
   }
 }
 
@@ -73,15 +80,17 @@ const buildShellRequirement = async (context, requirementName) => {
     const response = await prompt.ask({
       name: 'shellMatch',
       type: 'input',
-      message: 'What would you like the shell command to match on?'
+      message: 'What would you like the shell command to match on?',
     })
 
     return {
-      [requirementName]: [{
-        rule,
-        command: shellCommand,
-        match: response.shellMatch
-      }]
+      [requirementName]: [
+        {
+          rule,
+          command: shellCommand,
+          match: response.shellMatch,
+        },
+      ],
     }
   }
 }
@@ -89,22 +98,22 @@ const buildShellRequirement = async (context, requirementName) => {
 module.exports = {
   cli: {
     callback: buildCliRequirement,
-    key: 'binary'
+    key: 'binary',
   },
   env: {
     callback: buildEnvRequirement,
-    key: 'variable'
+    key: 'variable',
   },
   file: {
     callback: buildFileRequirement,
-    key: 'location'
+    key: 'location',
   },
   dir: {
     callback: buildFileRequirement,
-    key: 'location'
+    key: 'location',
   },
   shell: {
     callback: buildShellRequirement,
-    key: 'command'
-  }
+    key: 'command',
+  },
 }

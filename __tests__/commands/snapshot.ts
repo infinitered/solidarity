@@ -12,13 +12,11 @@ const requirements = () => {
 
 beforeAll(() => {
   context.prompt = {
-    ask: jest.fn(
-      () => Promise.resolve({ createFile: true })
-    )
+    ask: jest.fn(() => Promise.resolve({ createFile: true })),
   }
 
   context.solidarity = {
-    updateVersions: jest.fn(() => Promise.resolve())
+    updateVersions: jest.fn(() => Promise.resolve()),
   }
   context.parameters = {}
   context.printSeparator = jest.fn()
@@ -69,12 +67,9 @@ describe('with a .solidarity file', () => {
   })
 
   describe('given a new rule to add', () => {
-
     const origCwd = process.cwd()
     const settings = {
-      requirements: {
-
-      }
+      requirements: {},
     }
 
     beforeEach(() => {
@@ -98,33 +93,36 @@ describe('with a .solidarity file', () => {
         // setup .solidarity file in temp directory
         const tempDir = tempy.directory()
         process.chdir(tempDir)
-        setSolidaritySettings({
-          ...settings,
-          requirements: {
-            ['existingRequirement']: [
-              { type: 'cli', binary: 'ruby' }
-            ]
-          }
-        }, context)
+        setSolidaritySettings(
+          {
+            ...settings,
+            requirements: {
+              ['existingRequirement']: [{ type: 'cli', binary: 'ruby' }],
+            },
+          },
+          context
+        )
       })
 
       it('lets you choose from an existing list of requirements', async () => {
-
-        const mockedPrompt = jest.fn()
+        const mockedPrompt = jest
+          .fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
           .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: false }))
-          .mockImplementationOnce(() => Promise.resolve({
-            selectedRequirement: 'existingRequirement'
-          }))
+          .mockImplementationOnce(() =>
+            Promise.resolve({
+              selectedRequirement: 'existingRequirement',
+            })
+          )
           .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
 
         context.prompt = {
-          ask: mockedPrompt
+          ask: mockedPrompt,
         }
 
         context.print = {
           error: jest.fn(),
-          info: jest.fn()
+          info: jest.fn(),
         }
 
         context.parameters = {
@@ -134,9 +132,9 @@ describe('with a .solidarity file', () => {
           second: 'ruby',
           raw: 'cli',
           string: 'cli',
-          array: [ 'cli'],
+          array: ['cli'],
           options: {},
-          argv: [ 'snapshot', 'cli']
+          argv: ['snapshot', 'cli'],
         }
 
         await snapshotCommand.run(context)
@@ -147,21 +145,24 @@ describe('with a .solidarity file', () => {
     test('required newRequirement input if makeNewRequirement: true', async () => {
       expect(requirements()).toEqual({})
 
-      const mockedPrompt = jest.fn()
+      const mockedPrompt = jest
+        .fn()
         .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
         .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-        .mockImplementationOnce(() => Promise.resolve({
-          newRequirement: undefined
-        }))
+        .mockImplementationOnce(() =>
+          Promise.resolve({
+            newRequirement: undefined,
+          })
+        )
         .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
 
       context.prompt = {
-        ask: mockedPrompt
+        ask: mockedPrompt,
       }
 
       context.print = {
         error: jest.fn(),
-        info: jest.fn()
+        info: jest.fn(),
       }
 
       context.parameters = {
@@ -171,9 +172,9 @@ describe('with a .solidarity file', () => {
         second: 'ruby',
         raw: 'cli',
         string: 'cli',
-        array: [ 'cli'],
+        array: ['cli'],
         options: {},
-        argv: [ 'snapshot', 'cli']
+        argv: ['snapshot', 'cli'],
       }
 
       await snapshotCommand.run(context)
@@ -186,22 +187,25 @@ describe('with a .solidarity file', () => {
       it('should work if given an incomplete rule ', async () => {
         expect(requirements()).toEqual({})
 
-        const mockedPrompt = jest.fn()
+        const mockedPrompt = jest
+          .fn()
           .mockImplementationOnce(() => Promise.resolve({ whatRule: 'ruby' }))
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
           .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-          .mockImplementationOnce(() => Promise.resolve({
-            newRequirement: 'Testorson'
-          }))
+          .mockImplementationOnce(() =>
+            Promise.resolve({
+              newRequirement: 'Testorson',
+            })
+          )
           .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
 
         context.prompt = {
-          ask: mockedPrompt
+          ask: mockedPrompt,
         }
 
         context.print = {
           error: jest.fn(),
-          info: jest.fn()
+          info: jest.fn(),
         }
 
         context.parameters = {
@@ -210,9 +214,9 @@ describe('with a .solidarity file', () => {
           first: 'cli',
           raw: 'cli',
           string: 'cli',
-          array: [ 'cli'],
+          array: ['cli'],
           options: {},
-          argv: [ 'snapshot', 'cli']
+          argv: ['snapshot', 'cli'],
         }
 
         await snapshotCommand.run(context)
@@ -223,16 +227,17 @@ describe('with a .solidarity file', () => {
       it('will error message if prompt to complete rule is empty', async () => {
         expect(requirements()).toEqual({})
 
-        const mockedPrompt = jest.fn()
+        const mockedPrompt = jest
+          .fn()
           .mockImplementationOnce(() => Promise.resolve({ whatRule: undefined }))
 
         context.prompt = {
-          ask: mockedPrompt
+          ask: mockedPrompt,
         }
 
         context.print = {
           error: jest.fn(),
-          info: jest.fn()
+          info: jest.fn(),
         }
 
         context.parameters = {
@@ -241,9 +246,9 @@ describe('with a .solidarity file', () => {
           first: 'cli',
           raw: 'cli',
           string: 'cli',
-          array: [ 'cli'],
+          array: ['cli'],
           options: {},
-          argv: [ 'snapshot', 'cli']
+          argv: ['snapshot', 'cli'],
         }
 
         await snapshotCommand.run(context)
@@ -263,26 +268,29 @@ describe('with a .solidarity file', () => {
           third: undefined,
           raw: 'cli yarn',
           string: 'cli yarn',
-          array: [ 'cli', 'yarn' ],
+          array: ['cli', 'yarn'],
           options: {},
-          argv: [ 'snapshot', 'cli', 'yarn' ]
+          argv: ['snapshot', 'cli', 'yarn'],
         }
 
-        const mockedPrompt = jest.fn()
+        const mockedPrompt = jest
+          .fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
           .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-          .mockImplementationOnce(() => Promise.resolve({
-            newRequirement: 'Testorson'
-          }))
+          .mockImplementationOnce(() =>
+            Promise.resolve({
+              newRequirement: 'Testorson',
+            })
+          )
           .mockImplementationOnce(() => Promise.resolve({ enforceVersion: false }))
 
         context.prompt = {
-          ask: mockedPrompt
+          ask: mockedPrompt,
         }
 
         context.print = {
           error: jest.fn(),
-          info: jest.fn()
+          info: jest.fn(),
         }
       })
 
@@ -296,20 +304,23 @@ describe('with a .solidarity file', () => {
       })
 
       it('handles a binary with enforceVersion: true', async () => {
-        const mockedPrompt = jest.fn()
+        const mockedPrompt = jest
+          .fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
           .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-          .mockImplementationOnce(() => Promise.resolve({
-            newRequirement: 'Testorson'
-          }))
+          .mockImplementationOnce(() =>
+            Promise.resolve({
+              newRequirement: 'Testorson',
+            })
+          )
           .mockImplementationOnce(() => Promise.resolve({ enforceVersion: true }))
 
         context.prompt = {
-          ask: mockedPrompt
+          ask: mockedPrompt,
         }
 
         context.system = {
-          run: jest.fn(() => Promise.resolve('1.3.2'))
+          run: jest.fn(() => Promise.resolve('1.3.2')),
         }
 
         expect(requirements()).toEqual({})
@@ -331,24 +342,27 @@ describe('with a .solidarity file', () => {
           second: 'PATH',
           raw: 'env PATH',
           string: 'env PATH',
-          array: [ 'env', 'PATH' ],
+          array: ['env', 'PATH'],
           options: {},
-          argv: [ 'snapshot', 'env', 'PATH' ]
+          argv: ['snapshot', 'env', 'PATH'],
         }
 
-        const mockedPrompt = jest.fn()
+        const mockedPrompt = jest
+          .fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
           .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-          .mockImplementationOnce(() => Promise.resolve({
-            newRequirement: 'Testorson'
-          }))
+          .mockImplementationOnce(() =>
+            Promise.resolve({
+              newRequirement: 'Testorson',
+            })
+          )
 
         context.prompt = {
-          ask: mockedPrompt
+          ask: mockedPrompt,
         }
 
         expect(requirements()).toEqual({})
-        const result = await snapshotCommand.run(context);
+        const result = await snapshotCommand.run(context)
 
         expect(context.prompt.ask.mock.calls).toMatchSnapshot()
         expect(requirements().Testorson).toBeTruthy()
@@ -365,24 +379,27 @@ describe('with a .solidarity file', () => {
           third: undefined,
           raw: 'file ./nachos',
           string: 'file ./nachos',
-          array: [ 'file', './nachos' ],
+          array: ['file', './nachos'],
           options: {},
-          argv: [ 'snapshot', 'file', './nachos' ]
+          argv: ['snapshot', 'file', './nachos'],
         }
 
-        const mockedPrompt = jest.fn()
+        const mockedPrompt = jest
+          .fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
           .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-          .mockImplementationOnce(() => Promise.resolve({
-            newRequirement: 'Testorson'
-          }))
+          .mockImplementationOnce(() =>
+            Promise.resolve({
+              newRequirement: 'Testorson',
+            })
+          )
 
         context.prompt = {
-          ask: mockedPrompt
+          ask: mockedPrompt,
         }
 
         expect(requirements()).toEqual({})
-        const result = await snapshotCommand.run(context);
+        const result = await snapshotCommand.run(context)
 
         expect(context.prompt.ask.mock.calls).toMatchSnapshot()
         expect(requirements().Testorson).toBeTruthy()
@@ -399,24 +416,27 @@ describe('with a .solidarity file', () => {
           third: undefined,
           raw: 'dir ./config',
           string: 'dir ./config',
-          array: [ 'dir', './config' ],
+          array: ['dir', './config'],
           options: {},
-          argv: [ 'snapshot', 'dir', './config' ]
+          argv: ['snapshot', 'dir', './config'],
         }
 
-        const mockedPrompt = jest.fn()
+        const mockedPrompt = jest
+          .fn()
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
           .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-          .mockImplementationOnce(() => Promise.resolve({
-            newRequirement: 'Testorson'
-          }))
+          .mockImplementationOnce(() =>
+            Promise.resolve({
+              newRequirement: 'Testorson',
+            })
+          )
 
         context.prompt = {
-          ask: mockedPrompt
+          ask: mockedPrompt,
         }
 
         expect(requirements()).toEqual({})
-        const result = await snapshotCommand.run(context);
+        const result = await snapshotCommand.run(context)
 
         expect(context.prompt.ask.mock.calls).toMatchSnapshot()
         expect(requirements().Testorson).toBeTruthy()
@@ -431,27 +451,30 @@ describe('with a .solidarity file', () => {
           first: 'shell',
           raw: 'shell',
           string: 'shell',
-          array: [ 'shell' ],
+          array: ['shell'],
           options: {},
-          argv: [ 'snapshot', 'shell']
+          argv: ['snapshot', 'shell'],
         }
 
-        const mockedPrompt = jest.fn()
+        const mockedPrompt = jest
+          .fn()
           .mockImplementationOnce(() => Promise.resolve({ whatRule: 'git config user.email' }))
           .mockImplementationOnce(() => Promise.resolve({ addNewRule: true }))
           .mockImplementationOnce(() => Promise.resolve({ makeNewRequirement: true }))
-          .mockImplementationOnce(() => Promise.resolve({
-            newRequirement: 'Git Email'
-          }))
+          .mockImplementationOnce(() =>
+            Promise.resolve({
+              newRequirement: 'Git Email',
+            })
+          )
           .mockImplementationOnce(() => Promise.resolve({ shellMatch: '.+@.+' }))
 
         context.prompt = {
-          ask: mockedPrompt
+          ask: mockedPrompt,
         }
 
         context.print = {
           error: jest.fn(),
-          info: jest.fn()
+          info: jest.fn(),
         }
       })
 

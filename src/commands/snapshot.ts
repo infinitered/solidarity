@@ -1,4 +1,3 @@
-
 import { GluegunCommand, GluegunRunContext } from 'gluegun'
 import { filter, propEq, head } from 'ramda'
 
@@ -65,11 +64,7 @@ namespace Snapshot {
   export const run = async (context: SolidarityRunContext) => {
     const { print, prompt, filesystem, solidarity, parameters } = context
     const { first } = parameters
-    const {
-      setSolidaritySettings,
-      appendSolidaritySettings,
-      buildSpecificRequirement
-    } = solidarity
+    const { setSolidaritySettings, appendSolidaritySettings, buildSpecificRequirement } = solidarity
 
     // check is there an existing .solidarity file?
     if (filesystem.exists('.solidarity')) {
@@ -77,11 +72,12 @@ namespace Snapshot {
 
       if (first) {
         await buildSpecificRequirement(context)
-          .then((newRequirement) => {
+          .then(newRequirement => {
             const updatedSolidaritySettings = appendSolidaritySettings(context, newRequirement)
 
             setSolidaritySettings(updatedSolidaritySettings, context)
-          }).catch((error) => {
+          })
+          .catch(error => {
             if (error) print.error(error)
             print.error('Your new requirement was not added.')
           })
