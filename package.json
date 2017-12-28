@@ -14,7 +14,7 @@
     "format": "prettier --write \"**/*.ts\" -l \"warn\" && tslint -p . --fix",
     "shipit": "tsc && np",
     "test": "jest && yarn test:extras",
-    "test:ci": "jest --ci && yarn test:extras",
+    "test:ci": "jest --ci --runInBand && yarn test:extras",
     "test:extras": "tslint -p . && yarn madge --extensions ts --circular src/",
     "lint": "tslint -p .",
     "newclear": "rm -rf node_modules && yarn && tsc",
@@ -70,9 +70,13 @@
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
+    "setupFiles": [
+      "./__tests__/setup.ts"
+    ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "testPathIgnorePatterns": [
-      "__mocks__"
+      "__mocks__",
+      "setup.ts"
     ],
     "coverageThreshold": {
       "global": {
