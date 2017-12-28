@@ -15,7 +15,20 @@ const createContext = (stdout: string, status: number = 0) => ({
   strings,
 })
 
+let originalTimeout
+
 describe('match', () => {
+  beforeAll(() => {
+    // These can be slow on CI
+    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000
+  })
+
+  afterAll(function() {
+    // Fix timeout change
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
+  })
+
   describe('seamingly just a string', () => {
     const context = createContext('hi')
     it('matches exact', async () => {
