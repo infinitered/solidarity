@@ -46,7 +46,7 @@
     "babel-eslint": "8.0.3",
     "codecov.io": "^0.1.6",
     "coveralls": "^3.0.0",
-    "danger": "^2.1.6",
+    "danger": "danger/danger-js",
     "danger-plugin-spellcheck": "^1.2.0",
     "docsify-cli": "4.1.12",
     "execa": "^0.8.0",
