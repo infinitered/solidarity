@@ -8,7 +8,7 @@ let originalTimeout
 beforeAll(() => {
   // These can be slow on CI
   originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000
   // Tempy!
   const tempDir = tempy.directory()
   process.chdir(tempDir)
