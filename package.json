@@ -14,7 +14,7 @@
     "format": "prettier --write \"**/*.ts\" -l \"warn\" && tslint -p . --fix",
     "shipit": "tsc && np",
     "test": "jest && tslint -p .",
-    "test:ci": "jest --ci && tslint -p .",
+    "test:ci": "jest --ci --runInBand && tslint -p .",
     "lint": "tslint -p .",
     "newclear": "rm -rf node_modules && yarn && tsc",
     "watch": "jest --watch",
