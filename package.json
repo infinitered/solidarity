@@ -13,8 +13,9 @@
     "build": "yarn format && tsc",
     "format": "prettier --write \"**/*.ts\" -l \"warn\" && tslint -p . --fix",
     "shipit": "tsc && np",
-    "test": "jest && tslint -p .",
-    "test:ci": "jest --ci --runInBand && tslint -p .",
+    "test": "jest && yarn test:extras",
+    "test:ci": "jest --ci --runInBand && yarn test:extras",
+    "test:extras": "tslint -p . && yarn madge --extensions ts --circular src/",
     "lint": "tslint -p .",
     "newclear": "rm -rf node_modules && yarn && tsc",
     "watch": "jest --watch",
@@ -51,6 +52,7 @@
     "docsify-cli": "4.1.12",
     "execa": "^0.8.0",
     "jest": "^21.2.1",
+    "madge": "^2.2.0",
     "np": "2.18.3",
     "prettier": "^1.9.2",
     "tempy": "^0.2.1",
@@ -70,9 +72,13 @@
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
+    "setupFiles": [
+      "./__tests__/setup.ts"
+    ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "testPathIgnorePatterns": [
-      "__mocks__"
+      "__mocks__",
+      "setup.ts"
     ],
     "coverageThreshold": {
       "global": {
