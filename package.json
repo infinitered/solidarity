@@ -13,7 +13,7 @@
     "build": "yarn format && tsc",
     "format": "prettier --write \"**/*.ts\" -l \"warn\" && tslint -p . --fix",
     "shipit": "tsc && np",
-    "test": "jest && tslint -p . && yarn madge --extensions ts --circular ./src && solidarity",
+    "test": "jest && tslint -p . && yarn madge --extensions ts --circular ./src && ./bin/solidarity",
     "test:ci": "jest --ci && tslint -p .",
     "lint": "tslint -p .",
     "newclear": "rm -rf node_modules && yarn && tsc",
