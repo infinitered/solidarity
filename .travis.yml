@@ -8,7 +8,7 @@ before_script:
   - tsc
 script:
   - 'npm run test:ci'
-  - yarn danger -d dangerfile.ts
+  - yarn danger -d dangerfile.js
 after_success:
   - './node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/codecov'
 notifications:
