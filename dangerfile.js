@@ -1,18 +1,10 @@
 import { message, danger, warn, schedule } from 'danger'
 // can't use import in JS
 const spellcheck = require('danger-plugin-spellcheck').default
-const JSON5 = require('json5')
 
 // warn('Big ol mean warning')
 // let's spellcheck
-schedule(
-  spellcheck()
-  // {
-  //   whiteListFiles: [],
-  //   //ignore: JSON5.parse('./.vscode/cSpell.json').words
-  //   ignore: ['']
-  // })
-)
+schedule(spellcheck())
 
 // Enforce yarn.lock updates
 const packageChanged = danger.git.modified_files.includes('package.json')
