@@ -1,10 +1,10 @@
-import { message, danger, warn } from 'danger'
-message(":tada:, this worked @" + danger.github.pr.user.login)
-// import spellcheck from 'danger-plugin-spellcheck'
+import { message, danger, warn, schedule } from 'danger'
+//import spellcheck from 'danger-plugin-spellcheck'
+const spellcheck = require('danger-plugin-spellcheck').default
 
+message(":tada:, this worked @" + danger.github.pr.user.login)
 // let's spellcheck
-// schedule(spellcheck())
-// spellcheck()
+schedule(spellcheck())
 
 // Enforce yarn.lock updates
 const packageChanged = danger.git.modified_files.includes('package.json')

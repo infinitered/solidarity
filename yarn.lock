@@ -1437,9 +1437,9 @@ danger-plugin-spellcheck@^1.2.0:
   optionalDependencies:
     esdoc "^0.5.2"
 
-danger@^2.1.8:
-  version "2.1.8"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-2.1.8.tgz#11cb654831be528e068257846df2141f5b049b79"
+danger@2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-2.1.6.tgz#ea4b3024cbef422286dc6bdb4d23da132d8ebbe5"
   dependencies:
     babel-polyfill "7.0.0-alpha.19"
     chalk "^2.3.0"
@@ -1449,7 +1449,6 @@ danger@^2.1.8:
     github "^13.0.1"
     hyperlinker "^1.0.0"
     jsome "^2.3.25"
-    json5 "^0.5.1"
     jsonpointer "^4.0.1"
     lodash.find "^4.6.0"
     lodash.includes "^4.3.0"
