@@ -89,7 +89,7 @@ Solidarity, as open source, is free to use and always will be :heart:.  It's MIT
 ### License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
-Blatentspellingerror
+Blatentspellingerrortaco
 
 ### NPM Details
 [![NPM](https://nodei.co/npm/solidarity.png)](https://npmjs.org/package/solidarity)

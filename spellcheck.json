@@ -1,4 +1,3 @@
 {
-  "ignore": ["orta", "artsy", "github", "/danger-*."],
-  "whitelistFiles": ["README.md"]
+  "ignore": ["orta", "artsy", "github", "/danger-*."]
 }

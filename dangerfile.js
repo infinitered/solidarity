@@ -2,10 +2,10 @@ import { message, danger, warn, schedule } from 'danger'
 // can't use import in JS
 const spellcheck = require('danger-plugin-spellcheck').default
 
-warn('Big ol mean warning')
+// warn('Big ol mean warning')
 // let's spellcheck
 schedule(
-  spellcheck({ settings: "artsy/artsy-danger@spellcheck.json" })
+  spellcheck()
 )
 
 // Enforce yarn.lock updates
