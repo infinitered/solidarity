@@ -1,10 +1,12 @@
 import { message, danger, warn, schedule } from 'danger'
-//import spellcheck from 'danger-plugin-spellcheck'
+// can't use import in JS
 const spellcheck = require('danger-plugin-spellcheck').default
 
-message(":tada:, this worked @" + danger.github.pr.user.login)
+warn('Big ol mean warning')
 // let's spellcheck
-schedule(spellcheck())
+schedule(
+  spellcheck({ settings: "artsy/artsy-danger@spellcheck.json" })
+)
 
 // Enforce yarn.lock updates
 const packageChanged = danger.git.modified_files.includes('package.json')
