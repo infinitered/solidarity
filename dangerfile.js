@@ -1,8 +1,9 @@
 import { message, danger, warn, schedule } from 'danger'
 // can't use import in JS
 const spellcheck = require('danger-plugin-spellcheck').default
+const JSON5 = require('json5')
 
-// warn('Big ol mean warning')
+const whitelistWords = JSON5.parse('./.vscode/cSpell.json')
 // let's spellcheck
 schedule(spellcheck({
   ignore: ["specs"]
