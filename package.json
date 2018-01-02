@@ -48,7 +48,7 @@
     "codecov.io": "^0.1.6",
     "coveralls": "^3.0.0",
     "danger": "2.1.6",
-    "danger-plugin-spellcheck": "GantMan/danger-plugin-spellcheck#extra-settings",
+    "danger-plugin-spellcheck": "^1.2.1",
     "docsify-cli": "4.1.12",
     "execa": "^0.8.0",
     "jest": "^21.2.1",

@@ -1429,9 +1429,9 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-danger-plugin-spellcheck@GantMan/danger-plugin-spellcheck#extra-settings:
-  version "1.1.1"
-  resolved "https://codeload.github.com/GantMan/danger-plugin-spellcheck/tar.gz/1745c54d42444ced1999ff69d90df6060105fb21"
+danger-plugin-spellcheck@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/danger-plugin-spellcheck/-/danger-plugin-spellcheck-1.2.1.tgz#26823e3cdd1def1ba554b9c644cd5d7eaf35605b"
   dependencies:
     markdown-spellcheck "^0.11.0"
   optionalDependencies:

@@ -5,7 +5,7 @@ const spellcheck = require('danger-plugin-spellcheck').default
 // warn('Big ol mean warning')
 // let's spellcheck
 schedule(spellcheck({
-  ignore: ["specs", "infinite.red"]
+  ignore: ["specs"]
 }))
 
 // Enforce yarn.lock updates
