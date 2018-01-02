@@ -1,12 +1,13 @@
-import { message, danger, warn, schedule } from 'danger'
+import { danger, warn, schedule } from 'danger'
 // can't use import in JS
 const spellcheck = require('danger-plugin-spellcheck').default
 const JSON5 = require('json5')
+const fs = require('fs')
 
-const whitelistWords = JSON5.parse('./.vscode/cSpell.json')
+const whitelistWords = JSON5.parse(fs.readFileSync('./.vscode/cSpell.json')).words
 // let's spellcheck
 schedule(spellcheck({
-  ignore: ["specs"]
+  ignore: whitelistWords
 }))
 
 // Enforce yarn.lock updates
