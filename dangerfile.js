@@ -4,7 +4,9 @@ const spellcheck = require('danger-plugin-spellcheck').default
 
 // warn('Big ol mean warning')
 // let's spellcheck
-schedule(spellcheck())
+schedule(spellcheck({
+  ignore: ["specs", "infinite.red"]
+}))
 
 // Enforce yarn.lock updates
 const packageChanged = danger.git.modified_files.includes('package.json')
