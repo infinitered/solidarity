@@ -64,3 +64,6 @@ The system is tightly coupled to the existing rules, so making any new rules hav
 1. The Documentation of rule types
 1. Report configuration of rule types
 1. Solidarity core configuration of rule types
+
+
+intentionaltypo
