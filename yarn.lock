@@ -1429,9 +1429,9 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-danger-plugin-spellcheck@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/danger-plugin-spellcheck/-/danger-plugin-spellcheck-1.2.1.tgz#26823e3cdd1def1ba554b9c644cd5d7eaf35605b"
+danger-plugin-spellcheck@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/danger-plugin-spellcheck/-/danger-plugin-spellcheck-1.2.2.tgz#34bd152829bfe1952b9380df67961b8741b1969f"
   dependencies:
     markdown-spellcheck "^0.11.0"
   optionalDependencies:
