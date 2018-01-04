@@ -29,9 +29,7 @@ const buildCliRequirement = async (context, requirementName) => {
         return requirement
       })
       .catch(() => {
-        print.error(
-          'Seems as though you do not have this binary installed. Please install this binary first'
-        )
+        print.error('Seems as though you do not have this binary installed. Please install this binary first')
       })
   }
 

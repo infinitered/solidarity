@@ -23,11 +23,7 @@ module.exports = {
     }
 
     let results: SolidarityReportResults = {
-      basicInfo: [
-        ['System Basics', 'Value'],
-        ['OS', helpers.getOperatingSystemInfo()],
-        ['CPU', helpers.getCPUInfo()],
-      ],
+      basicInfo: [['System Basics', 'Value'], ['OS', helpers.getOperatingSystemInfo()], ['CPU', helpers.getCPUInfo()]],
       cliRules: [['Binary', 'Location', 'Version', 'Desired']],
       envRules: [['Environment Var', 'Value']],
       filesystemRules: [['Location', 'Type', 'Exists']],

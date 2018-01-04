@@ -1,8 +1,5 @@
 import { SolidarityRunContext, CLIRule } from '../../types'
-module.exports = async (
-  rule: CLIRule,
-  context: SolidarityRunContext
-): Promise<string | undefined> => {
+module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string | undefined> => {
   const { semver, solidarity } = context
   const binaryExists = require('./binaryExists')
 
@@ -25,9 +22,7 @@ module.exports = async (
 
     // I can't get no satisfaction
     if (!semver.satisfies(binarySemantic, rule.semver)) {
-      return `${rule.binary}: you have '${binaryVersion}', but the project requires '${
-        rule.semver
-      }'`
+      return `${rule.binary}: you have '${binaryVersion}', but the project requires '${rule.semver}'`
     }
   }
 }

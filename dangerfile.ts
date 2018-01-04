@@ -6,10 +6,12 @@ const fs = require('fs')
 
 const whitelistWords = JSON5.parse(fs.readFileSync('./.vscode/cSpell.json')).words
 // let's spellcheck
-schedule(spellcheck({
-  ignore: whitelistWords.map(word => word.toLowerCase()),
-  whitelistFiles: ['docs/existingContributors.md']
-}))
+schedule(
+  spellcheck({
+    ignore: whitelistWords.map(word => word.toLowerCase()),
+    whitelistFiles: ['docs/existingContributors.md'],
+  })
+)
 
 // Enforce yarn.lock updates
 const packageChanged = danger.git.modified_files.includes('package.json')

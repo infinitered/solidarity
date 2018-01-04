@@ -24,10 +24,7 @@ module.exports = async (
 
   let ruleString = ''
   // Hide spinner if silent outputmode is set
-  const spinner =
-    context.outputMode !== SolidarityOutputMode.SILENT
-      ? print.spin(`Verifying ${requirementName}`)
-      : null
+  const spinner = context.outputMode !== SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
   const assertNever = (value: never): never => {
     throw Error(`Unexpected value '${value}'`)
   }
