@@ -1,4 +1,4 @@
 {
   "ignore": ["orta", "artsy", "github", "/danger-*.", "/plugin[s]?"],
-  "whitelistFiles": []
+  "whitelistFiles": ["existingContributors.md"]
 }
