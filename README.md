@@ -92,4 +92,3 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 ### NPM Details
 [![NPM](https://nodei.co/npm/solidarity.png)](https://npmjs.org/package/solidarity)
 
-fdsafdsafd

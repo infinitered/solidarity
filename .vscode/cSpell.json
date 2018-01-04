@@ -22,7 +22,8 @@
         "updtr",
         "Node.js",
         "specs",
-        "infinite.red"
+        "infinite.red",
+        "Node.js"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
