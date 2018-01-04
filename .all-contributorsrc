@@ -199,6 +199,15 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "mlaco",
+      "name": "Morgan",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4466642?v=4",
+      "profile": "http://morganlaco.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ]
 }

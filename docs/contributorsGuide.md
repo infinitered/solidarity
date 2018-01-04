@@ -1,7 +1,7 @@
 # How do I get started contributing?
 
 ## A moment before you start contributing
-Be sure to mention that you're going to take on a task on the designated issue [on Github](https://github.com/infinitered/solidarity/issues).  If there is no issue on Github, please create one first.  This will limit the number of people who accidentally create PRs that do not fit the roadmap of the tool
+Be sure to mention that you're going to take on a task on the designated issue [on GitHub](https://github.com/infinitered/solidarity/issues).  If there is no issue on GitHub, please create one first.  This will limit the number of people who accidentally create PRs that do not fit the roadmap of the tool
 
 ## Running Locally
 To test this project, you'll need to pull it down and configure your local system to run the development version of Solidarity.  We've made this as simple as possible!
@@ -55,7 +55,7 @@ Here's a friendly checklist for submitting your PR
 1. Update docs with details of changes to the interface.  This includes public interfaces, file locations, or changes in parameters.
 1. Make sure you have tests covering your new or changed functionality.
 1. Make sure `yarn test` passes.  Otherwise, your PR cannot be merged.
-1. Reference your Gihub issue in your final PR
+1. Reference your GitHub issue in your final PR
 
 ## Changing or Adding Rules
 The system is tightly coupled to the existing rules, so making any new rules have a large impact on the existing contract and its enforcement.  Note that you have identified the following have changed in accordance.

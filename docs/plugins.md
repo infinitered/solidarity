@@ -105,4 +105,4 @@ module.exports = (context) => {
 ```
 
 ## Got questions?
-We're hanging around on [Infinite Red Community Slack](http://community.infinite.red), so you can hop in and chat with us.  Lots of our open source is discussed throughout this slack.  If you end up needing advanced attention, we are a consulting company, so we offer Premium support, too.  Email us at hello@infinite.red to get that ball rolling with your project.
+We're available on [Infinite Red Community Slack](http://community.infinite.red), so you can hop in and chat with us.  Lots of our open source is discussed throughout this slack.  If you end up needing advanced attention, we are a consulting company, so we offer Premium support, too.  Email us at hello@infinite.red to get that ball rolling with your project.
