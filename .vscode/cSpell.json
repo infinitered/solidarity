@@ -23,7 +23,11 @@
         "Node.js",
         "specs",
         "infinite.red",
-        "Node.js"
+        "Node.js",
+        "PRs",
+        "Ava",
+        "Plugins",
+        "configs"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
