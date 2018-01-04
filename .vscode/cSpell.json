@@ -6,31 +6,39 @@
     "language": "en",
     // words - list of words to be always considered correct
     "words": [
+        "Ava",
         "callsite",
         "checkmark",
+        "clis",
         "codecov",
+        "configs",
         "docsify",
         "envinfo",
         "execa",
+        "gitignore",
         "gluegun",
+        "gluegun's",
+        "heartpulse",
+        "infinite.red",
         "macos",
         "newclear",
+        "Node.js",
+        "npmignore",
+        "Plugins",
+        "PRs",
+        "roadmap",
         "shipit",
         "snapupdate",
+        "specs",
         "tada",
         "tempy",
-        "updtr",
-        "Node.js",
-        "specs",
-        "infinite.red",
-        "Node.js",
-        "PRs",
-        "Ava",
-        "Plugins",
-        "configs"
+        "updtr"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
     // For example "hte" should be "the"
-    "flagWords": ["Github", "Cocoapods"]
+    "flagWords": [
+        "Github",
+        "Cocoapods"
+    ]
 }

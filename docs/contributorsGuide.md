@@ -1,7 +1,7 @@
 # How do I get started contributing?
 
 ## A moment before you start contributing
-Be sure to mention that you're going to take on a task on the designated issue [on Github](https://github.com/infinitered/solidarity/issues).  If there is no issue on Github, please create one first.  This will limit the number of people who accidentally create PRs that do not fit the roadmap of the tool
+Be sure to mention that you're going to take on a task on the designated issue [on GitHub](https://github.com/infinitered/solidarity/issues).  If there is no issue on GitHub, please create one first.  This will limit the number of people who accidentally create PRs that do not fit the roadmap of the tool
 
 ## Running Locally
 To test this project, you'll need to pull it down and configure your local system to run the development version of Solidarity.  We've made this as simple as possible!
