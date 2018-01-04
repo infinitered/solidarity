@@ -22,7 +22,6 @@
         "infinite.red",
         "macos",
         "newclear",
-        "Node.js",
         "npmignore",
         "Plugins",
         "PRs",
@@ -32,7 +31,8 @@
         "specs",
         "tada",
         "tempy",
-        "updtr"
+        "updtr",
+        "PRs"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.

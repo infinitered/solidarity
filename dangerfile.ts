@@ -7,7 +7,8 @@ const fs = require('fs')
 const whitelistWords = JSON5.parse(fs.readFileSync('./.vscode/cSpell.json')).words
 // let's spellcheck
 schedule(spellcheck({
-  ignore: whitelistWords
+  ignore: whitelistWords,
+  whitelistFiles: ['existingContributors.md']
 }))
 
 // Enforce yarn.lock updates
