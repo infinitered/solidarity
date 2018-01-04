@@ -98,7 +98,7 @@ Lastly, if output has multiple versions, you can identify the index of the versi
 ### Friendly Errors
 So what do we do if a rule fails?  The return code will be non-zero, but that's not the most friendly option.  You can set the `error` for any rule to give the user legible instruction on why the failure happened, and how they should solve it.
 
-*e.g.* Prompt them to install the missing cli
+*e.g.* Prompt them to install the missing CLI
 ```json
   "Watchman": [
     {

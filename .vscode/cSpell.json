@@ -6,7 +6,7 @@
     "language": "en",
     // words - list of words to be always considered correct
     "words": [
-        "Ava",
+        "ava",
         "callsite",
         "checkmark",
         "clis",
@@ -23,6 +23,7 @@
         "macos",
         "newclear",
         "npmignore",
+        "Plugin",
         "Plugins",
         "PRs",
         "roadmap",
@@ -32,7 +33,11 @@
         "tada",
         "tempy",
         "updtr",
-        "PRs"
+        "PRs",
+        "e.g.",
+        "async",
+        "color",
+        "v1"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
