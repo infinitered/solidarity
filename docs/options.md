@@ -84,13 +84,13 @@ Lastly, if output has multiple versions, you can identify the index of the versi
 `dir` (or `directory`) rule means for a given directory passed in the `location` property, we will verify it exists.
 
 ### Shell Rules
-`shell` allows you to run a shell command and match some expected output from it's output. This is useful for 
+`shell` allows you to run a shell command and match some expected output from it's output. This is useful for
 
 *e.g.* This checks to see if you have configured git with your email address.
 ```json
-  "git email": [{ 
+  "git email": [{
     "rule": "shell",
-    "command": "git config user.email", 
+    "command": "git config user.email",
     "match": ".+@.+"
   }]
 ```
@@ -98,7 +98,7 @@ Lastly, if output has multiple versions, you can identify the index of the versi
 ### Friendly Errors
 So what do we do if a rule fails?  The return code will be non-zero, but that's not the most friendly option.  You can set the `error` for any rule to give the user legible instruction on why the failure happened, and how they should solve it.
 
-*e.g.* Prompt them to install the missing cli
+*e.g.* Prompt them to install the missing CLI
 ```json
   "Watchman": [
     {
