@@ -60,6 +60,8 @@ The `snapshot` parameter will update the rules in the `.solidarity` file to the 
 ## How do I create my first snapshot?
 If no `.solidarity` file is present, then `solidarity snapshot` prompts you to identify the technology your project depends on.
 
+fdsakjfdslkajfdklsajfkdls;afjsdk
+
 ```sh
 $ solidarity snapshot
 No `.solidarity` file found for this project.  Would you like to create one? (Y/n)
