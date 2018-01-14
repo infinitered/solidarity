@@ -1,11 +1,6 @@
 import { keys, propEq, filter, pipe, merge, findIndex, update } from 'ramda'
 
-const appendNewRequirement = (
-  solidaritySettings,
-  existingRequirementRules,
-  newRequirement,
-  newRequirementKey
-) => {
+const appendNewRequirement = (solidaritySettings, existingRequirementRules, newRequirement, newRequirementKey) => {
   return {
     ...solidaritySettings,
     requirements: {
@@ -15,12 +10,7 @@ const appendNewRequirement = (
   }
 }
 
-const updateExistingRule = (
-  solidaritySettings,
-  updatedRequirementRules,
-  newRequirement,
-  newRequirementKey
-) => {
+const updateExistingRule = (solidaritySettings, updatedRequirementRules, newRequirement, newRequirementKey) => {
   return {
     ...solidaritySettings,
     requirements: {
@@ -61,18 +51,8 @@ module.exports = (context, newRequirement) => {
     const updatedRule = merge(existingRule[existingRuleIndex], newRequirement[newRequirementKey][0])
     const updatedRequirementRules = update(existingRuleIndex, updatedRule)(existingRequirementRules)
 
-    return updateExistingRule(
-      solidaritySettings,
-      updatedRequirementRules,
-      newRequirement,
-      newRequirementKey
-    )
+    return updateExistingRule(solidaritySettings, updatedRequirementRules, newRequirement, newRequirementKey)
   }
 
-  return appendNewRequirement(
-    solidaritySettings,
-    existingRequirementRules,
-    newRequirement,
-    newRequirementKey
-  )
+  return appendNewRequirement(solidaritySettings, existingRequirementRules, newRequirement, newRequirementKey)
 }

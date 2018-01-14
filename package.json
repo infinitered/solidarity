@@ -23,6 +23,8 @@
     "snapupdate": "jest -u",
     "welcome": "yarn tsc && npm link",
     "serve:docs": "docsify serve docs",
+    "maintenence": "updtr && typesync",
+    "addTypes": "typesync",
     "tryupdate": "updtr"
   },
   "author": "Gant Laborde",
@@ -30,7 +32,7 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "envinfo": "^3.10.0",
-    "gluegun": "^2.0.0-alpha.17",
+    "gluegun": "^2.0.0-beta.3",
     "minimist": "^1.2.0",
     "ramda": "0.25.0"
   },
@@ -40,6 +42,7 @@
     "@types/jest": "21.1.9",
     "@types/minimist": "^1.2.0",
     "@types/node": "8.5.2",
+    "@types/prettier": "^1.9.0",
     "@types/ramda": "0.25.9",
     "@types/tempy": "^0.1.0",
     "ajv": "5.5.2",
@@ -58,13 +61,15 @@
     "prettier": "^1.9.2",
     "tempy": "^0.2.1",
     "ts-jest": "21.2.4",
+    "ts-node": "^4.1.0",
     "tslint": "^5.8.0",
     "tslint-config-standard": "^7.0.0",
     "typescript": "2.6.2",
+    "typesync": "^0.2.5",
     "updtr": "^2.0.0"
   },
   "prettier": {
-    "printWidth": 100,
+    "printWidth": 120,
     "semi": false,
     "singleQuote": true,
     "trailingComma": "es5"

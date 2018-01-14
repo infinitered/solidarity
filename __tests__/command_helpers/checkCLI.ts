@@ -17,9 +17,7 @@ const outOfDateCLI = {
 const context = require('gluegun')
 
 test('error on missing binary', async () => {
-  expect(await checkCLI(doesNotExistCLI, context)).toBe(
-    `Binary '${doesNotExistCLI.binary}' not found`
-  )
+  expect(await checkCLI(doesNotExistCLI, context)).toBe(`Binary '${doesNotExistCLI.binary}' not found`)
 })
 
 test('fine on existing binary', async () => {
@@ -29,9 +27,7 @@ test('fine on existing binary', async () => {
 test('returns message on improper version', async () => {
   solidarityExtension(context)
   context.solidarity.getVersion = () => '1'
-  const message = `${outOfDateCLI.binary}: you have '1', but the project requires '${
-    outOfDateCLI.semver
-  }'`
+  const message = `${outOfDateCLI.binary}: you have '1', but the project requires '${outOfDateCLI.semver}'`
 
   expect(await checkCLI(outOfDateCLI, context)).toBe(message)
 })

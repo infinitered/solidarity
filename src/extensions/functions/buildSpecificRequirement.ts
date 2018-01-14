@@ -31,10 +31,7 @@ namespace buildSpecificRequirement {
   const getRequirementNames = (solidaritySettings: SolidaritySettings): Array<string> =>
     keys(solidaritySettings.requirements)
 
-  const chooseRequirement = async (
-    prompt,
-    solidaritySettings: SolidaritySettings
-  ): Promise<String> => {
+  const chooseRequirement = async (prompt, solidaritySettings: SolidaritySettings): Promise<String> => {
     const shouldMakeNewRequirement = await prompt.ask({
       name: 'makeNewRequirement',
       type: 'confirm',
@@ -74,9 +71,7 @@ namespace buildSpecificRequirement {
     const userAnswer = await prompt.ask({
       name: 'addNewRule',
       type: 'confirm',
-      message: `Would you like to add the ${parameters.first} '${
-        parameters.second
-      }' to your Solidarity file?`,
+      message: `Would you like to add the ${parameters.first} '${parameters.second}' to your Solidarity file?`,
     })
 
     if (userAnswer.addNewRule) {
@@ -92,11 +87,9 @@ namespace buildSpecificRequirement {
     const { parameters, prompt, solidarity } = context
     const { first } = parameters
     const { ruleHandlers } = solidarity
-    const resolvedParam = await resolveParameters({ parameters, prompt, ruleHandlers }).catch(
-      () => {
-        return Promise.reject('Missing required parameters.')
-      }
-    )
+    const resolvedParam = await resolveParameters({ parameters, prompt, ruleHandlers }).catch(() => {
+      return Promise.reject('Missing required parameters.')
+    })
 
     return constructRequirment({
       ...context,

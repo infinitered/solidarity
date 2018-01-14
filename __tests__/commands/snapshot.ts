@@ -227,9 +227,7 @@ describe('with a .solidarity file', () => {
       it('will error message if prompt to complete rule is empty', async () => {
         expect(requirements()).toEqual({})
 
-        const mockedPrompt = jest
-          .fn()
-          .mockImplementationOnce(() => Promise.resolve({ whatRule: undefined }))
+        const mockedPrompt = jest.fn().mockImplementationOnce(() => Promise.resolve({ whatRule: undefined }))
 
         context.prompt = {
           ask: mockedPrompt,
