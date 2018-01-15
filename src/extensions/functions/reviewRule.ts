@@ -17,8 +17,8 @@ module.exports = async (
   context: SolidarityRunContext
 ) => {
   const { print, system, solidarity } = context
-  const { color, checkmark, xmark } = print
-  const prettyBool = (bl: boolean) => (bl ? checkmark + color.green(' YES') : xmark + color.red(' NO'))
+  const { colors, checkmark, xmark } = print
+  const prettyBool = (bl: boolean) => (bl ? checkmark + colors.green(' YES') : xmark + colors.red(' NO'))
   // @ts-ignore - flatten will never get a string bc tail is called first
   const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
   // check each rule for report
@@ -29,25 +29,25 @@ module.exports = async (
     switch (rule.rule) {
       // Handle CLI rule report
       case 'cli':
-        const desired = rule.semver ? rule.semver : color.green('*ANY*')
+        const desired = rule.semver ? rule.semver : colors.green('*ANY*')
         let location
         try {
           location = system.which(rule.binary)
         } catch (_e) {
-          location = color.red('*MISSING*')
+          location = colors.red('*MISSING*')
         }
 
         let binaryVersion
         try {
           binaryVersion = await solidarity.getVersion(rule, context)
         } catch (_e) {
-          binaryVersion = color.red('*UNKNOWN*')
+          binaryVersion = colors.red('*UNKNOWN*')
         }
         report.cliRules.push([rule.binary, location, binaryVersion, desired])
         break
       // Handle ENV rule report
       case 'env':
-        const envValue = process.env[rule.variable] || color.red('*UNDEFINED*')
+        const envValue = process.env[rule.variable] || colors.red('*UNDEFINED*')
         report.envRules.push([`$${rule.variable}`, envValue])
         break
       // Handle dir rule report
