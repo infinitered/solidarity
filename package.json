@@ -1,6 +1,6 @@
 {
   "name": "solidarity",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Make sure all React Native dependencies are uniform across machines",
   "bin": {
     "solidarity": "bin/solidarity"
