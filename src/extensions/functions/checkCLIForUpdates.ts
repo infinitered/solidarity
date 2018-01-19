@@ -23,6 +23,6 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
   // if it doesn't satisfy, upgrade
   if (rule.semver && !semver.satisfies(binarySemantic, rule.semver)) {
     rule.semver = binaryVersion
-    return print.color.green(`Setting ${rule.binary} to '${binaryVersion}'`)
+    return print.colors.green(`Setting ${rule.binary} to '${binaryVersion}'`)
   }
 }
