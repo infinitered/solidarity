@@ -2563,9 +2563,9 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gluegun@^2.0.0-beta.3:
-  version "2.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.0-beta.3.tgz#1a08914c7efcf5c9fd9e52ea9653d748822eb600"
+gluegun@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.0-beta.4.tgz#e0d51b9214ae0ccc6296649295f36c07e0d1a0ac"
   dependencies:
     apisauce "0.14.3"
     app-module-path "^2.2.0"
