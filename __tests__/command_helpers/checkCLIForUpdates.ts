@@ -25,7 +25,7 @@ describe('checkCLIForUpdates', () => {
     beforeEach(() => {
       rule.binary = 'yarn'
       context.print = {
-        color: {
+        colors: {
           green: jest.fn(string => string),
         },
       }
@@ -38,7 +38,7 @@ describe('checkCLIForUpdates', () => {
 
       const result = await checkCLIForUpdates(rule, context)
       expect(result).toEqual("Setting yarn to '1.0'")
-      expect(context.print.color.green).toHaveBeenCalled()
+      expect(context.print.colors.green).toHaveBeenCalled()
     })
 
     it('does nothing if there was no original semver', async () => {
