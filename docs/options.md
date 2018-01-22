@@ -8,6 +8,9 @@ If you'd like to get auto-complete, or validation of your JSON rules, you can op
 }
 ```
 
+## Solidarity is Powered by JSON5
+Happy to be supporting [JSON5](http://json5.org/) so your hand-written JSON can the friendliest possible.  You can include comments, skip quoting keys, and even leave dangling commas.
+
 ## Solidarity output
 You can use set the following option in `.solidarity` to configure output:
 ```json
