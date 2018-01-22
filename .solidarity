@@ -1,4 +1,5 @@
 {
+  // I'm JSON5 so I support comments
   "$schema": "./solidaritySchema.json",
   "requirements": {
     "NPM": [{ "rule": "cli", "binary": "npm" }],

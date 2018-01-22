@@ -1,5 +1,5 @@
 import tempy from 'tempy'
-
+import * as JSON5 from 'json5'
 import snapshotCommand from '../../src/commands/snapshot'
 import setSolidaritySettings from '../../src/extensions/functions/setSolidaritySettings'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
@@ -7,7 +7,7 @@ import solidarityExtension from '../../src/extensions/solidarity-extension'
 const context = require('mockContext')
 
 const requirements = () => {
-  return JSON.parse(context.filesystem.read('.solidarity')).requirements
+  return JSON5.parse(context.filesystem.read('.solidarity')).requirements
 }
 
 beforeAll(() => {
