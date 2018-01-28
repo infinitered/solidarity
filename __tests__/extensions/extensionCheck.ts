@@ -1,7 +1,8 @@
 import path from 'path'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
+const context = require('mockContext')
 
-const newContext = {}
+const newContext = context
 solidarityExtension(newContext)
 
 test('Assure solidarity object', () => {
@@ -17,7 +18,11 @@ test('Verify addPlugin function', () => {
   expect(newContext._pluginsList.length).toBe(0)
   newContext.addPlugin({})
   expect(newContext._pluginsList.length).toBe(1)
-  expect(newContext._pluginsList[0].templateDirectory).toBe(path.join(__dirname, '../templates/'))
+  // No existing path means empty template directory
+  expect(newContext._pluginsList[0].templateDirectory).toBe(null)
+  // TODO:  Create temporary templates folder and make sure it works
+  // newContext.addPlugin({})
+  // expect(newContext._pluginsList[0].templateDirectory).toBe(path.join(__dirname, '../templates/'))
 })
 
 test('Assure printSeparator function', () => {

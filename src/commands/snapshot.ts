@@ -19,12 +19,13 @@ namespace Snapshot {
 
   const createSolidarityFile = async (context: SolidarityRunContext): Promise<void> => {
     const { print, printSeparator } = context
+    const pluginsWithTemplates = filter(plugin => plugin.templateDirectory !== null, context._pluginsList)
     // list visible plugins
     printSeparator()
     print.info('Available technology plugins:\n')
-    if (context._pluginsList.length > 0) {
+    if (pluginsWithTemplates.length > 0) {
       const pluginOptions: string[] = [FriendlyMessages.NONE]
-      context._pluginsList.map(plugin => {
+      pluginsWithTemplates.map(plugin => {
         print.info(`   ${plugin.name}:\t ${plugin.description}`)
         pluginOptions.unshift(plugin.name)
       })
@@ -41,7 +42,7 @@ namespace Snapshot {
       } else {
         const pluginSpinner = print.spin(`Running ${answer.selectedPlugin} Snapshot`)
         // Config for selected plugin only
-        const runPlugin = head(filter(propEq('name', answer.selectedPlugin), context._pluginsList))
+        const runPlugin = head(filter(propEq('name', answer.selectedPlugin), pluginsWithTemplates))
         // run plugin
         await runPluginSnapshot(runPlugin, context)
         pluginSpinner.succeed('Snapshot complete')
