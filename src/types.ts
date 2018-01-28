@@ -29,7 +29,7 @@ export interface SolidarityPlugin {
 
 export interface SolidarityRunContext extends GluegunRunContext {
   solidarity: typeof solidarity
-  _pluginsList: Array<SolidarityPlugin & { templateDirectory: string }>
+  _pluginsList: Array<SolidarityPlugin & { templateDirectory: string | null }>
   addPlugin: (config: SolidarityPlugin) => void
   printSeparator: () => void
   outputMode: SolidarityOutputMode
