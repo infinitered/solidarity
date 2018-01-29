@@ -124,12 +124,12 @@ module.exports = async (
           if (customResult && customResult.pass) {
             return addSuccess(customResult.message)
           } else {
-            const failMessage = customResult && customResult.message
-              ? customResult.message
-              : `${requirementName} - rule '${rule.plugin}' '${rule.name}' failed`
+            const failMessage =
+              customResult && customResult.message
+                ? customResult.message
+                : `${requirementName} - rule '${rule.plugin}' '${rule.name}' failed`
             return addFailure(rule.error || failMessage)
           }
-
         } else {
           return addFailure(`Custom plugin not found with name ${rule.plugin} & ${rule.name}`)
         }

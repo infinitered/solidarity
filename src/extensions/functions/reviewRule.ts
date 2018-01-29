@@ -67,7 +67,7 @@ module.exports = async (
         break
       case 'custom':
         // const customRulePass = true
-        report.customRules.push(['nachos'])
+        // report.customRules.push(['nachos'])
         break
       default:
         throw new Error('Encountered unknown rule')

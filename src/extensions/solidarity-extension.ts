@@ -15,9 +15,7 @@ module.exports = (context: SolidarityRunContext): void => {
     const requester = stack[1].getFileName()
     const templateDirPotential = path.join(path.dirname(requester), '../templates/')
     // Don't store directories that aren't there!
-    const templateDirectory = filesystem.exists(templateDirPotential)
-      ? templateDirPotential
-      : null
+    const templateDirectory = filesystem.exists(templateDirPotential) ? templateDirPotential : null
 
     context._pluginsList.push({
       templateDirectory,
