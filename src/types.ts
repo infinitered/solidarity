@@ -130,5 +130,5 @@ export interface SolidarityReportResults {
   envRules: Array<Array<string>>
   filesystemRules: Array<Array<string>>
   shellRules: Array<Array<string>>
-  customRules: Array<Array<string>>
+  customRules?: Array<Array<string>>
 }

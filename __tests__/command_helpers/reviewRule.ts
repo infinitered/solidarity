@@ -84,6 +84,5 @@ describe('reviewRule', () => {
       // Failure in a specific rule
       expect(mockContext.print.error.mock.calls.length).toBe(1)
     })
-
   })
 })
