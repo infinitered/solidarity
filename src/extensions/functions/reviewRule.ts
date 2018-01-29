@@ -65,8 +65,12 @@ module.exports = async (
         const shellCheckPass = prettyBool(await checkShell(rule, context))
         report.shellRules.push([rule.command, rule.match, shellCheckPass])
         break
+      case 'custom':
+        // const customRulePass = true
+        report.customRules.push(['nachos'])
+        break
       default:
-        throw 'Encountered unknown rule'
+        throw new Error('Encountered unknown rule')
     }
   }, rules)
 

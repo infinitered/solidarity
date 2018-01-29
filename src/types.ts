@@ -91,8 +91,16 @@ export interface ShellRule {
   readonly platform?: string | string[]
 }
 
+export interface CustomRule {
+  readonly rule: 'custom'
+  readonly plugin: string
+  readonly name: string
+  readonly error?: string
+  readonly platform?: string | string[]
+}
+
 // discriminated union for rule sets
-export type SolidarityRule = CLIRule | ENVRule | FSRule | ShellRule
+export type SolidarityRule = CLIRule | ENVRule | FSRule | ShellRule | CustomRule
 
 export enum SolidarityOutputMode {
   MODERATE,
@@ -122,4 +130,5 @@ export interface SolidarityReportResults {
   envRules: Array<Array<string>>
   filesystemRules: Array<Array<string>>
   shellRules: Array<Array<string>>
+  customRules: Array<Array<string>>
 }
