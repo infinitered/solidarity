@@ -9,7 +9,9 @@
   - [Additional Info](#additional-info)
 - Comprehensive Docs
   - [Solidarity Rules Options](/docs/options.md)
+- Plugins
   - [Write Solidarity Plugins](/docs/plugins.md)
+  - [Write Advanced Solidarity Plugins](/docs/advancedPlugin.md)
   - [Contributors Guide](/docs/contributorsGuide.md)
   - [Available Plugins](/docs/pluginsList.md)
 
