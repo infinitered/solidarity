@@ -23,7 +23,7 @@
             { "$ref": "#/definitions/dir" },
             { "$ref": "#/definitions/file" },
             { "$ref": "#/definitions/env" },
-            { "$ref": "#/definitions/shell" }
+            { "$ref": "#/definitions/shell" },
             { "$ref": "#/definitions/custom" }
           ]
         },
