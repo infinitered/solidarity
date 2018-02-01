@@ -1,4 +1,6 @@
 const realThing = require('gluegun')
+const realSolidarityContext = require('../../src/extensions/solidarity-extension')
+realSolidarityContext(realThing)
 
 const noConfigSolidarity = {
   checkRequirement: jest.fn(),
@@ -11,7 +13,7 @@ const noConfigSolidarity = {
 
 const mockContext = {
   ...realThing,
-  outputMode: null,
+  outputMode: undefined,
   system: {
     startTimer: jest.fn(() => jest.fn()),
   },
@@ -21,6 +23,8 @@ const mockContext = {
     info: jest.fn(),
     spin: jest.fn(() => ({
       stop: jest.fn(),
+      fail: jest.fn(),
+      succeed: jest.fn()
     })),
     table: jest.fn(),
     xmark: jest.fn(),
@@ -37,7 +41,6 @@ const mockContext = {
     },
   },
   printSeparator: jest.fn(),
-  _pluginsList: [],
   parameters: {
     options: {},
   },
