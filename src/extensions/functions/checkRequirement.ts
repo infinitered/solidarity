@@ -131,7 +131,8 @@ module.exports = async (
             return addFailure(rule.error || failMessage)
           }
         } else {
-          return addFailure(`Custom plugin not found with name ${rule.plugin} & ${rule.name}`)
+
+          return addFailure(`NOT FOUND: Custom rule from '${rule.plugin}' plugin with check function '${rule.name}'`)
         }
       default:
         return addFailure('Encountered unknown rule')
