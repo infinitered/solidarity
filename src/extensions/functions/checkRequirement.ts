@@ -119,7 +119,7 @@ module.exports = async (
         // find correct rule function
         const correctPlugin = head(filter(plugin => plugin.name === rule.plugin, context._pluginsList))
         if (correctPlugin === undefined) return addFailure(`Plugin not found '${rule.plugin}'`)
-        const customChecker = correctPlugin.customChecks && correctPlugin.customChecks[rule.name]
+        const customChecker = correctPlugin.rules && correctPlugin.rules[rule.name] && correctPlugin.rules[rule.name].check
         if (correctPlugin && customChecker) {
           const customResult = await customChecker(rule, context)
           if (customResult && customResult.pass) {

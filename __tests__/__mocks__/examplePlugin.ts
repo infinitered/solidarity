@@ -6,17 +6,35 @@ module.exports = (context) => {
     snapshot: async (context) => {
       context.addedSnapshot = true
     },
-    customChecks: {
-      checkThing: async (rule, context) => {
-        return {
-          pass: true,
-          message: 'Yeah good check!'
+    rules: {
+      checkThing: {
+        check: async (rule, context) => {
+          return {
+            pass: true,
+            message: 'Yeah good check!'
+          }
+        },
+        snapshot: async (rule, context) => [
+          {
+            prop: 'semver',
+            value: '12.0.0'
+          }
+        ],
+        report: async (rule, context, report) => {
+          // report.cliRules.push(['android', location, binaryVersion, desired])
+          report.addCLI({
+            binary: 'Android SDK',
+            version: 10,
+            desired: 12
+          })
         }
       },
-      checkSecondThing: async (rule, context) => {
-        return {
-          pass: false,
-          message: 'Boooo failed check'
+      checkSecondThing: {
+        check: async (rule, context) => {
+          return {
+            pass: false,
+            message: 'Boooo failed check'
+          }
         }
       }
     }
