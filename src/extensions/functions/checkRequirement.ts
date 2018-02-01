@@ -118,6 +118,7 @@ module.exports = async (
       case 'custom':
         // find correct rule function
         const correctPlugin = head(filter(plugin => plugin.name === rule.plugin, context._pluginsList))
+        if (correctPlugin === undefined) return addFailure(`Plugin not found '${rule.plugin}'`)
         const customChecker = correctPlugin.customChecks && correctPlugin.customChecks[rule.name]
         if (correctPlugin && customChecker) {
           const customResult = await customChecker(rule, context)
@@ -131,7 +132,6 @@ module.exports = async (
             return addFailure(rule.error || failMessage)
           }
         } else {
-
           return addFailure(`NOT FOUND: Custom rule from '${rule.plugin}' plugin with check function '${rule.name}'`)
         }
       default:
