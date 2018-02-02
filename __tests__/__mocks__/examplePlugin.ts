@@ -36,6 +36,25 @@ module.exports = context => {
             message: 'Boooo failed check',
           }
         },
+        snapshot: async (rule, context) => [
+          {
+            prop: 'semver',
+            value: '12.0.0',
+          },
+          {
+            prop: 'nachos',
+            value: true
+          }
+        ]
+      },
+      checkThirdThing: {
+        check: async (rule, context) => {
+          return {
+            pass: true,
+            message: 'PAZZZZZ',
+          }
+        },
+        snapshot: async (rule, context) => []
       },
     },
   })
