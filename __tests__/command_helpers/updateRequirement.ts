@@ -1,6 +1,7 @@
 import { platform } from 'os'
 import { toPairs } from 'ramda'
-import context from 'gluegun'
+const examplePlugin = require('examplePlugin')
+const context = examplePlugin(require('mockContext'))
 
 import updateRequirement from '../../src/extensions/functions/updateRequirement'
 
@@ -121,7 +122,19 @@ describe('updateRequirement', () => {
       })
     })
 
-    describe('rule: !cli', () => {
+    describe('rule is custom', () => {
+      it('returns stuff', async () => {
+        const requirement = toPairs({
+          TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkThing' }],
+        })[0]
+
+        const result = await updateRequirement(requirement, settings, context)
+        expect(result).toEqual([["Setting checkThing 'semver' to '12.0.0'"]])
+        expect(spinner.stop.mock.calls.length).toEqual(1)
+      })
+    })
+
+    describe('rule: !== cli || custom', () => {
       it('returns an empty array', async () => {
         const requirement = toPairs({
           Yarn: [

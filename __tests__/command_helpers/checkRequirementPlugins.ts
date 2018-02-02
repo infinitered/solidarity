@@ -44,5 +44,4 @@ describe('checkRequirement Plugins', () => {
     const result = await checkRequirement(rule, mockContext)
     expect(result).toEqual([error])
   })
-
 })
