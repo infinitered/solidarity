@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`findPluginInfo Function can find plugins 1`] = `
+Object {
+  "plugin": Object {
+    "check": [Function],
+    "report": [Function],
+    "snapshot": [Function],
+  },
+  "success": true,
+}
+`;
