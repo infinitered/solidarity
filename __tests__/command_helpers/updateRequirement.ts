@@ -24,6 +24,10 @@ describe('updateRequirement', () => {
     context.print = {
       spin: jest.fn(() => spinner),
       error: jest.fn(),
+      colors: {
+        green: jest.fn()
+      }
+
     }
   })
 
@@ -129,7 +133,7 @@ describe('updateRequirement', () => {
         })[0]
 
         const result = await updateRequirement(requirement, settings, context)
-        expect(result).toEqual([["Setting checkThing 'semver' to '12.0.0'"]])
+        expect(result).toEqual(["Setting checkThing 'semver' to '12.0.0'"])
         expect(spinner.stop.mock.calls.length).toEqual(1)
       })
     })
