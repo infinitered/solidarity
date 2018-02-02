@@ -45,8 +45,8 @@ module.exports = async (
 
           // report changes
           if (changes.length > 0) {
-            const message = print.colors.green(`Setting ${rule.name} ${changes.join(', ')}`)
-            spinner.succeed(message)
+            const message = `Setting ${rule.name} ${changes.join(', ')}`
+            spinner.succeed(print.colors.green(message))
             return message
           } else {
             return []
