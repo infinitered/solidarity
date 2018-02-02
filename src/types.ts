@@ -102,6 +102,12 @@ export interface CustomRule {
 // discriminated union for rule sets
 export type SolidarityRule = CLIRule | ENVRule | FSRule | ShellRule | CustomRule
 
+export interface PluginFind {
+  success: boolean
+  message?: string
+  plugin?: SolidarityRule
+}
+
 export enum SolidarityOutputMode {
   MODERATE,
   VERBOSE,

@@ -222,6 +222,5 @@ describe('checkRequirement', () => {
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([customError])
     })
-
   })
 })

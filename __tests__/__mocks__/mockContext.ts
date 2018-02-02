@@ -24,7 +24,7 @@ const mockContext = {
     spin: jest.fn(() => ({
       stop: jest.fn(),
       fail: jest.fn(),
-      succeed: jest.fn()
+      succeed: jest.fn(),
     })),
     table: jest.fn(),
     xmark: jest.fn(),

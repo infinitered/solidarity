@@ -11,12 +11,13 @@ const checkDir = require('./checkDir')
 const checkFile = require('./checkFile')
 const checkShell = require('./checkShell')
 const skipRule = require('./skipRule')
+const findPluginInfo = require('./findPluginInfo')
 
 module.exports = async (
   requirement: SolidarityRequirementChunk,
   context: SolidarityRunContext
 ): Promise<void | object[]> => {
-  const { head, tail, pipe, flatten, map, filter } = require('ramda')
+  const { head, tail, pipe, flatten, map } = require('ramda')
 
   const { print } = context
   const requirementName: string = head(requirement)
@@ -116,12 +117,9 @@ module.exports = async (
           return addFailure(rule.error || `'${rule.command}' output did not match '${rule.match}'`)
         }
       case 'custom':
-        // find correct rule function
-        const correctPlugin = head(filter(plugin => plugin.name === rule.plugin, context._pluginsList))
-        if (correctPlugin === undefined) return addFailure(`Plugin not found '${rule.plugin}'`)
-        const customChecker = correctPlugin.rules && correctPlugin.rules[rule.name] && correctPlugin.rules[rule.name].check
-        if (correctPlugin && customChecker) {
-          const customResult = await customChecker(rule, context)
+        const customPluginRule = findPluginInfo(rule, context)
+        if (customPluginRule.success) {
+          const customResult = await customPluginRule.plugin.check(rule, context)
           if (customResult && customResult.pass) {
             return addSuccess(customResult.message)
           } else {
@@ -132,7 +130,7 @@ module.exports = async (
             return addFailure(rule.error || failMessage)
           }
         } else {
-          return addFailure(`NOT FOUND: Custom rule from '${rule.plugin}' plugin with check function '${rule.name}'`)
+          return addFailure(customPluginRule.message)
         }
       default:
         return addFailure('Encountered unknown rule')
