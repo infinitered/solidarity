@@ -2,4 +2,12 @@
 
 exports[`updateRequirement exists 1`] = `[Function]`;
 
+exports[`updateRequirement given a rule rule is custom custom combo - play nicely with others 1`] = `
+Array [
+  "Setting checkThing 'semver' to '12.0.0'",
+  "Setting checkSecondThing 'semver' to '12.0.0', 'nachos' to 'true'",
+  Array [],
+]
+`;
+
 exports[`updateRequirement updateRequirement empty still spins 1`] = `Array []`;
