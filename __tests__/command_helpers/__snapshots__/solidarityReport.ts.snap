@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`solidarityReport structure the basic function generates the Result object 1`] = `
+Object {
+  "basicInfo": Array [
+    Array [
+      "System Basics",
+      "Value",
+    ],
+    Array [
+      "OS",
+      "macOS High Sierra 10.13.3",
+    ],
+    Array [
+      "CPU",
+      "x64 Intel(R) Core(TM) i7-4870HQ CPU @ 2.50GHz",
+    ],
+  ],
+  "cliRules": Array [
+    Array [
+      "Binary",
+      "Location",
+      "Version",
+      "Desired",
+    ],
+  ],
+  "envRules": Array [
+    Array [
+      "Environment Var",
+      "Value",
+    ],
+  ],
+  "filesystemRules": Array [
+    Array [
+      "Location",
+      "Type",
+      "Exists",
+    ],
+  ],
+  "shellRules": Array [
+    Array [
+      "Command",
+      "Pattern",
+      "Matches",
+    ],
+  ],
+}
+`;
