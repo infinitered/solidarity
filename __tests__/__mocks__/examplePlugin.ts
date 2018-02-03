@@ -43,9 +43,9 @@ module.exports = context => {
           },
           {
             prop: 'nachos',
-            value: true
-          }
-        ]
+            value: true,
+          },
+        ],
       },
       checkThirdThing: {
         check: async (rule, context) => {
@@ -54,7 +54,7 @@ module.exports = context => {
             message: 'PAZZZZZ',
           }
         },
-        snapshot: async (rule, context) => []
+        snapshot: async (rule, context) => [],
       },
     },
   })
