@@ -1,7 +1,7 @@
 import { GluegunCommand } from 'gluegun'
-import { helpers } from 'envinfo'
 import { SolidarityRunContext, SolidarityReportResults } from '../types'
 import { map, toPairs } from 'ramda'
+import { createReport } from '../extensions/functions/solidarityReport'
 
 module.exports = {
   alias: 'r',
@@ -22,13 +22,7 @@ module.exports = {
       process.exit(3)
     }
 
-    let results: SolidarityReportResults = {
-      basicInfo: [['System Basics', 'Value'], ['OS', helpers.getOperatingSystemInfo()], ['CPU', helpers.getCPUInfo()]],
-      cliRules: [['Binary', 'Location', 'Version', 'Desired']],
-      envRules: [['Environment Var', 'Value']],
-      filesystemRules: [['Location', 'Type', 'Exists']],
-      shellRules: [['Command', 'Pattern', 'Matches']],
-    }
+    let results: SolidarityReportResults = createReport()
 
     // break all rules into requirements
     const reportCalls = map(

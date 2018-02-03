@@ -25,9 +25,8 @@ describe('updateRequirement', () => {
       spin: jest.fn(() => spinner),
       error: jest.fn(),
       colors: {
-        green: jest.fn()
-      }
-
+        green: jest.fn(),
+      },
     }
   })
 
@@ -162,7 +161,7 @@ describe('updateRequirement', () => {
           TestRequirement: [
             { rule: 'custom', plugin: 'Example Plugin', name: 'checkThing' },
             { rule: 'custom', plugin: 'Example Plugin', name: 'checkSecondThing' },
-            { rule: 'custom', plugin: 'Example Plugin', name: 'checkThirdThing' }
+            { rule: 'custom', plugin: 'Example Plugin', name: 'checkThirdThing' },
           ],
         })[0]
 
