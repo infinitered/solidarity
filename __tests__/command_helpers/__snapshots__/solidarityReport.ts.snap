@@ -2,6 +2,7 @@
 
 exports[`solidarityReport structure the basic function generates the Result object 1`] = `
 Object {
+  "addCLI": [Function],
   "basicInfo": Array [
     Array [
       "System Basics",

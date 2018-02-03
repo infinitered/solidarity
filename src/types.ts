@@ -137,4 +137,11 @@ export interface SolidarityReportResults {
   filesystemRules: Array<Array<string>>
   shellRules: Array<Array<string>>
   customRules?: Array<Array<string>>
+  addCLI: (cliReportConfig: CLIReportConfig) => void
+}
+
+export interface CLIReportConfig {
+  binary: string
+  version: string
+  desired?: string
 }

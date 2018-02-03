@@ -21,11 +21,10 @@ module.exports = context => {
           },
         ],
         report: async (rule, context, report) => {
-          // report.cliRules.push(['android', location, binaryVersion, desired])
           report.addCLI({
-            binary: 'Android SDK',
-            version: 10,
-            desired: 12,
+            binary: 'node',
+            version: '10',
+            desired: '12',
           })
         },
       },

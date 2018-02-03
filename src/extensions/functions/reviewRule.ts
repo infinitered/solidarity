@@ -10,13 +10,14 @@ const skipRule = require('./skipRule')
 const checkDir = require('./checkDir')
 const checkFile = require('./checkFile')
 const checkShell = require('./checkShell')
+const findPluginInfo = require('./findPluginInfo')
 
 module.exports = async (
   requirement: SolidarityRequirementChunk,
   report: SolidarityReportResults,
   context: SolidarityRunContext
 ) => {
-  const { print, system, solidarity } = context
+  const { print, solidarity } = context
   const { colors, checkmark, xmark } = print
   const prettyBool = (bl: boolean) => (bl ? checkmark + colors.green(' YES') : xmark + colors.red(' NO'))
   // @ts-ignore - flatten will never get a string bc tail is called first
@@ -29,21 +30,18 @@ module.exports = async (
     switch (rule.rule) {
       // Handle CLI rule report
       case 'cli':
-        const desired = rule.semver ? rule.semver : colors.green('*ANY*')
-        let location
-        try {
-          location = system.which(rule.binary)
-        } catch (_e) {
-          location = colors.red('*MISSING*')
-        }
-
         let binaryVersion
         try {
           binaryVersion = await solidarity.getVersion(rule, context)
         } catch (_e) {
           binaryVersion = colors.red('*UNKNOWN*')
         }
-        report.cliRules.push([rule.binary, location, binaryVersion, desired])
+
+        report.addCLI({
+          binary: rule.binary,
+          version: binaryVersion,
+          desired: rule.semver,
+        })
         break
       // Handle ENV rule report
       case 'env':
@@ -66,8 +64,13 @@ module.exports = async (
         report.shellRules.push([rule.command, rule.match, shellCheckPass])
         break
       case 'custom':
-        // const customRulePass = true
-        // report.customRules.push(['nachos'])
+        const customPluginRule = findPluginInfo(rule, context)
+        if (customPluginRule.success) {
+          // let plugin update the report
+          customPluginRule.plugin.report(rule, context, report)
+        } else {
+          throw new Error(customPluginRule.message)
+        }
         break
       default:
         throw new Error('Encountered unknown rule')

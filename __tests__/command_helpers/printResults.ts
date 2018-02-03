@@ -8,7 +8,7 @@ describe('reviewRule', () => {
   beforeEach(() => {
     // fresh mock context
     mockContext = require('mockContext')
-    reportResults = createReport()
+    reportResults = createReport(mockContext)
   })
 
   test('printResults uses table', async () => {

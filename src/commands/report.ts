@@ -22,7 +22,7 @@ module.exports = {
       process.exit(3)
     }
 
-    let results: SolidarityReportResults = createReport()
+    let results: SolidarityReportResults = createReport(context)
 
     // break all rules into requirements
     const reportCalls = map(
