@@ -1,21 +1,16 @@
-- [Why Solidarity?](#why-does-solidarity-existquestion)
+- [Why Solidarity?](/README.md#why-does-solidarity-existquestion)
 - Readme Basics
-  - [Install](#install)
-  - [How do I use it?](#how-do-I-use-it)
-  - [How do I update it?](#how-do-i-update-it-to-my-machine-specs)
-  - [How do I create my first snapshot?](#how-do-I-create-my-first-snapshot)
-  - [Supported Systems](#supported-systems)
-  - [Additional Support](#support)
-  - [Additional Info](#additional-info)
+  - [Install](/README.md#install)
+  - [How do I use it?](/README.md#how-do-I-use-it)
+  - [How do I update it?](/README.md#how-do-i-update-it-to-my-machine-specs)
+  - [How do I create my first snapshot?](/README.md#how-do-I-create-my-first-snapshot)
+  - [Supported Systems](/README.md#supported-systems)
+  - [Additional Support](/README.md#support)
+  - [Additional Info](/README.md#additional-info)
 - Comprehensive Docs
   - [Solidarity Rules Options](/docs/options.md)
-- Plugins
-  - [Write Solidarity Plugins](/docs/plugins.md)
-  - [Write Advanced Solidarity Plugins](/docs/advancedPlugin.md)
-  - [Contributors Guide](/docs/contributorsGuide.md)
-  - [Available Plugins](/docs/pluginsList.md)
-
-- [Existing Contributors](/docs/existingContributors.md)
+  - [Writing Plugins](/docs/plugins.md)
+- [**All Contributors**](/docs/existingContributors.md)
 - Blog Posts
   - [Introducing Solidarity](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9)
   - [Environment Reports](https://shift.infinite.red/effortless-environment-reports-d129d53eb405)
