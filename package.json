@@ -23,7 +23,7 @@
     "snapupdate": "jest -u",
     "welcome": "yarn tsc && npm link",
     "serve:docs": "docsify serve docs",
-    "maintenence": "updtr && typesync",
+    "maintenence": "tryupdate && typesync",
     "addTypes": "typesync",
     "tryupdate": "updtr -u npm"
   },
