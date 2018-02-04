@@ -105,7 +105,6 @@ describe('reviewRule', () => {
       } catch (e) {
         expect(e).toMatchSnapshot()
       }
-
     })
   })
 })

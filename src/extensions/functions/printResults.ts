@@ -17,5 +17,9 @@ module.exports = (results: SolidarityReportResults, context: SolidarityRunContex
   printIfData(results.envRules, 'Environment Variables')
   printIfData(results.filesystemRules, 'Filesystem')
   printIfData(results.shellRules, 'Shell Checks')
+  results.customRules &&
+    results.customRules.map(customTable => {
+      printIfData(customTable.table, customTable.title)
+    })
   printSeparator()
 }

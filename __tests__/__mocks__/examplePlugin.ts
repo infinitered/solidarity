@@ -54,6 +54,16 @@ module.exports = context => {
           }
         },
         snapshot: async (rule, context) => [],
+        report: async (rule, context, report) => {
+          report.customRules.push({
+            title: 'Nachos',
+            table: [
+              ['Title 1', 'Title 2', 'Title 3'],
+              ['Some Val 1', 'Some Val 2', 'Some Val 3'],
+              ['Dat Val 1', 'Dat Val 2', 'Dat Val 3'],
+            ],
+          })
+        },
       },
     },
   })
