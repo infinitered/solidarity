@@ -2,7 +2,7 @@
 
 As you know, when a user runs `solidarity report` as of Solidarity 1.1+, a GitHub friendly report is generated to the screen.  You can provide this same functionality in your custom plugin by implementing a `report` function inside of your `rules` property.
 
-> This is supported as of Solidarity v1.2+
+> This is supported as of Solidarity v2+
 
 You can add to any report table or create your own.  The known report tables are:
 * basicInfo - Reports the system and report results
