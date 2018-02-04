@@ -130,13 +130,18 @@ export interface SolidaritySettings {
   readonly config: SolidarityConfig
 }
 
+export interface CustomRulesConfig {
+  title: string
+  table: Array<Array<string>>
+}
+
 export interface SolidarityReportResults {
   basicInfo: Array<Array<string>>
   cliRules: Array<Array<string>>
   envRules: Array<Array<string>>
   filesystemRules: Array<Array<string>>
   shellRules: Array<Array<string>>
-  customRules?: Array<Array<string>>
+  customRules?: Array<CustomRulesConfig>
   addCLI: (cliReportConfig: CLIReportConfig) => void
 }
 

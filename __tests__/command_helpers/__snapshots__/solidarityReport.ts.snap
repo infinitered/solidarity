@@ -13,7 +13,7 @@ Array [
 ]
 `;
 
-exports[`solidarityReport structure the basic function generates the Result object 3`] = `undefined`;
+exports[`solidarityReport structure the basic function generates the Result object 3`] = `Array []`;
 
 exports[`solidarityReport structure the basic function generates the Result object 4`] = `
 Array [

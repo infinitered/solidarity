@@ -11,6 +11,7 @@ export const createReport = (context: SolidarityRunContext): SolidarityReportRes
     envRules: [['Environment Var', 'Value']],
     filesystemRules: [['Location', 'Type', 'Exists']],
     shellRules: [['Command', 'Pattern', 'Matches']],
+    customRules: [],
     // helper for adding CLI rules
     addCLI: function (cliReportConfig: CLIReportConfig) {
       const desired = cliReportConfig.desired ? cliReportConfig.desired : colors.green('*ANY*')

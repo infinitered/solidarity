@@ -78,8 +78,7 @@ module.exports = async (
   }, rules)
 
   // Run all the rule checks for a requirement
-  return Promise.all(ruleChecks)
-    .then(results => {
-      return results
-    })
+  return Promise.all(ruleChecks).then(results => {
+    return results
+  })
 }
