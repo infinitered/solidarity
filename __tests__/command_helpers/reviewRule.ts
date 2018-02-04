@@ -80,15 +80,32 @@ describe('reviewRule', () => {
       // should not change rules
       expect(reportResults.cliRules.length).toBe(1)
     })
+
+    test('Errors when plugin doesn not exist', async () => {
+      const rule = ['CUSTOM', [{ rule: 'custom', plugin: 'FAKE', name: 'checkSecondThing' }]]
+
+      // Async error snapshots (not simple)
+      try {
+        await reviewRule(rule, reportResults, mockContext)
+        fail('Unknown rule should have errored')
+      } catch (e) {
+        expect(e).toMatchSnapshot()
+      }
+    })
   })
 
   describe('when rule: unknown', () => {
     test('rule gets added', async () => {
       const rule = ['UNKNOWN', [{ rule: 'UNKNOWN', command: 'ls', match: '.+' }]]
-      const numErrors = mockContext.print.error.mock.calls.length
-      const result = await reviewRule(rule, reportResults, mockContext)
-      // Failure in a specific rule
-      expect(mockContext.print.error.mock.calls.length).toBe(numErrors + 1)
+
+      // Async error snapshots (not simple)
+      try {
+        await reviewRule(rule, reportResults, mockContext)
+        fail('Unknown rule should have errored')
+      } catch (e) {
+        expect(e).toMatchSnapshot()
+      }
+
     })
   })
 })
