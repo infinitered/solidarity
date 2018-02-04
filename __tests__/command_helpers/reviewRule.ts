@@ -1,12 +1,13 @@
 import reviewRule from '../../src/extensions/functions/reviewRule'
 import { SolidarityRunContext, SolidarityReportResults } from '../../src/types'
 import { createReport } from '../../src/extensions/functions/solidarityReport'
+const examplePlugin = require('examplePlugin')
 let mockContext: SolidarityRunContext
 let reportResults: SolidarityReportResults
 describe('reviewRule', () => {
   beforeEach(() => {
     // fresh mock context
-    mockContext = require('mockContext')
+    mockContext = examplePlugin(require('mockContext'))
     reportResults = createReport(mockContext)
   })
 
@@ -60,24 +61,34 @@ describe('reviewRule', () => {
     })
   })
 
-  // TODO: Custom rule test
-  // describe('when rule: custom', () => {
-  //   test('rule gets added', async () => {
-  //     const rule = ['CUSTOM', [{ rule: 'custom', plugin: 'plugin', name: 'name' }]]
+  // Custom rule test
+  describe('when rule: custom', () => {
+    test('rule gets added', async () => {
+      const rule = ['CUSTOM', [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkThing' }]]
 
-  //     const result = await reviewRule(rule, reportResults, mockContext)
-  //     // CUSTOM rule was added
-  //     expect(reportResults.customRules.length).toBe(2)
-  //   })
-  // })
+      expect(reportResults.cliRules.length).toBe(1)
+      const result = await reviewRule(rule, reportResults, mockContext)
+      // CUSTOM rule (which adds CLI report) was added
+      expect(reportResults.cliRules.length).toBe(2)
+    })
+
+    test('does nothing when no report exists', async () => {
+      const rule = ['CUSTOM', [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkSecondThing' }]]
+
+      expect(reportResults.cliRules.length).toBe(1)
+      const result = await reviewRule(rule, reportResults, mockContext)
+      // should not change rules
+      expect(reportResults.cliRules.length).toBe(1)
+    })
+  })
 
   describe('when rule: unknown', () => {
     test('rule gets added', async () => {
       const rule = ['UNKNOWN', [{ rule: 'UNKNOWN', command: 'ls', match: '.+' }]]
-
+      const numErrors = mockContext.print.error.mock.calls.length
       const result = await reviewRule(rule, reportResults, mockContext)
       // Failure in a specific rule
-      expect(mockContext.print.error.mock.calls.length).toBe(1)
+      expect(mockContext.print.error.mock.calls.length).toBe(numErrors + 1)
     })
   })
 })
