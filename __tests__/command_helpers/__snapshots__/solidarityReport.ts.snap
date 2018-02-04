@@ -1,49 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`solidarityReport structure the basic function generates the Result object 1`] = `
-Object {
-  "addCLI": [Function],
-  "basicInfo": Array [
-    Array [
-      "System Basics",
-      "Value",
-    ],
-    Array [
-      "OS",
-      "macOS High Sierra 10.13.3",
-    ],
-    Array [
-      "CPU",
-      "x64 Intel(R) Core(TM) i7-4870HQ CPU @ 2.50GHz",
-    ],
+exports[`solidarityReport structure the basic function generates the Result object 1`] = `[Function]`;
+
+exports[`solidarityReport structure the basic function generates the Result object 2`] = `
+Array [
+  Array [
+    "Binary",
+    "Location",
+    "Version",
+    "Desired",
   ],
-  "cliRules": Array [
-    Array [
-      "Binary",
-      "Location",
-      "Version",
-      "Desired",
-    ],
+]
+`;
+
+exports[`solidarityReport structure the basic function generates the Result object 3`] = `undefined`;
+
+exports[`solidarityReport structure the basic function generates the Result object 4`] = `
+Array [
+  Array [
+    "Environment Var",
+    "Value",
   ],
-  "envRules": Array [
-    Array [
-      "Environment Var",
-      "Value",
-    ],
+]
+`;
+
+exports[`solidarityReport structure the basic function generates the Result object 5`] = `
+Array [
+  Array [
+    "Location",
+    "Type",
+    "Exists",
   ],
-  "filesystemRules": Array [
-    Array [
-      "Location",
-      "Type",
-      "Exists",
-    ],
+]
+`;
+
+exports[`solidarityReport structure the basic function generates the Result object 6`] = `
+Array [
+  Array [
+    "Command",
+    "Pattern",
+    "Matches",
   ],
-  "shellRules": Array [
-    Array [
-      "Command",
-      "Pattern",
-      "Matches",
-    ],
-  ],
-}
+]
 `;

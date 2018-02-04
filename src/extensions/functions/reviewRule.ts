@@ -65,7 +65,7 @@ module.exports = async (
         break
       case 'custom':
         const customPluginRule = findPluginInfo(rule, context)
-        if (customPluginRule.success) {
+        if (customPluginRule.success && customPluginRule.plugin.report) {
           // let plugin update the report
           customPluginRule.plugin.report(rule, context, report)
         } else {
