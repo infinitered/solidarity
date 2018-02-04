@@ -1,6 +1,6 @@
 ## Custom Rule Check
 
-If you'd like to create your own rule, this can be done as of Solidarity v1.2+.  This can be useful for any rule that cannot be easily constructed with the existing ruleset.  Custom rules reside in you solidarity file among all other rules, and require the following:
+If you'd like to create your own rule, this can be done as of Solidarity v2+.  This can be useful for any rule that cannot be easily constructed with the existing ruleset.  Custom rules reside in you solidarity file among all other rules, and require the following:
 
 1. `rule` must be set to 'custom'
 1. `plugin` prop  is present and set to the name of your plugin, and defined in your `addPlugin` function config.

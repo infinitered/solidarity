@@ -2,7 +2,7 @@
 
 As you know, when a user runs `solidarity snapshot` and existing `.solidarity` file is in place, the versions of rules get updated to that environment.  You can provide this same functionality in your custom plugin by implementing a `snapshot` function inside of your `rules` property.
 
-> This is supported as of Solidarity v1.2+
+> This is supported as of Solidarity v2+
 
 We'll use the same rule (always pass) that was identified in the [custom rule check](/docs/customRuleCheck.md) section.
 
