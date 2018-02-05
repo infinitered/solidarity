@@ -2,6 +2,7 @@
   "extends": "tslint-config-standard",
   "rules": {
     "trailing-comma": [true],
-    "no-string-throw": false
+    "no-string-throw": false,
+    "space-before-function-paren": false
   }
 }

@@ -33,6 +33,7 @@ export interface SolidarityRunContext extends GluegunRunContext {
   addPlugin: (config: SolidarityPlugin) => void
   printSeparator: () => void
   outputMode: SolidarityOutputMode
+  envHelpers: any
 }
 
 export type SnapshotType = (context: SolidarityRunContext) => Promise<void>

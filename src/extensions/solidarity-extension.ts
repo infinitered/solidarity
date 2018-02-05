@@ -1,4 +1,5 @@
 import { SolidarityRunContext, solidarity, SolidarityPlugin } from '../types'
+import { helpers } from 'envinfo'
 
 const callsite = require('callsite')
 const path = require('path')
@@ -22,6 +23,9 @@ module.exports = (context: SolidarityRunContext): void => {
       ...pluginConfig,
     })
   }
+
+  // Add helpers
+  context.envHelpers = helpers
 
   // Flavored separator
   context.printSeparator = (): void =>
