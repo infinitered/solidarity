@@ -8,9 +8,6 @@
     <img src="https://codecov.io/gh/infinitered/solidarity/graph/badge.svg" alt="Codecov" />
   </a>
   <a href="https://badge.fury.io/js/solidarity"><img src="https://badge.fury.io/js/solidarity.svg" alt="npm version"></a>
-  <a href="http://community.infinite.red/">
-    <img src="https://infiniteredcommunity.herokuapp.com/badge.svg">
-  </a>
   <a href="https://www.npmjs.com/package/solidarity">
     <img src="https://img.shields.io/npm/dt/solidarity.svg">
   </a>
@@ -88,6 +85,9 @@ Solidarity, as open source, is free to use and always will be :heart:.  It's MIT
 * Read the [Contributors Guide](https://github.com/infinitered/solidarity/blob/master/docs/contributorsGuide.md)
 * Add solidarity to all your projects
 * [Build plugins](https://github.com/infinitered/solidarity/blob/master/docs/plugins.md)
+* Join our Slack <a href="http://community.infinite.red/">
+    <img src="https://infiniteredcommunity.herokuapp.com/badge.svg">
+  </a>
 
 ### License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
