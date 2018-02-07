@@ -17,6 +17,9 @@
   <a href="https://ci.appveyor.com/project/GantMan/solidarity">
     <img src="https://ci.appveyor.com/api/projects/status/eqn3imsv7pk75sjv/branch/master?svg=true">
   </a>
+  <a href="https://app.fossa.io/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity?ref=badge_shield">
+    <img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity.svg?type=shield">
+  </a> 
 </p>
 
 
