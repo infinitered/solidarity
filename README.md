@@ -19,7 +19,7 @@
   </a>
 </p>
 
-
+![explainer_gif](https://user-images.githubusercontent.com/997157/36068817-297b9e02-0ea4-11e8-96b5-9ea7a34401e2.gif)
 ### WHY DOES SOLIDARITY EXIST:question:
 I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take two minutes to read [the announcement blog post](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
 
