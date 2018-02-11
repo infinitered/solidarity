@@ -23,7 +23,7 @@
 </p>  
 
 ### WHY DOES SOLIDARITY EXIST:question:
-I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take two minutes to read [the announcement blog post](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
+If the one-liner and GIF aren't enough for you, a quick, friendly explanation is available in [the announcement blog post](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
 
 ### Docs Website
 https://infinitered.github.io/solidarity/
