@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/infinitered/solidarity/master/_art/combo.jpg" width="700px" />
-  <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3>
+  <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3> 
   <hr/>
   <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
   <a href='https://travis-ci.org/infinitered/solidarity'> <img src='https://travis-ci.org/infinitered/solidarity.svg?branch=master' alt='Build Status'></a>
@@ -18,8 +18,10 @@
     <img src="https://ci.appveyor.com/api/projects/status/eqn3imsv7pk75sjv/branch/master?svg=true">
   </a>
 </p>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/997157/36068817-297b9e02-0ea4-11e8-96b5-9ea7a34401e2.gif" align="center" />
+</p>  
 
-![explainer_gif](https://user-images.githubusercontent.com/997157/36068817-297b9e02-0ea4-11e8-96b5-9ea7a34401e2.gif)
 ### WHY DOES SOLIDARITY EXIST:question:
 I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take two minutes to read [the announcement blog post](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
 
