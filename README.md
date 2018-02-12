@@ -104,6 +104,9 @@ Solidarity, as open source, is free to use and always will be :heart:.  It's MIT
 ### License
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity?ref=badge_large)
+
 ### NPM Details
 [![NPM](https://nodei.co/npm/solidarity.png)](https://npmjs.org/package/solidarity)
-
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity?ref=badge_shield)
