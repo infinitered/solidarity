@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/infinitered/solidarity/master/_art/combo.jpg" width="700px" />
-  <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3>
+  <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3> 
   <hr/>
   <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
   <a href='https://travis-ci.org/infinitered/solidarity'> <img src='https://travis-ci.org/infinitered/solidarity.svg?branch=master' alt='Build Status'></a>
@@ -18,10 +18,12 @@
     <img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity.svg?type=shield">
   </a> 
 </p>
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/997157/36068817-297b9e02-0ea4-11e8-96b5-9ea7a34401e2.gif" align="center" />
+</p>  
 
 ### WHY DOES SOLIDARITY EXIST:question:
-I know the one-liner under the graphic isn't for everyone.  If you'd like a quick, friendly explanation, please take two minutes to read [the announcement blog post](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
+If the one-liner and GIF aren't enough for you, a quick, friendly explanation is available in [the announcement blog post](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
 
 ### Docs Website
 https://infinitered.github.io/solidarity/
@@ -50,6 +52,8 @@ $ solidarity
 ```
 This command looks for the `.solidarity` file in the working directory, and then runs a check of the containing rules against your environment.  The command exit code is tied to the success of the solidarity check for testing frameworks.
 
+[Write your Solidarity file by hand](https://infinitered.github.io/solidarity/#/docs/options), or use a snapshot.
+
 ## How do I update it to my machine specs?
 Environment updates can be stored to solidarity quickly.
 ```sh
@@ -69,6 +73,14 @@ Custom rule-sets can be created by modifying the `.solidarity` file by hand, or 
 
 ## Cross Platform
 Solidarity works with Mac/Linux/Windows environments. CI tests all rules with each platform on every update.
+
+## Using Solidarity for GitHub Reports
+![Solidarity Reports](https://cdn-images-1.medium.com/max/2000/1*EE_NX4i1YeVowVuBSdT78w.gif)
+You've already identified everything that's important to your project.  So when anyone files bugs on your repo, they can just report using Solidarity!
+
+Just run `solidarity report`
+
+The resulting output is copy/paste markdown.  If you're confused, here's [the full blog post](https://shift.infinite.red/effortless-environment-reports-d129d53eb405).
 
 ## Project Support
 #### Open Source
