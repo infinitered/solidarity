@@ -20,18 +20,17 @@ module.exports = async context => {
     message: 'Your initial rule file template?',
     choices: ruleChoices,
   })
-  // if they want a template, copy it over
-  if (answer.ruleChoice !== ruleChoices[0]) {
+
+  if (answer.ruleChoice === ruleChoices[1]) {
     files.push(['rules-template.json.ejs', `templates/${pluginName}-template.json`])
+    files.push(['simple-plugin.js.ejs', `extensions/${pluginName}.js`])
+  } else if (answer.ruleChoice === ruleChoices[2]) {
+    files.push(['rules-template.json.ejs', `templates/${pluginName}-template.json`])
+    files.push(['helpful-plugin.js.ejs', `extensions/${pluginName}.js`])
+    files.push(['addOptionalRules.js.ejs', `extensions/helpers/addOptionalRules.js`])
   }
 
   const customRules = await prompt.confirm('Custom rules? (e.g. Rules other than basic types)')
-  if (customRules) {
-    files.push(['helpful-plugin.js.ejs', `extensions/${pluginName}.js`])
-    files.push(['addOptionalRules.js.ejs', `extensions/helpers/addOptionalRules.js`])
-  } else {
-    files.push(['simple-plugin.js.ejs', `extensions/${pluginName}.js`])
-  }
 
   print.info(`Creating plugin ${pluginName}`)
   // copy files over
@@ -39,7 +38,7 @@ module.exports = async context => {
     template.generate({
       template: fileSet[0],
       target: `${pluginName}/${fileSet[1]}`,
-      props: { pluginName },
+      props: { pluginName, customRules },
     })
   })
 }

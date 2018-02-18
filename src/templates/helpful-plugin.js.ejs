@@ -14,6 +14,29 @@ module.exports = (context) => {
       context.solidarity.setSolidaritySettings(solidarity, context)
       // update file with local versions
       await context.system.run('solidarity snapshot')
-    }
+    }<% if(props.customRules){ %>,
+    rules: {
+      ruleName: {
+        check: async (rule, context) => {
+          return {
+            pass: true,
+            message: 'Check always passes'
+          }
+        },
+        snapshot: async (rule, context) => [
+          {
+            prop: 'addedProp',
+            value: '12.0.0'
+          },
+        ],
+        report: async (rule, context, report) => {
+          report.addCLI({
+            binary: 'imaginaryCLI',
+            version: '10',
+            desired: '12'
+          })
+        }
+      }
+    }<% } %>
   })
 }

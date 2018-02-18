@@ -3,6 +3,29 @@ module.exports = (context) => {
   context.addPlugin({
     name: '<%= props.pluginName %>',
     description: 'My custom plugin',
-    snapshot: '<%= props.pluginName %>-template.json'
+    snapshot: '<%= props.pluginName %>-template.json'<% if(props.customRules){ %>,
+    rules: {
+      ruleName: {
+        check: async (rule, context) => {
+          return {
+            pass: true,
+            message: 'Check always passes'
+          }
+        },
+        snapshot: async (rule, context) => [
+          {
+            prop: 'addedProp',
+            value: '12.0.0'
+          },
+        ],
+        report: async (rule, context, report) => {
+          report.addCLI({
+            binary: 'imaginaryCLI',
+            version: '10',
+            desired: '12'
+          })
+        }
+      }
+    }<% } %>
   })
 }
