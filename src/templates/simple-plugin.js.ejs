@@ -1,0 +1,8 @@
+module.exports = (context) => {
+  // Register this plugin
+  context.addPlugin({
+    name: '<%= props.pluginName %>',
+    description: 'My custom plugin',
+    snapshot: '<%= props.pluginName %>-template.json'
+  })
+}
