@@ -48,4 +48,7 @@ module.exports = async context => {
       props: { pluginName, customRules, description: description.pluginDesc },
     })
   })
+
+  // for tests really
+  return files
 }
