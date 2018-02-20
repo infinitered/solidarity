@@ -2,7 +2,7 @@ module.exports = (context) => {
   // Register this plugin
   context.addPlugin({
     name: '<%= props.pluginName %>',
-    description: 'My custom plugin',
+    description: '<%= props.description %>',
     snapshot: '<%= props.pluginName %>-template.json'<% if(props.customRules){ %>,
     rules: {
       ruleName: {

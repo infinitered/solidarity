@@ -13,7 +13,7 @@ module.exports = async context => {
   const description = await prompt.ask({
     type: 'input',
     name: 'pluginDesc',
-    message: 'Short description of the plugin'
+    message: 'Short plugin description (used in various places)'
   })
 
   const ruleChoices = [
@@ -45,7 +45,7 @@ module.exports = async context => {
     template.generate({
       template: fileSet[0],
       target: `${pluginName}/${fileSet[1]}`,
-      props: { pluginName, customRules },
+      props: { pluginName, customRules, description: description.pluginDesc },
     })
   })
 }
