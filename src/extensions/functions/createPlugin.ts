@@ -7,7 +7,14 @@ module.exports = async context => {
     name: 'plugin',
     message: 'Plugin name? (we will add the namespacing for you)',
   })
+  if (!answerPluginName.plugin) throw Error('A plugin requires a name')
   const pluginName = `solidarity-${answerPluginName.plugin.replace('solidarity-', '')}`
+
+  const description = await prompt.ask({
+    type: 'input',
+    name: 'pluginDesc',
+    message: 'Short description of the plugin'
+  })
 
   const ruleChoices = [
     'I do not want a generated rule file',
