@@ -1943,9 +1943,9 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-"envinfo@git+ssh://git@github.com/tabrindle/envinfo.git":
-  version "4.0.0-beta.3"
-  resolved "git+ssh://git@github.com/tabrindle/envinfo.git#2aa12da440b1d00a994dcc2c8dd409a514005191"
+envinfo@^4.0.0-beta.5:
+  version "4.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-4.0.0-beta.5.tgz#aaf1be9463c8575d14955329ec272b34ce3e4ce6"
   dependencies:
     array-includes "^3.0.3"
     clipboardy "^1.2.2"
@@ -1955,6 +1955,7 @@ entities@^1.1.1, entities@~1.1.1:
     object.values "^1.0.4"
     os-name "^2.0.1"
     which "^1.2.14"
+    yamlify-object "^0.4.5"
 
 errno@^0.1.3, errno@^0.1.4:
   version "0.1.6"
@@ -6967,6 +6968,10 @@ y18n@^3.2.1:
 yallist@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
+
+yamlify-object@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/yamlify-object/-/yamlify-object-0.4.5.tgz#88291c64428d4aaf452141aaba6bda030d848f6c"
 
 yargonaut@^1.1.2:
   version "1.1.2"
