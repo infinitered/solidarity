@@ -25,7 +25,7 @@ module.exports = (context: SolidarityRunContext): void => {
   }
 
   // Add helpers
-  context.envHelpers = helpers
+  context.envInfo = helpers
 
   // Flavored separator
   context.printSeparator = (): void =>

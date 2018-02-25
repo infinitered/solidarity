@@ -156,6 +156,15 @@ describe('updateRequirement', () => {
         expect(spinner.stop.mock.calls.length).toEqual(1)
       })
 
+      it('can pass silently if no snapshot function provided', async () => {
+        const requirement = toPairs({
+          TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkFourthThing' }],
+        })[0]
+
+        const result = await updateRequirement(requirement, settings, context)
+        expect(result).toEqual([[]])
+      })
+
       it('custom combo - play nicely with others', async () => {
         const requirement = toPairs({
           TestRequirement: [

@@ -37,6 +37,8 @@ module.exports = async (
       case 'custom':
         const customPluginRule = findPluginInfo(rule, context)
         if (customPluginRule.success) {
+          // if they didn't implement a snapshot, then do nothing
+          if (!customPluginRule.plugin.snapshot) return []
           const customResult = await customPluginRule.plugin.snapshot(rule, context)
           const changes = customResult.map(patch => {
             rule[patch.prop] = patch.value
