@@ -36,11 +36,13 @@ const mockContext = {
       green: jest.fn(),
       red: jest.fn(),
       blue: jest.fn(),
+      magenta: jest.fn(),
     },
     colors: {
       green: jest.fn(),
       red: jest.fn(),
       blue: jest.fn(),
+      magenta: jest.fn(),
     },
   },
   printSeparator: jest.fn(),

@@ -12,4 +12,5 @@ test('investigate createPlugin', async () => {
   expect(context.template.generate).toBeCalled()
   expect(context.prompt.ask).toBeCalled()
   expect(context.prompt.confirm).toBeCalled()
+  expect(context.print.success).toBeCalled()
 })

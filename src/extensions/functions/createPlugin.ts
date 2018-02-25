@@ -1,6 +1,7 @@
 module.exports = async context => {
   let files = [['.gitignore.ejs', '.gitignore'], ['README.md.ejs', 'README.md'], ['package.json.ejs', 'package.json']]
   const { print, template, prompt } = context
+  const { colors } = print
 
   const answerPluginName = await prompt.ask({
     type: 'input',
@@ -48,6 +49,10 @@ module.exports = async context => {
       props: { pluginName, customRules, description: description.pluginDesc },
     })
   })
+
+  print.success(`
+    Done! ${colors.magenta('\n\nPlugin Docs: https://infinitered.github.io/solidarity/#/docs/plugins')}
+  `)
 
   // for tests really
   return files
