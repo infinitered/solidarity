@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check result shape 1`] = `[Function]`;
+
+exports[`investigate createPlugin 1`] = `
+Array [
+  Array [
+    ".gitignore.ejs",
+    ".gitignore",
+  ],
+  Array [
+    "README.md.ejs",
+    "README.md",
+  ],
+  Array [
+    "package.json.ejs",
+    "package.json",
+  ],
+]
+`;

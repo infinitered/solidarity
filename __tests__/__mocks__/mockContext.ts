@@ -17,6 +17,9 @@ const mockContext = {
   system: {
     startTimer: jest.fn(() => jest.fn()),
   },
+  template: {
+    generate: jest.fn(),
+  },
   print: {
     error: jest.fn(),
     success: jest.fn(),
@@ -33,11 +36,13 @@ const mockContext = {
       green: jest.fn(),
       red: jest.fn(),
       blue: jest.fn(),
+      magenta: jest.fn(),
     },
     colors: {
       green: jest.fn(),
       red: jest.fn(),
       blue: jest.fn(),
+      magenta: jest.fn(),
     },
   },
   printSeparator: jest.fn(),
@@ -45,7 +50,8 @@ const mockContext = {
     options: {},
   },
   prompt: {
-    ask: jest.fn(() => Promise.resolve({ createFile: true })),
+    ask: jest.fn(({ name }) => Promise.resolve({ [name]: 'taco', createFile: true })),
+    confirm: jest.fn(() => true)
   },
   solidarity: noConfigSolidarity,
 }

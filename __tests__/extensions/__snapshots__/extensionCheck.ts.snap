@@ -10,6 +10,7 @@ Object {
   "checkENV": [Function],
   "checkFile": [Function],
   "checkRequirement": [Function],
+  "createPlugin": [Function],
   "getLineWithVersion": [Function],
   "getSolidaritySettings": [Function],
   "getVersion": [Function],

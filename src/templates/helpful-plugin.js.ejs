@@ -1,0 +1,42 @@
+const addOptionalRules = require('./helpers/addOptionalRules')
+
+module.exports = (context) => {
+  // Register this plugin
+  context.addPlugin({
+    name: '<%= props.pluginName %>',
+    description: '<%= props.description %>',
+    snapshot: async (context) => {
+      // start with template
+      let solidarity = require('../templates/<%= props.pluginName %>-template.json')
+      // add optional rules
+      addOptionalRules(context, solidarity.requirements)
+      // write out .solidarity file
+      context.solidarity.setSolidaritySettings(solidarity, context)
+      // update file with local versions
+      await context.system.run('solidarity snapshot')
+    }<% if(props.customRules){ %>,
+    rules: {
+      ruleName: {
+        check: async (rule, context) => {
+          return {
+            pass: true,
+            message: 'Check always passes'
+          }
+        },
+        snapshot: async (rule, context) => [
+          {
+            prop: 'addedProp',
+            value: '12.0.0'
+          },
+        ],
+        report: async (rule, context, report) => {
+          report.addCLI({
+            binary: 'imaginaryCLI',
+            version: '10',
+            desired: '12'
+          })
+        }
+      }
+    }<% } %>
+  })
+}

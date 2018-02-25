@@ -1,6 +1,8 @@
 # Writing your own plugins
 If you're using a technology that doesn't have a plugin, or if you'd just like build your own custom rules to use in solidarity, we've made creating plugins extremely simple.
 
+The following docs will show you all the features of how to create a plugin.  If you'd like, you can generate a plugin-base by typing `solidarity create plugin`. This starts a walkthrough that will ask you questions to help you get started writing your plugin.
+
 ## Plugin Docs
 * [Write the Simplest Plugin](/docs/simplePlugin.md)
 * [Plugins that write Solidarity Files from Code](/docs/solidarityFromCode.md)
