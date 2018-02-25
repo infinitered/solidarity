@@ -65,6 +65,14 @@ module.exports = context => {
           })
         },
       },
+      checkFourthThing: {
+        check: async (rule, context) => {
+          return {
+            pass: false,
+            message: 'Boooo failed check',
+          }
+        },
+      },
     },
   })
 
