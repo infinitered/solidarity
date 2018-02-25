@@ -23,6 +23,7 @@
 </p>  
 
 ### WHY DOES SOLIDARITY EXIST:question:
+When the same exact code works on one machine, but not another, Solidarity is the answer.
 If the one-liner and GIF aren't enough for you, a quick, friendly explanation is available in [the announcement blog post](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
 
 ### Docs Website
