@@ -6,7 +6,6 @@ test('check result shape', () => {
 })
 
 test('investigate createPlugin', async () => {
-
   const result = await createPlugin(context)
   expect(result).toMatchSnapshot()
   expect(context.template.generate).toBeCalled()

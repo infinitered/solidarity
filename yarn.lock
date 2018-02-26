@@ -1412,13 +1412,13 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-cosmiconfig@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-3.1.0.tgz#640a94bf9847f321800403cd273af60665c73397"
+cosmiconfig@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-4.0.0.tgz#760391549580bbd2df1e562bc177b13c290972dc"
   dependencies:
     is-directory "^0.3.1"
     js-yaml "^3.9.0"
-    parse-json "^3.0.0"
+    parse-json "^4.0.0"
     require-from-string "^2.0.1"
 
 coveralls@^3.0.0:
@@ -1470,11 +1470,21 @@ create-thenable@~1.0.0:
     object.omit "~2.0.0"
     unique-concat "~0.2.2"
 
-cross-spawn@^5.0.1, cross-spawn@^5.1.0:
+cross-spawn@^5.0.1:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
   dependencies:
     lru-cache "^4.0.1"
+    shebang-command "^1.2.0"
+    which "^1.2.9"
+
+cross-spawn@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.4.tgz#bbf44ccb30fb8314a08f178b62290c669c36d808"
+  dependencies:
+    nice-try "^1.0.4"
+    path-key "^2.0.1"
+    semver "^5.5.0"
     shebang-command "^1.2.0"
     which "^1.2.9"
 
@@ -2434,8 +2444,8 @@ fs-extra@~0.6.4:
     rimraf "~2.2.0"
 
 fs-jetpack@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/fs-jetpack/-/fs-jetpack-1.2.0.tgz#feb20b44bf3725492827cd2f81a7c812423882c5"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/fs-jetpack/-/fs-jetpack-1.3.0.tgz#17f9d95047ac261667d72818a772d2e5125f4281"
   dependencies:
     minimatch "^3.0.2"
 
@@ -2608,19 +2618,19 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gluegun@^2.0.0-beta.4:
-  version "2.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.0-beta.4.tgz#e0d51b9214ae0ccc6296649295f36c07e0d1a0ac"
+gluegun@2.0.0-beta.7:
+  version "2.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.0-beta.7.tgz#59a9f832d33da53bfab66afe2cf523d738a77384"
   dependencies:
     apisauce "0.14.3"
     app-module-path "^2.2.0"
     cli-table2 "^0.2.0"
     colors "^1.1.2"
-    cosmiconfig "^3.1.0"
-    cross-spawn "^5.1.0"
+    cosmiconfig "^4.0.0"
+    cross-spawn "^6.0.4"
     ejs "^2.5.7"
     enquirer "^1.0.3"
-    execa "^0.8.0"
+    execa "^0.9.0"
     fs-jetpack "^1.2.0"
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
@@ -2637,7 +2647,7 @@ gluegun@^2.0.0-beta.4:
     lodash.trimstart "^4.5.1"
     lodash.uppercase "^4.3.0"
     lodash.upperfirst "^4.3.1"
-    ora "^1.2.0"
+    ora "^1.4.0"
     pluralize "^7.0.0"
     prompt-autocompletion "^0.1.1"
     prompt-checkbox "^2.2.0"
@@ -2650,9 +2660,9 @@ gluegun@^2.0.0-beta.4:
     prompt-rawlist "^2.0.1"
     ramda "^0.25.0"
     ramdasauce "^2.1.0"
-    semver "^5.3.0"
+    semver "^5.5.0"
     which "^1.2.14"
-    yargs-parser "^8.0.0"
+    yargs-parser "^9.0.2"
 
 gonzales-pe@^3.4.4:
   version "3.4.7"
@@ -3269,8 +3279,8 @@ is-utf8@^0.2.0:
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
 
 is-windows@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.1.tgz#310db70f742d259a16a369202b51af84233310d9"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
 
 isarray@0.0.1:
   version "0.0.1"
@@ -4488,8 +4498,8 @@ minimist@~0.0.1:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
 
 mixin-deep@^1.2.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.0.tgz#47a8732ba97799457c8c1eca28f95132d7e8150a"
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.1.tgz#a49e7268dce1a0d9698e45326c5626df3543d0fe"
   dependencies:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
@@ -4574,6 +4584,10 @@ nested-error-stacks@^2.0.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.0.0.tgz#98b2ffaefb4610fa3936f1e71435d30700de2840"
   dependencies:
     inherits "~2.0.1"
+
+nice-try@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.4.tgz#d93962f6c52f2c1558c0fbda6d512819f1efe1c4"
 
 no-case@^2.2.0:
   version "2.3.2"
@@ -4829,7 +4843,7 @@ options@>=0.0.5:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/opts/-/opts-1.2.6.tgz#d185c0425cfdeb9da1d182908b65b5c0238febb3"
 
-ora@1.4.0:
+ora@1.4.0, ora@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ora/-/ora-1.4.0.tgz#884458215b3a5d4097592285f93321bb7a79e2e5"
   dependencies:
@@ -4847,7 +4861,7 @@ ora@^0.2.3:
     cli-spinners "^0.1.2"
     object-assign "^4.0.1"
 
-ora@^1.2.0, ora@^1.3.0:
+ora@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/ora/-/ora-1.3.0.tgz#80078dd2b92a934af66a3ad72a5b910694ede51a"
   dependencies:
@@ -4975,12 +4989,6 @@ parse-json@^2.2.0:
   dependencies:
     error-ex "^1.2.0"
 
-parse-json@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-3.0.0.tgz#fa6f47b18e23826ead32f263e744d0e1e847fb13"
-  dependencies:
-    error-ex "^1.3.1"
-
 parse-json@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-4.0.0.tgz#be35f5425be1f7f6c747184f98a788cb99477ee0"
@@ -5038,7 +5046,7 @@ path-is-inside@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/path-is-inside/-/path-is-inside-1.0.2.tgz#365417dede44430d1c11af61027facf074bdfc53"
 
-path-key@^2.0.0:
+path-key@^2.0.0, path-key@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
 
@@ -5953,6 +5961,10 @@ semver-diff@^2.0.0:
 "semver@2 || 3 || 4 || 5", semver@5.4.1, semver@^5.0.1, semver@^5.0.3, semver@^5.1.0, semver@^5.2.0, semver@^5.3.0, semver@^5.4.1:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
+
+semver@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
 send@0.16.1:
   version "0.16.1"
@@ -7041,7 +7053,7 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
-yargs-parser@^8.0.0, yargs-parser@^8.1.0:
+yargs-parser@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-8.1.0.tgz#f1376a33b6629a5d063782944da732631e966950"
   dependencies:

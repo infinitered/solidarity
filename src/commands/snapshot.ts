@@ -8,8 +8,10 @@ namespace Snapshot {
     if (typeof runPlugin.snapshot === 'string') {
       // Just a file copy
       const { filesystem, system } = context
+      // @ts-ignore -- strictNullChecks strikes
       filesystem.copy(`${runPlugin.templateDirectory}${runPlugin.snapshot}`, '.solidarity')
       // force local version update
+      // @ts-ignore -- strictNullChecks strikes
       await system.run('solidarity snapshot')
     } else {
       // run plugin's snapshot function

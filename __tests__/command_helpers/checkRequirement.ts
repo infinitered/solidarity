@@ -1,6 +1,6 @@
 import { SolidarityRequirement } from '../../dist/types'
 import { toPairs } from 'ramda'
-import { strings } from 'gluegun'
+import { strings } from 'gluegun/toolbox'
 
 import checkRequirement from '../../src/extensions/functions/checkRequirement'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
@@ -21,7 +21,7 @@ const checkENV = require('../../src/extensions/functions/checkENV')
 jest.mock('../../src/extensions/functions/checkFile')
 const checkFile = require('../../src/extensions/functions/checkFile')
 
-const context = require('gluegun')
+const context = require('gluegun/toolbox')
 
 const badRule = toPairs({
   YARN: [{ rule: 'knope', binary: 'yarn' }],

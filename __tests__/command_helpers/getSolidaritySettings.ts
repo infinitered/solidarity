@@ -1,7 +1,7 @@
 import { solidarity } from '../../src'
 import getSolidaritySettings from '../../src/extensions/functions/getSolidaritySettings'
 
-const context = require('gluegun')
+const context = require('gluegun/toolbox')
 
 describe('getSolidaritySettings', () => {
   describe('w/ success', () => {

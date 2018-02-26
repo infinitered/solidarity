@@ -14,7 +14,7 @@ const outOfDateCLI = {
   semver: '10.99',
 }
 
-const context = require('gluegun')
+const context = require('gluegun/toolbox')
 
 test('error on missing binary', async () => {
   expect(await checkCLI(doesNotExistCLI, context)).toBe(`Binary '${doesNotExistCLI.binary}' not found`)

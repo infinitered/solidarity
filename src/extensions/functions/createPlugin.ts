@@ -14,7 +14,7 @@ module.exports = async context => {
   const description = await prompt.ask({
     type: 'input',
     name: 'pluginDesc',
-    message: 'Short plugin description (used in various places)'
+    message: 'Short plugin description (used in various places)',
   })
 
   const ruleChoices = [

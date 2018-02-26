@@ -1,5 +1,5 @@
 import checkDir from '../../src/extensions/functions/checkDir'
-import context from 'gluegun'
+import * as context from 'gluegun/toolbox'
 
 test('checkDir detects an existing dir', () => {
   // Check for a known directory

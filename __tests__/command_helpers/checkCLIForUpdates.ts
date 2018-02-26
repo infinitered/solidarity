@@ -1,6 +1,6 @@
 import checkCLIForUpdates from '../../src/extensions/functions/checkCLIForUpdates'
 
-import context from 'gluegun'
+import * as context from 'gluegun/toolbox'
 const rule = {
   rule: 'cli',
   binary: 'bananas',
