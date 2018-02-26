@@ -3,11 +3,9 @@ import getVersion from '../../src/extensions/functions/getVersion'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 
 const context = require('gluegun')
-const mockContext = require('mockContext')
 const path = require('path')
 let originalTimeout
 solidarityExtension(context)
-solidarityExtension(mockContext)
 
 describe('getVersion', () => {
   beforeAll(() => {
