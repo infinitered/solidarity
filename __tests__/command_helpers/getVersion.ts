@@ -3,8 +3,11 @@ import getVersion from '../../src/extensions/functions/getVersion'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 
 const context = require('gluegun')
+const mockContext = require('mockContext')
+const path = require('path')
 let originalTimeout
 solidarityExtension(context)
+solidarityExtension(mockContext)
 
 describe('getVersion', () => {
   beforeAll(() => {
@@ -44,5 +47,18 @@ describe('getVersion', () => {
       result = e
     }
     expect(result).toEqual(" No version was detected from the output of the binary 'ls'")
+  })
+
+  describe('extra magic for node_modules', () => {
+    beforeAll(() => {
+      mockContext.system.which = jest.fn((name) => `.${path.sep}node_modules${path.sep}.bin${path.sep}${name}`)
+      mockContext.system.run = jest.fn(() => require('mockNPMGlobal')())
+    })
+
+    test('assuring we use global over node_modules', async () => {
+      const rule = { rule: 'cli', binary: 'yarn', version: '--version' }
+      const output = await getVersion(rule, mockContext)
+      expect(output).toBe('0.20.3')
+    })
   })
 })

@@ -319,6 +319,7 @@ describe('with a .solidarity file', () => {
 
         context.system = {
           run: jest.fn(() => Promise.resolve('1.3.2')),
+          which: jest.fn((name) => 'usr/local/bin/${name}'),
         }
 
         expect(requirements()).toEqual({})
