@@ -3,7 +3,6 @@ import getVersion from '../../src/extensions/functions/getVersion'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 
 const context = require('gluegun')
-const path = require('path')
 let originalTimeout
 solidarityExtension(context)
 
