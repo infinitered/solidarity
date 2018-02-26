@@ -1,4 +1,4 @@
-const realThing = require('gluegun')
+const realThing = require('gluegun/toolbox')
 const realSolidarityContext = require('../../src/extensions/solidarity-extension')
 realSolidarityContext(realThing)
 
@@ -51,7 +51,7 @@ const mockContext = {
   },
   prompt: {
     ask: jest.fn(({ name }) => Promise.resolve({ [name]: 'taco', createFile: true })),
-    confirm: jest.fn(() => true)
+    confirm: jest.fn(() => true),
   },
   solidarity: noConfigSolidarity,
 }

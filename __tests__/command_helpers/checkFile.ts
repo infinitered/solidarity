@@ -1,5 +1,5 @@
 import checkFile from '../../src/extensions/functions/checkFile'
-import context from 'gluegun'
+import * as context from 'gluegun/toolbox'
 
 test('checkFile detects an existing file', () => {
   // known file

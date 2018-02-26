@@ -1,4 +1,16 @@
-import { GluegunRunContext } from 'gluegun'
+import {
+  GluegunRunContext,
+  GluegunFilesystem,
+  GluegunStrings,
+  GluegunPrint,
+  GluegunSystem,
+  GluegunSemver,
+  GluegunHttp,
+  GluegunPatching,
+  GluegunPrompt,
+  GluegunTemplate,
+  GluegunMeta,
+} from 'gluegun'
 export const solidarity = {
   binaryExists: require('./extensions/functions/binaryExists'),
   getSolidaritySettings: require('./extensions/functions/getSolidaritySettings'),
@@ -35,6 +47,16 @@ export interface SolidarityRunContext extends GluegunRunContext {
   printSeparator: () => void
   outputMode: SolidarityOutputMode
   envHelpers: any
+  filesystem: GluegunFilesystem
+  strings: GluegunStrings
+  print: GluegunPrint
+  system: GluegunSystem
+  semver: GluegunSemver
+  http: GluegunHttp
+  patching: GluegunPatching
+  prompt: GluegunPrompt
+  template: GluegunTemplate
+  meta: GluegunMeta
 }
 
 export type SnapshotType = (context: SolidarityRunContext) => Promise<void>

@@ -1,5 +1,5 @@
 import { ShellRule, SolidarityRunContext } from '../../src/types'
-import { strings } from 'gluegun'
+import { strings } from 'gluegun/toolbox'
 const checkShell: any = require('../../src/extensions/functions/checkShell')
 
 /**

@@ -2,7 +2,7 @@ import getVersion from '../../src/extensions/functions/getVersion'
 
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 
-const context = require('gluegun')
+const context = require('gluegun/toolbox')
 let originalTimeout
 solidarityExtension(context)
 
@@ -13,7 +13,7 @@ describe('getVersion', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
   })
 
-  afterAll(function() {
+  afterAll(function () {
     // Fix timeout change
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
   })
