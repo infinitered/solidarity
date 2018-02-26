@@ -45,5 +45,4 @@ describe('getVersion', () => {
     }
     expect(result).toEqual(" No version was detected from the output of the binary 'ls'")
   })
-
 })
