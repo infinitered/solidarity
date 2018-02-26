@@ -49,15 +49,4 @@ describe('getVersion', () => {
     expect(result).toEqual(" No version was detected from the output of the binary 'ls'")
   })
 
-  describe('extra magic for node_modules', () => {
-    beforeAll(() => {
-      mockContext.system.which = jest.fn((name) => `.${path.sep}node_modules${path.sep}.bin${path.sep}${name}`)
-    })
-
-    test('assuring we use global over node_modules', async () => {
-      const rule = { rule: 'cli', binary: 'yarn', version: '--version' }
-      const output = await getVersion(rule, mockContext)
-      expect(output).toBe('12')
-    })
-  })
 })
