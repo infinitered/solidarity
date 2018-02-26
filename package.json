@@ -32,7 +32,7 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "envinfo": "^4.0.0-beta.5",
-    "gluegun": "2.0.0-beta.6",
+    "gluegun": "2.0.0-beta.7",
     "json5": "^0.5.1",
     "minimist": "^1.2.0",
     "ramda": "0.25.0"
