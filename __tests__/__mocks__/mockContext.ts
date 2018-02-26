@@ -9,6 +9,8 @@ const noConfigSolidarity = {
   setSolidaritySettings: jest.fn(),
   updateRequirement: jest.fn(),
   updateVersions: jest.fn(() => Promise.resolve()),
+  getLineWithVersion: jest.fn(),
+  removeNonVersionCharacters: jest.fn(),
 }
 
 const mockContext = {
@@ -16,6 +18,8 @@ const mockContext = {
   outputMode: undefined,
   system: {
     startTimer: jest.fn(() => jest.fn()),
+    run: jest.fn(() => '12'),
+    which: jest.fn((name) => 'usr/local/bin/${name}'),
   },
   template: {
     generate: jest.fn(),

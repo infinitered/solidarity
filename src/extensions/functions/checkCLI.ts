@@ -2,6 +2,8 @@ import { SolidarityRunContext, CLIRule } from '../../types'
 module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string | undefined> => {
   const { semver, solidarity } = context
   const binaryExists = require('./binaryExists')
+  // Node Modules do strange things
+  require('./quirksNodeModules')
 
   // First check for binary
   if (!binaryExists(rule.binary, context)) {
