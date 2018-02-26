@@ -16,7 +16,7 @@ test('quirks moves node_modules to back', () => {
   expect(process.env.PATH.match(injectedStuff)).toBeTruthy()
 })
 
-test('quirks does not move just any injected back', () => {
+test('quirks does not move just any injected path to back', () => {
   const injectedStuff = `taco${path.sep}testOnly`
   // prepend to PATH
   process.env.PATH = injectedStuff + ':' + process.env.PATH
