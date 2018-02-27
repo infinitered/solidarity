@@ -18,6 +18,7 @@
         "config",
         "configs",
         "custom",
+        "delineator",
         "docsify",
         "e.g.",
         "env",
@@ -46,6 +47,7 @@
         "specs",
         "tada",
         "tempy",
+        "typesync",
         "updtr",
         "v1",
         "walkthrough"

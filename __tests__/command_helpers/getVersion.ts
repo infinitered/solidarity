@@ -13,7 +13,7 @@ describe('getVersion', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
   })
 
-  afterAll(function () {
+  afterAll(function() {
     // Fix timeout change
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
   })

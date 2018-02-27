@@ -9,6 +9,11 @@ const alwaysExistCLI = {
   binary: 'node',
 }
 
+const badSemver = {
+  binary: 'node',
+  semver: 'wtfbbq!!!11',
+}
+
 const outOfDateCLI = {
   binary: 'node',
   semver: '10.99',
@@ -22,6 +27,10 @@ test('error on missing binary', async () => {
 
 test('fine on existing binary', async () => {
   expect(await checkCLI(alwaysExistCLI, context)).toBe(undefined)
+})
+
+test('errors with message when an improper semver is sent', async () => {
+  expect(await checkCLI(badSemver, context)).toBe(`Invalid semver rule ${badSemver.semver}`)
 })
 
 test('returns message on improper version', async () => {
