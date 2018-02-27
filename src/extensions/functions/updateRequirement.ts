@@ -26,7 +26,8 @@ module.exports = async (
       case 'cli':
         if (!rule.semver) return []
         const updateResult = await checkCLIForUpdates(rule, context)
-        ruleString = `Keep ${rule.binary} ${rule.semver}`
+        const lineMessage = rule.line ? ` line ${rule.line} at` : ''
+        ruleString = `Keep ${rule.binary}${lineMessage} ${rule.semver}`
         if (updateResult) {
           spinner.succeed(updateResult)
           return updateResult

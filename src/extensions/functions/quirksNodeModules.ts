@@ -1,7 +1,5 @@
-import {
-  reject, contains, concat, difference
-} from 'ramda'
-import path from 'path'
+import { reject, contains, concat, difference } from 'ramda'
+const path = require('path')
 const delineator = process.platform === 'win32' ? ';' : ':'
 
 // Node mutates path by adding to the front, move that to the back if it exists

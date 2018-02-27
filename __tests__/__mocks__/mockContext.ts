@@ -19,7 +19,7 @@ const mockContext = {
   system: {
     startTimer: jest.fn(() => jest.fn()),
     run: jest.fn(() => '12'),
-    which: jest.fn((name) => 'usr/local/bin/${name}')
+    which: jest.fn(name => 'usr/local/bin/${name}'),
   },
   template: {
     generate: jest.fn(),
