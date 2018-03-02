@@ -1,6 +1,6 @@
 {
   "requirements": {
     "NPM": [{ "rule": "cli", "binary": "npm" }],
-    "Node": [{ "rule": "cli", "binary": "node", "semver": ">=7.6.0", "error": "Upgrade to latest node >= 7.6 please."}]
+    "Node": [{ "rule": "cli", "binary": "node", "semver": ">=4.6.0", "error": "Upgrade to latest node >= 4.6 please."}]
   }
 }
