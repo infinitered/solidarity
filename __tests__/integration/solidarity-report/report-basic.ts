@@ -28,7 +28,6 @@ test('solidarity report works', async done => {
       expect(result.stdout.includes('OS')).toBeTruthy()
       expect(result.stdout.includes('CPU')).toBeTruthy()
       expect(result.stdout.includes('Report Info')).toBeTruthy()
-      expect(result.stdout.includes('yarn')).toBeTruthy()
       expect(result.stdout.includes('node')).toBeTruthy()
       expect(result.code).toBe(0)
       done()
