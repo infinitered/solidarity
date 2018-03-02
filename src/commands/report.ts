@@ -10,6 +10,8 @@ module.exports = {
     const { print, solidarity, system } = context
     const reportTimer = system.startTimer()
     const { getSolidaritySettings, reviewRule, printResults } = solidarity
+    // Node Modules Quirk
+    require('../extensions/functions/quirksNodeModules')
 
     const spinner = print.spin('Building Report')
 
