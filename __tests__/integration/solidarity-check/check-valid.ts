@@ -53,7 +53,6 @@ test('verbose flag works', async done => {
     })
     done()
   } catch (err) {
-    console.log('\n\n\n', err)
     done.fail()
   }
 })

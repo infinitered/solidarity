@@ -1,7 +1,6 @@
 {
   "requirements": {
     "NPM": [{ "rule": "cli", "binary": "npm" }],
-    "Yarn": [{ "rule": "cli", "binary": "yarn", "semver": "^1.0.0", "version": "--version" }],
     "Node": [{ "rule": "cli", "binary": "node", "semver": ">=7.6.0", "error": "Upgrade to latest node >= 7.6 please."}]
   }
 }
