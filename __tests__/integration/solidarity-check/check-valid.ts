@@ -53,6 +53,7 @@ test('verbose flag works', async done => {
       done()
     })
   } catch (err) {
+    console.error('Failed Verbose:', err)
     done.fail()
   }
 })
@@ -64,6 +65,7 @@ test('silent flag works', async done => {
       done()
     })
   } catch (err) {
+    console.error('Failed Silent:', err)
     done.fail()
   }
 })
