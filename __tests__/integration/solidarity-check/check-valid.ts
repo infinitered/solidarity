@@ -47,6 +47,9 @@ test('also looks for .solidarity.json file', async done => {
 })
 
 test('verbose flag works', async done => {
+  execa.shellSync('node --version')
+  execa.shellSync('npm --version')
+  console.warn(`${SOLIDARITY} --verbose`)
   try {
     await execa.shell(`${SOLIDARITY} --verbose`).then(result => {
       expect(result.stdout).toMatchSnapshot()
