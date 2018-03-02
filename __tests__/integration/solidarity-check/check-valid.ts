@@ -3,7 +3,7 @@ import tempy from 'tempy'
 
 const path = require('path')
 const filesystem = require('fs-jetpack')
-const SOLIDARITY = `${process.cwd()}${path.sep}bin${path.sep}solidarity`
+const SOLIDARITY = `node ${process.cwd()}${path.sep}bin${path.sep}solidarity`
 const origCwd = process.cwd()
 let originalTimeout
 
@@ -23,10 +23,10 @@ test('default looks for .solidarity file', async done => {
   filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity`)
   process.chdir(tempDir)
   try {
-    await execa(SOLIDARITY).then(result => {
+    await execa.shell(SOLIDARITY).then(result => {
       expect(result.stdout).toMatchSnapshot()
+      done()
     })
-    done()
   } catch (err) {
     done.fail()
   }
@@ -37,10 +37,10 @@ test('also looks for .solidarity.json file', async done => {
   filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity.json`)
   process.chdir(tempDir)
   try {
-    await execa(SOLIDARITY).then(result => {
+    await execa.shell(SOLIDARITY).then(result => {
       expect(result.stdout).toMatchSnapshot()
+      done()
     })
-    done()
   } catch (err) {
     done.fail()
   }
@@ -48,10 +48,10 @@ test('also looks for .solidarity.json file', async done => {
 
 test('verbose flag works', async done => {
   try {
-    await execa(SOLIDARITY, ['--verbose']).then(result => {
+    await execa.shell(`${SOLIDARITY} --verbose`).then(result => {
       expect(result.stdout).toMatchSnapshot()
+      done()
     })
-    done()
   } catch (err) {
     done.fail()
   }
@@ -59,10 +59,10 @@ test('verbose flag works', async done => {
 
 test('silent flag works', async done => {
   try {
-    await execa(SOLIDARITY, ['--silent']).then(result => {
+    await execa.shell(`${SOLIDARITY} --silent`).then(result => {
       expect(result.stdout).toMatchSnapshot()
+      done()
     })
-    done()
   } catch (err) {
     done.fail()
   }

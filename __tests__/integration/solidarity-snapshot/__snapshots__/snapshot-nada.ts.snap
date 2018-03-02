@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`solidarity report works 1`] = `
-"[36m?[39m [1mNo \`.solidarity\` file found for this project.  Would you like to create one?[22m [2m(
-Y/n) [22m[1A[5D[86C[1B[1000D[K[1A[1000D[K[36m?[39m [1mNo \`.solidarity\` file found for this project.  Would you like to create one?[22m [2m(
-Y/n) [22m[1A[5D[86C[1B[1000D[K[1A[1000D[K[36m?[39m [1mNo \`.solidarity\` file found for this project.  Would you like to create one?[22m [79D[79C[1000D[K[36m?[39m [1mNo \`.solidarity\` file found for this project.  Would you like to create one?[22m [36mf
-alse[39m[1A[4D[85C
-[?25hNothing to do ¯\\\\_(ツ)_/¯"
-`;

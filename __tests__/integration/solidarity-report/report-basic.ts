@@ -3,7 +3,7 @@ import tempy from 'tempy'
 
 const path = require('path')
 const filesystem = require('fs-jetpack')
-const SOLIDARITY = `${process.cwd()}${path.sep}bin${path.sep}solidarity`
+const SOLIDARITY = `node ${process.cwd()}${path.sep}bin${path.sep}solidarity`
 const origCwd = process.cwd()
 let originalTimeout
 
@@ -23,7 +23,7 @@ afterAll(function() {
 
 test('solidarity report works', async done => {
   try {
-    execa(SOLIDARITY, ['report']).then(result => {
+    execa.shell(`${SOLIDARITY} report`).then(result => {
       // check a few from the report
       expect(result.stdout.includes('OS')).toBeTruthy()
       expect(result.stdout.includes('CPU')).toBeTruthy()
