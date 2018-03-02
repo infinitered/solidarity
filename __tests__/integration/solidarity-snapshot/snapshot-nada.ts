@@ -22,7 +22,7 @@ test('solidarity report works', async done => {
   try {
     execa.shell(`echo n | ${SOLIDARITY} snapshot`).then(result => {
       // check a few from the report
-      expect(result).toMatchSnapshot()
+      expect(result.stdout).toMatchSnapshot()
       expect(result.code).toBe(0)
       done()
     })

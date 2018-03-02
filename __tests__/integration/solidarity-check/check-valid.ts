@@ -22,7 +22,9 @@ test('default looks for .solidarity file', async done => {
   filesystem.copy('__tests__/sandbox/solidarity_json/.solidarity.json', `${tempDir}/.solidarity`)
   process.chdir(tempDir)
   try {
-    await execa(SOLIDARITY).then(result => expect(result).toMatchSnapshot())
+    await execa(SOLIDARITY).then(result => {
+      expect(result.stdout).toMatchSnapshot()
+    })
     done()
   } catch (err) {
     done.fail()
@@ -34,7 +36,9 @@ test('also looks for .solidarity.json file', async done => {
   filesystem.copy('__tests__/sandbox/solidarity_json/.solidarity.json', `${tempDir}/.solidarity.json`)
   process.chdir(tempDir)
   try {
-    await execa(SOLIDARITY).then(result => expect(result).toMatchSnapshot())
+    await execa(SOLIDARITY).then(result => {
+      expect(result.stdout).toMatchSnapshot()
+    })
     done()
   } catch (err) {
     done.fail()
@@ -43,7 +47,9 @@ test('also looks for .solidarity.json file', async done => {
 
 test('verbose flag works', async done => {
   try {
-    await execa(SOLIDARITY, ['--verbose']).then(result => expect(result).toMatchSnapshot())
+    await execa(SOLIDARITY, ['--verbose']).then(result => {
+      expect(result.stdout).toMatchSnapshot()
+    })
     done()
   } catch (err) {
     const x = err
@@ -53,7 +59,9 @@ test('verbose flag works', async done => {
 
 test('silent flag works', async done => {
   try {
-    await execa(SOLIDARITY, ['--silent']).then(result => expect(result).toMatchSnapshot())
+    await execa(SOLIDARITY, ['--silent']).then(result => {
+      expect(result.stdout).toMatchSnapshot()
+    })
     done()
   } catch (err) {
     done.fail()

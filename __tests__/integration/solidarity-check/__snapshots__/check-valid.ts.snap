@@ -1,56 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`also looks for .solidarity.json file 1`] = `
-Object {
-  "cmd": "/Users/gantman/Documents/Projects/js/rn/node_packages/solidarity/bin/solidarity",
-  "code": 0,
-  "failed": false,
-  "killed": false,
-  "signal": null,
-  "stderr": "",
-  "stdout": "
-✔︎ Solidarity checks valid",
-  "timedOut": false,
-}
+"
+✔︎ Solidarity checks valid"
 `;
 
 exports[`default looks for .solidarity file 1`] = `
-Object {
-  "cmd": "/Users/gantman/Documents/Projects/js/rn/node_packages/solidarity/bin/solidarity",
-  "code": 0,
-  "failed": false,
-  "killed": false,
-  "signal": null,
-  "stderr": "",
-  "stdout": "
-✔︎ Solidarity checks valid",
-  "timedOut": false,
-}
+"
+✔︎ Solidarity checks valid"
 `;
 
-exports[`silent flag works 1`] = `
-Object {
-  "cmd": "/Users/gantman/Documents/Projects/js/rn/node_packages/solidarity/bin/solidarity --silent",
-  "code": 0,
-  "failed": false,
-  "killed": false,
-  "signal": null,
-  "stderr": "",
-  "stdout": "",
-  "timedOut": false,
-}
-`;
+exports[`silent flag works 1`] = `""`;
 
 exports[`verbose flag works 1`] = `
-Object {
-  "cmd": "/Users/gantman/Documents/Projects/js/rn/node_packages/solidarity/bin/solidarity --verbose",
-  "code": 0,
-  "failed": false,
-  "killed": false,
-  "signal": null,
-  "stderr": "",
-  "stdout": "
-✔︎ Solidarity checks valid",
-  "timedOut": false,
-}
+"
+✔︎ Solidarity checks valid"
 `;
