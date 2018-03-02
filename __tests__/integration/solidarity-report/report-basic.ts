@@ -1,0 +1,42 @@
+import execa from 'execa'
+import tempy from 'tempy'
+
+const filesystem = require('fs-jetpack')
+const SOLIDARITY = `${process.cwd()}/bin/solidarity`
+const origCwd = process.cwd()
+let originalTimeout
+
+beforeAll(() => {
+  // These can be slow on CI
+  originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000
+  const tempDir = tempy.directory()
+  filesystem.copy('__tests__/sandbox/solidarity_json/.solidarity.json', `${tempDir}/.solidarity`)
+  process.chdir(tempDir)
+})
+
+afterAll(function() {
+  // Fix timeout change
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
+})
+
+test('solidarity report works', async done => {
+  try {
+    execa(SOLIDARITY, ['report']).then(result => {
+      // check a few from the report
+      expect(result.stdout.includes('OS')).toBeTruthy()
+      expect(result.stdout.includes('CPU')).toBeTruthy()
+      expect(result.stdout.includes('Report Info')).toBeTruthy()
+      expect(result.stdout.includes('yarn')).toBeTruthy()
+      expect(result.stdout.includes('node')).toBeTruthy()
+      expect(result.code).toBe(0)
+      done()
+    })
+  } catch (err) {
+    done.fail()
+  }
+})
+
+afterEach(() => {
+  process.chdir(origCwd)
+})
