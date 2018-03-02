@@ -15,7 +15,13 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
     // ensure we have valid rule input
     if (!semver.validRange(rule.semver)) return `Invalid semver rule ${rule.semver}`
 
-    const binaryVersion = await solidarity.getVersion(rule, context)
+    let binaryVersion
+    try {
+      binaryVersion = await solidarity.getVersion(rule, context)
+    } catch (e) {
+      return e
+    }
+
     // pad zeros for any non-semver version systems (rules still work)
     let binarySemantic = binaryVersion
     while (binarySemantic.split('.').length < 3) {

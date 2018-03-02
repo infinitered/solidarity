@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`also looks for .solidarity.json file 1`] = `
+"
+✔︎ Solidarity checks valid"
+`;
+
+exports[`default looks for .solidarity file 1`] = `
+"
+✔︎ Solidarity checks valid"
+`;
+
+exports[`silent flag works 1`] = `""`;
+
+exports[`verbose flag works 1`] = `
+"
+✔︎ Solidarity checks valid"
+`;

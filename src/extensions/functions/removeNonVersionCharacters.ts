@@ -6,6 +6,6 @@ module.exports = (rule: CLIRule, line: string): string => {
     const matchIndex = rule.matchIndex || 0
     return foundVersions[matchIndex]
   } else {
-    throw ` No version was detected from the output of the binary '${rule.binary}'`
+    throw `No version was detected from the output of the binary '${rule.binary}'`
   }
 }

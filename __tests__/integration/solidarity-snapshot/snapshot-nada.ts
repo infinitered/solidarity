@@ -10,7 +10,6 @@ beforeAll(() => {
   // These can be slow on CI
   originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000
-  // Tempy!
   const tempDir = tempy.directory()
   process.chdir(tempDir)
 })
@@ -20,16 +19,19 @@ afterAll(function() {
   jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
 })
 
-test('default looks for .solidarity file', async done => {
+test('solidarity report works', async done => {
   try {
-    await execa.shellSync(SOLIDARITY)
-    done.fail()
+    execa.shell(`echo n | ${SOLIDARITY} snapshot`).then(result => {
+      // do not snapshot stdout bc windows bitches
+      expect(result.stdout.includes('Nothing to do')).toBeTruthy()
+      expect(result.code).toBe(0)
+      done()
+    })
   } catch (err) {
-    expect(err.code).not.toBe(0)
-    done()
+    done.fail()
   }
 })
 
-afterAll(() => {
+afterEach(() => {
   process.chdir(origCwd)
 })
