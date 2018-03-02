@@ -36,6 +36,8 @@ namespace Solidarity {
   }
 
   export const run = async (context: SolidarityRunContext) => {
+    // Node Modules Quirk
+    require('../extensions/functions/quirksNodeModules')
     // drop out fast in these situations
     await checkForEscapeHatchFlags(context)
 

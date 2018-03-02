@@ -66,6 +66,8 @@ namespace Snapshot {
     const { print, prompt, filesystem, solidarity, parameters } = context
     const { first } = parameters
     const { setSolidaritySettings, appendSolidaritySettings, buildSpecificRequirement } = solidarity
+    // Node Modules Quirk
+    require('../extensions/functions/quirksNodeModules')
 
     // check is there an existing .solidarity file?
     if (filesystem.exists('.solidarity')) {
