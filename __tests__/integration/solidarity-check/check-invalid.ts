@@ -1,7 +1,8 @@
 import execa from 'execa'
 import tempy from 'tempy'
 
-const SOLIDARITY = `${process.cwd()}/bin/solidarity`
+const path = require('path')
+const SOLIDARITY = `${process.cwd()}${path.sep}bin${path.sep}solidarity`
 const origCwd = process.cwd()
 let originalTimeout
 

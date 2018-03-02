@@ -1,8 +1,9 @@
 import execa from 'execa'
 import tempy from 'tempy'
 
+const path = require('path')
 const filesystem = require('fs-jetpack')
-const SOLIDARITY = `${process.cwd()}/bin/solidarity`
+const SOLIDARITY = `${process.cwd()}${path.sep}bin${path.sep}solidarity`
 const origCwd = process.cwd()
 let originalTimeout
 
@@ -19,7 +20,7 @@ afterAll(function() {
 
 test('default looks for .solidarity file', async done => {
   const tempDir = tempy.directory()
-  filesystem.copy('__tests__/sandbox/solidarity_json/.solidarity.json', `${tempDir}/.solidarity`)
+  filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity`)
   process.chdir(tempDir)
   try {
     await execa(SOLIDARITY).then(result => {
@@ -33,7 +34,7 @@ test('default looks for .solidarity file', async done => {
 
 test('also looks for .solidarity.json file', async done => {
   const tempDir = tempy.directory()
-  filesystem.copy('__tests__/sandbox/solidarity_json/.solidarity.json', `${tempDir}/.solidarity.json`)
+  filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity.json`)
   process.chdir(tempDir)
   try {
     await execa(SOLIDARITY).then(result => {
@@ -52,7 +53,7 @@ test('verbose flag works', async done => {
     })
     done()
   } catch (err) {
-    const x = err
+    console.log('\n\n\n', err)
     done.fail()
   }
 })

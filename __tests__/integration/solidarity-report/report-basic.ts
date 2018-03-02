@@ -1,8 +1,9 @@
 import execa from 'execa'
 import tempy from 'tempy'
 
+const path = require('path')
 const filesystem = require('fs-jetpack')
-const SOLIDARITY = `${process.cwd()}/bin/solidarity`
+const SOLIDARITY = `${process.cwd()}${path.sep}bin${path.sep}solidarity`
 const origCwd = process.cwd()
 let originalTimeout
 
@@ -11,7 +12,7 @@ beforeAll(() => {
   originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000
   const tempDir = tempy.directory()
-  filesystem.copy('__tests__/sandbox/solidarity_json/.solidarity.json', `${tempDir}/.solidarity`)
+  filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity`)
   process.chdir(tempDir)
 })
 
