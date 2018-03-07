@@ -23,7 +23,7 @@ test('default looks for .solidarity file', async done => {
   filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity`)
   process.chdir(tempDir)
   try {
-    await execa.shell(SOLIDARITY).then(result => {
+    await execa.shell(`${SOLIDARITY} --compiled`).then(result => {
       expect(result.stdout).toMatchSnapshot()
       done()
     })
@@ -37,7 +37,7 @@ test('also looks for .solidarity.json file', async done => {
   filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity.json`)
   process.chdir(tempDir)
   try {
-    await execa.shell(SOLIDARITY).then(result => {
+    await execa.shell(`${SOLIDARITY} --compiled`).then(result => {
       expect(result.stdout).toMatchSnapshot()
       done()
     })

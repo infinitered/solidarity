@@ -21,14 +21,24 @@ afterAll(function() {
   jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
 })
 
-test('solidarity report works', async done => {
+test('solidarity create works and prompts for what to create', async done => {
   try {
-    execa.shell(`${SOLIDARITY} report --compiled`).then(result => {
+    execa.shell(`${SOLIDARITY} create --compiled`).then(result => {
       // check a few from the report
-      expect(result.stdout.includes('OS')).toBeTruthy()
-      expect(result.stdout.includes('CPU')).toBeTruthy()
-      expect(result.stdout.includes('Report Info')).toBeTruthy()
-      expect(result.stdout.includes('node')).toBeTruthy()
+      expect(result.stdout.includes('Missing what to create')).toBeTruthy()
+      expect(result.code).toBe(0)
+      done()
+    })
+  } catch (err) {
+    done.fail()
+  }
+})
+
+test('solidarity create is specific', async done => {
+  try {
+    execa.shell(`${SOLIDARITY} create idonotexist --compiled`).then(result => {
+      // check a few from the report
+      expect(result.stdout.includes('Missing what to create')).toBeTruthy()
       expect(result.code).toBe(0)
       done()
     })
