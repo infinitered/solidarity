@@ -5,8 +5,9 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
+  - npm i -g yarn
   - npm install
-  - npm run build
+  - yarn build
 
 before_test:
   - node --version
