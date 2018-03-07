@@ -20,7 +20,10 @@ afterAll(function() {
 
 test('default looks for .solidarity file', async done => {
   const tempDir = tempy.directory()
-  filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity`)
+  filesystem.copy(
+    `__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`,
+    `${tempDir}${path.sep}.solidarity`
+  )
   process.chdir(tempDir)
   try {
     await execa.shell(SOLIDARITY).then(result => {
@@ -34,7 +37,10 @@ test('default looks for .solidarity file', async done => {
 
 test('also looks for .solidarity.json file', async done => {
   const tempDir = tempy.directory()
-  filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity.json`)
+  filesystem.copy(
+    `__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`,
+    `${tempDir}${path.sep}.solidarity.json`
+  )
   process.chdir(tempDir)
   try {
     await execa.shell(SOLIDARITY).then(result => {
@@ -48,7 +54,10 @@ test('also looks for .solidarity.json file', async done => {
 
 test('verbose flag works', async done => {
   const tempDir = tempy.directory()
-  filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity`)
+  filesystem.copy(
+    `__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`,
+    `${tempDir}${path.sep}.solidarity`
+  )
   process.chdir(tempDir)
   try {
     await execa.shell(`${SOLIDARITY} --verbose`).then(result => {
@@ -62,7 +71,10 @@ test('verbose flag works', async done => {
 
 test('silent flag works', async done => {
   const tempDir = tempy.directory()
-  filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity`)
+  filesystem.copy(
+    `__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`,
+    `${tempDir}${path.sep}.solidarity`
+  )
   process.chdir(tempDir)
   try {
     await execa.shell(`${SOLIDARITY} --silent`).then(result => {
