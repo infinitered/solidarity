@@ -12,7 +12,7 @@
     "contributors:generate": "all-contributors generate",
     "build": "yarn format && tsc",
     "format": "prettier --write \"**/*.ts\" -l \"warn\" && tslint -p . --fix",
-    "shipit": "tsc && np",
+    "shipit": "tsc && yarn copyTemplates && np",
     "test": "jest && yarn test:extras",
     "test:ci": "jest --ci --runInBand && yarn test:extras",
     "test:extras": "tslint -p . && yarn madge --extensions ts --circular src/",
@@ -25,7 +25,8 @@
     "serve:docs": "docsify serve docs",
     "maintenence": "tryupdate && typesync",
     "addTypes": "typesync",
-    "tryupdate": "updtr -u npm"
+    "tryupdate": "updtr -u npm",
+    "copyTemplates": "cp -R ./src/templates ./dist/"
   },
   "author": "Gant Laborde",
   "license": "MIT",
