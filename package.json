@@ -33,7 +33,7 @@
   "license": "MIT",
   "dependencies": {
     "callsite": "^1.0.0",
-    "envinfo": "^4.0.0-beta.7",
+    "envinfo": "4.0.0-beta.7",
     "gluegun": "2.0.0-beta.7",
     "json5": "^0.5.1",
     "minimist": "^1.2.0",
