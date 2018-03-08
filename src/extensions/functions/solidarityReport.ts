@@ -1,12 +1,15 @@
 import { SolidarityRunContext, SolidarityReportResults, CLIReportConfig } from '../../types'
-import { helpers } from 'envinfo'
 
 export const createReport = (context: SolidarityRunContext): SolidarityReportResults => {
-  const { print, system } = context
+  const { print, system, envinfoHelpers } = context
   const { colors } = print
 
   return {
-    basicInfo: [['System Basics', 'Value'], ['OS', helpers.getOperatingSystemInfo()], ['CPU', helpers.getCPUInfo()]],
+    basicInfo: [
+      ['System Basics', 'Value'],
+      ['OS', envinfoHelpers.getOperatingSystemInfo()],
+      ['CPU', envinfoHelpers.getCPUInfo()],
+    ],
     cliRules: [['Binary', 'Location', 'Version', 'Desired']],
     envRules: [['Environment Var', 'Value']],
     filesystemRules: [['Location', 'Type', 'Exists']],
