@@ -27,10 +27,12 @@ test('default looks for .solidarity file', async done => {
   process.chdir(tempDir)
   try {
     await execa.shell(SOLIDARITY).then(result => {
-      expect(result.stdout.trim()).toMatchSnapshot()
+
+      expect(result.stdout).toContain('checks valid')
       done()
     })
   } catch (err) {
+    console.error(err)
     done.fail()
   }
 })
@@ -44,7 +46,7 @@ test('also looks for .solidarity.json file', async done => {
   process.chdir(tempDir)
   try {
     await execa.shell(SOLIDARITY).then(result => {
-      expect(result.stdout.trim()).toMatchSnapshot()
+      expect(result.stdout).toContain('checks valid')
       done()
     })
   } catch (err) {
@@ -61,7 +63,7 @@ test('verbose flag works', async done => {
   process.chdir(tempDir)
   try {
     await execa.shell(`${SOLIDARITY} --verbose`).then(result => {
-      expect(result.stdout.trim()).toMatchSnapshot()
+      expect(result.stdout).toContain('checks valid')
       done()
     })
   } catch (err) {
@@ -78,7 +80,7 @@ test('silent flag works', async done => {
   process.chdir(tempDir)
   try {
     await execa.shell(`${SOLIDARITY} --silent`).then(result => {
-      expect(result.stdout.trim()).toMatchSnapshot()
+      expect(result.stdout.trim()).toBe('')
       done()
     })
   } catch (err) {
