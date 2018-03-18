@@ -18,13 +18,12 @@
     <img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity.svg?type=shield">
   </a> 
 </p>
+
+### When the same exact code works on one machine but not another, Solidarity is the answer
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/997157/36068817-297b9e02-0ea4-11e8-96b5-9ea7a34401e2.gif" align="center" />
 </p>  
-
-### WHY DOES SOLIDARITY EXIST:question:
-When the same exact code works on one machine, but not another, Solidarity is the answer.
-If the one-liner and GIF aren't enough for you, a quick, friendly explanation is available in [the announcement blog post](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
 
 ### Docs Website
 https://infinitered.github.io/solidarity/
