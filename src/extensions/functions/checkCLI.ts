@@ -26,9 +26,15 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
       binarySemantic += '.0'
     }
 
+    const customMessage = (rule.error || '')
+      .replace(/{{wantedVersion}}/gi, /\^|\~/.test(rule.semver) ? rule.semver.substr(1) : rule.semver)
+      .replace(/{{installedVersion}}/gi, binaryVersion)
+    const standardMessage = `${rule.binary}: you have '${binaryVersion}', but the project requires '${rule.semver}'`
+    const message = customMessage || standardMessage
+
     // I can't get no satisfaction
     if (!semver.satisfies(binarySemantic, rule.semver)) {
-      return `${rule.binary}: you have '${binaryVersion}', but the project requires '${rule.semver}'`
+      return message
     }
   }
 }

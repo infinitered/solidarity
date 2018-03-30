@@ -19,6 +19,12 @@ const outOfDateCLI = {
   semver: '10.99',
 }
 
+const injectVersion = {
+  binary: 'node',
+  semver: '~7.6',
+  error: "Wanted: '{{wantedVersion}}', Installed: '{{installedVersion}}'. Update with `nvm install {{wantedVersion}}`",
+}
+
 const context = require('gluegun/toolbox')
 
 test('error on missing binary', async () => {
@@ -39,4 +45,11 @@ test('returns message on improper version', async () => {
   const message = `${outOfDateCLI.binary}: you have '1', but the project requires '${outOfDateCLI.semver}'`
 
   expect(await checkCLI(outOfDateCLI, context)).toBe(message)
+})
+
+test('returns message with injected versions', async () => {
+  const message = `Wanted: '7.6', Installed: '7.5'. Update with \`nvm install 7.6\``
+  solidarityExtension(context)
+  context.solidarity.getVersion = () => '7.5'
+  expect(await checkCLI(injectVersion, context)).toBe(message)
 })
