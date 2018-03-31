@@ -9,7 +9,7 @@ module.exports = async context => {
     message: 'Plugin name? (we will add the namespacing for you)',
   })
   if (!answerPluginName.plugin) throw Error('A plugin requires a name')
-  const pluginName = `solidarity-${answerPluginName.plugin.replace('solidarity-', '')}`
+  const pluginName = `solidarity-${answerPluginName.plugin.replace('solidarity-', '').toLowerCase()}`
 
   const description = await prompt.ask({
     type: 'input',
@@ -29,7 +29,10 @@ module.exports = async context => {
     choices: ruleChoices,
   })
 
-  if (answer.ruleChoice === ruleChoices[1]) {
+  const noRuleTemplate = answer.ruleChoice === ruleChoices[0]
+  if (noRuleTemplate) {
+    files.push(['simple-plugin.js.ejs', `extensions/${pluginName}.js`])
+  } else if (answer.ruleChoice === ruleChoices[1]) {
     files.push(['rules-template.json.ejs', `templates/${pluginName}-template.json`])
     files.push(['simple-plugin.js.ejs', `extensions/${pluginName}.js`])
   } else if (answer.ruleChoice === ruleChoices[2]) {
@@ -46,7 +49,7 @@ module.exports = async context => {
     template.generate({
       template: fileSet[0],
       target: `${pluginName}/${fileSet[1]}`,
-      props: { pluginName, customRules, description: description.pluginDesc },
+      props: { pluginName, customRules, description: description.pluginDesc, noRuleTemplate },
     })
   })
 
