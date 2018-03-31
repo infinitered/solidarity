@@ -2,8 +2,8 @@ module.exports = (context) => {
   // Register this plugin
   context.addPlugin({
     name: '<%= props.pluginName %>',
-    description: '<%= props.description %>',
-    snapshot: '<%= props.pluginName %>-template.json'<% if(props.customRules){ %>,
+    description: '<%= props.description %>'<% if(!props.noRuleTemplate){ %>,
+    snapshot: '<%= props.pluginName %>-template.json'<% } %><% if(props.customRules){ %>,
     rules: {
       ruleName: {
         check: async (rule, context) => {
