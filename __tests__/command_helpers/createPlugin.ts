@@ -15,7 +15,6 @@ test('investigate createPlugin', async () => {
 })
 
 describe('checking plugin paths', () => {
-
   beforeEach(() => {
     const mockedPrompt = jest
       .fn()
@@ -26,30 +25,35 @@ describe('checking plugin paths', () => {
   })
 
   test(`Choice 1 - 'I do not want a generated rule file'`, async () => {
-    context.prompt.ask.mockImplementationOnce(() => Promise.resolve({
-      ruleChoice: 'I do not want a generated rule file'
-    }))
+    context.prompt.ask.mockImplementationOnce(() =>
+      Promise.resolve({
+        ruleChoice: 'I do not want a generated rule file',
+      })
+    )
 
     const result = await createPlugin(context)
     expect(result).toMatchSnapshot()
   })
 
   test(`Choice 2 - 'Just a simple rule template'`, async () => {
-    context.prompt.ask.mockImplementationOnce(() => Promise.resolve({
-      ruleChoice: 'Just a simple rule template'
-    }))
+    context.prompt.ask.mockImplementationOnce(() =>
+      Promise.resolve({
+        ruleChoice: 'Just a simple rule template',
+      })
+    )
 
     const result = await createPlugin(context)
     expect(result).toMatchSnapshot()
   })
 
   test(`Choice 3 - 'Template + optional rules'`, async () => {
-    context.prompt.ask.mockImplementationOnce(() => Promise.resolve({
-      ruleChoice: 'Template + optional rules'
-    }))
+    context.prompt.ask.mockImplementationOnce(() =>
+      Promise.resolve({
+        ruleChoice: 'Template + optional rules',
+      })
+    )
 
     const result = await createPlugin(context)
     expect(result).toMatchSnapshot()
   })
-
 })

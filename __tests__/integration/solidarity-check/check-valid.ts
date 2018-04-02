@@ -27,7 +27,6 @@ test('default looks for .solidarity file', async done => {
   process.chdir(tempDir)
   try {
     await execa.shell(SOLIDARITY).then(result => {
-
       expect(result.stdout).toContain('checks valid')
       done()
     })

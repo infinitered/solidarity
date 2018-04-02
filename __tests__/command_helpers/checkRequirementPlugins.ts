@@ -25,8 +25,8 @@ describe('checkRequirement Plugins', () => {
       name: 'Empty Plugin',
       description: 'I help test plugins',
       rules: {
-        emptyDude: {}
-      }
+        emptyDude: {},
+      },
     })
     const rule = toPairs({
       TestRequirement: [{ rule: 'custom', plugin: 'Empty Plugin', name: 'emptyDude' }],
