@@ -189,7 +189,7 @@ describe('checkRequirement', () => {
 
     test('failed CLI rule with custom message', async () => {
       checkCLI.mockClear()
-      checkCLI.mockImplementation(() => true)
+      checkCLI.mockImplementation(() => customError)
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }],
       })[0]
@@ -199,6 +199,8 @@ describe('checkRequirement', () => {
     })
 
     test('failed ENV rule with custom message', async () => {
+      checkCLI.mockClear()
+      checkCLI.mockImplementation(() => true)
       const rule = toPairs({
         YARN: [{ rule: 'env', variable: 'gazorpazorp', error: customError }],
       })[0]
