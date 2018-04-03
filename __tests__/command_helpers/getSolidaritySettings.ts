@@ -38,11 +38,10 @@ describe('basic getSolidaritySettings', () => {
       }).toThrowError('ERROR: Found, but no requirements key.  Please validate your solidarity file')
       process.chdir('../../../')
     })
-  }
+  })
 })
 
 describe('parameterized getSolidaritySettings', () => {
-
   test('custom path with -f', () => {
     context.parameters.options = { f: '__tests__/sandbox/solidarity_json' }
     const resultSettings = getSolidaritySettings(context)
@@ -113,7 +112,5 @@ describe('parameterized getSolidaritySettings', () => {
     afterAll(() => {
       process.chdir('../../../')
     })
-
   })
-
 })

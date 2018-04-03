@@ -1,5 +1,4 @@
 import { build } from 'gluegun'
-import * as yargsParse from 'yargs-parser'
 
 module.exports = async (): Promise<void> => {
   // setup the runtime
@@ -11,18 +10,15 @@ module.exports = async (): Promise<void> => {
     // global installs
     .plugins('/usr/local/lib/node_modules', { matching: 'solidarity-*', hidden: true }) // Darwin
     .plugins(`${process.env.appdata}/npm/node_modules`, { matching: 'solidarity-*', hidden: true }) // Windows
-    // for testing - force load a local plugin
-    // .plugin('../solidarity-react-native')
+  // for testing - force load a local plugin
+  // .plugin('../solidarity-react-native')
 
   // when a module parameter is passed we take the plugins from there, too
-  const args = process.argv.slice(2)
-  const parsedArgs = yargsParse(args)
+  const parsedArgs = require('yargs-parser')(process.argv.slice(2))
   const moduleName = parsedArgs.m || parsedArgs.module
   if (moduleName) cli.plugins(`./node_modules/${moduleName}/node_modules`, { matching: 'solidarity-*', hidden: true })
 
-  cli
-    .create()
-    .run()
+  cli.create().run()
 }
 
 export * from './types'
