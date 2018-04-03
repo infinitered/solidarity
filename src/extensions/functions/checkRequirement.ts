@@ -75,7 +75,7 @@ module.exports = async (
         const cliResult = await checkCLI(rule, context)
         ruleString = `${requirementName} - ${rule.binary} binary`
         if (cliResult) {
-          return addFailure(rule.error || cliResult)
+          return addFailure(cliResult)
         } else {
           return addSuccess(ruleString)
         }
