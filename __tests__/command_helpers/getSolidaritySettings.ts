@@ -75,7 +75,7 @@ describe('parameterized getSolidaritySettings', () => {
 
   describe('custom module tests', () => {
     beforeAll(() => {
-      process.chdir('__tests__/sandbox/fake_project')
+      process.chdir('./__tests__/sandbox/fake_project')
     })
 
     test('can find solidarity file in module with flag -m', () => {
