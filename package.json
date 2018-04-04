@@ -16,7 +16,7 @@
     "shipit": "tsc && yarn copyTemplates && np",
     "test": "jest && yarn test:extras",
     "test:ci": "jest --ci --runInBand && yarn test:extras",
-    "test:extras": "tslint -p . && yarn madge --extensions ts --circular src/",
+    "test:extras": "node bin/solidarity && tslint -p . && yarn madge --extensions ts --circular src/",
     "lint": "tslint -p .",
     "newclear": "rm -rf node_modules && yarn && tsc",
     "watch": "jest --watch",
