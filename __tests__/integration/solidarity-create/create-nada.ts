@@ -32,7 +32,12 @@ test('solidarity create works and prompts for what to create', async done => {
       expect(result.code).toBe(0)
       done()
     })
+    .catch(err => {
+      console.error(err)
+      done.fail()
+    })
   } catch (err) {
+    console.error(err)
     done.fail()
   }
 })
@@ -44,6 +49,10 @@ test('solidarity create is specific', async done => {
       expect(result.stdout.includes('Missing what to create')).toBeTruthy()
       expect(result.code).toBe(0)
       done()
+    })
+    .catch(err => {
+      console.error(err)
+      done.fail()
     })
   } catch (err) {
     done.fail()

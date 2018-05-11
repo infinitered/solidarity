@@ -27,6 +27,10 @@ test('solidarity report works', async done => {
       expect(result.code).toBe(0)
       done()
     })
+    .catch(err => {
+      console.error(err)
+      done.fail()
+    })
   } catch (err) {
     done.fail()
   }

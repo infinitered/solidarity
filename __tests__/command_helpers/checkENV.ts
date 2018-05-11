@@ -15,7 +15,6 @@ test('checkENV detects set ENV', async () => {
     }
     // Use checkENV to make sure it exists
     expect(await checkENV({ variable: someRealEnvVar })).toBeTruthy()
-  } else {
   }
 })
 

@@ -1,4 +1,3 @@
-import { solidarity } from '../../src'
 import getSolidaritySettings from '../../src/extensions/functions/getSolidaritySettings'
 
 const context = require('mockContext')
@@ -26,7 +25,7 @@ describe('basic getSolidaritySettings', () => {
     test('getSolidaritySettings can fail', () => {
       expect(() => {
         process.chdir('__tests__')
-        const resultSettings = getSolidaritySettings(context)
+        getSolidaritySettings(context)
       }).toThrow()
       process.chdir('../')
     })
@@ -34,7 +33,7 @@ describe('basic getSolidaritySettings', () => {
     test('getSolidaritySettings can warn with missing requirements', () => {
       expect(() => {
         process.chdir('__tests__/sandbox/solidarity_broken')
-        const resultSettings = getSolidaritySettings(context)
+        getSolidaritySettings(context)
       }).toThrowError('ERROR: Found, but no requirements key.  Please validate your solidarity file')
       process.chdir('../../../')
     })
@@ -62,12 +61,12 @@ describe('parameterized getSolidaritySettings', () => {
     // test longhand
     context.parameters.options = { solidarityFile: '__tests__/fake' }
     expect(() => {
-      const resultSettings = getSolidaritySettings(context)
+      getSolidaritySettings(context)
     }).toThrowError('ERROR: There is no solidarity file at the given path')
     // test shorthand
     context.parameters.options = { f: '__tests__/fake' }
     expect(() => {
-      const resultSettings = getSolidaritySettings(context)
+      getSolidaritySettings(context)
     }).toThrowError('ERROR: There is no solidarity file at the given path')
     context.parameters.options = {}
   })
@@ -104,7 +103,7 @@ describe('parameterized getSolidaritySettings', () => {
     test('errors if no solidarity file in module', () => {
       context.parameters.options = { module: 'nope' }
       expect(() => {
-        const resultSettings = getSolidaritySettings(context)
+        getSolidaritySettings(context)
       }).toThrowError('ERROR: There is no solidarity file found with the given module')
       context.parameters.options = {}
     })

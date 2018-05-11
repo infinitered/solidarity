@@ -7,7 +7,7 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - npm i -g yarn
   - npm install
-  - yarn tsc
+  - yarn tsc --traceResolution
 
 before_test:
   - node --version
