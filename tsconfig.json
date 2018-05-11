@@ -30,7 +30,6 @@
     "noEmitOnError": true
   },
   "include": [
-    "src",
-    "**/*.ts"
+    "src/**/*",
   ]
 }
