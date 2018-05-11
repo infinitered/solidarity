@@ -90,6 +90,16 @@ describe('checkRequirement', () => {
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([[]])
     })
+
+    test('inject versions', async () => {
+      checkCLI.mockImplementation(async () => "Wanted: '~1.5.1', Installed '1.3.2'")
+
+      const rule = toPairs({
+        YARN: [{ rule: 'cli', binary: 'yarn' }],
+      })[0]
+      const result = await checkRequirement(rule, context)
+      expect(result).toEqual(["Wanted: '~1.5.1', Installed '1.3.2'"])
+    })
   })
 
   describe('when rule: dir', () => {
@@ -179,7 +189,7 @@ describe('checkRequirement', () => {
 
     test('failed CLI rule with custom message', async () => {
       checkCLI.mockClear()
-      checkCLI.mockImplementation(() => true)
+      checkCLI.mockImplementation(() => customError)
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }],
       })[0]
@@ -189,6 +199,8 @@ describe('checkRequirement', () => {
     })
 
     test('failed ENV rule with custom message', async () => {
+      checkCLI.mockClear()
+      checkCLI.mockImplementation(() => true)
       const rule = toPairs({
         YARN: [{ rule: 'env', variable: 'gazorpazorp', error: customError }],
       })[0]

@@ -1,7 +1,8 @@
 {
   "name": "solidarity",
-  "version": "2.0.1",
+  "version": "2.0.5",
   "description": "Make sure all React Native dependencies are uniform across machines",
+  "repository": "https://github.com/infinitered/solidarity",
   "bin": {
     "solidarity": "bin/solidarity"
   },
@@ -12,7 +13,7 @@
     "contributors:generate": "all-contributors generate",
     "build": "yarn format && tsc",
     "format": "prettier --write \"**/*.ts\" -l \"warn\" && tslint -p . --fix",
-    "shipit": "tsc && np",
+    "shipit": "tsc && yarn copyTemplates && np",
     "test": "jest && yarn test:extras",
     "test:ci": "jest --ci --runInBand && yarn test:extras",
     "test:extras": "tslint -p . && yarn madge --extensions ts --circular src/",
@@ -25,13 +26,14 @@
     "serve:docs": "docsify serve docs",
     "maintenence": "tryupdate && typesync",
     "addTypes": "typesync",
-    "tryupdate": "updtr -u npm"
+    "tryupdate": "updtr -u npm",
+    "copyTemplates": "cp -R ./src/templates ./dist/"
   },
   "author": "Gant Laborde",
   "license": "MIT",
   "dependencies": {
     "callsite": "^1.0.0",
-    "envinfo": "^4.0.0-beta.5",
+    "envinfo": "^4.3.1",
     "gluegun": "2.0.0-beta.7",
     "json5": "^0.5.1",
     "minimist": "^1.2.0",

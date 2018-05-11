@@ -75,7 +75,7 @@ module.exports = async (
         const cliResult = await checkCLI(rule, context)
         ruleString = `${requirementName} - ${rule.binary} binary`
         if (cliResult) {
-          return addFailure(rule.error || cliResult)
+          return addFailure(cliResult)
         } else {
           return addSuccess(ruleString)
         }
@@ -119,6 +119,8 @@ module.exports = async (
       case 'custom':
         const customPluginRule = findPluginInfo(rule, context)
         if (customPluginRule.success) {
+          // No check provided, we jet
+          if (!customPluginRule.plugin.check) return []
           const customResult = await customPluginRule.plugin.check(rule, context)
           if (customResult && customResult.pass) {
             return addSuccess(customResult.message)

@@ -20,6 +20,21 @@ describe('checkRequirement Plugins', () => {
     expect(result).toEqual(['Boooo failed check'])
   })
 
+  test('CUSTOM and missing check function OK', async () => {
+    mockContext.addPlugin({
+      name: 'Empty Plugin',
+      description: 'I help test plugins',
+      rules: {
+        emptyDude: {},
+      },
+    })
+    const rule = toPairs({
+      TestRequirement: [{ rule: 'custom', plugin: 'Empty Plugin', name: 'emptyDude' }],
+    })[0]
+    const result = await checkRequirement(rule, mockContext)
+    expect(result).toEqual([[]])
+  })
+
   test('failed to find plugin', async () => {
     const rule = toPairs({
       TestRequirement: [{ rule: 'custom', plugin: 'I do not exist', name: 'checkSecondThing' }],

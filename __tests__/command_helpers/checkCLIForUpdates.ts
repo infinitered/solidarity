@@ -8,6 +8,13 @@ const rule = {
   version: '--version',
 }
 
+const ruleTildeSemver = {
+  rule: 'cli',
+  binary: 'npm',
+  semver: '~5.6.0',
+  version: '--version',
+}
+
 const ruleNoSemver = {
   rule: 'cli',
   binary: 'yarn',
@@ -49,6 +56,15 @@ describe('checkCLIForUpdates', () => {
       const result = await checkCLIForUpdates(ruleNoSemver, context)
       expect(result).toEqual(undefined)
       expect(ruleNoSemver.semver).toBe(undefined)
+    })
+
+    it('copies semver ~ symbol if present', async () => {
+      context.solidarity = {
+        getVersion: jest.fn(() => '5.8'),
+      }
+
+      const result = await checkCLIForUpdates(ruleTildeSemver, context)
+      expect(result).toEqual("Setting npm to '~5.8'")
     })
   })
 })
