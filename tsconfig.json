@@ -20,6 +20,9 @@
       "node",
       "jasmine"
     ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     // Let's allow `import`
     "allowSyntheticDefaultImports": true,
     // Don't let sneaky null/undefined through
