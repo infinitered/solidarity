@@ -32,6 +32,7 @@
   "author": "Gant Laborde",
   "license": "MIT",
   "dependencies": {
+    "@types/jasmine": "^2.8.7",
     "callsite": "^1.0.0",
     "envinfo": "^4.3.1",
     "gluegun": "2.0.0-beta.7",
