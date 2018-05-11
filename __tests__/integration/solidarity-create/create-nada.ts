@@ -12,7 +12,10 @@ beforeAll(() => {
   originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 90000
   const tempDir = tempy.directory()
-  filesystem.copy(`__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`, `${tempDir}${path.sep}.solidarity`)
+  filesystem.copy(
+    `__tests__${path.sep}sandbox${path.sep}solidarity_json${path.sep}.solidarity.json`,
+    `${tempDir}${path.sep}.solidarity`
+  )
   process.chdir(tempDir)
 })
 
