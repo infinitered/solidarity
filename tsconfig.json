@@ -17,7 +17,8 @@
     "moduleResolution": "node",
     // Help TS understand node globals
     "types": [
-      "node"
+      "node",
+      "jasmine"
     ],
     // Let's allow `import`
     "allowSyntheticDefaultImports": true,
