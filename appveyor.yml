@@ -5,13 +5,13 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm i -g typescript
-  - npm install
-  - tsc
+  - npm i -g yarn
+  - yarn
+  - yarn tsc
 
 before_test:
   - node --version
   - npm --version
 
 test_script:
-  - npm run test:ci
+  - yarn test:ci

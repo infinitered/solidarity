@@ -26,19 +26,21 @@ afterAll(function() {
 
 test('solidarity report works', async done => {
   try {
-    execa.shell(`${SOLIDARITY} report --compiled`).then(result => {
-      // check a few from the report
-      expect(result.stdout.includes('OS')).toBeTruthy()
-      expect(result.stdout.includes('CPU')).toBeTruthy()
-      expect(result.stdout.includes('Report Info')).toBeTruthy()
-      expect(result.stdout.includes('node')).toBeTruthy()
-      expect(result.code).toBe(0)
-      done()
-    })
-    .catch(err => {
-      console.error(err)
-      done.fail()
-    })
+    execa
+      .shell(`${SOLIDARITY} report --compiled`)
+      .then(result => {
+        // check a few from the report
+        expect(result.stdout.includes('OS')).toBeTruthy()
+        expect(result.stdout.includes('CPU')).toBeTruthy()
+        expect(result.stdout.includes('Report Info')).toBeTruthy()
+        expect(result.stdout.includes('node')).toBeTruthy()
+        expect(result.code).toBe(0)
+        done()
+      })
+      .catch(err => {
+        console.error(err)
+        done.fail()
+      })
   } catch (err) {
     done.fail()
   }

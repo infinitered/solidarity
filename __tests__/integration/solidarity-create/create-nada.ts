@@ -26,16 +26,18 @@ afterAll(function() {
 
 test('solidarity create works and prompts for what to create', async done => {
   try {
-    execa.shell(`${SOLIDARITY} create --compiled`).then(result => {
-      // check a few from the report
-      expect(result.stdout.includes('Missing what to create')).toBeTruthy()
-      expect(result.code).toBe(0)
-      done()
-    })
-    .catch(err => {
-      console.error(err)
-      done.fail()
-    })
+    execa
+      .shell(`${SOLIDARITY} create --compiled`)
+      .then(result => {
+        // check a few from the report
+        expect(result.stdout.includes('Missing what to create')).toBeTruthy()
+        expect(result.code).toBe(0)
+        done()
+      })
+      .catch(err => {
+        console.error(err)
+        done.fail()
+      })
   } catch (err) {
     console.error(err)
     done.fail()
@@ -44,16 +46,18 @@ test('solidarity create works and prompts for what to create', async done => {
 
 test('solidarity create is specific', async done => {
   try {
-    execa.shell(`${SOLIDARITY} create idonotexist --compiled`).then(result => {
-      // check a few from the report
-      expect(result.stdout.includes('Missing what to create')).toBeTruthy()
-      expect(result.code).toBe(0)
-      done()
-    })
-    .catch(err => {
-      console.error(err)
-      done.fail()
-    })
+    execa
+      .shell(`${SOLIDARITY} create idonotexist --compiled`)
+      .then(result => {
+        // check a few from the report
+        expect(result.stdout.includes('Missing what to create')).toBeTruthy()
+        expect(result.code).toBe(0)
+        done()
+      })
+      .catch(err => {
+        console.error(err)
+        done.fail()
+      })
   } catch (err) {
     done.fail()
   }
