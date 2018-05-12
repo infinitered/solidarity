@@ -30,7 +30,6 @@
     "noEmitOnError": true
   },
   "include": [
-    "src",
-    "__tests__"
+    "src"
   ]
 }
