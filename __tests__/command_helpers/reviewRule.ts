@@ -15,7 +15,7 @@ describe('reviewRule', () => {
     test('rule gets added', async () => {
       const rule = ['NPM', [{ rule: 'cli', binary: 'npm' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
+      await reviewRule(rule, reportResults, mockContext)
       // CLI rule was added
       expect(reportResults.cliRules.length).toBe(2)
     })
@@ -25,7 +25,7 @@ describe('reviewRule', () => {
     test('rule gets added', async () => {
       const rule = ['ANDROID', [{ rule: 'env', value: 'ANDROID_HOME' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
+      reviewRule(rule, reportResults, mockContext)
       // CLI rule was added
       expect(reportResults.envRules.length).toBe(2)
     })
@@ -35,7 +35,7 @@ describe('reviewRule', () => {
     test('rule gets added', async () => {
       const rule = ['DIRECTORY', [{ rule: 'dir', binary: 'random' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
+      reviewRule(rule, reportResults, mockContext)
       // CLI rule was added
       expect(reportResults.filesystemRules.length).toBe(2)
     })
@@ -45,7 +45,7 @@ describe('reviewRule', () => {
     test('rule gets added', async () => {
       const rule = ['FILE', [{ rule: 'file', binary: 'random' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
+      reviewRule(rule, reportResults, mockContext)
       // CLI rule was added
       expect(reportResults.filesystemRules.length).toBe(2)
     })
@@ -55,9 +55,9 @@ describe('reviewRule', () => {
     test('rule gets added', async () => {
       const rule = ['SHELL', [{ rule: 'shell', command: 'ls', match: '.+' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
+      reviewRule(rule, reportResults, mockContext)
       // SHELL rule was added
-      expect(reportResults.shellRules.length).toBe(2)
+      expect(reportResults.shellRules.length).toBe(1)
     })
   })
 
@@ -67,7 +67,7 @@ describe('reviewRule', () => {
       const rule = ['CUSTOM', [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkThing' }]]
 
       expect(reportResults.cliRules.length).toBe(1)
-      const result = await reviewRule(rule, reportResults, mockContext)
+      await reviewRule(rule, reportResults, mockContext)
       // CUSTOM rule (which adds CLI report) was added
       expect(reportResults.cliRules.length).toBe(2)
     })
@@ -76,7 +76,7 @@ describe('reviewRule', () => {
       const rule = ['CUSTOM', [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkSecondThing' }]]
 
       expect(reportResults.cliRules.length).toBe(1)
-      const result = await reviewRule(rule, reportResults, mockContext)
+      await reviewRule(rule, reportResults, mockContext)
       // should not change rules
       expect(reportResults.cliRules.length).toBe(1)
     })

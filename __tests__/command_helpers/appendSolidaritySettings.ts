@@ -1,7 +1,6 @@
 import appendSolidaritySettings from '../../src/extensions/functions/appendSolidaritySettings'
 import { keys } from 'ramda'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
-import { solidarity } from '../../src/types'
 
 const context = require('mockContext')
 
