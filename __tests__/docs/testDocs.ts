@@ -1,5 +1,5 @@
-import jetpack from 'fs-jetpack'
-import path from 'path'
+// import jetpack from 'fs-jetpack'
+// import path from 'path'
 
 // outgrown
 // test('Verify each markdown file has a link in sidebar', () => {

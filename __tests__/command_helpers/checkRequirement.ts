@@ -1,4 +1,3 @@
-import { SolidarityRequirement } from '../../dist/types'
 import { toPairs } from 'ramda'
 import { strings } from 'gluegun/toolbox'
 
@@ -59,7 +58,7 @@ describe('checkRequirement', () => {
   })
 
   test('there is a spinner message', async () => {
-    const result = await checkRequirement(badRule, context)
+    await checkRequirement(badRule, context)
     expect(context.print.spin.mock.calls).toEqual([['Verifying YARN']])
   })
 

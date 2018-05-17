@@ -33,7 +33,7 @@ describe('checkCLIForUpdates', () => {
       rule.binary = 'yarn'
       context.print = {
         colors: {
-          green: jest.fn(string => string),
+          green: jest.fn(stringy => stringy),
         },
       }
     })

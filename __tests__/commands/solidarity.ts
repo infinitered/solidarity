@@ -63,11 +63,11 @@ test('check base solidarity run', async () => {
 })
 
 test('check solidarity verbose run', async () => {
-  const result = await checkCommand.run(verboseMockContext)
+  await checkCommand.run(verboseMockContext)
   expect(verboseMockContext.outputMode).toBe(SolidarityOutputMode.VERBOSE)
 })
 
 test('check solidarity config no output run', async () => {
-  const result = await checkCommand.run(noConfigMockContext)
+  await checkCommand.run(noConfigMockContext)
   expect(noConfigMockContext.outputMode).toBe(SolidarityOutputMode.MODERATE)
 })

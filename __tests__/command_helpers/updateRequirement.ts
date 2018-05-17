@@ -1,4 +1,3 @@
-import { platform } from 'os'
 import { toPairs } from 'ramda'
 const examplePlugin = require('examplePlugin')
 const context = examplePlugin(require('mockContext'))

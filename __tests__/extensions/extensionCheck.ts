@@ -1,4 +1,3 @@
-import path from 'path'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 const context = require('mockContext')
 

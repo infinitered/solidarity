@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 var devMode = require('fs').existsSync(`${__dirname}/../src`)
+// used for integration tests
+var useCompiled = process.argv.indexOf('--compiled') >= 0
 
 // devMode does in-memory TS translation
-if (devMode) {
+if (devMode && !useCompiled) {
   require('ts-node').register({ project: `${__dirname}/..` })
   require(`${__dirname}/../src/index.ts`)(process.argv)
 } else {

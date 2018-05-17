@@ -21,12 +21,18 @@ afterAll(function() {
 
 test('solidarity report works', async done => {
   try {
-    execa.shell(`echo n | ${SOLIDARITY} snapshot`).then(result => {
-      // do not snapshot stdout bc windows bitches
-      expect(result.stdout.includes('Nothing to do')).toBeTruthy()
-      expect(result.code).toBe(0)
-      done()
-    })
+    execa
+      .shell(`echo n | ${SOLIDARITY} snapshot --compiled`)
+      .then(result => {
+        // do not snapshot stdout bc windows bitches
+        expect(result.stdout.includes('Nothing to do')).toBeTruthy()
+        expect(result.code).toBe(0)
+        done()
+      })
+      .catch(err => {
+        console.error(err)
+        done.fail()
+      })
   } catch (err) {
     done.fail()
   }

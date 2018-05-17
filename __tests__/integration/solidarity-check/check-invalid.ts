@@ -22,7 +22,7 @@ afterAll(function() {
 
 test('default looks for .solidarity file', async done => {
   try {
-    await execa.shellSync(SOLIDARITY)
+    execa.shellSync(`${SOLIDARITY} --compiled`)
     done.fail()
   } catch (err) {
     expect(err.code).not.toBe(0)
