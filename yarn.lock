@@ -94,6 +94,10 @@
   version "1.0.30"
   resolved "https://registry.yarnpkg.com/@types/callsite/-/callsite-1.0.30.tgz#0854343ffc2141a48bf541a3afbb67cfe07562aa"
 
+"@types/cli-table2@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@types/cli-table2/-/cli-table2-0.2.1.tgz#08faf5ce07115b0fd5c73c3dca9e8de3e2cf1d8e"
+
 "@types/execa@^0.8.0":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@types/execa/-/execa-0.8.1.tgz#0a9398c7661015c7d6c8e09d1f0a4018d5002f6e"
