@@ -1,0 +1,12 @@
+module.exports = (context, requirements) => {
+  const { solidarity, filesystem } = context
+  const { binaryExists } = solidarity
+
+  // Conditionally add requirements and rules
+
+  // Example:
+  // if (binaryExists('yarn', context) && filesystem.exists('./yarn.lock') === 'file') {
+  //   requirements['Yarn'] = [{rule: 'cli', binary: 'yarn', version: '--version', semver: '0.0.0'}]
+  // }
+
+}

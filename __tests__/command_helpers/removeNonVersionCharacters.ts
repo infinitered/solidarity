@@ -13,7 +13,7 @@ test('parse the result', () => {
 test('throws an error when there is no version output', () => {
   const line = 'Homebrew without versions'
   const rule = { binary: 'ls' }
-  const errorMessage = ` No version was detected from the output of the binary '${rule.binary}'`
+  const errorMessage = `No version was detected from the output of the binary '${rule.binary}'`
   expect(() => {
     removeNonVersionCharacters(rule, line)
   }).toThrowError(errorMessage)

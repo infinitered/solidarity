@@ -1,6 +1,5 @@
-import { SolidarityRequirement } from '../../dist/types'
 import { toPairs } from 'ramda'
-import { strings } from 'gluegun'
+import { strings } from 'gluegun/toolbox'
 
 import checkRequirement from '../../src/extensions/functions/checkRequirement'
 import solidarityExtension from '../../src/extensions/solidarity-extension'
@@ -21,7 +20,7 @@ const checkENV = require('../../src/extensions/functions/checkENV')
 jest.mock('../../src/extensions/functions/checkFile')
 const checkFile = require('../../src/extensions/functions/checkFile')
 
-const context = require('gluegun')
+const context = require('gluegun/toolbox')
 
 const badRule = toPairs({
   YARN: [{ rule: 'knope', binary: 'yarn' }],
@@ -59,7 +58,7 @@ describe('checkRequirement', () => {
   })
 
   test('there is a spinner message', async () => {
-    const result = await checkRequirement(badRule, context)
+    await checkRequirement(badRule, context)
     expect(context.print.spin.mock.calls).toEqual([['Verifying YARN']])
   })
 
@@ -89,6 +88,16 @@ describe('checkRequirement', () => {
       })[0]
       const result = await checkRequirement(rule, context)
       expect(result).toEqual([[]])
+    })
+
+    test('inject versions', async () => {
+      checkCLI.mockImplementation(async () => "Wanted: '~1.5.1', Installed '1.3.2'")
+
+      const rule = toPairs({
+        YARN: [{ rule: 'cli', binary: 'yarn' }],
+      })[0]
+      const result = await checkRequirement(rule, context)
+      expect(result).toEqual(["Wanted: '~1.5.1', Installed '1.3.2'"])
     })
   })
 
@@ -179,7 +188,7 @@ describe('checkRequirement', () => {
 
     test('failed CLI rule with custom message', async () => {
       checkCLI.mockClear()
-      checkCLI.mockImplementation(() => true)
+      checkCLI.mockImplementation(() => customError)
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }],
       })[0]
@@ -189,6 +198,8 @@ describe('checkRequirement', () => {
     })
 
     test('failed ENV rule with custom message', async () => {
+      checkCLI.mockClear()
+      checkCLI.mockImplementation(() => true)
       const rule = toPairs({
         YARN: [{ rule: 'env', variable: 'gazorpazorp', error: customError }],
       })[0]

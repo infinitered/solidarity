@@ -23,7 +23,8 @@
             { "$ref": "#/definitions/dir" },
             { "$ref": "#/definitions/file" },
             { "$ref": "#/definitions/env" },
-            { "$ref": "#/definitions/shell" }
+            { "$ref": "#/definitions/shell" },
+            { "$ref": "#/definitions/custom" }
           ]
         },
         "minItems": 1,
@@ -92,6 +93,20 @@
         "match": { "type": "string", "description": "A regexp to search the output." }
       },
       "required": ["rule", "match"]
+    },
+    "custom": {
+      "description": "Custom Rule",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "rule": { "enum": [ "custom" ] },
+        "plugin": { "type": "string" },
+        "name": { "type": "string" },
+        "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
+        "error": { "type": "string" },
+        "match": { "type": "string", "description": "A regexp to search the output." }
+      },
+      "required": ["rule", "plugin", "name"]
     }
   }
 }

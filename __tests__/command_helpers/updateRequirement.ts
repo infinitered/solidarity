@@ -1,6 +1,6 @@
-import { platform } from 'os'
 import { toPairs } from 'ramda'
-import context from 'gluegun'
+const examplePlugin = require('examplePlugin')
+const context = examplePlugin(require('mockContext'))
 
 import updateRequirement from '../../src/extensions/functions/updateRequirement'
 
@@ -23,6 +23,9 @@ describe('updateRequirement', () => {
     context.print = {
       spin: jest.fn(() => spinner),
       error: jest.fn(),
+      colors: {
+        green: jest.fn(),
+      },
     }
   })
 
@@ -121,7 +124,62 @@ describe('updateRequirement', () => {
       })
     })
 
-    describe('rule: !cli', () => {
+    describe('rule is custom', () => {
+      it('reports on custom updates', async () => {
+        const requirement = toPairs({
+          TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkThing' }],
+        })[0]
+
+        const result = await updateRequirement(requirement, settings, context)
+        expect(result).toEqual(["Setting checkThing 'semver' to '12.0.0'"])
+        expect(spinner.stop.mock.calls.length).toEqual(1)
+      })
+
+      it('reports correctly on multiple updates', async () => {
+        const requirement = toPairs({
+          TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkSecondThing' }],
+        })[0]
+
+        const result = await updateRequirement(requirement, settings, context)
+        expect(result).toEqual(["Setting checkSecondThing 'semver' to '12.0.0', 'nachos' to 'true'"])
+        expect(spinner.stop.mock.calls.length).toEqual(1)
+      })
+
+      it('reports correctly on NO updates', async () => {
+        const requirement = toPairs({
+          TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkThirdThing' }],
+        })[0]
+
+        const result = await updateRequirement(requirement, settings, context)
+        expect(result).toEqual([[]])
+        expect(spinner.stop.mock.calls.length).toEqual(1)
+      })
+
+      it('can pass silently if no snapshot function provided', async () => {
+        const requirement = toPairs({
+          TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkFourthThing' }],
+        })[0]
+
+        const result = await updateRequirement(requirement, settings, context)
+        expect(result).toEqual([[]])
+      })
+
+      it('custom combo - play nicely with others', async () => {
+        const requirement = toPairs({
+          TestRequirement: [
+            { rule: 'custom', plugin: 'Example Plugin', name: 'checkThing' },
+            { rule: 'custom', plugin: 'Example Plugin', name: 'checkSecondThing' },
+            { rule: 'custom', plugin: 'Example Plugin', name: 'checkThirdThing' },
+          ],
+        })[0]
+
+        const result = await updateRequirement(requirement, settings, context)
+        expect(result).toMatchSnapshot()
+        expect(spinner.stop.mock.calls.length).toEqual(1)
+      })
+    })
+
+    describe('rule: !== cli || custom', () => {
       it('returns an empty array', async () => {
         const requirement = toPairs({
           Yarn: [

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot create command 1`] = `
+Object {
+  "alias": "c",
+  "description": "Displays this help",
+  "run": [Function],
+}
+`;

@@ -99,9 +99,11 @@ Lastly, if output has multiple versions, you can identify the index of the versi
 ```
 
 ### Friendly Errors
-So what do we do if a rule fails?  The return code will be non-zero, but that's not the most friendly option.  You can set the `error` for any rule to give the user legible instruction on why the failure happened, and how they should solve it.
 
-*e.g.* Prompt them to install the missing CLI
+So what do we do if a rule fails? The return code will be non-zero, but that's not the most friendly option. You can set the `error` for any rule to give the user legible instruction on why the failure happened, and how they should solve it.
+
+_e.g._ Prompt them to install the missing CLI
+
 ```json
   "Watchman": [
     {
@@ -112,12 +114,26 @@ So what do we do if a rule fails?  The return code will be non-zero, but that's 
   ]
 ```
 
+In your error message, you can include `{{wantedVersion}}` and `{{installedVersion}}` to give the user version information, or even to customize scripts to help them install or update.
+
+```json
+  "Yarn": [
+    {
+      "rule": "cli",
+      "binary": "yarn",
+      "error": "You have yarn@{{installedVersion}}, and need yarn@{{wantedVersion}}. Fix with `npm install -g yarn@{{wantedVersion}}`"
+    }
+  ]
+```
+
 ### Platform Specific Rules
-Some rules are only essential for a given node platform.  You can identify these rules with passing the `"platform"` property on any rule.
 
-A platform property takes a string or and array of strings that identify the platforms that rule pertains to.  Platforms can be any of the following: `["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"]`
+Some rules are only essential for a given node platform. You can identify these rules with passing the `"platform"` property on any rule.
 
-*e.g.* Rule only performs a check on Mac and Linux
+A platform property takes a string or and array of strings that identify the platforms that rule pertains to. Platforms can be any of the following: `["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"]`
+
+_e.g._ Rule only performs a check on Mac and Linux
+
 ```json
   "Watchman": [
     {

@@ -11,6 +11,7 @@ const checkDir = require('./checkDir')
 const checkFile = require('./checkFile')
 const checkShell = require('./checkShell')
 const skipRule = require('./skipRule')
+const findPluginInfo = require('./findPluginInfo')
 
 module.exports = async (
   requirement: SolidarityRequirementChunk,
@@ -58,6 +59,11 @@ module.exports = async (
     return failureMessage
   }
 
+  const addSuccess = (successMessage: string) => {
+    printResult(true, successMessage)
+    return []
+  }
+
   // check each rule for requirement
   const ruleChecks = await map(async (rule: SolidarityRule) => {
     // Make sure this rule is active
@@ -69,18 +75,16 @@ module.exports = async (
         const cliResult = await checkCLI(rule, context)
         ruleString = `${requirementName} - ${rule.binary} binary`
         if (cliResult) {
-          return addFailure(rule.error || cliResult)
+          return addFailure(cliResult)
         } else {
-          printResult(true, ruleString)
-          return []
+          return addSuccess(ruleString)
         }
       // Handle ENV rule check
       case 'env':
         const envResult = await checkENV(rule, context)
         ruleString = `${requirementName} - ${rule.variable} env`
         if (envResult) {
-          printResult(true, ruleString)
-          return []
+          return addSuccess(ruleString)
         } else {
           return addFailure(rule.error || `'$${rule.variable}' environment variable not found`)
         }
@@ -90,8 +94,7 @@ module.exports = async (
         const dirResult = checkDir(rule, context)
         ruleString = `${requirementName} - ${rule.location} directory`
         if (dirResult) {
-          printResult(true, ruleString)
-          return []
+          return addSuccess(ruleString)
         } else {
           return addFailure(rule.error || `'${rule.location}' directory not found`)
         }
@@ -100,8 +103,7 @@ module.exports = async (
         const fileResult = checkFile(rule, context)
         ruleString = `${requirementName} - ${rule.location} file`
         if (fileResult) {
-          printResult(true, ruleString)
-          return []
+          return addSuccess(ruleString)
         } else {
           return addFailure(rule.error || `'${rule.location}' file not found`)
         }
@@ -110,14 +112,30 @@ module.exports = async (
         const shellResult = await checkShell(rule, context)
         if (shellResult) {
           ruleString = `${requirementName} - '${rule.command}' matches '${rule.match}'`
-          printResult(true, ruleString)
-          return []
+          return addSuccess(ruleString)
         } else {
           return addFailure(rule.error || `'${rule.command}' output did not match '${rule.match}'`)
         }
-
+      case 'custom':
+        const customPluginRule = findPluginInfo(rule, context)
+        if (customPluginRule.success) {
+          // No check provided, we jet
+          if (!customPluginRule.plugin.check) return []
+          const customResult = await customPluginRule.plugin.check(rule, context)
+          if (customResult && customResult.pass) {
+            return addSuccess(customResult.message)
+          } else {
+            const failMessage =
+              customResult && customResult.message
+                ? customResult.message
+                : `${requirementName} - rule '${rule.plugin}' '${rule.name}' failed`
+            return addFailure(rule.error || failMessage)
+          }
+        } else {
+          return addFailure(customPluginRule.message)
+        }
       default:
-        return addFailure(`Encountered unknown rule`)
+        return addFailure('Encountered unknown rule')
     }
   }, rules)
 

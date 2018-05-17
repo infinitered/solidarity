@@ -1,7 +1,8 @@
 import execa from 'execa'
 import tempy from 'tempy'
 
-const SOLIDARITY = `${process.cwd()}/bin/solidarity`
+const path = require('path')
+const SOLIDARITY = `node ${process.cwd()}${path.sep}bin${path.sep}solidarity`
 const origCwd = process.cwd()
 let originalTimeout
 
@@ -21,7 +22,7 @@ afterAll(function() {
 
 test('default looks for .solidarity file', async done => {
   try {
-    await execa(SOLIDARITY)
+    execa.shellSync(`${SOLIDARITY} --compiled`)
     done.fail()
   } catch (err) {
     expect(err.code).not.toBe(0)

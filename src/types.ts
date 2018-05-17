@@ -1,4 +1,16 @@
-import { GluegunRunContext } from 'gluegun'
+import {
+  GluegunRunContext,
+  GluegunFilesystem,
+  GluegunStrings,
+  GluegunPrint,
+  GluegunSystem,
+  GluegunSemver,
+  GluegunHttp,
+  GluegunPatching,
+  GluegunPrompt,
+  GluegunTemplate,
+  GluegunMeta,
+} from 'gluegun'
 export const solidarity = {
   binaryExists: require('./extensions/functions/binaryExists'),
   getSolidaritySettings: require('./extensions/functions/getSolidaritySettings'),
@@ -19,6 +31,7 @@ export const solidarity = {
   buildSpecificRequirement: require('./extensions/functions/buildSpecificRequirement'),
   appendSolidaritySettings: require('./extensions/functions/appendSolidaritySettings'),
   ruleHandlers: require('./extensions/functions/ruleHandlers'),
+  createPlugin: require('./extensions/functions/createPlugin'),
 }
 
 export interface SolidarityPlugin {
@@ -29,10 +42,21 @@ export interface SolidarityPlugin {
 
 export interface SolidarityRunContext extends GluegunRunContext {
   solidarity: typeof solidarity
-  _pluginsList: Array<SolidarityPlugin & { templateDirectory: string }>
+  _pluginsList: Array<SolidarityPlugin & { templateDirectory: string | null }>
   addPlugin: (config: SolidarityPlugin) => void
   printSeparator: () => void
   outputMode: SolidarityOutputMode
+  envHelpers: any
+  filesystem: GluegunFilesystem
+  strings: GluegunStrings
+  print: GluegunPrint
+  system: GluegunSystem
+  semver: GluegunSemver
+  http: GluegunHttp
+  patching: GluegunPatching
+  prompt: GluegunPrompt
+  template: GluegunTemplate
+  meta: GluegunMeta
 }
 
 export type SnapshotType = (context: SolidarityRunContext) => Promise<void>
@@ -91,8 +115,22 @@ export interface ShellRule {
   readonly platform?: string | string[]
 }
 
+export interface CustomRule {
+  readonly rule: 'custom'
+  readonly plugin: string
+  readonly name: string
+  readonly error?: string
+  readonly platform?: string | string[]
+}
+
 // discriminated union for rule sets
-export type SolidarityRule = CLIRule | ENVRule | FSRule | ShellRule
+export type SolidarityRule = CLIRule | ENVRule | FSRule | ShellRule | CustomRule
+
+export interface PluginFind {
+  success: boolean
+  message?: string
+  plugin?: SolidarityRule
+}
 
 export enum SolidarityOutputMode {
   MODERATE,
@@ -116,10 +154,23 @@ export interface SolidaritySettings {
   readonly config: SolidarityConfig
 }
 
+export interface CustomRulesConfig {
+  title: string
+  table: Array<Array<string>>
+}
+
 export interface SolidarityReportResults {
   basicInfo: Array<Array<string>>
   cliRules: Array<Array<string>>
   envRules: Array<Array<string>>
   filesystemRules: Array<Array<string>>
   shellRules: Array<Array<string>>
+  customRules?: Array<CustomRulesConfig>
+  addCLI: (cliReportConfig: CLIReportConfig) => void
+}
+
+export interface CLIReportConfig {
+  binary: string
+  version: string
+  desired?: string
 }

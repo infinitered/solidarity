@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check result shape 1`] = `[Function]`;
+
+exports[`checking plugin paths Choice 1 - 'I do not want a generated rule file' 1`] = `
+Array [
+  Array [
+    ".gitignore.ejs",
+    ".gitignore",
+  ],
+  Array [
+    "README.md.ejs",
+    "README.md",
+  ],
+  Array [
+    "package.json.ejs",
+    "package.json",
+  ],
+  Array [
+    "simple-plugin.js.ejs",
+    "extensions/solidarity-nachos.js",
+  ],
+]
+`;
+
+exports[`checking plugin paths Choice 2 - 'Just a simple rule template' 1`] = `
+Array [
+  Array [
+    ".gitignore.ejs",
+    ".gitignore",
+  ],
+  Array [
+    "README.md.ejs",
+    "README.md",
+  ],
+  Array [
+    "package.json.ejs",
+    "package.json",
+  ],
+  Array [
+    "rules-template.json.ejs",
+    "templates/solidarity-nachos-template.json",
+  ],
+  Array [
+    "simple-plugin.js.ejs",
+    "extensions/solidarity-nachos.js",
+  ],
+]
+`;
+
+exports[`checking plugin paths Choice 3 - 'Template + optional rules' 1`] = `
+Array [
+  Array [
+    ".gitignore.ejs",
+    ".gitignore",
+  ],
+  Array [
+    "README.md.ejs",
+    "README.md",
+  ],
+  Array [
+    "package.json.ejs",
+    "package.json",
+  ],
+  Array [
+    "rules-template.json.ejs",
+    "templates/solidarity-nachos-template.json",
+  ],
+  Array [
+    "helpful-plugin.js.ejs",
+    "extensions/solidarity-nachos.js",
+  ],
+  Array [
+    "addOptionalRules.js.ejs",
+    "extensions/helpers/addOptionalRules.js",
+  ],
+]
+`;
+
+exports[`investigate createPlugin 1`] = `
+Array [
+  Array [
+    ".gitignore.ejs",
+    ".gitignore",
+  ],
+  Array [
+    "README.md.ejs",
+    "README.md",
+  ],
+  Array [
+    "package.json.ejs",
+    "package.json",
+  ],
+]
+`;

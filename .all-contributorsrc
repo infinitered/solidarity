@@ -208,6 +208,26 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jamonholmgren",
+      "name": "Jamon Holmgren",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1479215?v=4",
+      "profile": "https://infinite.red",
+      "contributions": [
+        "ideas",
+        "infra"
+      ]
+    },
+    {
+      "login": "patrickkempff",
+      "name": "Patrick Kempff",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/310766?v=4",
+      "profile": "https://github.com/patrickkempff",
+      "contributions": [
+        "doc"
+      ]
     }
-  ]
+  ],
+  "repoType": "github"
 }

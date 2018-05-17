@@ -10,13 +10,13 @@ script:
   - 'npm run test:ci'
   - yarn danger ci
 after_success:
-  - './node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/codecov'
+  - './node_modules/.bin/jest --coverage --runInBand && cat ./coverage/lcov.info | ./node_modules/.bin/codecov'
 notifications:
   webhooks:
     urls:
       - 'https://www.travisbuddy.com/'
     on_success: never
-    on_failure: always
+    on_failure: never
     on_start: never
     on_cancel: never
     on_error: never

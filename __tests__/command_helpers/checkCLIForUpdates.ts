@@ -1,10 +1,17 @@
 import checkCLIForUpdates from '../../src/extensions/functions/checkCLIForUpdates'
 
-import context from 'gluegun'
+import * as context from 'gluegun/toolbox'
 const rule = {
   rule: 'cli',
   binary: 'bananas',
   semver: '1.1.0',
+  version: '--version',
+}
+
+const ruleTildeSemver = {
+  rule: 'cli',
+  binary: 'npm',
+  semver: '~5.6.0',
   version: '--version',
 }
 
@@ -26,7 +33,7 @@ describe('checkCLIForUpdates', () => {
       rule.binary = 'yarn'
       context.print = {
         colors: {
-          green: jest.fn(string => string),
+          green: jest.fn(stringy => stringy),
         },
       }
     })
@@ -49,6 +56,15 @@ describe('checkCLIForUpdates', () => {
       const result = await checkCLIForUpdates(ruleNoSemver, context)
       expect(result).toEqual(undefined)
       expect(ruleNoSemver.semver).toBe(undefined)
+    })
+
+    it('copies semver ~ symbol if present', async () => {
+      context.solidarity = {
+        getVersion: jest.fn(() => '5.8'),
+      }
+
+      const result = await checkCLIForUpdates(ruleTildeSemver, context)
+      expect(result).toEqual("Setting npm to '~5.8'")
     })
   })
 })

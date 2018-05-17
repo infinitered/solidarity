@@ -2,7 +2,7 @@ import getVersion from '../../src/extensions/functions/getVersion'
 
 import solidarityExtension from '../../src/extensions/solidarity-extension'
 
-const context = require('gluegun')
+const context = require('gluegun/toolbox')
 let originalTimeout
 solidarityExtension(context)
 
@@ -43,6 +43,6 @@ describe('getVersion', () => {
     } catch (e) {
       result = e
     }
-    expect(result).toEqual(" No version was detected from the output of the binary 'ls'")
+    expect(result).toEqual("No version was detected from the output of the binary 'ls'")
   })
 })

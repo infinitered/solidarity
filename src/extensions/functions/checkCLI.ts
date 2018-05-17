@@ -13,16 +13,28 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
     // ensure we have valid rule input
     if (!semver.validRange(rule.semver)) return `Invalid semver rule ${rule.semver}`
 
-    const binaryVersion = await solidarity.getVersion(rule, context)
+    let binaryVersion
+    try {
+      binaryVersion = await solidarity.getVersion(rule, context)
+    } catch (e) {
+      return e
+    }
+
     // pad zeros for any non-semver version systems (rules still work)
     let binarySemantic = binaryVersion
     while (binarySemantic.split('.').length < 3) {
       binarySemantic += '.0'
     }
 
+    const customMessage = (rule.error || '')
+      .replace(/{{wantedVersion}}/gi, /\^|\~/.test(rule.semver) ? rule.semver.substr(1) : rule.semver)
+      .replace(/{{installedVersion}}/gi, binaryVersion)
+    const standardMessage = `${rule.binary}: you have '${binaryVersion}', but the project requires '${rule.semver}'`
+    const message = customMessage || standardMessage
+
     // I can't get no satisfaction
     if (!semver.satisfies(binarySemantic, rule.semver)) {
-      return `${rule.binary}: you have '${binaryVersion}', but the project requires '${rule.semver}'`
+      return message
     }
   }
 }

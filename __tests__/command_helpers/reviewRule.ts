@@ -1,25 +1,21 @@
 import reviewRule from '../../src/extensions/functions/reviewRule'
 import { SolidarityRunContext, SolidarityReportResults } from '../../src/types'
+import { createReport } from '../../src/extensions/functions/solidarityReport'
+const examplePlugin = require('examplePlugin')
 let mockContext: SolidarityRunContext
 let reportResults: SolidarityReportResults
 describe('reviewRule', () => {
   beforeEach(() => {
     // fresh mock context
-    mockContext = require('mockContext')
-    reportResults = {
-      basicInfo: [['System Basics', 'Value'], ['OS', 'tacoOS'], ['CPU', 'hamsters in a wheel']],
-      cliRules: [['Binary', 'Location', 'Version', 'Desired']],
-      envRules: [['Environment Var', 'Value']],
-      filesystemRules: [['Location', 'Type', 'Exists']],
-      shellRules: [['Command', 'Pattern', 'Matches']],
-    }
+    mockContext = examplePlugin(require('mockContext'))
+    reportResults = createReport(mockContext)
   })
 
   describe('when rule: cli', () => {
     test('rule gets added', async () => {
       const rule = ['NPM', [{ rule: 'cli', binary: 'npm' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
+      await reviewRule(rule, reportResults, mockContext)
       // CLI rule was added
       expect(reportResults.cliRules.length).toBe(2)
     })
@@ -29,7 +25,7 @@ describe('reviewRule', () => {
     test('rule gets added', async () => {
       const rule = ['ANDROID', [{ rule: 'env', value: 'ANDROID_HOME' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
+      reviewRule(rule, reportResults, mockContext)
       // CLI rule was added
       expect(reportResults.envRules.length).toBe(2)
     })
@@ -39,7 +35,7 @@ describe('reviewRule', () => {
     test('rule gets added', async () => {
       const rule = ['DIRECTORY', [{ rule: 'dir', binary: 'random' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
+      reviewRule(rule, reportResults, mockContext)
       // CLI rule was added
       expect(reportResults.filesystemRules.length).toBe(2)
     })
@@ -49,7 +45,7 @@ describe('reviewRule', () => {
     test('rule gets added', async () => {
       const rule = ['FILE', [{ rule: 'file', binary: 'random' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
+      reviewRule(rule, reportResults, mockContext)
       // CLI rule was added
       expect(reportResults.filesystemRules.length).toBe(2)
     })
@@ -59,9 +55,56 @@ describe('reviewRule', () => {
     test('rule gets added', async () => {
       const rule = ['SHELL', [{ rule: 'shell', command: 'ls', match: '.+' }]]
 
-      const result = await reviewRule(rule, reportResults, mockContext)
-      // CLI rule was added
-      expect(reportResults.shellRules.length).toBe(2)
+      reviewRule(rule, reportResults, mockContext)
+      // SHELL rule was added
+      expect(reportResults.shellRules.length).toBe(1)
+    })
+  })
+
+  // Custom rule test
+  describe('when rule: custom', () => {
+    test('rule gets added', async () => {
+      const rule = ['CUSTOM', [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkThing' }]]
+
+      expect(reportResults.cliRules.length).toBe(1)
+      await reviewRule(rule, reportResults, mockContext)
+      // CUSTOM rule (which adds CLI report) was added
+      expect(reportResults.cliRules.length).toBe(2)
+    })
+
+    test('does nothing when no report exists', async () => {
+      const rule = ['CUSTOM', [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkSecondThing' }]]
+
+      expect(reportResults.cliRules.length).toBe(1)
+      await reviewRule(rule, reportResults, mockContext)
+      // should not change rules
+      expect(reportResults.cliRules.length).toBe(1)
+    })
+
+    test('Errors when plugin doesn not exist', async () => {
+      const rule = ['CUSTOM', [{ rule: 'custom', plugin: 'FAKE', name: 'checkSecondThing' }]]
+
+      // Async error snapshots (not simple)
+      try {
+        await reviewRule(rule, reportResults, mockContext)
+        fail('Unknown rule should have errored')
+      } catch (e) {
+        expect(e).toMatchSnapshot()
+      }
+    })
+  })
+
+  describe('when rule: unknown', () => {
+    test('rule gets added', async () => {
+      const rule = ['UNKNOWN', [{ rule: 'UNKNOWN', command: 'ls', match: '.+' }]]
+
+      // Async error snapshots (not simple)
+      try {
+        await reviewRule(rule, reportResults, mockContext)
+        fail('Unknown rule should have errored')
+      } catch (e) {
+        expect(e).toMatchSnapshot()
+      }
     })
   })
 })

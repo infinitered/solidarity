@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reviewRule when rule: custom Errors when plugin doesn not exist 1`] = `[Error: Plugin not found 'FAKE']`;
+
+exports[`reviewRule when rule: unknown rule gets added 1`] = `[Error: Encountered unknown rule]`;

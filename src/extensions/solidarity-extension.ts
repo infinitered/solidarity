@@ -1,9 +1,11 @@
 import { SolidarityRunContext, solidarity, SolidarityPlugin } from '../types'
+import { helpers } from 'envinfo'
 
 const callsite = require('callsite')
 const path = require('path')
 // Adding our goodies to the context
 module.exports = (context: SolidarityRunContext): void => {
+  const { filesystem } = context
   context.solidarity = solidarity
   // place for plugins
   context._pluginsList = []
@@ -12,13 +14,18 @@ module.exports = (context: SolidarityRunContext): void => {
     // I'll fiinnnnd youuuu... calling function
     const stack = callsite()
     const requester = stack[1].getFileName()
-    const templateDirectory = path.join(path.dirname(requester), '../templates/')
+    const templateDirPotential = path.join(path.dirname(requester), '../templates/')
+    // Don't store directories that aren't there!
+    const templateDirectory = filesystem.exists(templateDirPotential) ? templateDirPotential : null
 
     context._pluginsList.push({
       templateDirectory,
       ...pluginConfig,
     })
   }
+
+  // Add helpers
+  context.envInfo = helpers
 
   // Flavored separator
   context.printSeparator = (): void =>

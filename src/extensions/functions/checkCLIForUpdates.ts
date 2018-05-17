@@ -20,9 +20,10 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
     binarySemantic += '.0'
   }
 
-  // if it doesn't satisfy, upgrade
+  // if it doesn't satisfy, upgrade, and retain semver symbol
   if (rule.semver && !semver.satisfies(binarySemantic, rule.semver)) {
-    rule.semver = binaryVersion
-    return print.colors.green(`Setting ${rule.binary} to '${binaryVersion}'`)
+    rule.semver = `${/\^|\~/.test(rule.semver) ? rule.semver.charAt(0) : ''}${binaryVersion}`
+    const lineMessage = rule.line ? ` line ${rule.line}` : ''
+    return print.colors.green(`Setting ${rule.binary}${lineMessage} to '${rule.semver}'`)
   }
 }

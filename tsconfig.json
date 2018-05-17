@@ -2,24 +2,26 @@
   "compilerOptions": {
     // Brings in Promise and all es2015 extensions to TS
     // TODO: Bringing in dom to quell URL issue, please remove if possible
-    "lib": ["es2015", "dom", "es7"],
+    "lib": [
+      "es2015",
+      "dom",
+      "es7"
+    ],
     "outDir": "dist",
-
     // Emits types for others to consume
     "declaration": true,
     "declarationDir": "dist/types",
-
     // Using commonjs here to play nice with node (imports not welcome here)
     "module": "commonjs",
     "target": "es6",
     "moduleResolution": "node",
-
     // Help TS understand node globals
-    "types": ["node"],
-
+    "types": [
+      "node",
+      "jasmine"
+    ],
     // Let's allow `import`
     "allowSyntheticDefaultImports": true,
-
     // Don't let sneaky null/undefined through
     "strictNullChecks": true,
     // Yes plz
