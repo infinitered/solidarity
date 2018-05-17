@@ -4,6 +4,7 @@
   - [How do I use it?](#how-do-I-use-it)
   - [How do I update it?](#how-do-i-update-it-to-my-machine-specs)
   - [How do I create my first snapshot?](#how-do-I-create-my-first-snapshot)
+  - [How do I update my snapshots?](#how-do-I-update-my-snapshots)
   - [Supported Systems](#supported-systems)
   - [Additional Support](#support)
   - [Additional Info](#additional-info)
