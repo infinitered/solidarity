@@ -4,6 +4,7 @@
   - [How do I use it?](/README.md#how-do-I-use-it)
   - [How do I update it?](/README.md#how-do-i-update-it-to-my-machine-specs)
   - [How do I create my first snapshot?](/README.md#how-do-I-create-my-first-snapshot)
+  - [How do I update my snapshots?](#how-do-I-update-my-snapshots)
   - [Supported Systems](/README.md#supported-systems)
   - [Additional Support](/README.md#support)
   - [Additional Info](/README.md#additional-info)
