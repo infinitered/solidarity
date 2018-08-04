@@ -48,7 +48,7 @@ namespace Solidarity {
     // get settings or error
     let solidaritySettings
     //////////
-    // Consider cleaing this up
+    // Consider cleaning this up
     const checkOption: string = options ? (options.check || options.c) : null
     if (checkOption) {
       const { http } = context
