@@ -75,8 +75,8 @@ namespace Snapshot {
 
       if (first) {
         await buildSpecificRequirement(context)
-          .then(newRequirement => {
-            const updatedSolidaritySettings = appendSolidaritySettings(context, newRequirement)
+          .then(async (newRequirement) => {
+            const updatedSolidaritySettings = await appendSolidaritySettings(context, newRequirement)
 
             setSolidaritySettings(updatedSolidaritySettings, context)
           })

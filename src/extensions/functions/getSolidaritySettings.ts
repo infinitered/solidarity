@@ -1,4 +1,4 @@
-import { SolidarityRunContext, SolidaritySettings, solidarity } from '../../types'
+import { SolidarityRunContext, SolidaritySettings } from '../../types'
 import * as JSON5 from 'json5'
 import * as path from 'path'
 
@@ -25,15 +25,31 @@ export const loadModule = (context, moduleName) => {
   }
 }
 
-export const loadWebCheck = (context, checkStack) => {
+export const loadWebCheck = async (context, checkOption) => {
+  const { print, http } = context
+  const checkSpinner = print.spin(`Running check on ${checkOption}`)
+  const api = http.create({
+    baseURL: 'https://api.github.com',
+    headers: { Accept: 'application/vnd.github.v3+json' },
+  })
 
+  // Load check from web
+  const checkURL = `https:\/\/raw.githubusercontent.com/infinitered/solidarity/master/${checkOption}`
+  const result = await api.get(checkURL)
+  // console.log(result)
+  if (result.ok) {
+    checkSpinner.succeed(checkURL)
+    return result.data
+  } else {
+    checkSpinner.fail(`Unable to find a known check for ${checkOption}`)
+    print.info(
+      `https://github.com/infinitered/solidarity/checks for options.`
+    )
+    throw(`ERROR: ${result.status} - ${result.problem}`)
+  }
 }
 
-export const loadDefault = () => {
-
-}
-
-module.exports = (context: SolidarityRunContext): SolidaritySettings => {
+module.exports = async (context: SolidarityRunContext): Promise<SolidaritySettings> => {
   const { filesystem, parameters } = context
   const options = parameters.options || {} // fix possibly undefined from gluegun
   const demandedFile = options.solidarityFile || options.f
@@ -52,7 +68,7 @@ module.exports = (context: SolidarityRunContext): SolidaritySettings => {
   } else if (demandedModule) {
     solidaritySettings = loadModule(context, demandedModule)
   } else if (demandedCheck) {
-    solidaritySettings = loadWebCheck(context, demandedCheck)
+    solidaritySettings = await loadWebCheck(context, demandedCheck)
   } else if (filesystem.exists('.solidarity')) {
     solidaritySettings = JSON5.parse(filesystem.read('.solidarity'))
   } else if (filesystem.exists('.solidarity.json')) {

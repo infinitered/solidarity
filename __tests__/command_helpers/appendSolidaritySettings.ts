@@ -18,11 +18,11 @@ describe('appendSolidaritySettings', () => {
 
     context.solidarity = {
       ...context.solidarity,
-      getSolidaritySettings: jest.fn(() => solidaritySettings),
+      getSolidaritySettings: jest.fn(() => Promise.resolve(solidaritySettings)),
     }
   })
 
-  it('appends the given requirement to the existing settings', () => {
+  it('appends the given requirement to the existing settings', async () => {
     const newRequirement = {
       three: [{ rule: 'cli' }],
     }
@@ -31,13 +31,13 @@ describe('appendSolidaritySettings', () => {
       first: 'cli',
     }
 
-    const newSettings = appendSolidaritySettings(context, newRequirement)
+    const newSettings = await appendSolidaritySettings(context, newRequirement)
 
     expect(keys(newSettings.requirements).length).toEqual(3)
     expect(keys(newSettings.requirements.three).length).toEqual(1)
   })
 
-  it('will append the given requirement to and existing requirement', () => {
+  it('will append the given requirement to and existing requirement', async () => {
     context.parameters = {
       first: 'cli',
       second: 'ruby',
@@ -47,7 +47,7 @@ describe('appendSolidaritySettings', () => {
       twoTest: [{ rule: 'cli', binary: 'ruby' }],
     }
 
-    let newSettings = appendSolidaritySettings(context, newRequirement)
+    let newSettings = await appendSolidaritySettings(context, newRequirement)
 
     expect(keys(newSettings.requirements).length).toEqual(2)
     expect(newSettings.requirements.twoTest.length).toEqual(2)
@@ -57,7 +57,7 @@ describe('appendSolidaritySettings', () => {
   })
 
   describe('given a requirement with a prexisting rule', () => {
-    it('should just merge the rule w/ the existing rule', () => {
+    it('should just merge the rule w/ the existing rule', async () => {
       context.parameters = {
         first: 'env',
       }
@@ -73,7 +73,7 @@ describe('appendSolidaritySettings', () => {
         ],
       }
 
-      let newSettings = appendSolidaritySettings(context, newRequirement)
+      let newSettings = await appendSolidaritySettings(context, newRequirement)
 
       expect(keys(newSettings.requirements).length).toEqual(2)
       expect(newSettings.requirements.oneTest.length).toEqual(2)

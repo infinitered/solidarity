@@ -66,7 +66,7 @@ namespace buildSpecificRequirement {
   const constructRequirment = async context => {
     const { parameters, prompt, solidarity } = context
     const { getSolidaritySettings, ruleHandlers } = solidarity
-    const solidaritySettings = getSolidaritySettings(context)
+    const solidaritySettings = await getSolidaritySettings(context)
 
     const userAnswer = await prompt.ask({
       name: 'addNewRule',

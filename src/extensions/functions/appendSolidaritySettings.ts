@@ -20,12 +20,12 @@ const updateExistingRule = (solidaritySettings, updatedRequirementRules, newRequ
   }
 }
 
-module.exports = (context, newRequirement) => {
+module.exports = async (context, newRequirement) => {
   const { solidarity, parameters } = context
   const { getSolidaritySettings, ruleHandlers } = solidarity
   const { first } = parameters
 
-  const solidaritySettings = getSolidaritySettings(context)
+  const solidaritySettings = await getSolidaritySettings(context)
 
   const newRequirementKey = keys(newRequirement)[0]
   const existingRequirementRules = solidaritySettings.requirements[newRequirementKey] || []

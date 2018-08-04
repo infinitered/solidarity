@@ -41,59 +41,21 @@ namespace Solidarity {
     // drop out fast in these situations
     await checkForEscapeHatchFlags(context)
 
-    const { print, solidarity, parameters } = context
-    const { options } = parameters
+    const { print, solidarity } = context
     const { checkRequirement, getSolidaritySettings } = solidarity
 
     // get settings or error
     let solidaritySettings
-    //////////
-    // Consider cleaning this up
-    const checkOption: string = options ? (options.check || options.c) : null
-    if (checkOption) {
-      const { http } = context
-      const checkSpinner = print.spin(`Running check on ${checkOption}`)
-      const api = http.create({
-        baseURL: 'https://api.github.com',
-        headers: { Accept: 'application/vnd.github.v3+json' },
-      })
-      try {
-        // Load check from web
-        const checkURL = `https:\/\/raw.githubusercontent.com/infinitered/solidarity/master/${checkOption}`
-        const result = await api.get(checkURL)
-        console.log(result)
-        if (result.ok) {
-          checkSpinner.succeed(checkURL)
-          // result.data
-        } else {
-          checkSpinner.fail(`Unable to find a known check for ${checkOption}`)
-          print.info(
-            `https://github.com/infinitered/solidarity/checks for options.`
-          )
-          process.exit(3)
-        }
-      } catch (e) {
-        checkSpinner.fail(e)
-        print.info(
-          `Check is meant to verify your environment based on known stacks
-          solidarity failed to do a proper check for ${print.colors.success(checkOption)}`
-        )
-        process.exit(3)
-      }
-      process.exit(1)
-    //////////////////////////////////////
-    } else {
-      try {
-        solidaritySettings = getSolidaritySettings(context)
-      } catch (e) {
-        print.error(e)
-        print.info(
-          `Make sure you are in the correct folder or run ${print.colors.success(
-            'solidarity snapshot'
-          )} to take a snapshot of your environment and create a .solidarity file for this project.`
-        )
-        process.exit(3)
-      }
+    try {
+      solidaritySettings = await getSolidaritySettings(context)
+    } catch (e) {
+      print.error(e)
+      print.info(
+        `Make sure you are in the correct folder or run ${print.colors.success(
+          'solidarity snapshot'
+        )} to take a snapshot of your environment and create a .solidarity file for this project.`
+      )
+      process.exit(3)
     }
 
     context.outputMode = setOutputMode(context.parameters, solidaritySettings)
