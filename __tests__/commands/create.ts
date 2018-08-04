@@ -13,7 +13,7 @@ it('enforces required properties', () => {
 
 test('check solidarity create with no parameter', async () => {
   await createCommand.run(mockContext)
-  expect(mockContext.print.error.mock.calls).toEqual([['Missing what to create'], ['solidarity create <wut?>']])
+  expect(mockContext.print.error.mock.calls).toEqual([['Missing what to create'], ['$ solidarity create <wut?>']])
   expect(mockContext.print.info.mock.calls.length).toBe(1)
 })
 

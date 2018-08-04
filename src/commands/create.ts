@@ -18,7 +18,7 @@ module.exports = {
         break
       default:
         print.error('Missing what to create')
-        print.error('solidarity create <wut?>')
+        print.error('$ solidarity create <wut?>')
         print.info(`Things you can create: ${createables}`)
     }
   },

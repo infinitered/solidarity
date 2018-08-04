@@ -6,3 +6,4 @@ src/
 coverage/
 yarn.lock
 *.log
+check/
