@@ -2,6 +2,8 @@ import { SolidarityRunContext, SolidaritySettings } from '../../types'
 import * as JSON5 from 'json5'
 import * as path from 'path'
 
+export const isURI = (path) => !!path.match(/\w+:(\/?\/?)[^\s]+/)
+
 export const loadFile = (context, filePath) => {
   const { filesystem } = context
   if (filesystem.exists(filePath)) {
@@ -34,18 +36,19 @@ export const loadWebCheck = async (context, checkOption) => {
   })
 
   // Load check from web
-  const checkURL = `https:\/\/raw.githubusercontent.com/infinitered/solidarity/master/${checkOption}`
+  const checkURL = isURI(checkOption) ? checkOption : `https:\/\/raw.githubusercontent.com/infinitered/solidarity/master/checks/${checkOption}.json`
   const result = await api.get(checkURL)
   // console.log(result)
   if (result.ok) {
-    checkSpinner.succeed(checkURL)
-    return result.data
+    checkSpinner.succeed(`Found ${checkOption}`)
+    const solidarityData = JSON5.parse(result.data)
+    return solidarityData
   } else {
-    checkSpinner.fail(`Unable to find a known check for ${checkOption}`)
+    checkSpinner.fail(`Unable to find a known check stack for ${checkOption}`)
     print.info(
-      `https://github.com/infinitered/solidarity/checks for options.`
+      `Check https://github.com/infinitered/solidarity/checks for options.`
     )
-    throw(`ERROR: ${result.status} - ${result.problem}`)
+    throw(`ERROR: Request failed (${result.status} - ${result.problem})`)
   }
 }
 
