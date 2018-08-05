@@ -41,7 +41,10 @@ export const loadWebCheck = async (context, checkOption) => {
   // console.log(result)
   if (result.ok) {
     checkSpinner.succeed(`Found ${checkOption}`)
-    const solidarityData = JSON5.parse(result.data)
+    // Convert strings to JSON5 objects
+    const solidarityData = (typeof result.data === 'string')
+      ? JSON5.parse(result.data)
+      : result.data
     return solidarityData
   } else {
     checkSpinner.fail(`Unable to find a known check stack for ${checkOption}`)
