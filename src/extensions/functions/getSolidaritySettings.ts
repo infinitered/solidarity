@@ -36,11 +36,11 @@ export const loadWebCheck = async (context, checkOption) => {
   })
 
   // Load check from web
-  const checkURL = isURI(checkOption) ? checkOption : `https:\/\/raw.githubusercontent.com/infinitered/solidarity/master/checks/${checkOption}.json`
+  const checkURL = isURI(checkOption) ? checkOption : `https:\/\/raw.githubusercontent.com/infinitered/solidarity-stacks/master/stacks/${checkOption}.solidarity`
   const result = await api.get(checkURL)
   // console.log(result)
   if (result.ok) {
-    checkSpinner.succeed(`Found ${checkOption}`)
+    checkSpinner.succeed(`Found Stack: ${checkOption}`)
     // Convert strings to JSON5 objects
     const solidarityData = (typeof result.data === 'string')
       ? JSON5.parse(result.data)
@@ -49,7 +49,7 @@ export const loadWebCheck = async (context, checkOption) => {
   } else {
     checkSpinner.fail(`Unable to find a known check stack for ${checkOption}`)
     print.info(
-      `Check https://github.com/infinitered/solidarity/checks for options.`
+      `Check https://github.com/infinitered/solidarity-stacks for options.`
     )
     throw(`ERROR: Request failed (${result.status} - ${result.problem})`)
   }
