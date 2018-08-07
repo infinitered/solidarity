@@ -31,8 +31,7 @@ export const loadWebCheck = async (context, checkOption) => {
   const { print, http } = context
   const checkSpinner = print.spin(`Running check on ${checkOption}`)
   const api = http.create({
-    baseURL: 'https://api.github.com',
-    headers: { Accept: 'application/vnd.github.v3+json' },
+    baseURL: 'https://api.github.com'
   })
 
   // Load check from web
@@ -60,7 +59,7 @@ module.exports = async (context: SolidarityRunContext): Promise<SolidaritySettin
   const options = parameters.options || {} // fix possibly undefined from gluegun
   const demandedFile = options.solidarityFile || options.f
   const demandedModule = options.module || options.m
-  const demandedCheck = options.stack || options.s
+  const demandedCheck = options.stack || options.t
 
   /* for now only JSON and JSON5 support
   * Summary:
