@@ -60,7 +60,7 @@ module.exports = async (context: SolidarityRunContext): Promise<SolidaritySettin
   const options = parameters.options || {} // fix possibly undefined from gluegun
   const demandedFile = options.solidarityFile || options.f
   const demandedModule = options.module || options.m
-  const demandedCheck = options.check || options.c
+  const demandedCheck = options.stack || options.s
 
   /* for now only JSON and JSON5 support
   * Summary:
