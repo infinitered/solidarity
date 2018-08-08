@@ -46,7 +46,7 @@ export const loadWebCheck = async (context, checkOption) => {
       : result.data
     return solidarityData
   } else {
-    checkSpinner.fail(`Unable to find a known check stack for ${checkOption}`)
+    checkSpinner.fail(`Unable to find a known tech stack for ${checkOption}`)
     print.info(
       `Check https://github.com/infinitered/solidarity-stacks for options.`
     )
