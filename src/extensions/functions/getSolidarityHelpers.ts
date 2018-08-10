@@ -1,3 +1,6 @@
+import {
+  SolidarityOutputMode,
+} from '../../types'
 import * as JSON5 from 'json5'
 import * as path from 'path'
 
@@ -31,8 +34,11 @@ export const loadModule = (context, moduleName) => {
 }
 
 export const loadWebCheck = async (context, checkOption) => {
-  const { print, http } = context
-  const checkSpinner = print.spin(`Running check on ${checkOption}`)
+  const { print, http, parameters } = context
+  const { options } = parameters
+  const silentMode = options.silent || options.s
+  const moderateMode = options.moderate || options.m
+  const checkSpinner = silentMode || moderateMode ? null : print.spin(`Running check on ${checkOption}`)
   // the base URL is throw away, and will go away in next version of apisauce
   const api = http.create({
     baseURL: 'https://api.github.com'
@@ -43,17 +49,19 @@ export const loadWebCheck = async (context, checkOption) => {
   const result = await api.get(checkURL)
   // console.log(result)
   if (result.ok) {
-    checkSpinner.succeed(`Found Stack: ${checkOption}`)
+    checkSpinner && checkSpinner.succeed(`Found Stack: ${checkOption}`)
     // Convert strings to JSON5 objects
     const solidarityData = (typeof result.data === 'string')
       ? JSON5.parse(result.data)
       : result.data
     return solidarityData
   } else {
-    checkSpinner.fail(`Unable to find a known tech stack for ${checkOption}`)
-    print.info(
-      `Check https://github.com/infinitered/solidarity-stacks for options.`
-    )
+    checkSpinner && checkSpinner.fail(`Unable to find a known tech stack for ${checkOption}`)
+    if (!silentMode) {
+      print.info(
+        `Check https://github.com/infinitered/solidarity-stacks for options.`
+      )
+    }
     throw(`ERROR: Request failed (${result.status} - ${result.problem})`)
   }
 }

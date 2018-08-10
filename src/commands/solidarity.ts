@@ -58,6 +58,7 @@ namespace Solidarity {
       process.exit(3)
     }
 
+    // Merge flags and configs
     context.outputMode = setOutputMode(context.parameters, solidaritySettings)
 
     // build map of checks to perform
