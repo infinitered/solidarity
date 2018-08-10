@@ -6,8 +6,12 @@ export const isURI = (path) => !!path.match(/\w+:(\/?\/?)[^\s]+/)
 
 export const loadFile = (context, filePath) => {
   const { filesystem } = context
-  if (filesystem.exists(filePath)) {
-    return JSON5.parse(filesystem.read('.solidarity'))
+  if (filesystem.exists(filePath + path.sep + '.solidarity')) {
+    return JSON5.parse(filesystem.read(filePath + path.sep + '.solidarity'))
+  } else if (filesystem.exists(filePath + path.sep + '.solidarity.json')) {
+    return JSON5.parse(filesystem.read(filePath + path.sep + '.solidarity.json'))
+  } else if (filesystem.exists(filePath) === 'file') {
+    return JSON5.parse(filesystem.read(filePath))
   } else {
     throw 'ERROR: There is no solidarity file at the given path'
   }
