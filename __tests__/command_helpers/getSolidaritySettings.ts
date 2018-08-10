@@ -21,23 +21,31 @@ describe('basic getSolidaritySettings', () => {
     })
   })
 
-  // describe('w/ failure', () => {
-  //   test('getSolidaritySettings can fail', async () => {
-  //     await expect(async () => {
-  //       process.chdir('__tests__')
-  //       await getSolidaritySettings(context)
-  //     }).toThrow()
-  //     process.chdir('../')
-  //   })
+  describe('w/ failure', () => {
+    test('getSolidaritySettings can fail', async () => {
 
-  //   test('getSolidaritySettings can warn with missing requirements', async () => {
-  //     await expect(async () => {
-  //       process.chdir('__tests__/sandbox/solidarity_broken')
-  //       await getSolidaritySettings(context)
-  //     }).toThrowError('ERROR: Found, but no requirements key.  Please validate your solidarity file')
-  //     process.chdir('../../../')
-  //   })
-  // })
+      // Original sync style
+      // expect(async () => {
+      //   process.chdir('__tests__')
+      //   getSolidaritySettings(context)
+      // }).toThrow()
+      // process.chdir('../')
+
+      process.chdir('__tests__')
+      await expect(getSolidaritySettings(context))
+        .rejects
+        .toThrow()
+      process.chdir('../')
+    })
+
+    test('getSolidaritySettings can warn with missing requirements', async () => {
+      process.chdir('__tests__/sandbox/solidarity_broken')
+      await expect(getSolidaritySettings(context))
+        .rejects
+        .toThrow()
+      process.chdir('../../../')
+    })
+  })
 })
 
 describe('parameterized getSolidaritySettings', () => {
