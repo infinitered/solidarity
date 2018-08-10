@@ -1,9 +1,9 @@
 import * as JSON5 from 'json5'
 import * as path from 'path'
 
-const isURI = (path) => !!path.match(/\w+:(\/?\/?)[^\s]+/)
+export const isURI = (path) => !!path.match(/\w+:(\/?\/?)[^\s]+/)
 
-const loadFile = (context, filePath) => {
+export const loadFile = (context, filePath) => {
   const { filesystem } = context
   if (filesystem.exists(filePath) === 'file') {
     return JSON5.parse(filesystem.read(filePath))
@@ -16,7 +16,7 @@ const loadFile = (context, filePath) => {
   }
 }
 
-const loadModule = (context, moduleName) => {
+export const loadModule = (context, moduleName) => {
   const { filesystem } = context
   // We will search that module
   const filePath = path.join('node_modules', moduleName, '.solidarity')
@@ -30,7 +30,7 @@ const loadModule = (context, moduleName) => {
   }
 }
 
-const loadWebCheck = async (context, checkOption) => {
+export const loadWebCheck = async (context, checkOption) => {
   const { print, http } = context
   const checkSpinner = print.spin(`Running check on ${checkOption}`)
   // the base URL is throw away, and will go away in next version of apisauce
