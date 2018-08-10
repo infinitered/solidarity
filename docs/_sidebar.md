@@ -10,6 +10,7 @@
   - [Additional Info](/README.md#additional-info)
 - Comprehensive Docs
   - [Solidarity Rules Options](/docs/options.md)
+  - [Solidarity CLI Options](/docs/cliOptions.md)
   - [Writing Plugins](/docs/plugins.md)
 - [**All Contributors**](/docs/existingContributors.md)
 - Blog Posts
