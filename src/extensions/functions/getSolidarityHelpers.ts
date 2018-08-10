@@ -1,6 +1,3 @@
-import {
-  SolidarityOutputMode,
-} from '../../types'
 import * as JSON5 from 'json5'
 import * as path from 'path'
 

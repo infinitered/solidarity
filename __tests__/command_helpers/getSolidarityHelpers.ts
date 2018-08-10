@@ -1,4 +1,4 @@
-import { isURI, loadFile, loadModule, loadWebCheck } from '../../src/extensions/functions/getSolidarityHelpers'
+import { isURI, loadFile, loadWebCheck } from '../../src/extensions/functions/getSolidarityHelpers'
 
 const context = require('mockContext')
 

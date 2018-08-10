@@ -86,8 +86,8 @@ describe('parameterized getSolidaritySettings', () => {
       process.chdir('__tests__/sandbox/fake_project')
     })
 
-    test('can find solidarity file in module with flag -m', async () => {
-      context.parameters.options = { m: 'mock_module' }
+    test('can find solidarity file in module with flag -d', async () => {
+      context.parameters.options = { d: 'mock_module' }
       const resultSettings = await getSolidaritySettings(context)
       // we got an object with requirements defined
       expect(resultSettings).toMatchObject({ requirements: {} })
