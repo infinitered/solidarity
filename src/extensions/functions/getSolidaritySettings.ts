@@ -1,62 +1,6 @@
 import { SolidarityRunContext, SolidaritySettings } from '../../types'
+import { loadFile, loadModule, loadWebCheck } from './getSolidarityHelpers'
 import * as JSON5 from 'json5'
-import * as path from 'path'
-
-export const isURI = (path) => !!path.match(/\w+:(\/?\/?)[^\s]+/)
-
-export const loadFile = (context, filePath) => {
-  const { filesystem } = context
-  if (filesystem.exists(filePath + path.sep + '.solidarity')) {
-    return JSON5.parse(filesystem.read(filePath + path.sep + '.solidarity'))
-  } else if (filesystem.exists(filePath + path.sep + '.solidarity.json')) {
-    return JSON5.parse(filesystem.read(filePath + path.sep + '.solidarity.json'))
-  } else if (filesystem.exists(filePath) === 'file') {
-    return JSON5.parse(filesystem.read(filePath))
-  } else {
-    throw 'ERROR: There is no solidarity file at the given path'
-  }
-}
-
-export const loadModule = (context, moduleName) => {
-  const { filesystem } = context
-  // We will search that module
-  const filePath = path.join('node_modules', moduleName, '.solidarity')
-
-  if (filesystem.exists(filePath)) {
-    return JSON5.parse(filesystem.read(filePath))
-  } else if (filesystem.exists(filePath + '.json')) {
-    return JSON5.parse(filesystem.read(filePath + '.json'))
-  } else {
-    throw 'ERROR: There is no solidarity file found with the given module'
-  }
-}
-
-export const loadWebCheck = async (context, checkOption) => {
-  const { print, http } = context
-  const checkSpinner = print.spin(`Running check on ${checkOption}`)
-  const api = http.create({
-    baseURL: 'https://api.github.com'
-  })
-
-  // Load check from web
-  const checkURL = isURI(checkOption) ? checkOption : `https:\/\/raw.githubusercontent.com/infinitered/solidarity-stacks/master/stacks/${checkOption}.solidarity`
-  const result = await api.get(checkURL)
-  // console.log(result)
-  if (result.ok) {
-    checkSpinner.succeed(`Found Stack: ${checkOption}`)
-    // Convert strings to JSON5 objects
-    const solidarityData = (typeof result.data === 'string')
-      ? JSON5.parse(result.data)
-      : result.data
-    return solidarityData
-  } else {
-    checkSpinner.fail(`Unable to find a known tech stack for ${checkOption}`)
-    print.info(
-      `Check https://github.com/infinitered/solidarity-stacks for options.`
-    )
-    throw(`ERROR: Request failed (${result.status} - ${result.problem})`)
-  }
-}
 
 module.exports = async (context: SolidarityRunContext): Promise<SolidaritySettings> => {
   const { filesystem, parameters } = context

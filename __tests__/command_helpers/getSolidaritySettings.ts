@@ -25,7 +25,7 @@ describe('basic getSolidaritySettings', () => {
     test('getSolidaritySettings can fail', async () => {
 
       // Original sync style
-      // expect(async () => {
+      // expect(() => {
       //   process.chdir('__tests__')
       //   getSolidaritySettings(context)
       // }).toThrow()
