@@ -15,12 +15,12 @@ Solidarity
 
  Flags
 
-  --verbose	 (-a) Prints all detected info during solidarity check
-  --moderate	 (-m) Prints failures in check or single success message
-  --silent	 (-s) No output, just a return code of success/failure
+  --verbose		 (-a) Prints all detected info during solidarity check
+  --moderate		 (-m) Prints failures in check or single success message
+  --silent		 (-s) No output, just a return code of success/failure
   --solidarityFile	 (-f) Use given path to solidarity file for settings
-  --module	 (-m) Search for a solidarity file in the given npm package
-  --stack	 (-t) Use a known technology stack, and not the local file
+  --module		 (-d) Search for a solidarity file in the given npm package
+  --stack		 (-t) Use a known technology stack, and not the local file
 
 Solidarity is open source - https://github.com/infinitered/solidarity
 If you need additional help, join our Slack at http://community.infinite.red
