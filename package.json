@@ -31,7 +31,7 @@
     "recordDemo": "ZDOTDIR=/Users/gantman/recording terminalizer record pretty -c ./config.yml",
     "playDemo": "terminalizer play pretty",
     "renderDemo": "terminalizer render pretty",
-    "cleanDemo": "rm -rf render*.gif"
+    "cleanDemo": "rm -rf render*.gif pretty.yml"
   },
   "author": "Gant Laborde",
   "license": "MIT",
