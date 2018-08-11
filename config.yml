@@ -59,7 +59,7 @@ frameBox:
 # the image on your machine or a url, and you can also
 # add your own CSS styles
 watermark:
-  imagePath: ~/recording/ir_watermark.png
+  imagePath: https://i.imgur.com/obq89uj.png
   style:
     position: absolute
     right: 15px
