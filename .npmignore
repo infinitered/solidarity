@@ -6,3 +6,6 @@ src/
 coverage/
 yarn.lock
 *.log
+config.yml
+pretty.yml
+render*.gif
