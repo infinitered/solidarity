@@ -9,3 +9,5 @@ dist/
 !.vscode/cSpell.json
 npm-debug.log
 .DS_Store
+render*.gif
+pretty.yml

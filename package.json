@@ -27,7 +27,10 @@
     "maintenence": "tryupdate && typesync",
     "addTypes": "typesync",
     "tryupdate": "updtr -u npm",
-    "copyTemplates": "cp -R ./src/templates ./dist/"
+    "copyTemplates": "cp -R ./src/templates ./dist/",
+    "recordDemo": "ZDOTDIR=/Users/gantman/recording terminalizer record pretty -c ./config.yml",
+    "playDemo": "terminalizer play pretty",
+    "renderDemo": "terminalizer render pretty"
   },
   "author": "Gant Laborde",
   "license": "MIT",
