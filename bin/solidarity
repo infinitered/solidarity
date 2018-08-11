@@ -5,7 +5,7 @@ var useCompiled = process.argv.indexOf('--compiled') >= 0
 
 // devMode does in-memory TS translation
 if (devMode && !useCompiled) {
-  require('ts-node').register({ project: `${__dirname}/..` })
+  require('ts-node').register({ project: `${__dirname}/../tsconfig.json` })
   require(`${__dirname}/../src/index.ts`)(process.argv)
 } else {
   require(`${__dirname}/../dist/index.js`)(process.argv)
