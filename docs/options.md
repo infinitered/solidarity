@@ -1,4 +1,4 @@
-# Solidarity Options
+# Solidarity File Options
 Understanding the `.solidarity` file helps you read and write new solidarity checks for any project.
 
 If you'd like to get auto-complete, or validation of your JSON rules, you can optionally add the following line to the `.solidarity` file for help in your personal editor.

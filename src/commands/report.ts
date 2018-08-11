@@ -18,7 +18,7 @@ module.exports = {
     // get settings or error
     let solidaritySettings
     try {
-      solidaritySettings = getSolidaritySettings(context)
+      solidaritySettings = await getSolidaritySettings(context)
     } catch (e) {
       spinner.fail(`No valid ${print.colors.success('solidarity')} file was found to report.`)
       process.exit(3)

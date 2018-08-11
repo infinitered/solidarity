@@ -6,7 +6,7 @@ module.exports = async (context: SolidarityRunContext): Promise<void> => {
   const { getSolidaritySettings, setSolidaritySettings, updateRequirement } = solidarity
 
   // load current solidarity file
-  const solidaritySettings = getSolidaritySettings(context)
+  const solidaritySettings = await getSolidaritySettings(context)
 
   // Map over requirements with option to mutate settings
   const checks = await map(

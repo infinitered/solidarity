@@ -27,7 +27,7 @@ test('Calls print items several times', () => {
   expect(context.print.success.mock.calls.length).toBe(0)
   expect(context.print.colors.magenta.mock.calls.length).toBe(0)
   helpCommand.run(context)
-  expect(context.print.info.mock.calls.length).toBe(8)
+  expect(context.print.info.mock.calls.length).toBe(9)
   expect(context.print.printCommands.mock.calls.length).toBe(1)
   expect(context.print.success.mock.calls.length).toBe(2)
   expect(context.print.colors.magenta.mock.calls.length).toBe(2)

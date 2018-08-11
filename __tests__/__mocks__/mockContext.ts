@@ -4,7 +4,7 @@ realSolidarityContext(realThing)
 
 const noConfigSolidarity = {
   checkRequirement: jest.fn(),
-  getSolidaritySettings: jest.fn(() => ({})),
+  getSolidaritySettings: jest.fn(() => Promise.resolve({})),
   printResults: jest.fn(),
   setSolidaritySettings: jest.fn(),
   updateRequirement: jest.fn(),

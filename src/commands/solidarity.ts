@@ -47,7 +47,7 @@ namespace Solidarity {
     // get settings or error
     let solidaritySettings
     try {
-      solidaritySettings = getSolidaritySettings(context)
+      solidaritySettings = await getSolidaritySettings(context)
     } catch (e) {
       print.error(e)
       print.info(
@@ -58,6 +58,7 @@ namespace Solidarity {
       process.exit(3)
     }
 
+    // Merge flags and configs
     context.outputMode = setOutputMode(context.parameters, solidaritySettings)
 
     // build map of checks to perform
