@@ -30,7 +30,8 @@
     "copyTemplates": "cp -R ./src/templates ./dist/",
     "recordDemo": "ZDOTDIR=/Users/gantman/recording terminalizer record pretty -c ./config.yml",
     "playDemo": "terminalizer play pretty",
-    "renderDemo": "terminalizer render pretty"
+    "renderDemo": "terminalizer render pretty",
+    "cleanDemo": "rm -rf render*.gif"
   },
   "author": "Gant Laborde",
   "license": "MIT",
