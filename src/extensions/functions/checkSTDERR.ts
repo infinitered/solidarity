@@ -1,5 +1,5 @@
 import { CLIRule, SolidarityRunContext } from '../../types'
-import { version } from 'punycode';
+
 const currentPlatform = process.platform
 // Get the version of a specific CLI
 module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string> => {
