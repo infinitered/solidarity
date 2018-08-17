@@ -35,7 +35,7 @@ describe('getVersion', () => {
   })
 
   test('throws an error if no version flag works', async () => {
-    const rule = { rule: 'cli', binary: 'ls' }
+    const rule = { rule: 'cli', binary: 'cd' }
     let result
 
     try {
@@ -43,6 +43,6 @@ describe('getVersion', () => {
     } catch (e) {
       result = e
     }
-    expect(result).toEqual("No version was detected from the output of the binary 'ls'")
+    expect(result).toEqual("No version identifier flag for this binary was found")
   })
 })

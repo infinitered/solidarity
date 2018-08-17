@@ -36,13 +36,25 @@ describe('Test helper functions', () => {
   // describe('loadModule', () => {
   // })
 
+  let originalTimeout
   describe('loadWebCheck', () => {
+    beforeAll(() => {
+      // These can be slow on CI
+      originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
+    })
+
+    afterAll(function() {
+      // Fix timeout change
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout
+    })
+
     test('loadWebCheck positive cases', async () => {
       expect(await loadWebCheck(context, 'https://raw.githubusercontent.com/infinitered/solidarity-stacks/master/stacks/react-native.solidarity')).toBeTruthy()
     })
 
     test('loadWebCheck false cases', async () => {
-      await expect(loadWebCheck(context, 'https://raw.githubusercontent.com/infinitered/solidarity-stacks/master/stacks/failsauce'))
+      await expect(loadWebCheck(context, 'https://raw.githubusercontent.com/fail/sauce'))
       .rejects
       .toThrow()
     })

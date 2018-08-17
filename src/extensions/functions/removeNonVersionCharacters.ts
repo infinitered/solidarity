@@ -1,6 +1,6 @@
 import { CLIRule } from '../../types'
 module.exports = (rule: CLIRule, line: string): string => {
-  const foundVersions = line.match(/(\d+\.)?(\d+\.)?(\d+)([^\sa-zA-Z0-9]+\w+)?/g)
+  const foundVersions = line.match(/(\d+\.)?(\d+\.)?(\d+)([^\sa-zA-Z0-9|_]+\w+)?/g)
 
   if (Array.isArray(foundVersions)) {
     const matchIndex = rule.matchIndex || 0

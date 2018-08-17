@@ -38,7 +38,8 @@ export const loadWebCheck = async (context, checkOption) => {
   const checkSpinner = silentMode || moderateMode ? null : print.spin(`Running check on ${checkOption}`)
   // the base URL is throw away, and will go away in next version of apisauce
   const api = http.create({
-    baseURL: 'https://api.github.com'
+    baseURL: 'https://api.github.com',
+    timeout: 10000 // 10 seconds
   })
 
   // Load check from web
