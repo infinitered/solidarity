@@ -73,7 +73,8 @@ module.exports = async (
       // Handle CLI rule check
       case 'cli':
         const cliResult = await checkCLI(rule, context)
-        ruleString = `${requirementName} - ${rule.binary} binary`
+        const semverRequirement = rule.semver || ''
+        ruleString = `${requirementName} - ${rule.binary} binary ${semverRequirement}`
         if (cliResult) {
           return addFailure(cliResult)
         } else {
