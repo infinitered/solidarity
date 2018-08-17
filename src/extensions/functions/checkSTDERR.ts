@@ -1,10 +1,8 @@
-import { CLIRule, SolidarityRunContext } from '../../types'
+import { CLIRule } from '../../types'
 
-const currentPlatform = process.platform
-// Get the version of a specific CLI
-module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string> => {
-  const { system } = context
-
+// Creates STDERR catching string
+module.exports = (rule: CLIRule): string => {
+  const currentPlatform = process.platform
   let grabErrorOutput: string
   if (currentPlatform === 'win32') {
     const tempFile = `solidarityWinFix${rule.binary}.tmp`
@@ -13,5 +11,5 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
     grabErrorOutput = '2>&1 | cat'
   }
 
-  return system.run(`${rule.binary} ${rule.version} ${grabErrorOutput}`)
+  return `${rule.binary} ${rule.version} ${grabErrorOutput}`
 }

@@ -7,10 +7,11 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
   // They specified how to check version
   if (rule.version) {
     versionOutput = await system.run(`${rule.binary} ${rule.version}`)
-    // things like python and java use stderr instead of stdout
     if (versionOutput === '') {
+      // Lets try again
+      // things like python and java use stderr instead of stdout
       const checkSTDERR = require('./checkSTDERR')
-      versionOutput = await checkSTDERR(rule, context)
+      versionOutput = await system.run(checkSTDERR(rule, context))
     }
   } else {
     // We try the following in this order
