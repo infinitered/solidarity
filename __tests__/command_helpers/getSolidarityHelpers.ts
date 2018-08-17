@@ -42,7 +42,7 @@ describe('Test helper functions', () => {
     })
 
     test('loadWebCheck false cases', async () => {
-      await expect(loadWebCheck(context, 'https://raw.githubusercontent.com/infinitered/solidarity-stacks/master/stacks/failsauce'))
+      await expect(loadWebCheck(context, 'https://raw.githubusercontent.com/fail/sauce'))
       .rejects
       .toThrow()
     })
