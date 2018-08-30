@@ -10,4 +10,4 @@ describe('checkSTDERR', () => {
     expect(typeof output).toBe('string')
     expect(output.length).toBeGreaterThan(normal.length)
   })
-}
+})

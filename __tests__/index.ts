@@ -22,8 +22,8 @@ test('ensure build', async () => {
   expect(build().brand.mock.calls.length).toBe(1)
   expect(build().brand.mock.calls[0][0]).toBe('solidarity')
   expect(build().src.mock.calls.length).toBe(1)
-  // Check local and globals for Windows/Darwin === 3 checks
-  expect(build().plugins.mock.calls.length).toBe(3)
+  // Check local and globals for Windows/Darwin + Yarn === 4 checks
+  expect(build().plugins.mock.calls.length).toBe(4)
   expect(build().create.mock.calls.length).toBe(1)
   expect(build().run.mock.calls.length).toBe(1)
 })

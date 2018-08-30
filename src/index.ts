@@ -1,4 +1,5 @@
 import { build } from 'gluegun'
+const os = require('os')
 
 module.exports = async (): Promise<void> => {
   // setup the runtime
@@ -9,6 +10,7 @@ module.exports = async (): Promise<void> => {
     .plugins('./node_modules', { matching: 'solidarity-*', hidden: true })
     // global installs
     .plugins('/usr/local/lib/node_modules', { matching: 'solidarity-*', hidden: true }) // Darwin
+    .plugins(`${os.homedir()}/.config/yarn/global/node_modules`, { matching: 'solidarity-*', hidden: true }) // Yarn/Darwin
     .plugins(`${process.env.appdata}/npm/node_modules`, { matching: 'solidarity-*', hidden: true }) // Windows
   // for testing - force load a local plugin
   // .plugin('../solidarity-react-native')
