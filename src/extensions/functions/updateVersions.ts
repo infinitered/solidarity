@@ -16,7 +16,7 @@ module.exports = async (context: SolidarityRunContext): Promise<void> => {
 
   // run the array of promises you just created
   try {
-    const results = await Promise.all(checks);
+    const results = await Promise.all(checks)
     const updates = flatten(results)
     if (isEmpty(updates)) {
       print.success('\n No Changes')
