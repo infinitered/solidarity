@@ -47,7 +47,7 @@ maxIdleTime: 2000
 # To hide the title use the value null
 # Don't forget to add a backgroundColor style with a null as type
 frameBox:
-  type: floating
+  type: window
   title: Solidarity
   style:
     border: 0px black solid
@@ -59,13 +59,13 @@ frameBox:
 # the image on your machine or a url, and you can also
 # add your own CSS styles
 watermark:
-  imagePath: null
+  imagePath: https://i.imgur.com/obq89uj.png
   style:
     position: absolute
     right: 15px
     bottom: 15px
     width: 100px
-    opacity: 0.9
+    opacity: 0.8
 
 # Cursor style can be one of
 # `block`, `underline`, or `bar`

@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/infinitered/solidarity/master/_art/combo.jpg" width="700px" />
-  <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3> 
+  <h3 align="center">Solidarity is an environment checker for project dependencies across multiple machines.</h3>
   <hr/>
   <a href='https://semaphoreci.com/ir/solidarity'> <img src='https://semaphoreci.com/api/v1/ir/solidarity/branches/master/badge.svg' alt='Build Status'></a>
   <a href='https://travis-ci.org/infinitered/solidarity'> <img src='https://travis-ci.org/infinitered/solidarity.svg?branch=master' alt='Build Status'></a>
@@ -16,14 +16,14 @@
   </a>
   <a href="https://app.fossa.io/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity?ref=badge_shield">
     <img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Finfinitered%2Fsolidarity.svg?type=shield">
-  </a> 
+  </a>
 </p>
 
 ### When the same exact code works on one machine but not another, Solidarity is the answer
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/997157/36068817-297b9e02-0ea4-11e8-96b5-9ea7a34401e2.gif" align="center" />
-</p>  
+</p>
 
 ### Docs Website
 https://infinitered.github.io/solidarity/
@@ -78,7 +78,7 @@ Given there is already a `.solidarity` file present, then you can run `solidarit
 $ solidarity snapshot cli node
 ```
 
-Solidarity will follow up with aditional questions to help drill down your new snapshot rule.
+Solidarity will follow up with additional questions to help drill down your new snapshot rule.
 
 
 ## Cross Platform

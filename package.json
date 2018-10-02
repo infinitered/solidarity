@@ -24,14 +24,14 @@
     "snapupdate": "jest -u",
     "welcome": "yarn tsc && npm link",
     "serve:docs": "docsify serve docs",
-    "maintenence": "tryupdate && typesync",
+    "maintenance": "tryupdate && typesync",
     "addTypes": "typesync",
     "tryupdate": "updtr -u npm",
     "copyTemplates": "cp -R ./src/templates ./dist/",
     "recordDemo": "ZDOTDIR=/Users/gantman/recording terminalizer record pretty -c ./config.yml",
     "playDemo": "terminalizer play pretty",
     "renderDemo": "terminalizer render pretty",
-    "cleanDemo": "rm -rf render*.gif"
+    "cleanDemo": "rm -rf render*.gif pretty.yml"
   },
   "author": "Gant Laborde",
   "license": "MIT",
