@@ -15,19 +15,18 @@ module.exports = async (context: SolidarityRunContext): Promise<void> => {
   )
 
   // run the array of promises you just created
-  await Promise.all(checks)
-    .then(results => {
-      const updates = flatten(results)
-      if (isEmpty(updates)) {
-        print.success('\n No Changes')
-      } else {
-        setSolidaritySettings(solidaritySettings, context)
-        const ruleMessage = pluralize('Rule', updates.length, true)
-        print.success(`\n ${ruleMessage} updated`)
-      }
-    })
-    .catch(err => {
-      print.error(err)
-      process.exit(2)
-    })
+  try {
+    const results = await Promise.all(checks)
+    const updates = flatten(results)
+    if (isEmpty(updates)) {
+      print.success('\n No Changes')
+    } else {
+      setSolidaritySettings(solidaritySettings, context)
+      const ruleMessage = pluralize('Rule', updates.length, true)
+      print.success(`\n ${ruleMessage} updated`)
+    }
+  } catch (err) {
+    print.error(err)
+    process.exit(2)
+  }
 }
