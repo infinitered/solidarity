@@ -1,11 +1,13 @@
 import { SolidarityRunContext, SolidarityReportResults, CLIReportConfig } from '../../types'
 
-export const createReport = (context: SolidarityRunContext): SolidarityReportResults => {
-  const { print, system, envInfo } = context
+export const createReport = async (context: SolidarityRunContext): Promise<SolidarityReportResults> => {
+  const { print, system, envinfo } = context
   const { colors } = print
+  const OS = await envinfo.getOSInfo()
+  const CPU = await envinfo.getCPUInfo()
 
   return {
-    basicInfo: [['System Basics', 'Value'], ['OS', envInfo.getOperatingSystemInfo()], ['CPU', envInfo.getCPUInfo()]],
+    basicInfo: [['System Basics', 'Value'], ['OS', OS], ['CPU', CPU]],
     cliRules: [['Binary', 'Location', 'Version', 'Desired']],
     envRules: [['Environment Var', 'Value']],
     filesystemRules: [['Location', 'Type', 'Exists']],
