@@ -6,10 +6,10 @@ import { flatten } from 'ramda'
 let mockContext: SolidarityRunContext
 let reportResults: SolidarityReportResults
 describe('reviewRule', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     // fresh mock context
     mockContext = require('mockContext')
-    reportResults = createReport(mockContext)
+    reportResults = await createReport(mockContext)
   })
 
   test('printResults uses table', () => {

@@ -5,10 +5,10 @@ const examplePlugin = require('examplePlugin')
 let mockContext: SolidarityRunContext
 let reportResults: SolidarityReportResults
 describe('reviewRule', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     // fresh mock context
     mockContext = examplePlugin(require('mockContext'))
-    reportResults = createReport(mockContext)
+    reportResults = await createReport(mockContext)
   })
 
   describe('when rule: cli', () => {

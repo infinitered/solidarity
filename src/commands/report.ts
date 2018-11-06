@@ -24,7 +24,7 @@ module.exports = {
       process.exit(3)
     }
 
-    let results: SolidarityReportResults = createReport(context)
+    let results: SolidarityReportResults = await createReport(context)
 
     // break all rules into requirements
     const reportCalls = map(
