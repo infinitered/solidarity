@@ -20,12 +20,15 @@ module.exports = async (
   const { print, solidarity } = context
   const { colors, checkmark, xmark } = print
   const prettyBool = (bl: boolean) => (bl ? checkmark + colors.green(' YES') : xmark + colors.red(' NO'))
-  // @ts-ignore - flatten will never get a string bc tail is called first
-  const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
+  const rules: SolidarityRequirement = pipe(
+    tail,
+    // @ts-ignore - flatten will never get a string bc tail is called first
+    flatten
+  )(requirement)
   // check each rule for report
   const ruleChecks = map(async (rule: SolidarityRule) => {
     // Make sure this rule is active
-    if (skipRule(rule.platform)) return false
+    if (skipRule(rule)) return false
 
     switch (rule.rule) {
       // Handle CLI rule report

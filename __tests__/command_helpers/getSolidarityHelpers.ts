@@ -14,7 +14,6 @@ describe('Test helper functions', () => {
       expect(isURI('/nachos')).toBeFalsy()
       expect(isURI('./nachos')).toBeFalsy()
     })
-
   })
 
   describe('loadFile', () => {
@@ -50,13 +49,16 @@ describe('Test helper functions', () => {
     })
 
     test('loadWebCheck positive cases', async () => {
-      expect(await loadWebCheck(context, 'https://raw.githubusercontent.com/infinitered/solidarity-stacks/master/stacks/react-native.solidarity')).toBeTruthy()
+      expect(
+        await loadWebCheck(
+          context,
+          'https://raw.githubusercontent.com/infinitered/solidarity-stacks/master/stacks/react-native.solidarity'
+        )
+      ).toBeTruthy()
     })
 
     test('loadWebCheck false cases', async () => {
-      await expect(loadWebCheck(context, 'https://raw.githubusercontent.com/fail/sauce'))
-      .rejects
-      .toThrow()
+      await expect(loadWebCheck(context, 'https://raw.githubusercontent.com/fail/sauce')).rejects.toThrow()
     })
   })
 })

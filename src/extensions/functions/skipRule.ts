@@ -1,5 +1,14 @@
+import { SolidarityRule } from '../../types'
+
 // Return true if we should skip
-module.exports = (platform: string | string[]): boolean => {
+module.exports = (rule: SolidarityRule): boolean => {
+  let platform = rule.platform
+
+  // check Skip CI shortcut first
+  if (process.env.CI && rule.ci === false) {
+    return true
+  }
+
   if (typeof platform === 'string') {
     platform = platform.toLowerCase()
     platform = platform === 'windows' ? 'win32' : platform

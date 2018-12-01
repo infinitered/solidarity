@@ -70,6 +70,7 @@ export interface CLIRule {
   readonly error?: string
   readonly matchIndex?: number
   readonly platform?: string | string[]
+  readonly ci?: boolean
 }
 
 export interface ENVRule {
@@ -77,6 +78,7 @@ export interface ENVRule {
   readonly variable: string
   readonly error?: string
   readonly platform?: string | string[]
+  readonly ci?: boolean
 }
 
 export interface FSRule {
@@ -84,6 +86,7 @@ export interface FSRule {
   readonly location: string
   readonly error?: string
   readonly platform?: string | string[]
+  readonly ci?: boolean
 }
 
 /**
@@ -113,6 +116,10 @@ export interface ShellRule {
    * An optional platform or platforms to target.
    */
   readonly platform?: string | string[]
+  /**
+   * An optional flag to skip rule on CI
+   */
+  readonly ci?: boolean
 }
 
 export interface CustomRule {
@@ -121,6 +128,7 @@ export interface CustomRule {
   readonly name: string
   readonly error?: string
   readonly platform?: string | string[]
+  readonly ci?: boolean
 }
 
 // discriminated union for rule sets
