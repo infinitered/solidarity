@@ -21,7 +21,10 @@ module.exports = async (
 
   const { print } = context
   const requirementName: string = head(requirement)
-  const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
+  const rules: SolidarityRequirement = pipe(
+    tail,
+    flatten
+  )(requirement)
 
   let ruleString = ''
   // Hide spinner if silent outputmode is set
@@ -67,7 +70,7 @@ module.exports = async (
   // check each rule for requirement
   const ruleChecks = await map(async (rule: SolidarityRule) => {
     // Make sure this rule is active
-    if (skipRule(rule.platform)) return []
+    if (skipRule(rule)) return []
 
     switch (rule.rule) {
       // Handle CLI rule check

@@ -43,6 +43,6 @@ describe('getVersion', () => {
     } catch (e) {
       result = e
     }
-    expect(result).toEqual("No version identifier flag for this binary was found")
+    expect(result).toEqual('No version identifier flag for this binary was found')
   })
 })

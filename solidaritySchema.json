@@ -49,7 +49,8 @@
         },
         "matchIndex": { "type": "integer" },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
-        "error": { "type": "string"}
+        "error": { "type": "string"},
+        "ci": { "type": "boolean" }
       },
       "required": ["rule", "binary"]
     },
@@ -59,7 +60,8 @@
       "properties": {
         "rule": { "enum": [ "dir", "directory" ] },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
-        "error": { "type": "string"}
+        "error": { "type": "string"},
+        "ci": { "type": "boolean" }
       },
       "required": ["rule", "location"]
     },
@@ -69,7 +71,8 @@
       "properties": {
         "rule": { "enum": [ "file" ] },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
-        "error": { "type": "string"}
+        "error": { "type": "string"},
+        "ci": { "type": "boolean" }
       },
       "required": ["rule", "location"]
     },
@@ -79,7 +82,8 @@
       "properties": {
         "rule": { "enum": [ "env" ] },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
-        "error": { "type": "string"}
+        "error": { "type": "string"},
+        "ci": { "type": "boolean" }
       },
       "required": ["rule", "variable"]
     },
@@ -90,6 +94,7 @@
         "rule": { "enum": [ "shell" ] },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string" },
+        "ci": { "type": "boolean" },
         "match": { "type": "string", "description": "A regexp to search the output." }
       },
       "required": ["rule", "match"]
@@ -104,6 +109,7 @@
         "name": { "type": "string" },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string" },
+        "ci": { "type": "boolean" },
         "match": { "type": "string", "description": "A regexp to search the output." }
       },
       "required": ["rule", "plugin", "name"]

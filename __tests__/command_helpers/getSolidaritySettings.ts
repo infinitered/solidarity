@@ -23,7 +23,6 @@ describe('basic getSolidaritySettings', () => {
 
   describe('w/ failure', () => {
     test('getSolidaritySettings can fail', async () => {
-
       // Original sync style
       // expect(() => {
       //   process.chdir('__tests__')
@@ -32,17 +31,13 @@ describe('basic getSolidaritySettings', () => {
       // process.chdir('../')
 
       process.chdir('__tests__')
-      await expect(getSolidaritySettings(context))
-        .rejects
-        .toThrow()
+      await expect(getSolidaritySettings(context)).rejects.toThrow()
       process.chdir('../')
     })
 
     test('getSolidaritySettings can warn with missing requirements', async () => {
       process.chdir('__tests__/sandbox/solidarity_broken')
-      await expect(getSolidaritySettings(context))
-        .rejects
-        .toThrow()
+      await expect(getSolidaritySettings(context)).rejects.toThrow()
       process.chdir('../../../')
     })
   })
@@ -68,15 +63,11 @@ describe('parameterized getSolidaritySettings', () => {
   test('failing path message', async () => {
     // test longhand
     context.parameters.options = { solidarityFile: '__tests__/fake' }
-    await expect(getSolidaritySettings(context))
-        .rejects
-        .toThrow('ERROR: There is no solidarity file at the given path')
+    await expect(getSolidaritySettings(context)).rejects.toThrow('ERROR: There is no solidarity file at the given path')
 
     // test shorthand
     context.parameters.options = { f: '__tests__/fake' }
-    await expect(getSolidaritySettings(context))
-        .rejects
-        .toThrow('ERROR: There is no solidarity file at the given path')
+    await expect(getSolidaritySettings(context)).rejects.toThrow('ERROR: There is no solidarity file at the given path')
 
     context.parameters.options = {}
   })
@@ -112,9 +103,9 @@ describe('parameterized getSolidaritySettings', () => {
 
     test('errors if no solidarity file in module', async () => {
       context.parameters.options = { module: 'nope' }
-      await expect(getSolidaritySettings(context))
-        .rejects
-        .toThrow('ERROR: There is no solidarity file found with the given module');
+      await expect(getSolidaritySettings(context)).rejects.toThrow(
+        'ERROR: There is no solidarity file found with the given module'
+      )
       context.parameters.options = {}
     })
 

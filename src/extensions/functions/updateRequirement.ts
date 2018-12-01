@@ -12,7 +12,10 @@ module.exports = async (
 
   const { print } = context
   const requirementName = head(requirement)
-  const rules = pipe(tail, flatten)(requirement)
+  const rules = pipe(
+    tail,
+    flatten
+  )(requirement)
 
   let ruleString = ''
   const spinner = print.spin(`Updating ${requirementName}`)
@@ -20,7 +23,7 @@ module.exports = async (
   // check each rule for requirement
   const ruleChecks = await map(async rule => {
     // skip if we can't update
-    if (skipRule(rule.platform)) return []
+    if (skipRule(rule)) return []
     switch (rule.rule) {
       // Handle CLI rule update
       case 'cli':
