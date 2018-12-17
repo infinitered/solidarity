@@ -28,7 +28,7 @@ module.exports = async (
 
   let ruleString = ''
   // Hide spinner if silent outputmode is set
-  const spinner = context.outputMode !== SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
+  // const spinner = context.outputMode !== SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
   const assertNever = (value: never): never => {
     throw Error(`Unexpected value '${value}'`)
   }
@@ -37,7 +37,6 @@ module.exports = async (
     switch (context.outputMode) {
       case SolidarityOutputMode.VERBOSE:
         // Print everything
-        checkSuccessful ? spinner.succeed(resultMessage) : spinner.fail(resultMessage)
         break
       case SolidarityOutputMode.SILENT:
         // Print nothing
@@ -46,7 +45,7 @@ module.exports = async (
       case undefined:
         // Print only errors
         if (!checkSuccessful) {
-          spinner.fail(resultMessage)
+          // spinner.fail(resultMessage)
         }
         break
       default:
@@ -146,9 +145,6 @@ module.exports = async (
   // Run all the rule checks for a requirement
   return Promise.all(ruleChecks)
     .then(results => {
-      if (spinner !== null) {
-        spinner.stop()
-      }
       return results
     })
     .catch(err => print.error(err))

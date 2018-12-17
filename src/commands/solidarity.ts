@@ -1,5 +1,6 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityOutputMode, SolidaritySettings, SolidarityRunContext } from '../types'
+import * as Listr from "listr"
+import { SolidarityRequirementChunk, SolidarityOutputMode, SolidaritySettings, SolidarityRunContext } from '../types'
 
 namespace Solidarity {
   const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
@@ -60,15 +61,27 @@ namespace Solidarity {
 
     // Merge flags and configs
     context.outputMode = setOutputMode(context.parameters, solidaritySettings)
+    // Adjust output depending on mode
+    let listrSettings: Object = { concurrent: true, collapse: false }
+    switch (context.outputMode) {
+      case SolidarityOutputMode.SILENT:
+        listrSettings = { ...listrSettings, renderer: 'silent' }
+        break
+      case SolidarityOutputMode.MODERATE:
+        // have input clear itself
+        listrSettings = { ...listrSettings, clearOutput: true }
+    }
 
-    // build map of checks to perform
-    const checks = await map(
-      async requirement => checkRequirement(requirement, context),
-      toPairs(solidaritySettings.requirements)
-    )
+    // build Listr of checks
+    const checks = new Listr(
+      await toPairs(solidaritySettings.requirements).map((requirement: SolidarityRequirementChunk) => ({
+        title: requirement[0],
+        task: async () => checkRequirement(requirement, context)
+      }))
+    , listrSettings)
 
-    // run the array of promises you just created
-    await Promise.all(checks)
+    // run the array of promises in Listr
+    await checks.run()
       .then(results => {
         const errors = reject(isNil, flatten(results))
         const silentOutput = context.outputMode === SolidarityOutputMode.SILENT
