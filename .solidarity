@@ -3,10 +3,10 @@
   "$schema": "./solidaritySchema.json",
   "requirements": {
     "NPM": [{ "rule": "cli", "binary": "npm" }],
-    "Yarn": [{ "rule": "cli", "binary": "yarn", "semver": "^2.0.0", "version": "--version" }],
+    "Yarn": [{ "rule": "cli", "binary": "yarn", "semver": "^1.0.0", "version": "--version" }],
     "Node": [{ "rule": "cli", "binary": "node", "semver": ">=7.6.0", "error": "Upgrade to latest node >= 7.6 please."}],
     "TypeScript Active": [
-      { "rule": "dir", "location": "./src", "error": "Did you get this code from npm? Try github!" },
+      { "rule": "dir", "location": "./src", "error": "Did you get this code from npm? Try GitHub!" },
       { "rule": "dir", "location": "./dist", "error": "You haven't compiled. Run the build script!" }
     ]
   }
