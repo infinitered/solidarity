@@ -1,10 +1,4 @@
-import {
-  SolidarityRequirementChunk,
-  SolidarityRequirement,
-  SolidarityRunContext,
-  SolidarityOutputMode,
-  SolidarityRule,
-} from '../../types'
+import { SolidarityRule, SolidarityRequirementChunk, SolidarityRequirement, SolidarityRunContext } from '../../types'
 const checkCLI = require('./checkCLI')
 const checkENV = require('./checkENV')
 const checkDir = require('./checkDir')
@@ -12,12 +6,13 @@ const checkFile = require('./checkFile')
 const checkShell = require('./checkShell')
 const skipRule = require('./skipRule')
 const findPluginInfo = require('./findPluginInfo')
+import * as Listr from 'listr'
 
 module.exports = async (
   requirement: SolidarityRequirementChunk,
   context: SolidarityRunContext
 ): Promise<void | object[]> => {
-  const { head, tail, pipe, flatten, map } = require('ramda')
+  const { head, tail, pipe, flatten } = require('ramda')
 
   const { print } = context
   const requirementName: string = head(requirement)
@@ -26,126 +21,93 @@ module.exports = async (
     flatten
   )(requirement)
 
-  let ruleString = ''
-  // Hide spinner if silent outputmode is set
-  // const spinner = context.outputMode !== SolidarityOutputMode.SILENT ? print.spin(`Verifying ${requirementName}`) : null
-  const assertNever = (value: never): never => {
-    throw Error(`Unexpected value '${value}'`)
-  }
-
-  const printResult = (checkSuccessful: boolean, resultMessage: string) => {
-    switch (context.outputMode) {
-      case SolidarityOutputMode.VERBOSE:
-        // Print everything
-        break
-      case SolidarityOutputMode.SILENT:
-        // Print nothing
-        break
-      case SolidarityOutputMode.MODERATE:
-      case undefined:
-        // Print only errors
-        if (!checkSuccessful) {
-          // spinner.fail(resultMessage)
-        }
-        break
-      default:
-        // enforce via typescript, no unhandled modes
-        // will fail tsc if new enums added
-        assertNever(context.outputMode)
-        break
-    }
-  }
-
-  const addFailure = (failureMessage: string) => {
-    printResult(false, failureMessage)
-    return failureMessage
-  }
-
-  const addSuccess = (successMessage: string) => {
-    printResult(true, successMessage)
-    return []
-  }
-
-  // check each rule for requirement
-  const ruleChecks = await map(async (rule: SolidarityRule) => {
-    // Make sure this rule is active
-    if (skipRule(rule)) return []
-
+  const configureSubtask = rule => {
+    let subTask: Object = {}
     switch (rule.rule) {
       // Handle CLI rule check
       case 'cli':
-        const cliResult = await checkCLI(rule, context)
+        let ruleString = ''
         const semverRequirement = rule.semver || ''
-        ruleString = `${requirementName} - ${rule.binary} binary ${semverRequirement}`
-        if (cliResult) {
-          return addFailure(cliResult)
-        } else {
-          return addSuccess(ruleString)
+        ruleString = `'${rule.binary}' binary ${semverRequirement}`
+        subTask = {
+          title: ruleString,
+          skip: skipRule(rule),
+          task: async () => checkCLI(rule, context),
         }
+        break
       // Handle ENV rule check
       case 'env':
-        const envResult = await checkENV(rule, context)
-        ruleString = `${requirementName} - ${rule.variable} env`
-        if (envResult) {
-          return addSuccess(ruleString)
-        } else {
-          return addFailure(rule.error || `'$${rule.variable}' environment variable not found`)
+        subTask = {
+          title: `${rule.variable} env`,
+          skip: skipRule(rule),
+          task: async () => checkENV(rule, context),
         }
+        break
       // Handle dir rule check
       case 'directory':
       case 'dir':
-        const dirResult = checkDir(rule, context)
-        ruleString = `${requirementName} - ${rule.location} directory`
-        if (dirResult) {
-          return addSuccess(ruleString)
-        } else {
-          return addFailure(rule.error || `'${rule.location}' directory not found`)
+        subTask = {
+          title: `${rule.location} directory exists`,
+          skip: skipRule(rule),
+          task: async () => checkDir(rule, context),
         }
+        break
       // Handle file rule check
       case 'file':
-        const fileResult = checkFile(rule, context)
-        ruleString = `${requirementName} - ${rule.location} file`
-        if (fileResult) {
-          return addSuccess(ruleString)
-        } else {
-          return addFailure(rule.error || `'${rule.location}' file not found`)
+        subTask = {
+          title: `${rule.location} file exists`,
+          skip: skipRule(rule),
+          task: async () => checkFile(rule, context),
         }
+        break
       // Handle the shell rule
       case 'shell':
-        const shellResult = await checkShell(rule, context)
-        if (shellResult) {
-          ruleString = `${requirementName} - '${rule.command}' matches '${rule.match}'`
-          return addSuccess(ruleString)
-        } else {
-          return addFailure(rule.error || `'${rule.command}' output did not match '${rule.match}'`)
+        subTask = {
+          title: `'${rule.command}' matches '${rule.match}'`,
+          skip: skipRule(rule),
+          task: async () => checkShell(rule, context),
         }
+        break
       case 'custom':
         const customPluginRule = findPluginInfo(rule, context)
         if (customPluginRule.success) {
-          // No check provided, we jet
-          if (!customPluginRule.plugin.check) return []
-          const customResult = await customPluginRule.plugin.check(rule, context)
-          if (customResult && customResult.pass) {
-            return addSuccess(customResult.message)
-          } else {
-            const failMessage =
-              customResult && customResult.message
-                ? customResult.message
-                : `${requirementName} - rule '${rule.plugin}' '${rule.name}' failed`
-            return addFailure(rule.error || failMessage)
+          subTask = {
+            title: `${requirementName} - rule '${rule.plugin}' '${rule.name}' Checking`,
+            // takes into account they didn't provide a check
+            skip: skipRule(rule) || !customPluginRule.plugin.check,
+            task: async () => {
+              const customResult = await customPluginRule.plugin.check(rule, context)
+              if (customResult && customResult.pass) {
+                return true
+              } else {
+                const failMessage =
+                  customResult && customResult.message
+                    ? customResult.message
+                    : `${requirementName} - rule '${rule.plugin}' '${rule.name}' failed`
+                throw new Error(rule.error || failMessage)
+              }
+            },
           }
         } else {
-          return addFailure(customPluginRule.message)
+          throw new Error(customPluginRule.message)
         }
+        break
       default:
-        return addFailure('Encountered unknown rule')
+        subTask = {
+          title: 'UNKNOWN RULE',
+          task: async () => {
+            throw new Error('Encountered unknown rule')
+          },
+        }
+        break
     }
-  }, rules)
+
+    return subTask
+  }
+
+  // build Listr of ruleChecks
+  const ruleChecks = new Listr(rules.map((rule: SolidarityRule) => configureSubtask(rule)))
 
   // Run all the rule checks for a requirement
-  return Promise.all(ruleChecks)
-    .then(results => {
-      return results
-    })
-    .catch(err => print.error(err))
+  return ruleChecks
 }

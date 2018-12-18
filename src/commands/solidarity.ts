@@ -1,9 +1,9 @@
 import { GluegunCommand } from 'gluegun'
-import * as Listr from "listr"
+import * as Listr from 'listr'
 import { SolidarityRequirementChunk, SolidarityOutputMode, SolidaritySettings, SolidarityRunContext } from '../types'
 
 namespace Solidarity {
-  const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
+  const { toPairs } = require('ramda')
 
   const checkForEscapeHatchFlags = async (context: SolidarityRunContext) => {
     const { print, parameters } = context
@@ -50,7 +50,7 @@ namespace Solidarity {
     try {
       solidaritySettings = await getSolidaritySettings(context)
     } catch (e) {
-      print.error(e)
+      print.error(e.message)
       print.info(
         `Make sure you are in the correct folder or run ${print.colors.success(
           'solidarity snapshot'
@@ -76,27 +76,22 @@ namespace Solidarity {
     const checks = new Listr(
       await toPairs(solidaritySettings.requirements).map((requirement: SolidarityRequirementChunk) => ({
         title: requirement[0],
-        task: async () => checkRequirement(requirement, context)
-      }))
-    , listrSettings)
+        task: async () => checkRequirement(requirement, context),
+      })),
+      listrSettings
+    )
 
     // run the array of promises in Listr
     await checks.run()
       .then(results => {
-        const errors = reject(isNil, flatten(results))
         const silentOutput = context.outputMode === SolidarityOutputMode.SILENT
         // Add empty line between final result if printing rule results
         if (!silentOutput) print.success('')
-
-        if (isEmpty(errors)) {
-          if (!silentOutput) print.success(print.checkmark + ' Solidarity checks valid')
-        } else {
-          if (!silentOutput) print.error('Solidarity checks failed.')
-          process.exit(1)
-        }
+        if (!silentOutput) print.success(print.checkmark + ' Solidarity checks valid')
       })
       .catch(err => {
-        print.error(err)
+        const silentOutput = context.outputMode === SolidarityOutputMode.SILENT
+        if (!silentOutput) print.error(err.message)
         process.exit(2)
       })
   }
