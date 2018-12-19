@@ -6,7 +6,9 @@ const checkFile = require('./checkFile')
 const checkShell = require('./checkShell')
 const skipRule = require('./skipRule')
 const findPluginInfo = require('./findPluginInfo')
-import * as Listr from 'listr'
+
+// Have to do this for tests rather than import
+const Listr = require('listr')
 
 module.exports = async (
   requirement: SolidarityRequirementChunk,
@@ -14,7 +16,6 @@ module.exports = async (
 ): Promise<void | object[]> => {
   const { head, tail, pipe, flatten } = require('ramda')
 
-  const { print } = context
   const requirementName: string = head(requirement)
   const rules: SolidarityRequirement = pipe(
     tail,
@@ -31,7 +32,7 @@ module.exports = async (
         ruleString = `'${rule.binary}' binary ${semverRequirement}`
         subTask = {
           title: ruleString,
-          skip: skipRule(rule),
+          skip: () => skipRule(rule),
           task: async () => checkCLI(rule, context),
         }
         break
@@ -39,7 +40,7 @@ module.exports = async (
       case 'env':
         subTask = {
           title: `${rule.variable} env`,
-          skip: skipRule(rule),
+          skip: () => skipRule(rule),
           task: async () => checkENV(rule, context),
         }
         break
@@ -48,7 +49,7 @@ module.exports = async (
       case 'dir':
         subTask = {
           title: `${rule.location} directory exists`,
-          skip: skipRule(rule),
+          skip: () => skipRule(rule),
           task: async () => checkDir(rule, context),
         }
         break
@@ -56,7 +57,7 @@ module.exports = async (
       case 'file':
         subTask = {
           title: `${rule.location} file exists`,
-          skip: skipRule(rule),
+          skip: () => skipRule(rule),
           task: async () => checkFile(rule, context),
         }
         break
@@ -64,7 +65,7 @@ module.exports = async (
       case 'shell':
         subTask = {
           title: `'${rule.command}' matches '${rule.match}'`,
-          skip: skipRule(rule),
+          skip: () => skipRule(rule),
           task: async () => checkShell(rule, context),
         }
         break
@@ -74,7 +75,7 @@ module.exports = async (
           subTask = {
             title: `${requirementName} - rule '${rule.plugin}' '${rule.name}' Checking`,
             // takes into account they didn't provide a check
-            skip: skipRule(rule) || !customPluginRule.plugin.check,
+            skip: () => skipRule(rule) || !customPluginRule.plugin.check,
             task: async () => {
               const customResult = await customPluginRule.plugin.check(rule, context)
               if (customResult && customResult.pass) {
@@ -93,13 +94,7 @@ module.exports = async (
         }
         break
       default:
-        subTask = {
-          title: 'UNKNOWN RULE',
-          task: async () => {
-            throw new Error('Encountered unknown rule')
-          },
-        }
-        break
+        throw new Error('Encountered unknown rule')
     }
 
     return subTask
