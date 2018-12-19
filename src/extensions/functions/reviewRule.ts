@@ -19,10 +19,9 @@ module.exports = async (
 ) => {
   const { print, solidarity } = context
   const { colors, checkmark, xmark } = print
-  // const prettyBool = (bl: boolean) => (bl ? checkmark + colors.green(' YES') : xmark + colors.red(' NO'))
-  const prettyBool = async (someFunction) => {
+  const prettyBool = async (checkingFunction) => {
     try {
-      await someFunction()
+      await checkingFunction()
       return checkmark + colors.green(' YES')
     } catch (e) {
       return xmark + colors.red(' NO')

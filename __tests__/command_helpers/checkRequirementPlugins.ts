@@ -8,7 +8,8 @@ describe('checkRequirement Plugins', () => {
     const rule = toPairs({
       TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkThing' }],
     })[0]
-    const result = await checkRequirement(rule, mockContext)
+    const listrTask = await checkRequirement(rule, context)
+    const result = await listrTask.storedInit[0].task()
     expect(result).toEqual([[]])
   })
 
@@ -16,7 +17,8 @@ describe('checkRequirement Plugins', () => {
     const rule = toPairs({
       TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkSecondThing' }],
     })[0]
-    const result = await checkRequirement(rule, mockContext)
+    const listrTask = await checkRequirement(rule, context)
+    const result = await listrTask.storedInit[0].task()
     expect(result).toEqual(['Boooo failed check'])
   })
 
@@ -31,7 +33,8 @@ describe('checkRequirement Plugins', () => {
     const rule = toPairs({
       TestRequirement: [{ rule: 'custom', plugin: 'Empty Plugin', name: 'emptyDude' }],
     })[0]
-    const result = await checkRequirement(rule, mockContext)
+    const listrTask = await checkRequirement(rule, context)
+    const result = await listrTask.storedInit[0].task()
     expect(result).toEqual([[]])
   })
 
@@ -39,7 +42,8 @@ describe('checkRequirement Plugins', () => {
     const rule = toPairs({
       TestRequirement: [{ rule: 'custom', plugin: 'I do not exist', name: 'checkSecondThing' }],
     })[0]
-    const result = await checkRequirement(rule, mockContext)
+    const listrTask = await checkRequirement(rule, context)
+    const result = await listrTask.storedInit[0].task()
     expect(result).toEqual(["Plugin not found 'I do not exist'"])
   })
 
@@ -47,7 +51,8 @@ describe('checkRequirement Plugins', () => {
     const rule = toPairs({
       TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'notRealName' }],
     })[0]
-    const result = await checkRequirement(rule, mockContext)
+    const listrTask = await checkRequirement(rule, context)
+    const result = await listrTask.storedInit[0].task()
     expect(result).toEqual(["NOT FOUND: Custom rule from 'Example Plugin' plugin with check function 'notRealName'"])
   })
 
@@ -56,7 +61,8 @@ describe('checkRequirement Plugins', () => {
     const rule = toPairs({
       TestRequirement: [{ rule: 'custom', plugin: 'Example Plugin', name: 'checkSecondThing', error }],
     })[0]
-    const result = await checkRequirement(rule, mockContext)
+    const listrTask = await checkRequirement(rule, context)
+    const result = await listrTask.storedInit[0].task()
     expect(result).toEqual([error])
   })
 })

@@ -70,8 +70,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual(['Everything is broken'])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual('Everything is broken')
     })
 
     test('happy path', async () => {
@@ -80,8 +81,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([[]])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(false)
     })
 
     test('inject versions', async () => {
@@ -90,8 +92,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual(["Wanted: '~1.5.1', Installed '1.3.2'"])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual("Wanted: '~1.5.1', Installed '1.3.2'")
     })
   })
 
@@ -104,8 +107,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'dir', location: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([[]])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(false)
     })
 
     test('directory alias', async () => {
@@ -114,8 +118,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'directory', location: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([[]])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual('It worked!')
     })
 
     test('sad path', async () => {
@@ -124,8 +129,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'dir', location: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual(["'yarn' directory not found"])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual("'yarn' directory not found")
     })
   })
 
@@ -138,8 +144,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'env', variable: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([[]])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual('It worked!')
     })
 
     test('sad path', async () => {
@@ -148,8 +155,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'env', variable: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual(["'$yarn' environment variable not found"])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(undefined)
     })
   })
 
@@ -162,8 +170,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'file', location: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([[]])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(false)
     })
 
     test('sad path', async () => {
@@ -172,8 +181,9 @@ describe('checkRequirement', () => {
       const rule = toPairs({
         YARN: [{ rule: 'file', location: 'yarn' }],
       })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual(["'yarn' file not found"])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual("'yarn' file not found")
     })
   })
 
@@ -187,19 +197,21 @@ describe('checkRequirement', () => {
         YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }],
       })[0]
 
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([customError])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(customError)
     })
 
     test('failed ENV rule with custom message', async () => {
       checkCLI.mockClear()
       checkCLI.mockImplementation(() => true)
       const rule = toPairs({
-        YARN: [{ rule: 'env', variable: 'gazorpazorp', error: customError }],
+        BADENV: [{ rule: 'env', variable: 'gazorpazorp', error: customError }],
       })[0]
 
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([customError])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(undefined)
     })
 
     test('failed DIR rule with custom message', async () => {
@@ -207,8 +219,9 @@ describe('checkRequirement', () => {
         YARN: [{ rule: 'dir', location: 'gazorpazorp', error: customError }],
       })[0]
 
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([customError])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(false)
     })
 
     test('failed FILE rule with custom message', async () => {
@@ -216,16 +229,18 @@ describe('checkRequirement', () => {
         YARN: [{ rule: 'file', location: 'gazorpazorp', error: customError }],
       })[0]
 
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([customError])
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(undefined)
     })
 
-    test('failed SHELL rule with custom message', async () => {
-      const rule = toPairs({
-        YARN: [{ rule: 'shell', match: 'hello', command: 'mocked', error: customError }],
-      })[0]
-      const result = await checkRequirement(rule, context)
-      expect(result).toEqual([customError])
-    })
+    // test('failed SHELL rule with custom message', async () => {
+    //   const rule = toPairs({
+    //     YARN: [{ rule: 'shell', match: 'hello', command: 'mocked', error: customError }],
+    //   })[0]
+    //   const listrTask = await checkRequirement(rule, context)
+    //   const result = await listrTask.storedInit[0].task()
+    //   expect(result).toEqual(customError)
+    // })
   })
 })

@@ -28,7 +28,7 @@ const injectVersion = {
 const context = require('gluegun/toolbox')
 
 test('error on missing binary', async () => {
-  expect(await checkCLI(doesNotExistCLI, context)).toBe(`Binary '${doesNotExistCLI.binary}' not found`)
+  await expect(checkCLI(doesNotExistCLI, context)).rejects.toThrow()
 })
 
 test('fine on existing binary', async () => {
@@ -36,7 +36,7 @@ test('fine on existing binary', async () => {
 })
 
 test('errors with message when an improper semver is sent', async () => {
-  expect(await checkCLI(badSemver, context)).toBe(`Invalid semver rule ${badSemver.semver}`)
+  await expect(checkCLI(badSemver, context)).rejects.toThrow()
 })
 
 test('returns message on improper version', async () => {
@@ -44,12 +44,13 @@ test('returns message on improper version', async () => {
   context.solidarity.getVersion = () => '1'
   const message = `${outOfDateCLI.binary}: you have '1', but the project requires '${outOfDateCLI.semver}'`
 
-  expect(await checkCLI(outOfDateCLI, context)).toBe(message)
+  await expect(checkCLI(outOfDateCLI, context)).rejects.toThrow()
 })
 
 test('returns message with injected versions', async () => {
   const message = `Wanted: '7.6', Installed: '7.5'. Update with \`nvm install 7.6\``
   solidarityExtension(context)
   context.solidarity.getVersion = () => '7.5'
-  expect(await checkCLI(injectVersion, context)).toBe(message)
+
+  await expect(checkCLI(injectVersion, context)).rejects.toThrow()
 })
