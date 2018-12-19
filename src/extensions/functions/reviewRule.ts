@@ -19,7 +19,7 @@ module.exports = async (
 ) => {
   const { print, solidarity } = context
   const { colors, checkmark, xmark } = print
-  const prettyBool = async (checkingFunction) => {
+  const prettyBool = async checkingFunction => {
     try {
       await checkingFunction()
       return checkmark + colors.green(' YES')
@@ -27,12 +27,7 @@ module.exports = async (
       return xmark + colors.red(' NO')
     }
   }
-  const prettyResult = async (checkFunction) => {
-    // Wrapping in `Promise.resolve` treats sync and async functions the same
-    Promise.resolve(checkFunction)
-      .then(() => checkmark + colors.green(' YES'))
-      .catch(() => xmark + colors.red(' NO'))
-  }
+
   const rules: SolidarityRequirement = pipe(
     tail,
     // @ts-ignore - flatten will never get a string bc tail is called first

@@ -5,7 +5,7 @@ test('checkDir detects an existing dir', () => {
   // Check for a known directory
   const location = './src'
   // Use checkDir to make sure it exists
-  expect(checkDir({ location }, context)).toBeTruthy()
+  expect(checkDir({ location }, context)).toBe(undefined)
 })
 
 test('checkDir can fail', () => {

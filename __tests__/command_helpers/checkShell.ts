@@ -35,7 +35,7 @@ describe('match', () => {
     })
 
     it('detects no matches', async () => {
-      await expect(await checkShell({ match: 'bye' }, context)).rejects.toThrow()
+      await expect(checkShell({ match: 'bye' }, context)).rejects.toThrow()
     })
   })
 
@@ -47,7 +47,7 @@ describe('match', () => {
     })
 
     it('detects no matches', async () => {
-      await expect(await checkShell({ match: '200!$' }, context)).rejects.toThrow()
+      await expect(checkShell({ match: '200!$' }, context)).rejects.toThrow()
     })
 
     it('works with capture groups', async () => {
