@@ -1,5 +1,5 @@
 import { SolidarityRunContext, CLIRule } from '../../types'
-module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string | undefined> => {
+module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<void> => {
   const { semver, solidarity } = context
   const binaryExists = require('./binaryExists')
 
@@ -11,7 +11,7 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
   // Is there a semver rule?
   if (rule.semver) {
     // ensure we have valid rule input
-    if (!semver.validRange(rule.semver)) return `Invalid semver rule ${rule.semver}`
+    if (!semver.validRange(rule.semver)) throw new Error(`Invalid semver rule ${rule.semver}`)
 
     let binaryVersion
     binaryVersion = await solidarity.getVersion(rule, context)

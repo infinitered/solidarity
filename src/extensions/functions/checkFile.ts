@@ -1,9 +1,9 @@
 import { FSRule, SolidarityRunContext } from '../../types'
-module.exports = (rule: FSRule, context: SolidarityRunContext): boolean => {
+module.exports = (rule: FSRule, context: SolidarityRunContext): void => {
   const { filesystem } = context
   if (rule.location) {
-    return filesystem.exists(rule.location) === 'file'
+    if (filesystem.exists(rule.location) === 'file') throw new Error(`Location '${rule.location}' is not a file`)
   } else {
-    return false
+    throw new Error(`No location for file rule`)
   }
 }

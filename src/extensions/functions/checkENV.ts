@@ -1,5 +1,5 @@
 import { ENVRule, SolidarityRunContext } from '../../types'
-module.exports = (rule: ENVRule, context: SolidarityRunContext): string | undefined => {
+module.exports = (rule: ENVRule, context: SolidarityRunContext): void => {
   const envVar = rule.variable || ''
-  return process.env[envVar]
+  if (!process.env[envVar]) throw new Error(`Environment variable ${envVar} not found`)
 }
