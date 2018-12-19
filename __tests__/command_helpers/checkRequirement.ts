@@ -57,14 +57,8 @@ describe('checkRequirement', () => {
     }
   })
 
-  test('there is a spinner message', async () => {
-    await checkRequirement(badRule, context)
-    expect(context.print.spin.mock.calls).toEqual([['Verifying YARN']])
-  })
-
   test('when an invalid rule is given', async () => {
-    const result = await checkRequirement(badRule, context)
-    expect(result).toEqual(['Encountered unknown rule'])
+    await expect(checkRequirement(badRule, context)).rejects.toThrow()
   })
 
   describe('when rule: cli', () => {

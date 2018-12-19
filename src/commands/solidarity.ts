@@ -1,6 +1,7 @@
 import { GluegunCommand } from 'gluegun'
-import * as Listr from 'listr'
 import { SolidarityRequirementChunk, SolidarityOutputMode, SolidaritySettings, SolidarityRunContext } from '../types'
+// Have to do this for tests rather than import
+const Listr = require('listr')
 
 namespace Solidarity {
   const { toPairs } = require('ramda')
@@ -82,7 +83,8 @@ namespace Solidarity {
     )
 
     // run the array of promises in Listr
-    await checks.run()
+    await checks
+      .run()
       .then(results => {
         const silentOutput = context.outputMode === SolidarityOutputMode.SILENT
         // Add empty line between final result if printing rule results
