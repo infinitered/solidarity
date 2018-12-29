@@ -5,11 +5,8 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
 
   // If binary is set but not found
   if (rule.binary) {
-    try {
-      system.which(rule.binary)
-    } catch (_e) {
-      return `Binary '${rule.binary}' not found`
-    }
+    const hasBinary = Boolean(system.which(rule.binary))
+    if (!hasBinary) return `Binary '${rule.binary}' not found`
   }
 
   const binaryVersion = await solidarity.getVersion(rule, context)

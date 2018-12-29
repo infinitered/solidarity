@@ -15,7 +15,8 @@ module.exports = async (context: SolidarityRunContext): Promise<SolidaritySettin
   * Unless you pass parameter options telling us to look
   * in specific paths, node modules, or websites
   */
-  let solidaritySettings
+
+  let solidaritySettings: SolidaritySettings
   if (demandedFile) {
     solidaritySettings = loadFile(context, demandedFile)
   } else if (demandedModule) {

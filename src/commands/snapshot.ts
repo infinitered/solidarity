@@ -1,10 +1,10 @@
-import { GluegunCommand, GluegunRunContext } from 'gluegun'
+import { GluegunCommand } from 'gluegun'
 import { filter, propEq, head } from 'ramda'
 
 import { FriendlyMessages, SolidarityRunContext } from '../types'
 
 namespace Snapshot {
-  const runPluginSnapshot = async (runPlugin, context: GluegunRunContext): Promise<void> => {
+  const runPluginSnapshot = async (runPlugin, context: SolidarityRunContext): Promise<void> => {
     if (typeof runPlugin.snapshot === 'string') {
       // Just a file copy
       const { filesystem, system } = context

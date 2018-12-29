@@ -17,6 +17,7 @@ beforeAll(() => {
     `${tempDir}${path.sep}.solidarity`
   )
   process.chdir(tempDir)
+  console.log(tempDir)
 })
 
 afterAll(function() {
