@@ -63,7 +63,7 @@ namespace Solidarity {
     // Merge flags and configs
     context.outputMode = setOutputMode(context.parameters, solidaritySettings)
     // Adjust output depending on mode
-    let listrSettings: Object = { concurrent: true, collapse: false }
+    let listrSettings: Object = { concurrent: true, collapse: false, exitOnError: false }
     switch (context.outputMode) {
       case SolidarityOutputMode.SILENT:
         listrSettings = { ...listrSettings, renderer: 'silent' }
@@ -91,9 +91,10 @@ namespace Solidarity {
         if (!silentOutput) print.success('')
         if (!silentOutput) print.success(print.checkmark + ' Solidarity checks valid')
       })
-      .catch(err => {
+      .catch(_err => {
         const silentOutput = context.outputMode === SolidarityOutputMode.SILENT
-        if (!silentOutput) print.error(err.message)
+        // Used to have message in the err, but that goes away with `exitOnError: false` so here's a generic one
+        if (!silentOutput) print.error('Solidarity checks failed')
         process.exit(2)
       })
   }
