@@ -9,3 +9,4 @@ yarn.lock
 config.yml
 pretty.yml
 render*.gif
+package-lock.json
