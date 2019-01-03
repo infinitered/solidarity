@@ -73,7 +73,7 @@ module.exports = async (
         const customPluginRule = findPluginInfo(rule, context)
         if (customPluginRule.success) {
           subTask = {
-            title: `${requirementName} - rule '${rule.plugin}' '${rule.name}' Checking`,
+            title: `${requirementName} - custom rule '${rule.plugin}' '${rule.name}'`,
             // takes into account they didn't provide a check
             skip: () => skipRule(rule) || !customPluginRule.plugin.check,
             task: async () => {
@@ -84,7 +84,7 @@ module.exports = async (
                 const failMessage =
                   customResult && customResult.message
                     ? customResult.message
-                    : `${requirementName} - rule '${rule.plugin}' '${rule.name}' failed`
+                    : `${requirementName} - custom rule '${rule.plugin}' '${rule.name}' failed`
                 throw new Error(rule.error || failMessage)
               }
             },
