@@ -1,8 +1,10 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityOutputMode, SolidaritySettings, SolidarityRunContext } from '../types'
+import { SolidarityRequirementChunk, SolidarityOutputMode, SolidaritySettings, SolidarityRunContext } from '../types'
+// Have to do this for tests rather than import
+const Listr = require('listr')
 
 namespace Solidarity {
-  const { map, toPairs, isEmpty, flatten, reject, isNil } = require('ramda')
+  const { toPairs } = require('ramda')
 
   const checkForEscapeHatchFlags = async (context: SolidarityRunContext) => {
     const { print, parameters } = context
@@ -49,7 +51,7 @@ namespace Solidarity {
     try {
       solidaritySettings = await getSolidaritySettings(context)
     } catch (e) {
-      print.error(e)
+      print.error(e.message)
       print.info(
         `Make sure you are in the correct folder or run ${print.colors.success(
           'solidarity snapshot'
@@ -60,30 +62,39 @@ namespace Solidarity {
 
     // Merge flags and configs
     context.outputMode = setOutputMode(context.parameters, solidaritySettings)
+    // Adjust output depending on mode
+    let listrSettings: Object = { concurrent: true, collapse: false, exitOnError: false }
+    switch (context.outputMode) {
+      case SolidarityOutputMode.SILENT:
+        listrSettings = { ...listrSettings, renderer: 'silent' }
+        break
+      case SolidarityOutputMode.MODERATE:
+        // have input clear itself
+        listrSettings = { ...listrSettings, clearOutput: true }
+    }
 
-    // build map of checks to perform
-    const checks = await map(
-      async requirement => checkRequirement(requirement, context),
-      toPairs(solidaritySettings.requirements)
+    // build Listr of checks
+    const checks = new Listr(
+      await toPairs(solidaritySettings.requirements).map((requirement: SolidarityRequirementChunk) => ({
+        title: requirement[0],
+        task: async () => checkRequirement(requirement, context),
+      })),
+      listrSettings
     )
 
-    // run the array of promises you just created
-    await Promise.all(checks)
+    // run the array of promises in Listr
+    await checks
+      .run()
       .then(results => {
-        const errors = reject(isNil, flatten(results))
         const silentOutput = context.outputMode === SolidarityOutputMode.SILENT
         // Add empty line between final result if printing rule results
         if (!silentOutput) print.success('')
-
-        if (isEmpty(errors)) {
-          if (!silentOutput) print.success(print.checkmark + ' Solidarity checks valid')
-        } else {
-          if (!silentOutput) print.error('Solidarity checks failed.')
-          process.exit(1)
-        }
+        if (!silentOutput) print.success(print.checkmark + ' Solidarity checks valid')
       })
-      .catch(err => {
-        print.error(err)
+      .catch(_err => {
+        const silentOutput = context.outputMode === SolidarityOutputMode.SILENT
+        // Used to have message in the err, but that goes away with `exitOnError: false` so here's a generic one
+        if (!silentOutput) print.error('Solidarity checks failed')
         process.exit(2)
       })
   }

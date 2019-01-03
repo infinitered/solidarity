@@ -19,7 +19,15 @@ module.exports = async (
 ) => {
   const { print, solidarity } = context
   const { colors, checkmark, xmark } = print
-  const prettyBool = (bl: boolean) => (bl ? checkmark + colors.green(' YES') : xmark + colors.red(' NO'))
+  const prettyBool = async checkingFunction => {
+    try {
+      await checkingFunction()
+      return checkmark + colors.green(' YES')
+    } catch (e) {
+      return xmark + colors.red(' NO')
+    }
+  }
+
   const rules: SolidarityRequirement = pipe(
     tail,
     // @ts-ignore - flatten will never get a string bc tail is called first
@@ -54,23 +62,23 @@ module.exports = async (
       // Handle dir rule report
       case 'directory':
       case 'dir':
-        const dirExists = prettyBool(checkDir(rule, context))
+        const dirExists = await prettyBool(async () => checkDir(rule, context))
         report.filesystemRules.push([rule.location, 'Dir', dirExists])
         break
       // Handle file rule report
       case 'file':
-        const fileExists = prettyBool(checkFile(rule, context))
+        const fileExists = await prettyBool(async () => checkFile(rule, context))
         report.filesystemRules.push([rule.location, 'File', fileExists])
         break
       case 'shell':
-        const shellCheckPass = prettyBool(await checkShell(rule, context))
+        const shellCheckPass = await prettyBool(async () => checkShell(rule, context))
         report.shellRules.push([rule.command, rule.match, shellCheckPass])
         break
       case 'custom':
         const customPluginRule = findPluginInfo(rule, context)
         if (customPluginRule.success) {
           // let plugin update the report
-          if (customPluginRule.plugin.report) customPluginRule.plugin.report(rule, context, report)
+          if (customPluginRule.plugin.report) await customPluginRule.plugin.report(rule, context, report)
         } else {
           throw new Error(customPluginRule.message)
         }

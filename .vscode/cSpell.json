@@ -31,6 +31,7 @@
         "heartpulse",
         "infinite.red",
         "info",
+        "listr",
         "macos",
         "namespacing",
         "newclear",
@@ -50,7 +51,8 @@
         "typesync",
         "updtr",
         "v1",
-        "walkthrough"
+        "walkthrough",
+        "xmark"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.

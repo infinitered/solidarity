@@ -1,24 +1,20 @@
 import { SolidarityRunContext, CLIRule } from '../../types'
-module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string | undefined> => {
+module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<void> => {
   const { semver, solidarity } = context
   const binaryExists = require('./binaryExists')
 
   // First check for binary
   if (!binaryExists(rule.binary, context)) {
-    return `Binary '${rule.binary}' not found`
+    throw new Error(`Binary '${rule.binary}' not found`)
   }
 
   // Is there a semver rule?
   if (rule.semver) {
     // ensure we have valid rule input
-    if (!semver.validRange(rule.semver)) return `Invalid semver rule ${rule.semver}`
+    if (!semver.validRange(rule.semver)) throw new Error(`Invalid semver rule ${rule.semver}`)
 
     let binaryVersion
-    try {
-      binaryVersion = await solidarity.getVersion(rule, context)
-    } catch (e) {
-      return e
-    }
+    binaryVersion = await solidarity.getVersion(rule, context)
 
     // pad zeros for any non-semver version systems (rules still work)
     let binarySemantic = binaryVersion
@@ -34,7 +30,7 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
 
     // I can't get no satisfaction
     if (!semver.satisfies(binarySemantic, rule.semver)) {
-      return message
+      throw new Error(message)
     }
   }
 }

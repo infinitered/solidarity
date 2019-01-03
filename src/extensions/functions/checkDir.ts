@@ -1,9 +1,11 @@
 import { FSRule, SolidarityRunContext } from '../../types'
-module.exports = (rule: FSRule, context: SolidarityRunContext): boolean => {
+import * as path from 'path'
+module.exports = (rule: FSRule, context: SolidarityRunContext): void => {
   const { filesystem } = context
   if (rule.location) {
-    return filesystem.exists(rule.location) === 'dir'
+    const dirPath = path.isAbsolute(rule.location) ? rule.location : path.join(process.cwd(), rule.location)
+    if (filesystem.exists(dirPath) !== 'dir') throw new Error(`Location '${rule.location}' is not a directory`)
   } else {
-    return false
+    throw new Error(`No location for directory rule`)
   }
 }

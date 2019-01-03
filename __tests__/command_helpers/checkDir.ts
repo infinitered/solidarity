@@ -5,19 +5,25 @@ test('checkDir detects an existing dir', () => {
   // Check for a known directory
   const location = './src'
   // Use checkDir to make sure it exists
-  expect(checkDir({ location }, context)).toBeTruthy()
+  expect(checkDir({ location }, context)).toBe(undefined)
 })
 
 test('checkDir can fail', () => {
   // Use checkDir to make sure a non-existant directory returns false
-  expect(checkDir({ location: 'DOES_NOT_EXIST' }, context)).toBeFalsy()
+  expect(() => {
+    checkDir({ location: 'DOES_NOT_EXIST' }, context)
+  }).toThrow()
 })
 
-test('checkDir returns false for a file that exists', () => {
+test('checkDir returns throws for a file that exists', () => {
   // Use checkDir to make sure a known file returns false since it's not a directory
-  expect(checkDir({ location: './package.json' }, context)).toBeFalsy()
+  expect(() => {
+    checkDir({ location: './package.json' }, context)
+  }).toThrow()
 })
 
-test('checkDir returns false if no location is set', () => {
-  expect(checkDir({}, context)).toBeFalsy()
+test('checkDir throws if no location is set', () => {
+  expect(() => {
+    checkDir({}, context)
+  }).toThrow()
 })

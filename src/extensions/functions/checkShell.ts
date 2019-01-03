@@ -1,6 +1,6 @@
 import { ShellRule, SolidarityRunContext } from '../../types'
 
-module.exports = async (rule: ShellRule, context: SolidarityRunContext): Promise<boolean> => {
+module.exports = async (rule: ShellRule, context: SolidarityRunContext): Promise<void> => {
   const { system, strings } = context
   try {
     // execute the command
@@ -17,8 +17,9 @@ module.exports = async (rule: ShellRule, context: SolidarityRunContext): Promise
       isMatch = match.test(output)
     }
 
-    return isMatch
+    const standardError = `Shell rule '${rule.command}' output did not contain match: ${match}`
+    if (!isMatch) throw new Error(rule.error || standardError)
   } catch (e) {
-    return false
+    throw new Error(rule.error || e.message)
   }
 }
