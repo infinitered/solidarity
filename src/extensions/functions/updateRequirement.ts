@@ -1,11 +1,11 @@
 import { SolidarityRequirement, SolidarityRunContext } from '../../types'
-const findPluginInfo = require('./findPluginInfo')
 
 module.exports = async (
   requirement: SolidarityRequirement,
   settings: object,
   context: SolidarityRunContext
 ): Promise<void | object[]> => {
+  const findPluginInfo = require('./findPluginInfo')
   const { head, tail, pipe, flatten, map } = require('ramda')
   const checkCLIForUpdates = require('./checkCLIForUpdates')
   const skipRule = require('./skipRule')

@@ -1,8 +1,8 @@
 import { CustomRule, SolidarityRunContext, PluginFind } from '../../types'
 
-const { head, filter } = require('ramda')
-
 module.exports = (rule: CustomRule, context: SolidarityRunContext): PluginFind => {
+  const { head, filter } = require('ramda')
+
   // find correct rule function
   const correctPlugin = head(filter(plugin => plugin.name === rule.plugin, context._pluginsList))
   if (correctPlugin === undefined) {

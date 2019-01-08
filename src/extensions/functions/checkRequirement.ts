@@ -1,19 +1,19 @@
 import { SolidarityRule, SolidarityRequirementChunk, SolidarityRequirement, SolidarityRunContext } from '../../types'
-const checkCLI = require('./checkCLI')
-const checkENV = require('./checkENV')
-const checkDir = require('./checkDir')
-const checkFile = require('./checkFile')
-const checkShell = require('./checkShell')
-const skipRule = require('./skipRule')
-const findPluginInfo = require('./findPluginInfo')
-
-// Have to do this for tests rather than import
-const Listr = require('listr')
-
 module.exports = async (
   requirement: SolidarityRequirementChunk,
   context: SolidarityRunContext
 ): Promise<void | object[]> => {
+  const checkCLI = require('./checkCLI')
+  const checkENV = require('./checkENV')
+  const checkDir = require('./checkDir')
+  const checkFile = require('./checkFile')
+  const checkShell = require('./checkShell')
+  const skipRule = require('./skipRule')
+  const findPluginInfo = require('./findPluginInfo')
+
+  // Have to do this for tests rather than import
+  const Listr = require('listr')
+
   const { head, tail, pipe, flatten } = require('ramda')
 
   const requirementName: string = head(requirement)

@@ -1,9 +1,9 @@
 import { SolidarityRunContext, SolidaritySettings } from '../../types'
-import { loadFile, loadModule, loadWebCheck } from './getSolidarityHelpers'
-import * as JSON5 from 'json5'
 
 module.exports = async (context: SolidarityRunContext): Promise<SolidaritySettings> => {
   const { filesystem, parameters } = context
+  const { loadFile, loadModule, loadWebCheck } = require('./getSolidarityHelpers')
+  const JSON5 = require('json5')
   const options = parameters.options || {} // fix possibly undefined from gluegun
   const demandedFile = options.solidarityFile || options.f
   const demandedModule = options.module || options.d
