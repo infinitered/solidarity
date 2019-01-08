@@ -1,5 +1,5 @@
-import { SolidarityRunContext, SolidarityReportResults } from '../../types'
-module.exports = (results: SolidarityReportResults, context: SolidarityRunContext): void => {
+import { SolidarityToolbox, SolidarityReportResults } from '../../types'
+module.exports = (results: SolidarityReportResults, context: SolidarityToolbox): void => {
   const { print, printSeparator } = context
   const { info } = print
   const printSpacedTable = (table, header) => {

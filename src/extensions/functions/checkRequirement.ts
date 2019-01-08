@@ -1,7 +1,7 @@
-import { SolidarityRule, SolidarityRequirementChunk, SolidarityRequirement, SolidarityRunContext } from '../../types'
+import { SolidarityRule, SolidarityRequirementChunk, SolidarityRequirement, SolidarityToolbox } from '../../types'
 module.exports = async (
   requirement: SolidarityRequirementChunk,
-  context: SolidarityRunContext
+  context: SolidarityToolbox
 ): Promise<void | object[]> => {
   const checkCLI = require('./checkCLI')
   const checkENV = require('./checkENV')

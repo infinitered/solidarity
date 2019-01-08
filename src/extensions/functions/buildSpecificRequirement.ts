@@ -1,4 +1,4 @@
-import { SolidarityRunContext, SolidaritySettings } from '../../types'
+import { SolidarityToolbox, SolidaritySettings } from '../../types'
 import { keys } from 'ramda'
 
 namespace buildSpecificRequirement {
@@ -83,7 +83,7 @@ namespace buildSpecificRequirement {
     }
   }
 
-  export const run = async (context: SolidarityRunContext) => {
+  export const run = async (context: SolidarityToolbox) => {
     const { parameters, prompt, solidarity } = context
     const { first } = parameters
     const { ruleHandlers } = solidarity

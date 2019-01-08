@@ -1,6 +1,6 @@
-import { SolidarityRunContext, solidarity, SolidarityPlugin } from '../types'
+import { SolidarityToolbox, solidarity, SolidarityPlugin } from '../types'
 // Adding our goodies to the context
-module.exports = (context: SolidarityRunContext): void => {
+module.exports = (context: SolidarityToolbox): void => {
   const { helpers } = require('envinfo')
   const callsite = require('callsite')
   const path = require('path')

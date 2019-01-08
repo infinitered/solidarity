@@ -1,6 +1,6 @@
-import { SolidarityRunContext, SolidaritySettings } from '../../types'
+import { SolidarityToolbox, SolidaritySettings } from '../../types'
 
-module.exports = async (context: SolidarityRunContext): Promise<SolidaritySettings> => {
+module.exports = async (context: SolidarityToolbox): Promise<SolidaritySettings> => {
   const { filesystem, parameters } = context
   const { loadFile, loadModule, loadWebCheck } = require('./getSolidarityHelpers')
   const JSON5 = require('json5')

@@ -1,6 +1,6 @@
-import { ShellRule, SolidarityRunContext } from '../../types'
+import { ShellRule, SolidarityToolbox } from '../../types'
 
-module.exports = async (rule: ShellRule, context: SolidarityRunContext): Promise<void> => {
+module.exports = async (rule: ShellRule, context: SolidarityToolbox): Promise<void> => {
   const { system, strings } = context
   try {
     // execute the command

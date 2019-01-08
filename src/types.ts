@@ -1,16 +1,4 @@
-import {
-  GluegunRunContext,
-  GluegunFilesystem,
-  GluegunStrings,
-  GluegunPrint,
-  GluegunSystem,
-  GluegunSemver,
-  GluegunHttp,
-  GluegunPatching,
-  GluegunPrompt,
-  GluegunTemplate,
-  GluegunMeta,
-} from 'gluegun'
+import { GluegunToolbox } from 'gluegun'
 export const solidarity = {
   binaryExists: require('./extensions/functions/binaryExists'),
   getSolidaritySettings: require('./extensions/functions/getSolidaritySettings'),
@@ -40,26 +28,16 @@ export interface SolidarityPlugin {
   readonly snapshot: string | SnapshotType
 }
 
-export interface SolidarityRunContext extends GluegunRunContext {
+export interface SolidarityToolbox extends GluegunToolbox {
   solidarity: typeof solidarity
   _pluginsList: Array<SolidarityPlugin & { templateDirectory: string | null }>
   addPlugin: (config: SolidarityPlugin) => void
   printSeparator: () => void
   outputMode: SolidarityOutputMode
   envHelpers: any
-  filesystem: GluegunFilesystem
-  strings: GluegunStrings
-  print: GluegunPrint
-  system: GluegunSystem
-  semver: GluegunSemver
-  http: GluegunHttp
-  patching: GluegunPatching
-  prompt: GluegunPrompt
-  template: GluegunTemplate
-  meta: GluegunMeta
 }
 
-export type SnapshotType = (context: SolidarityRunContext) => Promise<void>
+export type SnapshotType = (context: SolidarityToolbox) => Promise<void>
 
 export interface CLIRule {
   readonly rule: 'cli'

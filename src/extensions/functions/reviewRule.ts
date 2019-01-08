@@ -1,7 +1,7 @@
 import {
   SolidarityRequirementChunk,
   SolidarityRequirement,
-  SolidarityRunContext,
+  SolidarityToolbox,
   SolidarityRule,
   SolidarityReportResults,
 } from '../../types'
@@ -9,7 +9,7 @@ import {
 module.exports = async (
   requirement: SolidarityRequirementChunk,
   report: SolidarityReportResults,
-  context: SolidarityRunContext
+  context: SolidarityToolbox
 ) => {
   const { tail, pipe, flatten, map } = require('ramda')
   const skipRule = require('./skipRule')

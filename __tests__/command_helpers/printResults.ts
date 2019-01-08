@@ -1,9 +1,9 @@
 import printResults from '../../src/extensions/functions/printResults'
-import { SolidarityRunContext, SolidarityReportResults } from '../../src/types'
+import { SolidarityToolbox, SolidarityReportResults } from '../../src/types'
 import { createReport } from '../../src/extensions/functions/solidarityReport'
 import { flatten } from 'ramda'
 
-let mockContext: SolidarityRunContext
+let mockContext: SolidarityToolbox
 let reportResults: SolidarityReportResults
 describe('reviewRule', () => {
   beforeEach(async () => {

@@ -1,8 +1,8 @@
 import reviewRule from '../../src/extensions/functions/reviewRule'
-import { SolidarityRunContext, SolidarityReportResults } from '../../src/types'
+import { SolidarityToolbox, SolidarityReportResults } from '../../src/types'
 import { createReport } from '../../src/extensions/functions/solidarityReport'
 const examplePlugin = require('examplePlugin')
-let mockContext: SolidarityRunContext
+let mockContext: SolidarityToolbox
 let reportResults: SolidarityReportResults
 describe('reviewRule', () => {
   beforeEach(async () => {

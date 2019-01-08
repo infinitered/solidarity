@@ -1,6 +1,6 @@
-import { FSRule, SolidarityRunContext } from '../../types'
+import { FSRule, SolidarityToolbox } from '../../types'
 import * as path from 'path'
-module.exports = (rule: FSRule, context: SolidarityRunContext): void => {
+module.exports = (rule: FSRule, context: SolidarityToolbox): void => {
   const { filesystem } = context
   if (rule.location) {
     const dirPath = path.isAbsolute(rule.location) ? rule.location : path.join(process.cwd(), rule.location)

@@ -1,5 +1,5 @@
-import { SolidarityRunContext, SolidaritySettings } from '../../types'
-module.exports = (settings: SolidaritySettings, context: SolidarityRunContext): void => {
+import { SolidarityToolbox, SolidaritySettings } from '../../types'
+module.exports = (settings: SolidaritySettings, context: SolidarityToolbox): void => {
   const { filesystem } = context
 
   if (settings.requirements) {

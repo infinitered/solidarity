@@ -1,10 +1,10 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityRunContext } from '../types'
+import { SolidarityToolbox } from '../types'
 
 module.exports = {
   alias: 'h',
   description: 'Displays this help',
-  run: (context: SolidarityRunContext) => {
+  run: (context: SolidarityToolbox) => {
     const { print } = context
     const { colors } = print
     print.success('\nSolidarity')

@@ -1,5 +1,5 @@
-import { SolidarityRunContext } from '../../types'
-module.exports = async (context: SolidarityRunContext): Promise<void> => {
+import { SolidarityToolbox } from '../../types'
+module.exports = async (context: SolidarityToolbox): Promise<void> => {
   const { map, toPairs, isEmpty, flatten } = require('ramda')
   const { solidarity, print, strings } = context
   const { pluralize } = strings

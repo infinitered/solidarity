@@ -1,12 +1,12 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityRequirementChunk, SolidarityOutputMode, SolidaritySettings, SolidarityRunContext } from '../types'
+import { SolidarityRequirementChunk, SolidarityOutputMode, SolidaritySettings, SolidarityToolbox } from '../types'
 // Have to do this for tests rather than import
 const Listr = require('listr')
 
 namespace Solidarity {
   const { toPairs } = require('ramda')
 
-  const checkForEscapeHatchFlags = async (context: SolidarityRunContext) => {
+  const checkForEscapeHatchFlags = async (context: SolidarityToolbox) => {
     const { print, parameters } = context
     const { options } = parameters
     if (!options) return
@@ -37,7 +37,7 @@ namespace Solidarity {
     return SolidarityOutputMode[outputModeString] || SolidarityOutputMode.MODERATE
   }
 
-  export const run = async (context: SolidarityRunContext) => {
+  export const run = async (context: SolidarityToolbox) => {
     // Node Modules Quirk
     require('../extensions/functions/quirksNodeModules')
     // drop out fast in these situations

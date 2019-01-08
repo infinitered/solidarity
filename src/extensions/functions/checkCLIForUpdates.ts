@@ -1,6 +1,6 @@
-import { CLIRule, SolidarityRunContext } from '../../types'
+import { CLIRule, SolidarityToolbox } from '../../types'
 
-module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<string | undefined> => {
+module.exports = async (rule: CLIRule, context: SolidarityToolbox): Promise<string | undefined> => {
   const { system, semver, solidarity, print } = context
 
   // If binary is set but not found

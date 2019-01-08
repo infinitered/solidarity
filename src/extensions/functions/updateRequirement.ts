@@ -1,9 +1,9 @@
-import { SolidarityRequirement, SolidarityRunContext } from '../../types'
+import { SolidarityRequirement, SolidarityToolbox } from '../../types'
 
 module.exports = async (
   requirement: SolidarityRequirement,
   settings: object,
-  context: SolidarityRunContext
+  context: SolidarityToolbox
 ): Promise<void | object[]> => {
   const findPluginInfo = require('./findPluginInfo')
   const { head, tail, pipe, flatten, map } = require('ramda')

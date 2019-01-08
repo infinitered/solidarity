@@ -1,6 +1,6 @@
-import { SolidarityRunContext, SolidarityReportResults, CLIReportConfig } from '../../types'
+import { SolidarityToolbox, SolidarityReportResults, CLIReportConfig } from '../../types'
 
-export const createReport = async (context: SolidarityRunContext): Promise<SolidarityReportResults> => {
+export const createReport = async (context: SolidarityToolbox): Promise<SolidarityReportResults> => {
   const { print, system, envinfo } = context
   const { colors } = print
   const OS = await envinfo.getOSInfo()

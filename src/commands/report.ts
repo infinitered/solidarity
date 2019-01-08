@@ -1,12 +1,12 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityRunContext, SolidarityReportResults } from '../types'
+import { SolidarityToolbox, SolidarityReportResults } from '../types'
 import { map, toPairs } from 'ramda'
 import { createReport } from '../extensions/functions/solidarityReport'
 
 module.exports = {
   alias: 'r',
   description: 'Report solidarity info about the current machine',
-  run: async (context: SolidarityRunContext) => {
+  run: async (context: SolidarityToolbox) => {
     const { print, solidarity, system } = context
     const reportTimer = system.startTimer()
     const { getSolidaritySettings, reviewRule, printResults } = solidarity

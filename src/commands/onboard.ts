@@ -1,9 +1,9 @@
 import { GluegunCommand } from 'gluegun'
 
-import { SolidarityRunContext } from '../types'
+import { SolidarityToolbox } from '../types'
 
 namespace Snapshot {
-  export const run = async (context: SolidarityRunContext) => {
+  export const run = async (context: SolidarityToolbox) => {
     const { print, prompt, filesystem } = context
 
     // check is there an existing .solidarity file?

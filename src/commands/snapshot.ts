@@ -1,10 +1,10 @@
-import { GluegunCommand, GluegunRunContext } from 'gluegun'
+import { GluegunCommand, GluegunToolbox } from 'gluegun'
 import { filter, propEq, head } from 'ramda'
 
-import { FriendlyMessages, SolidarityRunContext } from '../types'
+import { FriendlyMessages, SolidarityToolbox } from '../types'
 
 namespace Snapshot {
-  const runPluginSnapshot = async (runPlugin, context: GluegunRunContext): Promise<void> => {
+  const runPluginSnapshot = async (runPlugin, context: GluegunToolbox): Promise<void> => {
     if (typeof runPlugin.snapshot === 'string') {
       // Just a file copy
       const { filesystem, system } = context
@@ -19,7 +19,7 @@ namespace Snapshot {
     }
   }
 
-  const createSolidarityFile = async (context: SolidarityRunContext): Promise<void> => {
+  const createSolidarityFile = async (context: SolidarityToolbox): Promise<void> => {
     const { print, printSeparator } = context
     const pluginsWithTemplates = filter(plugin => plugin.templateDirectory !== null, context._pluginsList)
     // list visible plugins
@@ -62,7 +62,7 @@ namespace Snapshot {
     }
   }
 
-  export const run = async (context: SolidarityRunContext) => {
+  export const run = async (context: SolidarityToolbox) => {
     const { print, prompt, filesystem, solidarity, parameters } = context
     const { first } = parameters
     const { setSolidaritySettings, appendSolidaritySettings, buildSpecificRequirement } = solidarity

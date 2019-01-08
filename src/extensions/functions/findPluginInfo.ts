@@ -1,6 +1,6 @@
-import { CustomRule, SolidarityRunContext, PluginFind } from '../../types'
+import { CustomRule, SolidarityToolbox, PluginFind } from '../../types'
 
-module.exports = (rule: CustomRule, context: SolidarityRunContext): PluginFind => {
+module.exports = (rule: CustomRule, context: SolidarityToolbox): PluginFind => {
   const { head, filter } = require('ramda')
 
   // find correct rule function

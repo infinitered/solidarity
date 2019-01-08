@@ -1,12 +1,12 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityRunContext } from '../types'
+import { SolidarityToolbox } from '../types'
 
 const createables = ['plugin']
 
 module.exports = {
   alias: 'c',
   description: 'Displays this help',
-  run: async (context: SolidarityRunContext) => {
+  run: async (context: SolidarityToolbox) => {
     const { print, solidarity, parameters } = context
     switch (parameters.first && parameters.first.toLowerCase()) {
       case 'plugin':
