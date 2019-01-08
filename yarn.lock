@@ -508,12 +508,13 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apisauce@0.14.3:
-  version "0.14.3"
-  resolved "https://registry.yarnpkg.com/apisauce/-/apisauce-0.14.3.tgz#0a2dd11d883934c33e31f9ddfc612805490a7ba8"
+apisauce@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/apisauce/-/apisauce-1.0.2.tgz#3605dbf4f19896618a0199f2cb717546b8971a06"
+  integrity sha512-RwC0X4D20HH8t43J2mLNFv1ZNab+xTMcKyjRsajT0PbqiRXRjPfA9igBZ/f+2NaiIXHtyjLirqXY2SMLsUekTw==
   dependencies:
-    axios "^0.16.2"
-    ramda "^0.24.1"
+    axios "^0.18.0"
+    ramda "^0.25.0"
 
 app-module-path@^2.2.0:
   version "2.2.0"
@@ -682,13 +683,6 @@ aws-sign2@~0.7.0:
 aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
-
-axios@^0.16.2:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.16.2.tgz#ba4f92f17167dfbab40983785454b9ac149c3c6d"
-  dependencies:
-    follow-redirects "^1.2.3"
-    is-buffer "^1.1.5"
 
 axios@^0.18.0:
   version "0.18.0"
@@ -1244,12 +1238,13 @@ cli-spinners@^1.0.0, cli-spinners@^1.1.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-1.3.1.tgz#002c1990912d0d59580c93bd36c056de99e4259a"
 
-cli-table2@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/cli-table2/-/cli-table2-0.2.0.tgz#2d1ef7f218a0e786e214540562d4bd177fe32d97"
+cli-table3@~0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/cli-table3/-/cli-table3-0.5.1.tgz#0252372d94dfc40dbd8df06005f48f31f656f202"
+  integrity sha512-7Qg2Jrep1S/+Q3EceiZtQcDPWxhAvBw+ERf1162v4sikJrvojMHFqXt8QIVha8UlH9rgU0BeWPytZ9/TzYqlUw==
   dependencies:
-    lodash "^3.10.1"
-    string-width "^1.0.1"
+    object-assign "^4.1.0"
+    string-width "^2.1.1"
   optionalDependencies:
     colors "^1.1.2"
 
@@ -1370,11 +1365,7 @@ color-name@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
 
-colors@1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/colors/-/colors-1.2.4.tgz#e0cb41d3e4b20806b3bfc27f4559f01b94bc2f7c"
-
-colors@^1.1.2:
+colors@^1.1.2, colors@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.3.3.tgz#39e005d546afe01e01f9c4ca8fa50f686a01205d"
 
@@ -2058,9 +2049,10 @@ enhanced-resolve@^4.1.0:
     memory-fs "^0.4.0"
     tapable "^1.0.0"
 
-enquirer@^1.0.3:
+enquirer@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/enquirer/-/enquirer-1.0.3.tgz#03ea667aaf241b21e4b1db938dfa3e0b18bd8924"
+  integrity sha512-3y9zemKlEhH6oW/WBrqofpc2JLtFkoolvWFFTTMPVede1lQ/E83xjdaE4L82RJCYgaiGB5ctjHX/BRbVk2iuJA==
   dependencies:
     choices-separator "^2.0.0"
     collection-visit "^1.0.0"
@@ -2494,7 +2486,7 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-follow-redirects@^1.2.3, follow-redirects@^1.3.0:
+follow-redirects@^1.3.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.6.1.tgz#514973c44b5757368bad8bddfe52f81f015c94cb"
   dependencies:
@@ -2589,9 +2581,10 @@ fs-extra@^5.0.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-jetpack@^1.3.0:
+fs-jetpack@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/fs-jetpack/-/fs-jetpack-1.3.1.tgz#77c8ed2e361b062b60eca38c4061b972ff03d324"
+  integrity sha512-oCrJI4kSredslsM3iZoZ19RKUt78XyyOSJuwzg/JGIxCBmjaoqPpvqAy5ZaUNI/QHJPL0UkKeX/yarAd39vP/Q==
   dependencies:
     minimatch "^3.0.2"
 
@@ -2742,20 +2735,21 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gluegun@2.0.0-beta.11:
-  version "2.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.0-beta.11.tgz#1df14728dbc01e3495205feb3dcb3180b4f37d57"
+gluegun@2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-2.0.7.tgz#2f55a1380badbaf35e26b8218058258c43836ac7"
+  integrity sha512-ko1p1YLww7wGPpuWqIsmbF8zaV6aAO3a7t6twt9zQVTnH7YA/8NkbPFilAYy17NLsq5fj3xvt+GbnyfS/bUhxg==
   dependencies:
-    apisauce "0.14.3"
+    apisauce "^1.0.1"
     app-module-path "^2.2.0"
-    cli-table2 "^0.2.0"
-    colors "1.2.4"
+    cli-table3 "~0.5.0"
+    colors "^1.3.3"
     cosmiconfig "^5.0.1"
     cross-spawn "^6.0.5"
     ejs "^2.6.1"
-    enquirer "^1.0.3"
-    execa "^0.10.0"
-    fs-jetpack "^1.3.0"
+    enquirer "1.0.3"
+    execa "^1.0.0"
+    fs-jetpack "^1.3.1"
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
     lodash.lowercase "^4.3.0"
@@ -2771,22 +2765,21 @@ gluegun@2.0.0-beta.11:
     lodash.trimstart "^4.5.1"
     lodash.uppercase "^4.3.0"
     lodash.upperfirst "^4.3.1"
-    ora "^2.1.0"
+    ora "^3.0.0"
     pluralize "^7.0.0"
     prompt-autocompletion "^0.1.1"
     prompt-checkbox "^2.2.0"
-    prompt-confirm "^1.2.0"
+    prompt-confirm "^2.0.4"
     prompt-expand "^1.0.1"
     prompt-list "^3.1.0"
     prompt-password "^1.2.0"
     prompt-question "^5.0.2"
     prompt-radio "^1.2.1"
     prompt-rawlist "^2.0.1"
-    ramda "^0.25.0"
     ramdasauce "^2.1.0"
     semver "^5.5.0"
     which "^1.2.14"
-    yargs-parser "^9.0.2"
+    yargs-parser "^11.1.1"
 
 gonzales-pe@^4.2.3:
   version "4.2.3"
@@ -4368,10 +4361,6 @@ lodash.zip@^4.0.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.zip/-/lodash.zip-4.2.0.tgz#ec6662e4896408ed4ab6c542a3990b72cc080020"
 
-lodash@^3.10.1:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
-
 lodash@^4.1.0, lodash@^4.11.2, lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
@@ -5096,17 +5085,6 @@ options@>=0.0.5:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/opts/-/opts-1.2.6.tgz#d185c0425cfdeb9da1d182908b65b5c0238febb3"
 
-ora@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/ora/-/ora-2.1.0.tgz#6caf2830eb924941861ec53a173799e008b51e5b"
-  dependencies:
-    chalk "^2.3.1"
-    cli-cursor "^2.1.0"
-    cli-spinners "^1.1.0"
-    log-symbols "^2.2.0"
-    strip-ansi "^4.0.0"
-    wcwidth "^1.0.1"
-
 ora@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ora/-/ora-3.0.0.tgz#8179e3525b9aafd99242d63cc206fd64732741d0"
@@ -5605,11 +5583,12 @@ prompt-choices@^4.0.5:
     terminal-paginator "^2.0.2"
     toggle-array "^1.0.1"
 
-prompt-confirm@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/prompt-confirm/-/prompt-confirm-1.2.0.tgz#ed96d0ecc3a3485c7c9d7103bf19444e7811631f"
+prompt-confirm@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/prompt-confirm/-/prompt-confirm-2.0.4.tgz#42c06907333e876f2ae8867281e0b9521a4796ca"
+  integrity sha512-X5lzbC8/kMNHdPOqQPfMKpH4VV2f7v2OTRJoN69ZYBirSwTeQaf9ZhmzPEO9ybMA0YV2Pha5MV27u2/U4ahWfg==
   dependencies:
-    debug "^2.6.8"
+    ansi-cyan "^0.1.1"
     prompt-base "^4.0.1"
 
 prompt-expand@^1.0.1:

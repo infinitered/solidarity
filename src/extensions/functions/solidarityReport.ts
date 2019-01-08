@@ -16,10 +16,8 @@ export const createReport = async (context: SolidarityRunContext): Promise<Solid
     // helper for adding CLI rules
     addCLI: function(cliReportConfig: CLIReportConfig) {
       const desired = cliReportConfig.desired ? cliReportConfig.desired : colors.green('*ANY*')
-      let location
-      try {
-        location = system.which(cliReportConfig.binary)
-      } catch (_e) {
+      let location = system.which(cliReportConfig.binary)
+      if (Boolean(location) === false) {
         location = colors.red('*MISSING*')
       }
       this.cliRules.push([cliReportConfig.binary, location, cliReportConfig.version, desired])
