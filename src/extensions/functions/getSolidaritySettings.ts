@@ -10,11 +10,11 @@ module.exports = async (context: SolidarityRunContext): Promise<SolidaritySettin
   const demandedCheck = options.stack || options.t
 
   /* for now only JSON and JSON5 support
-  * Summary:
-  * Looks for `.solidarity` or `.solidarity.json` files
-  * Unless you pass parameter options telling us to look
-  * in specific paths, node modules, or websites
-  */
+   * Summary:
+   * Looks for `.solidarity` or `.solidarity.json` files
+   * Unless you pass parameter options telling us to look
+   * in specific paths, node modules, or websites
+   */
   let solidaritySettings
   if (demandedFile) {
     solidaritySettings = loadFile(context, demandedFile)

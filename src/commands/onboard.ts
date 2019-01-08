@@ -1,7 +1,6 @@
-import { GluegunCommand, GluegunRunContext } from 'gluegun'
-import { filter, propEq, head } from 'ramda'
+import { GluegunCommand } from 'gluegun'
 
-import { FriendlyMessages, SolidarityRunContext } from '../types'
+import { SolidarityRunContext } from '../types'
 
 namespace Snapshot {
   export const run = async (context: SolidarityRunContext) => {

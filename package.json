@@ -86,6 +86,7 @@
     "trailingComma": "es5"
   },
   "jest": {
+    "testURL": "http://localhost/",
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
