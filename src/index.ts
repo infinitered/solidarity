@@ -1,7 +1,7 @@
 import { build } from 'gluegun'
-const os = require('os')
 
 module.exports = async (): Promise<void> => {
+  const os = require('os')
   // setup the runtime
   const cli = build()
     .brand('solidarity')

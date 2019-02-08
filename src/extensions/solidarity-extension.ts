@@ -1,10 +1,10 @@
 import { SolidarityRunContext, solidarity, SolidarityPlugin } from '../types'
-import { helpers } from 'envinfo'
-
-const callsite = require('callsite')
-const path = require('path')
 // Adding our goodies to the context
 module.exports = (context: SolidarityRunContext): void => {
+  const { helpers } = require('envinfo')
+  const callsite = require('callsite')
+  const path = require('path')
+
   const { filesystem } = context
   context.solidarity = solidarity
   // place for plugins

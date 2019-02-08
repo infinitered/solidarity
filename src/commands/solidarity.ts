@@ -51,11 +51,11 @@ namespace Solidarity {
     try {
       solidaritySettings = await getSolidaritySettings(context)
     } catch (e) {
-      print.error(e.message)
+      print.error(e.message || 'No Solidarity Settings Found')
       print.info(
         `Make sure you are in the correct folder or run ${print.colors.success(
-          'solidarity snapshot'
-        )} to take a snapshot of your environment and create a .solidarity file for this project.`
+          'solidarity onboard'
+        )} to create a .solidarity file for this project.`
       )
       process.exit(3)
     }

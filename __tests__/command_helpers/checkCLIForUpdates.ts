@@ -22,9 +22,8 @@ const ruleNoSemver = {
 
 describe('checkCLIForUpdates', () => {
   describe('with a bad binary', () => {
-    it('should return binary not found', async () => {
-      const result = await checkCLIForUpdates(rule, context)
-      expect(result).toEqual("Binary 'bananas' not found")
+    it('should error with binary not found', async () => {
+      await expect(checkCLIForUpdates(rule, context)).rejects.toThrow()
     })
   })
 

@@ -11,3 +11,4 @@ npm-debug.log
 .DS_Store
 render*.gif
 pretty.yml
+package-lock.json

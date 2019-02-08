@@ -5,18 +5,19 @@ import {
   SolidarityRule,
   SolidarityReportResults,
 } from '../../types'
-import { tail, pipe, flatten, map } from 'ramda'
-const skipRule = require('./skipRule')
-const checkDir = require('./checkDir')
-const checkFile = require('./checkFile')
-const checkShell = require('./checkShell')
-const findPluginInfo = require('./findPluginInfo')
 
 module.exports = async (
   requirement: SolidarityRequirementChunk,
   report: SolidarityReportResults,
   context: SolidarityRunContext
 ) => {
+  const { tail, pipe, flatten, map } = require('ramda')
+  const skipRule = require('./skipRule')
+  const checkDir = require('./checkDir')
+  const checkFile = require('./checkFile')
+  const checkShell = require('./checkShell')
+  const findPluginInfo = require('./findPluginInfo')
+
   const { print, solidarity } = context
   const { colors, checkmark, xmark } = print
   const prettyBool = async checkingFunction => {

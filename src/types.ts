@@ -57,6 +57,7 @@ export interface SolidarityRunContext extends GluegunRunContext {
   prompt: GluegunPrompt
   template: GluegunTemplate
   meta: GluegunMeta
+  bufferSettings?: SolidaritySettings
 }
 
 export type SnapshotType = (context: SolidarityRunContext) => Promise<void>
@@ -67,26 +68,26 @@ export interface CLIRule {
   semver?: string // updatable
   readonly version?: string
   readonly line?: string | number
-  readonly error?: string
+  error?: string // updatable
   readonly matchIndex?: number
-  readonly platform?: string | string[]
-  readonly ci?: boolean
+  platform?: string | string[]
+  ci?: boolean // updatable
 }
 
 export interface ENVRule {
   readonly rule: 'env'
   readonly variable: string
-  readonly error?: string
-  readonly platform?: string | string[]
-  readonly ci?: boolean
+  error?: string
+  platform?: string | string[]
+  ci?: boolean
 }
 
 export interface FSRule {
   readonly rule: 'dir' | 'directory' | 'file'
   readonly location: string
-  readonly error?: string
-  readonly platform?: string | string[]
-  readonly ci?: boolean
+  error?: string
+  platform?: string | string[]
+  ci?: boolean
 }
 
 /**
@@ -111,24 +112,24 @@ export interface ShellRule {
   /**
    * An optional error message to override.
    */
-  readonly error?: string
+  error?: string
   /**
    * An optional platform or platforms to target.
    */
-  readonly platform?: string | string[]
+  platform?: string | string[]
   /**
    * An optional flag to skip rule on CI
    */
-  readonly ci?: boolean
+  ci?: boolean
 }
 
 export interface CustomRule {
   readonly rule: 'custom'
   readonly plugin: string
   readonly name: string
-  readonly error?: string
-  readonly platform?: string | string[]
-  readonly ci?: boolean
+  error?: string
+  platform?: string | string[]
+  ci?: boolean
 }
 
 // discriminated union for rule sets
@@ -159,7 +160,7 @@ export interface SolidarityConfig {
 
 export interface SolidaritySettings {
   readonly requirements: object
-  readonly config: SolidarityConfig
+  readonly config?: SolidarityConfig
 }
 
 export interface CustomRulesConfig {
