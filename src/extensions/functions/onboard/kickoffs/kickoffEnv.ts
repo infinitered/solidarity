@@ -1,7 +1,7 @@
 import { SolidarityRunContext, SolidarityRule } from '../../../../types'
 
 export default async (context: SolidarityRunContext): Promise<SolidarityRule> => {
-  const { prompt } = context
+  const { print, prompt } = context
   const pickSentence = 'Pick from existing environment vars on this machine'
   const typeSentence = 'Type the name of the environment variable to enforce'
 
@@ -33,8 +33,7 @@ export default async (context: SolidarityRunContext): Promise<SolidarityRule> =>
   if (pickEnv.value === pickSentence || pickEnv.value === typeSentence) {
     throw new Error('No Environment Variable was chosen')
   } else {
-    // Now figure out how to save that stuff to a buffer of rules to write
-    console.log('SELECTED', pickEnv.value)
+    print.success(`Enforcing ENV for ${pickEnv.value}`)
     return { rule: 'env', variable: pickEnv.value }
   }
 }
