@@ -6,7 +6,7 @@ module.exports = async (rule: CLIRule, context: SolidarityRunContext): Promise<s
   // If binary is set but not found
   if (rule.binary) {
     if (Boolean(system.which(rule.binary)) === false) {
-      return `Binary '${rule.binary}' not found`
+      throw new Error(`Binary '${rule.binary}' not found`)
     }
   }
 

@@ -1,6 +1,6 @@
 import { GluegunCommand } from 'gluegun'
 
-import { SolidarityRunContext, SolidaritySettings } from '../types'
+import { SolidarityRunContext } from '../types'
 
 namespace Onboard {
   export const run = async (context: SolidarityRunContext) => {
@@ -11,7 +11,7 @@ namespace Onboard {
       addMore,
       reviewAndSave,
     } = require('../extensions/functions/onboard')
-    const { print, prompt, filesystem } = context
+    const { print, filesystem } = context
 
     // check is there an existing .solidarity file?
     // TODO:  Delete file for them

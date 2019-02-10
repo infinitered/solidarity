@@ -1,4 +1,4 @@
-import { SolidarityRunContext, SolidaritySettings } from '../../../types'
+import { SolidarityRunContext } from '../../../types'
 import Kickoffs from './kickoffs'
 
 // TODO: Make this fancier
