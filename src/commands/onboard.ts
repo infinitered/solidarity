@@ -4,14 +4,20 @@ import { SolidarityRunContext, SolidaritySettings } from '../types'
 
 namespace Onboard {
   export const run = async (context: SolidarityRunContext) => {
-    const { onboardAdd, printWizard, executeAddRule, addMore, reviewAndSave } = require('../extensions/functions/onboard')
+    const {
+      onboardAdd,
+      printWizard,
+      executeAddRule,
+      addMore,
+      reviewAndSave,
+    } = require('../extensions/functions/onboard')
     const { print, prompt, filesystem } = context
 
     // check is there an existing .solidarity file?
     // TODO:  Delete file for them
     // TODO BONUS: Eventually allow live editor to modify .solidarity files
     if (filesystem.exists('.solidarity')) {
-      print.info('There seems to already be a Solidarity file.  If you would like to use onboarding you will need to delete it!')
+      print.info("There seems to already be a Solidarity file.  You're already onboarded")
       /*
       const userAnswer = await prompt.ask({
         name: 'createFile',
@@ -26,9 +32,8 @@ namespace Onboard {
       }
       */
     } else {
-
       context.bufferSettings = {
-        requirements: {}
+        requirements: {},
       }
 
       printWizard(context)
@@ -37,13 +42,12 @@ namespace Onboard {
         // Find out what they wanted
         let answer = await onboardAdd(context)
         // execute their will
-        executeAddRule(context, answer)
+        await executeAddRule(context, answer)
         // more?
         repeat = await addMore(context)
       }
 
       reviewAndSave(context)
-
     }
   }
 }

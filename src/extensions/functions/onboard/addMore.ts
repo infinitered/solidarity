@@ -1,12 +1,9 @@
 import { SolidarityRunContext } from '../../../types'
 // TODO: Make this fancier
 export default async (context: SolidarityRunContext): Promise<boolean> => {
-  // SHORTCUT FOR DEV
-  return false
-
-
+  // return false // Dev speed shortcut
   const { print, prompt } = context
-  print.success('ADD MORE')
+  // print.success('ADD MORE')
   const userAnswer = await prompt.ask({
     name: 'continue',
     type: 'confirm',

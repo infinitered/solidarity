@@ -1,7 +1,7 @@
 import { SolidarityRunContext, SolidarityRule } from '../../../../types'
 
 export default async (context: SolidarityRunContext): Promise<SolidarityRule> => {
-  const { print, prompt } = context
+  const { prompt } = context
   const pickSentence = 'Pick from existing environment vars on this machine'
   const typeSentence = 'Type the name of the environment variable to enforce'
 
@@ -10,10 +10,7 @@ export default async (context: SolidarityRunContext): Promise<SolidarityRule> =>
     type: 'list',
     default: pickSentence,
     message: 'How would you like to pick your environment variable',
-    choices: [
-      pickSentence,
-      typeSentence
-    ]
+    choices: [pickSentence, typeSentence],
   })
 
   let pickEnv
@@ -23,13 +20,13 @@ export default async (context: SolidarityRunContext): Promise<SolidarityRule> =>
       type: 'list',
       message: 'Which environment variable would you like to enforce?',
       default: 'cli',
-      choices: Object.keys(process.env)
+      choices: Object.keys(process.env),
     })
   } else {
     pickEnv = await prompt.ask({
       name: 'value',
       type: 'input',
-      message: 'Which environment variable would you like to enforce?'
+      message: 'Which environment variable would you like to enforce?',
     })
   }
 

@@ -1,20 +1,20 @@
 import { SolidarityRunContext, SolidarityRule } from '../../../../types'
 
 export default async (context: SolidarityRunContext, rule: SolidarityRule): Promise<SolidarityRule> => {
-  const { print, prompt } = context
+  const { prompt } = context
 
   ////////////////// CUSTOM ERROR MESSAGE?
   const customError = await prompt.ask({
     name: 'value',
     type: 'confirm',
-    message: 'Would you like to write a custom error message for if this rule fails to pass?'
+    message: 'Would you like to write a custom error message for if this rule fails to pass?',
   })
 
   if (customError.value) {
     const errorMessage = await prompt.ask({
       name: 'value',
       type: 'input',
-      message: 'Your custom error message'
+      message: 'Your custom error message',
     })
 
     rule.error = errorMessage.value
@@ -24,7 +24,7 @@ export default async (context: SolidarityRunContext, rule: SolidarityRule): Prom
   const platformSpecific = await prompt.ask({
     name: 'value',
     type: 'confirm',
-    message: 'Should this rule only apply on certain operating systems?'
+    message: 'Should this rule only apply on certain operating systems?',
   })
 
   if (platformSpecific.value) {
@@ -32,9 +32,7 @@ export default async (context: SolidarityRunContext, rule: SolidarityRule): Prom
       name: 'value',
       type: 'checkbox',
       message: 'Which operating systems does this rule run for?',
-      choices: [
-        'macos', 'freebsd', 'linux', 'sunos', 'windows'
-      ]
+      choices: ['macos', 'freebsd', 'linux', 'sunos', 'windows'],
     })
     rule.platform = platforms.value
   }
@@ -43,7 +41,7 @@ export default async (context: SolidarityRunContext, rule: SolidarityRule): Prom
   const ciSkip = await prompt.ask({
     name: 'value',
     type: 'confirm',
-    message: 'Should this rule be skipped on a Continuous Integration server?'
+    message: 'Should this rule be skipped on a Continuous Integration server?',
   })
 
   if (ciSkip.value) {
