@@ -38,7 +38,6 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "envinfo": "6.0.1",
-    "fsevents": "1.2.7",
     "gluegun": "3.0.0",
     "json5": "2.1.0",
     "listr": "^0.14.3",
