@@ -2492,9 +2492,10 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gluegun@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-3.0.0.tgz#32e13b89d3975a02c44c54db6b04db329acee6ef"
+gluegun@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/gluegun/-/gluegun-3.0.1.tgz#430f4b9158a892cce85eeba3709fd11eae2baa6f"
+  integrity sha512-CaV3KjLnjILPukGStVAgpaZW3OZPb8zWdFZxB96qA2x1sLIldmWShS/sw6Y6nLXElVEtuuAo16dA4OLtZM//kQ==
   dependencies:
     apisauce "^1.0.1"
     app-module-path "^2.2.0"

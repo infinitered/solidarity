@@ -14,7 +14,7 @@ export default async (context: SolidarityRunContext): Promise<string> => {
     type: 'radio',
     message: 'What kind of rule would you like to add?',
     default: 'cli',
-    choices: ['cli', 'env', 'file', 'dir', 'shell']
+    choices: ['cli', 'env', 'file', 'dir', 'shell'],
   })
 
   return userAnswer.addRule
