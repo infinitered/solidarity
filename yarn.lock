@@ -263,9 +263,10 @@ ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-all-contributors-cli@6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/all-contributors-cli/-/all-contributors-cli-6.1.1.tgz#6c0cc6318d6f5d19c2c4cca35d2306ff25f993d3"
+all-contributors-cli@6.1.2:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/all-contributors-cli/-/all-contributors-cli-6.1.2.tgz#ec45c0629900111f6911fd320de4e669e57c8013"
+  integrity sha512-IfX9BEbcSrn3/tZCpajxc8343Wnz29s9MaiFjN8KREHsDiLv/PLxuCVPSsdZSdS8ajhSM5b+u8kli8Dx6dK6pw==
   dependencies:
     "@babel/runtime" "^7.2.0"
     async "^2.0.0-rc.1"
@@ -274,7 +275,7 @@ all-contributors-cli@6.1.1:
     lodash "^4.11.2"
     pify "^4.0.1"
     request "^2.72.0"
-    yargs "^12.0.5"
+    yargs "^13.1.0"
 
 ansi-align@^2.0.0:
   version "2.0.0"
@@ -1243,16 +1244,17 @@ cosmiconfig@^5.0.1:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
-coveralls@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/coveralls/-/coveralls-3.0.2.tgz#f5a0bcd90ca4e64e088b710fa8dda640aea4884f"
+coveralls@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/coveralls/-/coveralls-3.0.3.tgz#83b1c64aea1c6afa69beaf50b55ac1bc4d13e2b8"
+  integrity sha512-viNfeGlda2zJr8Gj1zqXpDMRjw9uM54p7wzZdvLRyOgnAfCe974Dq4veZkjJdxQXbmdppu6flEajFYseHYaUhg==
   dependencies:
     growl "~> 1.10.0"
     js-yaml "^3.11.0"
     lcov-parse "^0.0.10"
     log-driver "^1.2.7"
     minimist "^1.2.0"
-    request "^2.85.0"
+    request "^2.86.0"
 
 cp-file@^4.1.1:
   version "4.2.0"
@@ -1368,9 +1370,10 @@ danger-plugin-spellcheck@^1.2.3:
   optionalDependencies:
     esdoc "^0.5.2"
 
-danger@7.0.10:
-  version "7.0.10"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-7.0.10.tgz#9df919df4e2eae77608409b0af7958ff11d038be"
+danger@7.0.14:
+  version "7.0.14"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-7.0.14.tgz#c600b463f591a5c8aeac926b6066cf415ecd6e88"
+  integrity sha512-8JoWH5wge25vo0ROSplA+edy2PVk5Ttn7iR7oEq/XwWxp18lHG4B8JuYgMWqp68EcJbJlKxTWQfmANJudmJuiA==
   dependencies:
     "@babel/polyfill" "^7.2.5"
     "@octokit/rest" "^16.14.1"
@@ -1389,6 +1392,7 @@ danger@7.0.10:
     lodash.includes "^4.3.0"
     lodash.isobject "^3.0.2"
     lodash.keys "^4.0.8"
+    lodash.memoize "^4.1.2"
     memfs-or-file-map-to-github-branch "^1.1.0"
     node-cleanup "^2.1.2"
     node-fetch "^2.3.0"
@@ -1801,6 +1805,11 @@ ejs@^2.6.1:
 elegant-spinner@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/elegant-spinner/-/elegant-spinner-1.0.1.tgz#db043521c95d7e303fd8f345bedc3349cfb0729e"
+
+emoji-regex@^7.0.1:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
+  integrity sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA==
 
 encodeurl@~1.0.1, encodeurl@~1.0.2:
   version "1.0.2"
@@ -2390,6 +2399,11 @@ get-amd-module-type@^3.0.0:
 get-caller-file@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
+
+get-caller-file@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.1.tgz#25835260d3a2b9665fcdbb08cb039a7bbf7011c0"
+  integrity sha512-SpOZHfz845AH0wJYVuZk2jWDqFmu7Xubsx+ldIpwzy5pDUpu7OJHK7QYNSA2NPlDSKQwM1GFaAkciOWjjW92Sg==
 
 get-own-enumerable-property-symbols@^3.0.0:
   version "3.0.0"
@@ -3971,6 +3985,11 @@ lodash.map@^4.4.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.map/-/lodash.map-4.6.0.tgz#771ec7839e3473d9c4cde28b19394c3562f4f6d3"
 
+lodash.memoize@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
+  integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
+
 lodash.merge@^4.4.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
@@ -4119,9 +4138,10 @@ macos-release@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/macos-release/-/macos-release-2.0.0.tgz#7dddf4caf79001a851eb4fba7fb6034f251276ab"
 
-madge@3.4.3:
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/madge/-/madge-3.4.3.tgz#66bbde7b94dc6bedbc32e073f9f320d067832fb1"
+madge@3.4.4:
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/madge/-/madge-3.4.4.tgz#f0b254a78f6e0fb54bb8dfe5ffdee3caee280b3d"
+  integrity sha512-ywk2Zca1Qn3FMH4btNcJN9q3z2+AZhJeUCzUMbUwSL/xmevCC4CzBQNF6i22V1SJ8cbXLKrXrJ6k0QQPtd9/KQ==
   dependencies:
     chalk "^2.4.1"
     commander "^2.15.1"
@@ -4793,7 +4813,7 @@ os-locale@^2.0.0:
     lcid "^1.0.0"
     mem "^1.1.0"
 
-os-locale@^3.0.0:
+os-locale@^3.0.0, os-locale@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/os-locale/-/os-locale-3.1.0.tgz#a802a6ee17f24c10483ab9935719cef4ed16bf1a"
   dependencies:
@@ -5437,7 +5457,7 @@ request@2.42.0:
     stringstream "~0.0.4"
     tough-cookie ">=0.12.0"
 
-request@^2.55.0, request@^2.72.0, request@^2.85.0, request@^2.87.0:
+request@^2.55.0, request@^2.72.0, request@^2.86.0, request@^2.87.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   dependencies:
@@ -5473,6 +5493,11 @@ require-from-string@^2.0.2:
 require-main-filename@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
+
+require-main-filename@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-2.0.0.tgz#d0b329ecc7cc0f61649f62215be69af54aa8989b"
+  integrity sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==
 
 requirejs-config-file@^3.1.1:
   version "3.1.1"
@@ -5956,6 +5981,15 @@ string-width@^1.0.1, string-width@^1.0.2:
   dependencies:
     is-fullwidth-code-point "^2.0.0"
     strip-ansi "^4.0.0"
+
+string-width@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/string-width/-/string-width-3.0.0.tgz#5a1690a57cc78211fffd9bf24bbe24d090604eb1"
+  integrity sha512-rr8CUxBbvOZDUvc5lNIJ+OC1nPVpz+Siw9VBtUjB9b6jZehZLFt0JMCZzShFHIsI8cbhm0EsNIfWJMFV3cu3Ew==
+  dependencies:
+    emoji-regex "^7.0.1"
+    is-fullwidth-code-point "^2.0.0"
+    strip-ansi "^5.0.0"
 
 string_decoder@^1.1.1:
   version "1.2.0"
@@ -6738,7 +6772,7 @@ y18n@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
 
-"y18n@^3.2.1 || ^4.0.0":
+"y18n@^3.2.1 || ^4.0.0", y18n@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/y18n/-/y18n-4.0.0.tgz#95ef94f85ecc81d007c264e190a120f0a3c8566b"
 
@@ -6774,6 +6808,14 @@ yargs-parser@^11.1.1:
 yargs-parser@^12.0.0:
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-12.0.0.tgz#18aa348854747dfe1002d01bd87d65df10d40a84"
+  dependencies:
+    camelcase "^5.0.0"
+    decamelize "^1.2.0"
+
+yargs-parser@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-13.0.0.tgz#3fc44f3e76a8bdb1cc3602e860108602e5ccde8b"
+  integrity sha512-w2LXjoL8oRdRQN+hOyppuXs+V/fVAYtpcrRxZuF7Kt/Oc+Jr2uAcVntaUTNT6w5ihoWfFDpNY8CPx1QskxZ/pw==
   dependencies:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
@@ -6830,7 +6872,7 @@ yargs@^11.0.0:
     y18n "^3.2.1"
     yargs-parser "^9.0.2"
 
-yargs@^12.0.2, yargs@^12.0.5:
+yargs@^12.0.2:
   version "12.0.5"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.5.tgz#05f5997b609647b64f66b81e3b4b10a368e7ad13"
   dependencies:
@@ -6846,6 +6888,23 @@ yargs@^12.0.2, yargs@^12.0.5:
     which-module "^2.0.0"
     y18n "^3.2.1 || ^4.0.0"
     yargs-parser "^11.1.1"
+
+yargs@^13.1.0:
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-13.2.1.tgz#c8888bcf24424bd4e5a834348366f6fcc37bb8d9"
+  integrity sha512-HgY0xHGmPPakg6kEDufqxZuXVtvPZcipORC8O7S44iEnwsUmP+qnhReHc6d1dyeIZkrPmYFblh45Z2oeDn++fQ==
+  dependencies:
+    cliui "^4.0.0"
+    find-up "^3.0.0"
+    get-caller-file "^2.0.1"
+    os-locale "^3.1.0"
+    require-directory "^2.1.1"
+    require-main-filename "^2.0.0"
+    set-blocking "^2.0.0"
+    string-width "^3.0.0"
+    which-module "^2.0.0"
+    y18n "^4.0.0"
+    yargs-parser "^13.0.0"
 
 yargs@^7.0.2:
   version "7.1.0"
