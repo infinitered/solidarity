@@ -169,6 +169,7 @@
 "@types/jest@24.0.0":
   version "24.0.0"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.0.tgz#848492026c327b3548d92be0352a545c36a21e8a"
+  integrity sha512-kOafJnUTnMd7/OfEO/x3I47EHswNjn+dbz9qk3mtonr1RvKT+1FGVxnxAx08I9K8Tl7j9hpoJRE7OCf+t10fng==
 
 "@types/json5@0.0.30":
   version "0.0.30"
@@ -185,14 +186,17 @@
 "@types/node@10.12.24":
   version "10.12.24"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.24.tgz#b13564af612a22a20b5d95ca40f1bffb3af315cf"
+  integrity sha512-GWWbvt+z9G5otRBW8rssOFgRY87J9N/qbhqfjMZ+gUuL6zoL+Hm6gP/8qQBG4jjimqdaNLCehcVapZ/Fs2WjCQ==
 
-"@types/prettier@1.16.0":
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.16.0.tgz#ee6190019ed78c41a22c3d8a2e7ebc4015e2e022"
+"@types/prettier@1.16.1":
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.16.1.tgz#328d1c9b54402e44119398bcb6a31b7bbd606d59"
+  integrity sha512-db6pZL5QY3JrlCHBhYQzYDci0xnoDuxfseUuguLRr3JNk+bnCfpkK6p8quiUDyO8A0vbpBKkk59Fw125etrNeA==
 
-"@types/ramda@0.25.48":
-  version "0.25.48"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.48.tgz#775fc56ae469394146edfff5996b201851bc39b6"
+"@types/ramda@0.25.51":
+  version "0.25.51"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.51.tgz#d5421d0e190c56c64c112a761a85782fc971409d"
+  integrity sha512-xcmtfHIgF9SYjhGdsZR1nQslxG4hu0cIpFfLQ4CWdw3KzHvl7ki1AzFLQUkbDTG42ZN3ZsQfdRzXRlkAvbIy5Q==
 
 "@types/tempy@0.2.0":
   version "0.2.0"
