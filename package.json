@@ -43,7 +43,8 @@
     "json5": "2.1.0",
     "listr": "^0.14.3",
     "minimist": "^1.2.0",
-    "ramda": "0.26.1"
+    "ramda": "0.26.1",
+    "resolve-dir": "^1.0.1"
   },
   "devDependencies": {
     "@types/callsite": "^1.0.30",
