@@ -7,11 +7,11 @@ export default async (context: SolidarityRunContext): Promise<SolidarityRule> =>
   let repeat = true
   let dirPath = { value: '' }
   while (repeat) {
-    dirPath = (await prompt.ask({
+    dirPath = await prompt.ask({
       name: 'value',
       type: 'input',
       message: "Enter the path to the directory you'd like to enforce",
-    })) as any
+    })
 
     try {
       // Check dir for existence
