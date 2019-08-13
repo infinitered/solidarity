@@ -10,5 +10,5 @@ export default async (context: SolidarityRunContext): Promise<boolean> => {
     message: 'Would you like to add another rule?',
   })
 
-  return userAnswer.continue
+  return Boolean(userAnswer.continue)
 }
