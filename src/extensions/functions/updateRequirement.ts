@@ -76,7 +76,7 @@ module.exports = async (
   return Promise.all(ruleChecks)
     .then(results => {
       spinner.stop()
-      return results
+      return results as object[]
     })
     .catch(err => print.error(err))
 }
