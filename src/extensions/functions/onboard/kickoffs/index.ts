@@ -11,5 +11,5 @@ export default {
   kickoffShell,
   kickoffFile,
   kickoffDir,
-  kickoffAllRules
+  kickoffAllRules,
 }

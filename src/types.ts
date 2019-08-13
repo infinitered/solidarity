@@ -15,6 +15,7 @@ export const solidarity = {
   binaryExists: require('./extensions/functions/binaryExists'),
   getSolidaritySettings: require('./extensions/functions/getSolidaritySettings'),
   setSolidaritySettings: require('./extensions/functions/setSolidaritySettings'),
+  setOutputMode: require('./extensions/functions/setOutputMode'),
   checkRequirement: require('./extensions/functions/checkRequirement'),
   updateRequirement: require('./extensions/functions/updateRequirement'),
   skipRule: require('./extensions/functions/skipRule'),
@@ -72,6 +73,7 @@ export interface CLIRule {
   readonly matchIndex?: number
   platform?: string | string[]
   ci?: boolean // updatable
+  fix?: string
 }
 
 export interface ENVRule {
@@ -80,6 +82,7 @@ export interface ENVRule {
   error?: string
   platform?: string | string[]
   ci?: boolean
+  fix?: string
 }
 
 export interface FSRule {
@@ -88,6 +91,7 @@ export interface FSRule {
   error?: string
   platform?: string | string[]
   ci?: boolean
+  fix?: string
 }
 
 /**
@@ -121,6 +125,7 @@ export interface ShellRule {
    * An optional flag to skip rule on CI
    */
   ci?: boolean
+  fix?: string
 }
 
 export interface CustomRule {
@@ -130,10 +135,13 @@ export interface CustomRule {
   error?: string
   platform?: string | string[]
   ci?: boolean
+  fix?: string
 }
 
 // discriminated union for rule sets
 export type SolidarityRule = CLIRule | ENVRule | FSRule | ShellRule | CustomRule
+
+export type SolidarityChecker = (SolidarityRule, SolidarityRunContext) => any
 
 export interface PluginFind {
   success: boolean

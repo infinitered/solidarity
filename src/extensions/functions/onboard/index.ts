@@ -8,5 +8,5 @@ module.exports = {
   printWizard,
   addMore,
   executeAddRule,
-  reviewAndSave
+  reviewAndSave,
 }
