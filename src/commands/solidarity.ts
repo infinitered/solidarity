@@ -27,7 +27,7 @@ namespace Solidarity {
     // drop out fast in these situations
     await checkForEscapeHatchFlags(context)
 
-    const { print, solidarity } = context
+    const { parameters, print, solidarity } = context
     const { checkRequirement, getSolidaritySettings, setOutputMode } = solidarity
 
     // get settings or error
@@ -61,7 +61,7 @@ namespace Solidarity {
     const checks = new Listr(
       await toPairs(solidaritySettings.requirements).map((requirement: SolidarityRequirementChunk) => ({
         title: requirement[0],
-        task: async () => checkRequirement(requirement, context),
+        task: async () => checkRequirement(requirement, context, Boolean(parameters.options.fix)),
       })),
       listrSettings
     )
