@@ -123,15 +123,15 @@ describe('checkRequirement', () => {
       expect(result).toEqual('It worked!')
     })
 
-    // test('sad path', async () => {
-    //   checkDir.mockImplementation(() => throw new Error('Nope'))
+    test('sad path', async () => {
+      checkDir.mockImplementation(() => { throw new Error('Nope') })
 
-    //   const rule = toPairs({
-    //     YARN: [{ rule: 'dir', location: 'yarn' }],
-    //   })[0]
-    //   const listrTask = await checkRequirement(rule, context)
-    //   await expect(listrTask.storedInit[0].task()).rejects.toThrow()
-    // })
+      const rule = toPairs({
+        YARN: [{ rule: 'dir', location: 'yarn' }],
+      })[0]
+      const listrTask = await checkRequirement(rule, context)
+      await expect(listrTask.storedInit[0].task()).rejects.toThrow()
+    })
   })
 
   describe('when rule: env', () => {
@@ -150,16 +150,16 @@ describe('checkRequirement', () => {
       expect(runResult).toEqual(false)
     })
 
-    // test('sad path', async () => {
-    //   checkENV.mockImplementation(async () => undefined)
+    test('sad path', async () => {
+      checkENV.mockImplementation(async () => undefined)
 
-    //   const rule = toPairs({
-    //     YARN: [{ rule: 'env', variable: 'yarn' }],
-    //   })[0]
-    //   const listrTask = await checkRequirement(rule, context)
-    //   const result = await listrTask.storedInit[0].task()
-    //   expect(result).toEqual(undefined)
-    // })
+      const rule = toPairs({
+        YARN: [{ rule: 'env', variable: 'yarn' }],
+      })[0]
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(undefined)
+    })
   })
 
   describe('when rule: file', () => {
