@@ -48,6 +48,7 @@ describe('checkRequirement', () => {
     }
     context.strings = strings
     context.system = {
+      run: jest.fn().mockResolvedValue(true),
       spawn: jest.fn().mockReturnValue(
         Promise.resolve({
           stdout: 'you did it!',
@@ -59,6 +60,33 @@ describe('checkRequirement', () => {
 
   test('when an invalid rule is given', async () => {
     await expect(checkRequirement(badRule, context)).rejects.toThrow()
+  })
+
+  describe('when fix option is passed', () => {
+    beforeEach(() => checkCLI.mockClear())
+
+    test('when a fix should be applied', async () => {
+      checkCLI.mockImplementation(async () => { throw new Error('Binary \'yarn\' not found') })
+
+      const rule = toPairs({
+        YARN: [{ rule: 'cli', binary: 'yarn', fix: 'brew install yarn' }],
+      })[0]
+      const listrTask = await checkRequirement(rule, context, true)
+      await expect(listrTask.storedInit[0].task()).rejects.toThrow()
+      expect(context.system.run).toHaveBeenCalledWith('brew install yarn')
+    })
+
+    test('when a fix should not be applied', async () => {
+      checkCLI.mockImplementation(async () => false)
+
+      const rule = toPairs({
+        YARN: [{ rule: 'cli', binary: 'yarn', fix: 'brew install yarn' }],
+      })[0]
+      const listrTask = await checkRequirement(rule, context, true)
+      await listrTask.storedInit[0].task()
+
+      expect(context.system.run).not.toHaveBeenCalled()
+    })
   })
 
   describe('when rule: cli', () => {
@@ -188,60 +216,60 @@ describe('checkRequirement', () => {
     // })
   })
 
-  // describe('when rule fails with custom error messages', () => {
-  //   const customError = 'customError'
+  describe('when rule fails with custom error messages', () => {
+    const customError = 'customError'
 
-  //   test('failed CLI rule with custom message', async () => {
-  //     checkCLI.mockClear()
-  //     checkCLI.mockImplementation(() => customError)
-  //     const rule = toPairs({
-  //       YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }],
-  //     })[0]
+    test('failed CLI rule with custom message', async () => {
+      checkCLI.mockClear()
+      checkCLI.mockImplementation(() => customError)
+      const rule = toPairs({
+        YARN: [{ rule: 'cli', binary: 'gazorpazorp', error: customError }],
+      })[0]
 
-  //     const listrTask = await checkRequirement(rule, context)
-  //     const result = await listrTask.storedInit[0].task()
-  //     expect(result).toEqual(customError)
-  //   })
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(customError)
+    })
 
-  //   test('failed ENV rule with custom message', async () => {
-  //     checkCLI.mockClear()
-  //     checkCLI.mockImplementation(() => true)
-  //     const rule = toPairs({
-  //       BADENV: [{ rule: 'env', variable: 'gazorpazorp', error: customError }],
-  //     })[0]
+    test('failed ENV rule with custom message', async () => {
+      checkCLI.mockClear()
+      checkCLI.mockImplementation(() => true)
+      const rule = toPairs({
+        BADENV: [{ rule: 'env', variable: 'gazorpazorp', error: customError }],
+      })[0]
 
-  //     const listrTask = await checkRequirement(rule, context)
-  //     const result = await listrTask.storedInit[0].task()
-  //     expect(result).toEqual(undefined)
-  //   })
+      const listrTask = await checkRequirement(rule, context)
+      const result = await listrTask.storedInit[0].task()
+      expect(result).toEqual(undefined)
+    })
 
-  //   test('failed DIR rule with custom message', async () => {
-  //     const rule = toPairs({
-  //       YARN: [{ rule: 'dir', location: 'gazorpazorp', error: customError }],
-  //     })[0]
+    // test('failed DIR rule with custom message', async () => {
+    //   const rule = toPairs({
+    //     YARN: [{ rule: 'dir', location: 'gazorpazorp', error: customError }],
+    //   })[0]
 
-  //     const listrTask = await checkRequirement(rule, context)
-  //     const result = await listrTask.storedInit[0].task()
-  //     expect(result).toEqual(false)
-  //   })
+    //   const listrTask = await checkRequirement(rule, context)
+    //   const result = await listrTask.storedInit[0].task()
+    //   expect(result).toEqual(false)
+    // })
 
-  // test('failed FILE rule with custom message', async () => {
-  //   const rule = toPairs({
-  //     YARN: [{ rule: 'file', location: 'gazorpazorp', error: customError }],
-  //   })[0]
+    // test('failed FILE rule with custom message', async () => {
+    //   const rule = toPairs({
+    //     YARN: [{ rule: 'file', location: 'gazorpazorp', error: customError }],
+    //   })[0]
 
-  //   const listrTask = await checkRequirement(rule, context)
-  //   const result = await listrTask.storedInit[0].task()
-  //   expect(result).toEqual(undefined)
-  // })
+    //   const listrTask = await checkRequirement(rule, context)
+    //   const result = await listrTask.storedInit[0].task()
+    //   expect(result).toEqual(undefined)
+    // })
 
-  // test('failed SHELL rule with custom message', async () => {
-  //   const rule = toPairs({
-  //     YARN: [{ rule: 'shell', match: 'hello', command: 'mocked', error: customError }],
-  //   })[0]
-  //   const listrTask = await checkRequirement(rule, context)
-  //   const result = await listrTask.storedInit[0].task()
-  //   expect(result).toEqual(customError)
-  // })
-  // })
+    // test('failed SHELL rule with custom message', async () => {
+    //   const rule = toPairs({
+    //     YARN: [{ rule: 'shell', match: 'hello', command: 'mocked', error: customError }],
+    //   })[0]
+    //   const listrTask = await checkRequirement(rule, context)
+    //   const result = await listrTask.storedInit[0].task()
+    //   expect(result).toEqual(customError)
+    // })
+  })
 })
