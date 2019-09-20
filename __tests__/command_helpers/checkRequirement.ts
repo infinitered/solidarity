@@ -66,18 +66,24 @@ describe('checkRequirement', () => {
     beforeEach(() => checkCLI.mockClear())
 
     test('when no fix is provided', async () => {
-      checkCLI.mockImplementation(async () => { throw new Error('Binary \'yarn\' not found') })
+      checkCLI.mockImplementation(async () => {
+        throw new Error("Binary 'yarn' not found")
+      })
 
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'yarn' }],
       })[0]
       const listrTask = await checkRequirement(rule, context, true)
 
-      await expect(listrTask.storedInit[0].task()).rejects.toThrow(new Error('no fix found'))
+      await expect(listrTask.storedInit[0].task()).rejects.toThrow(
+        new Error('No fix script provided in .solidarity file')
+      )
     })
 
     test('when a fix should be applied', async () => {
-      checkCLI.mockImplementation(async () => { throw new Error('Binary \'yarn\' not found') })
+      checkCLI.mockImplementation(async () => {
+        throw new Error("Binary 'yarn' not found")
+      })
 
       const rule = toPairs({
         YARN: [{ rule: 'cli', binary: 'yarn', fix: 'brew install yarn' }],
@@ -164,7 +170,9 @@ describe('checkRequirement', () => {
     })
 
     test('sad path', async () => {
-      checkDir.mockImplementation(() => { throw new Error('Nope') })
+      checkDir.mockImplementation(() => {
+        throw new Error('Nope')
+      })
 
       const rule = toPairs({
         YARN: [{ rule: 'dir', location: 'yarn' }],

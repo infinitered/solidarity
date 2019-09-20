@@ -1,7 +1,6 @@
 import { GluegunCommand } from 'gluegun'
 import { SolidarityOutputMode, SolidarityRequirementChunk, SolidarityRunContext } from '../types'
-// Have to do this for tests rather than import
-const Listr = require('listr')
+import Listr from 'listr'
 
 module.exports = {
   alias: 'f',
@@ -45,8 +44,9 @@ module.exports = {
     const checks = new Listr(
       await toPairs(solidaritySettings.requirements).map((requirement: SolidarityRequirementChunk) => ({
         title: requirement[0],
-        task: async () => checkRequirement(requirement, context, true)
-      })), listrSettings
+        task: async () => checkRequirement(requirement, context, true),
+      })),
+      listrSettings
     )
 
     // run the array of promises in Listr
