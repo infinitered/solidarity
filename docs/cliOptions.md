@@ -21,6 +21,7 @@ Solidarity
   --solidarityFile	 (-f) Use given path to solidarity file for settings
   --module		 (-d) Search for a solidarity file in the given npm package
   --stack		 (-t) Use a known technology stack, and not the local file
+  --fix		     Apply fixes to failing rules if fix is available on rule
 
 Solidarity is open source - https://github.com/infinitered/solidarity
 If you need additional help, join our Slack at http://community.infinite.red
@@ -53,3 +54,6 @@ Passing `--stack` or `-t` flags will make our stack look to GitHub for a well kn
 > For example: `solidarity --stack react-native` will check our machine if we are ready to run React Native projects, but not a specific React Native project.
 
 Stacks are community managed and found here: https://github.com/infinitered/solidarity-stacks
+
+## fix
+Passing `--fix` flag will run fix scripts on any failing rules providing them.

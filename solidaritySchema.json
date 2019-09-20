@@ -50,7 +50,8 @@
         "matchIndex": { "type": "integer" },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string"},
-        "ci": { "type": "boolean" }
+        "ci": { "type": "boolean" },
+        "fix": { "type": "string"}
       },
       "required": ["rule", "binary"]
     },
@@ -61,7 +62,8 @@
         "rule": { "enum": [ "dir", "directory" ] },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string"},
-        "ci": { "type": "boolean" }
+        "ci": { "type": "boolean" },
+        "fix": { "type": "string"}
       },
       "required": ["rule", "location"]
     },
@@ -72,7 +74,8 @@
         "rule": { "enum": [ "file" ] },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string"},
-        "ci": { "type": "boolean" }
+        "ci": { "type": "boolean" },
+        "fix": { "type": "string"}
       },
       "required": ["rule", "location"]
     },
@@ -83,7 +86,8 @@
         "rule": { "enum": [ "env" ] },
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string"},
-        "ci": { "type": "boolean" }
+        "ci": { "type": "boolean" },
+        "fix": { "type": "string"}
       },
       "required": ["rule", "variable"]
     },
@@ -95,7 +99,8 @@
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string" },
         "ci": { "type": "boolean" },
-        "match": { "type": "string", "description": "A regexp to search the output." }
+        "match": { "type": "string", "description": "A regexp to search the output." },
+        "fix": { "type": "string"}
       },
       "required": ["rule", "match"]
     },
@@ -110,7 +115,8 @@
         "platform": { "enum": ["darwin", "macos", "freebsd", "linux", "sunos", "win32", "windows"] },
         "error": { "type": "string" },
         "ci": { "type": "boolean" },
-        "match": { "type": "string", "description": "A regexp to search the output." }
+        "match": { "type": "string", "description": "A regexp to search the output." },
+        "fix": { "type": "string"}
       },
       "required": ["rule", "plugin", "name"]
     }

@@ -1,33 +1,16 @@
 import { GluegunCommand } from 'gluegun'
-import { SolidarityRequirementChunk, SolidarityOutputMode, SolidarityRunContext } from '../types'
-// Have to do this for tests rather than import
-const Listr = require('listr')
+import { SolidarityOutputMode, SolidarityRequirementChunk, SolidarityRunContext } from '../types'
+import Listr from 'listr'
 
-namespace Solidarity {
-  const { toPairs } = require('ramda')
-
-  const checkForEscapeHatchFlags = async (context: SolidarityRunContext) => {
-    const { print, parameters } = context
-    const { options } = parameters
-    if (!options) return
-    if (options.help || options.h) {
-      // Just looking for help
-      print.printCommands(context)
-      process.exit(0)
-    } else if (options.version || options.v) {
-      // Just looking for version
-      print.info(require('../../package.json').version)
-      process.exit(0)
-    }
-  }
-
-  export const run = async (context: SolidarityRunContext) => {
+module.exports = {
+  alias: 'f',
+  description: 'Applies all specified fixes for rules',
+  run: async (context: SolidarityRunContext) => {
     // Node Modules Quirk
     require('../extensions/functions/quirksNodeModules')
-    // drop out fast in these situations
-    await checkForEscapeHatchFlags(context)
 
-    const { parameters, print, solidarity } = context
+    const { toPairs } = require('ramda')
+    const { print, solidarity } = context
     const { checkRequirement, getSolidaritySettings, setOutputMode } = solidarity
 
     // get settings or error
@@ -61,7 +44,7 @@ namespace Solidarity {
     const checks = new Listr(
       await toPairs(solidaritySettings.requirements).map((requirement: SolidarityRequirementChunk) => ({
         title: requirement[0],
-        task: async () => checkRequirement(requirement, context, Boolean(parameters.options.fix)),
+        task: async () => checkRequirement(requirement, context, true),
       })),
       listrSettings
     )
@@ -81,11 +64,5 @@ namespace Solidarity {
         if (!silentOutput) print.error('Solidarity checks failed')
         process.exit(2)
       })
-  }
-}
-
-// Export command
-module.exports = {
-  description: 'Check environment against solidarity rules',
-  run: Solidarity.run,
+  },
 } as GluegunCommand

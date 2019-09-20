@@ -4,6 +4,7 @@ import { SolidarityOutputMode } from '../../src/types'
 const noConfigSolidarity = {
   checkRequirement: jest.fn(),
   getSolidaritySettings: jest.fn(() => ({})),
+  setOutputMode: require('../../src/extensions/functions/setOutputMode'), // don't mock setOutputMode
 }
 
 const verboseConfigSolidarity = {

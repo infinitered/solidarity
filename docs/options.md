@@ -144,3 +144,19 @@ _e.g._ Rule only performs a check on Mac and Linux
     }
   ]
 ```
+
+### Rule Fixes
+
+Many times rules can be fixed in an automated manor. You can supply a script by passing the `"fix"` property on any rule. The fix will only be ran if the `--fix` flag is passed and only against failing rules. Any script errors will surface should it fail.
+
+_e.g._ Rule provides fix to install yarn if not found (only ran if passing `--fix` option)
+
+```json
+  "Yarn": [
+    {
+      "rule": "cli",
+      "binary": "yarn",
+      "fix": "brew install yarn"
+    }
+  ]
+```
