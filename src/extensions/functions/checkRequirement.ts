@@ -1,8 +1,14 @@
-import { SolidarityRule, SolidarityRequirementChunk, SolidarityRequirement, SolidarityRunContext, SolidarityChecker } from '../../types'
+import {
+  SolidarityRule,
+  SolidarityRequirementChunk,
+  SolidarityRequirement,
+  SolidarityRunContext,
+  SolidarityChecker,
+} from '../../types'
 module.exports = async (
   requirement: SolidarityRequirementChunk,
   context: SolidarityRunContext,
-  shouldRunFix = false,
+  shouldRunFix = false
 ): Promise<void | object[]> => {
   const checkCLI = require('./checkCLI')
   const checkENV = require('./checkENV')
@@ -33,7 +39,7 @@ module.exports = async (
         await context.system.run(rule.fix)
         return checker(rule, context)
       } else {
-        throw new Error('no fix found')
+        throw new Error('No fix script provided in .solidarity file')
       }
     }
   }
