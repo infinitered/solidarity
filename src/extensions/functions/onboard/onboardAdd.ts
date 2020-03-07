@@ -13,7 +13,6 @@ export default async (context: SolidarityRunContext): Promise<string> => {
     name: 'addRule',
     type: 'radio',
     message: 'What kind of rule would you like to add?',
-    default: 'cli',
     choices: ['cli', 'env', 'file', 'dir', 'shell'],
   })
 

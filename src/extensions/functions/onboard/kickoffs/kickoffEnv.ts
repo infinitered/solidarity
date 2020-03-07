@@ -8,7 +8,6 @@ export default async (context: SolidarityRunContext): Promise<SolidarityRule> =>
   const envStyle = await prompt.ask({
     name: 'value',
     type: 'list',
-    default: pickSentence,
     message: 'How would you like to pick your environment variable',
     choices: [pickSentence, typeSentence],
   })
@@ -19,7 +18,6 @@ export default async (context: SolidarityRunContext): Promise<SolidarityRule> =>
       name: 'value',
       type: 'list',
       message: 'Which environment variable would you like to enforce?',
-      default: 'cli',
       choices: Object.keys(process.env),
     })
   } else {

@@ -1,5 +1,9 @@
 module.exports = async context => {
-  let files = [['.gitignore.ejs', '.gitignore'], ['README.md.ejs', 'README.md'], ['package.json.ejs', 'package.json']]
+  let files = [
+    ['.gitignore.ejs', '.gitignore'],
+    ['README.md.ejs', 'README.md'],
+    ['package.json.ejs', 'package.json'],
+  ]
   const { print, template, prompt } = context
   const { colors } = print
 

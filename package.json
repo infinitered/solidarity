@@ -52,7 +52,7 @@
     "@types/json5": "0.0.30",
     "@types/listr": "^0.14.2",
     "@types/minimist": "^1.2.0",
-    "@types/node": "13.7.7",
+    "@types/node": "12.6.6",
     "@types/prettier": "1.19.0",
     "@types/ramda": "0.26.43",
     "@types/tempy": "0.3.0",

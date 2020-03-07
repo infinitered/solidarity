@@ -12,10 +12,7 @@ module.exports = async (
 
   const { print } = context
   const requirementName = head(requirement)
-  const rules = pipe(
-    tail,
-    flatten
-  )(requirement)
+  const rules = pipe(tail, flatten)(requirement)
 
   let ruleString = ''
   const spinner = print.spin(`Updating ${requirementName}`)

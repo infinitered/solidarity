@@ -24,10 +24,7 @@ module.exports = async (
   const { head, tail, pipe, flatten } = require('ramda')
 
   const requirementName: string = head(requirement)
-  const rules: SolidarityRequirement = pipe(
-    tail,
-    flatten
-  )(requirement)
+  const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
 
   const taskWithFix = (checker: SolidarityChecker, rule: SolidarityRule, context: SolidarityRunContext) => async () => {
     if (!shouldRunFix) return checker(rule, context)
