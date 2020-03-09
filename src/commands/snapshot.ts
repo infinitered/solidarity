@@ -35,19 +35,24 @@ namespace Snapshot {
       const answer = await context.prompt.ask({
         name: 'selectedPlugin',
         message: 'Which of the above technology snapshots will you use for this project?',
-        type: 'list',
+        type: 'select',
         choices: pluginOptions,
       })
 
       if (answer.selectedPlugin === FriendlyMessages.NONE) {
         print.info(FriendlyMessages.NOTHING)
+        print.info('If you don\'t wish to use a plugin, try creating your own rules with `solidarity onboard`')
       } else {
         const pluginSpinner = print.spin(`Running ${answer.selectedPlugin} Snapshot`)
         // Config for selected plugin only
         const runPlugin = head(filter(propEq('name', answer.selectedPlugin), pluginsWithTemplates))
-        // run plugin
-        await runPluginSnapshot(runPlugin, context)
-        pluginSpinner.succeed('Snapshot complete')
+        if (runPlugin) {
+          // run plugin
+          await runPluginSnapshot(runPlugin, context)
+          pluginSpinner.succeed('Snapshot complete')
+        } else {
+          pluginSpinner.error('Couldn\'t find plugin')
+        }
       }
     } else {
       print.error(`No solidarity plugins found!
