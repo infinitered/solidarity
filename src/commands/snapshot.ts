@@ -51,7 +51,7 @@ namespace Snapshot {
           await runPluginSnapshot(runPlugin, context)
           pluginSpinner.succeed('Snapshot complete')
         } else {
-          pluginSpinner.error('Couldn\'t find plugin')
+          pluginSpinner.fail('Couldn\'t find plugin')
         }
       }
     } else {
