@@ -32,4 +32,5 @@ export default async (context: SolidarityRunContext, answer: string): Promise<vo
   // Now ask questions for ALL rules
   rule = await Kickoffs.kickoffAllRules(context, rule)
   // Now add rule to requirement
+  // TODO: Actually implement this?
 }
