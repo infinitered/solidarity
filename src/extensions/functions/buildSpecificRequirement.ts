@@ -54,7 +54,7 @@ namespace buildSpecificRequirement {
       const answer = await prompt.ask({
         name: 'selectedRequirement',
         message: 'Which of the above technology snapshots will you use for this project?',
-        type: 'selet',
+        type: 'select',
         choices: requirementOptions,
       })
       requirementName = answer.selectedRequirement
