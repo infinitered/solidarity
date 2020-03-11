@@ -8,7 +8,6 @@ export default async (context: SolidarityRunContext, answer: string): Promise<vo
   let rule
   switch (answer) {
     case 'cli':
-      print.info('Kickoff CLI')
       rule = await Kickoffs.kickoffCLI(context)
       break
     case 'env':
@@ -21,7 +20,6 @@ export default async (context: SolidarityRunContext, answer: string): Promise<vo
       rule = await Kickoffs.kickoffDir(context)
       break
     case 'shell':
-      print.info('Kickoff SHELL')
       rule = await Kickoffs.kickoffShell(context)
       break
     default:
@@ -32,5 +30,5 @@ export default async (context: SolidarityRunContext, answer: string): Promise<vo
   // Now ask questions for ALL rules
   rule = await Kickoffs.kickoffAllRules(context, rule)
   // Now add rule to requirement
-  // TODO: Actually implement this?
+  return rule
 }

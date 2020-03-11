@@ -41,7 +41,7 @@ namespace Snapshot {
 
       if (answer.selectedPlugin === FriendlyMessages.NONE) {
         print.info(FriendlyMessages.NOTHING)
-        print.info('If you don\'t wish to use a plugin, try creating your own rules with `solidarity onboard`')
+        print.info("If you don't wish to use a plugin, try creating your own rules with `solidarity onboard`")
       } else {
         const pluginSpinner = print.spin(`Running ${answer.selectedPlugin} Snapshot`)
         // Config for selected plugin only
@@ -51,7 +51,7 @@ namespace Snapshot {
           await runPluginSnapshot(runPlugin, context)
           pluginSpinner.succeed('Snapshot complete')
         } else {
-          pluginSpinner.fail('Couldn\'t find plugin')
+          pluginSpinner.fail("Couldn't find plugin")
         }
       }
     } else {
