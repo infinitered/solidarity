@@ -27,7 +27,7 @@ module.exports = async context => {
     'Template + optional rules',
   ]
   const answer = await prompt.ask({
-    type: 'list',
+    type: 'select',
     name: 'ruleChoice',
     message: 'Your initial rule file template?',
     choices: ruleChoices,

@@ -30,7 +30,7 @@ export default async (context: SolidarityRunContext, rule: SolidarityRule): Prom
   if (platformSpecific.value) {
     const platforms = await prompt.ask({
       name: 'value',
-      type: 'checkbox',
+      type: 'multiselect',
       message: 'Which operating systems does this rule run for?',
       choices: ['macos', 'freebsd', 'linux', 'sunos', 'windows'],
     })
