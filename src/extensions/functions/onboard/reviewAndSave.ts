@@ -1,7 +1,7 @@
 import { SolidarityRunContext, SolidarityRule } from '../../../types'
 // TODO: Make this fancier
 export default (context: SolidarityRunContext, rules: Array<SolidarityRule>): void => {
-  const { print, solidarity: { setSolidaritySettings} } = context
+  const { print, solidarity: { setSolidaritySettings } } = context
 
   setSolidaritySettings({ requirements: rules }, context)
   print.success('Review and Save')
