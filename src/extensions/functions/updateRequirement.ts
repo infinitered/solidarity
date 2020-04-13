@@ -12,10 +12,7 @@ module.exports = async (
 
   const { print } = context
   const requirementName = head(requirement)
-  const rules = pipe(
-    tail,
-    flatten
-  )(requirement)
+  const rules = pipe(tail, flatten)(requirement)
 
   let ruleString = ''
   const spinner = print.spin(`Updating ${requirementName}`)
@@ -76,7 +73,7 @@ module.exports = async (
   return Promise.all(ruleChecks)
     .then(results => {
       spinner.stop()
-      return results
+      return results as object[]
     })
     .catch(err => print.error(err))
 }

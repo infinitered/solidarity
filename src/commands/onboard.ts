@@ -1,6 +1,6 @@
 import { GluegunCommand } from 'gluegun'
 
-import { SolidarityRunContext } from '../types'
+import { SolidarityRunContext, SolidarityRule } from '../types'
 
 namespace Onboard {
   export const run = async (context: SolidarityRunContext) => {
@@ -38,16 +38,18 @@ namespace Onboard {
 
       printWizard(context)
       let repeat = true
+      let rules: Array<SolidarityRule> = []
       while (repeat) {
         // Find out what they wanted
         let answer = await onboardAdd(context)
         // execute their will
-        await executeAddRule(context, answer)
+        const rule = await executeAddRule(context, answer)
+        rules.push(rule)
         // more?
         repeat = await addMore(context)
       }
 
-      reviewAndSave(context)
+      reviewAndSave(context, rules)
     }
   }
 }

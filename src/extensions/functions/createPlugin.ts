@@ -1,5 +1,9 @@
 module.exports = async context => {
-  let files = [['.gitignore.ejs', '.gitignore'], ['README.md.ejs', 'README.md'], ['package.json.ejs', 'package.json']]
+  let files = [
+    ['.gitignore.ejs', '.gitignore'],
+    ['README.md.ejs', 'README.md'],
+    ['package.json.ejs', 'package.json'],
+  ]
   const { print, template, prompt } = context
   const { colors } = print
 
@@ -23,7 +27,7 @@ module.exports = async context => {
     'Template + optional rules',
   ]
   const answer = await prompt.ask({
-    type: 'list',
+    type: 'select',
     name: 'ruleChoice',
     message: 'Your initial rule file template?',
     choices: ruleChoices,

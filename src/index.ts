@@ -20,7 +20,7 @@ module.exports = async (): Promise<void> => {
   const moduleName = parsedArgs.m || parsedArgs.module
   if (moduleName) cli.plugins(`./node_modules/${moduleName}/node_modules`, { matching: 'solidarity-*', hidden: true })
 
-  cli.create().run()
+  await cli.create().run()
 }
 
 export * from './types'

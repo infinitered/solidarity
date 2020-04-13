@@ -7,7 +7,11 @@ export const createReport = async (context: SolidarityRunContext): Promise<Solid
   const CPU = await envinfo.getCPUInfo()
 
   return {
-    basicInfo: [['System Basics', 'Value'], ['OS', OS], ['CPU', CPU]],
+    basicInfo: [
+      ['System Basics', 'Value'],
+      ['OS', OS],
+      ['CPU', CPU],
+    ],
     cliRules: [['Binary', 'Location', 'Version', 'Desired']],
     envRules: [['Environment Var', 'Value']],
     filesystemRules: [['Location', 'Type', 'Exists']],

@@ -1,7 +1,14 @@
-import { SolidarityRule, SolidarityRequirementChunk, SolidarityRequirement, SolidarityRunContext } from '../../types'
+import {
+  SolidarityRule,
+  SolidarityRequirementChunk,
+  SolidarityRequirement,
+  SolidarityRunContext,
+  SolidarityChecker,
+} from '../../types'
 module.exports = async (
   requirement: SolidarityRequirementChunk,
-  context: SolidarityRunContext
+  context: SolidarityRunContext,
+  shouldRunFix = false
 ): Promise<void | object[]> => {
   const checkCLI = require('./checkCLI')
   const checkENV = require('./checkENV')
@@ -17,10 +24,22 @@ module.exports = async (
   const { head, tail, pipe, flatten } = require('ramda')
 
   const requirementName: string = head(requirement)
-  const rules: SolidarityRequirement = pipe(
-    tail,
-    flatten
-  )(requirement)
+  const rules: SolidarityRequirement = pipe(tail, flatten)(requirement)
+
+  const taskWithFix = (checker: SolidarityChecker, rule: SolidarityRule, context: SolidarityRunContext) => async () => {
+    if (!shouldRunFix) return checker(rule, context)
+    try {
+      const result = await checker(rule, context)
+      return result
+    } catch (error) {
+      if (rule.fix) {
+        await context.system.run(rule.fix)
+        return checker(rule, context)
+      } else {
+        throw new Error('No fix script provided in .solidarity file')
+      }
+    }
+  }
 
   const configureSubtask = rule => {
     let subTask: Object = {}
@@ -33,7 +52,7 @@ module.exports = async (
         subTask = {
           title: ruleString,
           skip: () => skipRule(rule),
-          task: async () => checkCLI(rule, context),
+          task: taskWithFix(checkCLI, rule, context),
         }
         break
       // Handle ENV rule check
@@ -41,7 +60,7 @@ module.exports = async (
         subTask = {
           title: `${rule.variable} env`,
           skip: () => skipRule(rule),
-          task: async () => checkENV(rule, context),
+          task: taskWithFix(checkENV, rule, context),
         }
         break
       // Handle dir rule check
@@ -50,7 +69,7 @@ module.exports = async (
         subTask = {
           title: `${rule.location} directory exists`,
           skip: () => skipRule(rule),
-          task: async () => checkDir(rule, context),
+          task: taskWithFix(checkDir, rule, context),
         }
         break
       // Handle file rule check
@@ -58,7 +77,7 @@ module.exports = async (
         subTask = {
           title: `${rule.location} file exists`,
           skip: () => skipRule(rule),
-          task: async () => checkFile(rule, context),
+          task: taskWithFix(checkFile, rule, context),
         }
         break
       // Handle the shell rule
@@ -66,7 +85,7 @@ module.exports = async (
         subTask = {
           title: `'${rule.command}' matches '${rule.match}'`,
           skip: () => skipRule(rule),
-          task: async () => checkShell(rule, context),
+          task: taskWithFix(checkShell, rule, context),
         }
         break
       case 'custom':
@@ -77,7 +96,7 @@ module.exports = async (
             // takes into account they didn't provide a check
             skip: () => skipRule(rule) || !customPluginRule.plugin.check,
             task: async () => {
-              const customResult = await customPluginRule.plugin.check(rule, context)
+              const customResult = await taskWithFix(customPluginRule.plugin.check, rule, context)()
               if (customResult && customResult.pass) {
                 return true
               } else {

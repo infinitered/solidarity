@@ -39,6 +39,7 @@ Object {
       "key": "command",
     },
   },
+  "setOutputMode": [Function],
   "setSolidaritySettings": [Function],
   "skipRule": [Function],
   "updateRequirement": [Function],

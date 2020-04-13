@@ -1,6 +1,5 @@
-import { SolidarityRunContext } from '../../../../types'
+import { SolidarityRunContext, SolidarityRule } from '../../../../types'
 
-export default async (context: SolidarityRunContext): Promise<void> => {
-  const { print } = context
-  print.info(`kickoff Shell function`)
+export default async (context: SolidarityRunContext): Promise<SolidarityRule> => {
+  return { rule: 'shell', command: '', match: '' }
 }

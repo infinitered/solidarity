@@ -31,7 +31,7 @@ Array [
       ],
       "message": "Which of the above technology snapshots will you use for this project?",
       "name": "selectedRequirement",
-      "type": "list",
+      "type": "select",
     },
   ],
   Array [
