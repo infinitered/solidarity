@@ -27,3 +27,10 @@ test('checkDir throws if no location is set', () => {
     checkDir({}, context)
   }).toThrow()
 })
+
+test('checkDir throws custom error if set', () => {
+  const customError = 'customError'
+  expect(() => {
+    checkDir({ location: 'DOES_NOT_EXIST', error: customError }, context)
+  }).toThrowError(customError)
+})
