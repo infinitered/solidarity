@@ -44,7 +44,7 @@ test('returns message on improper version', async () => {
   context.solidarity.getVersion = () => '1'
   const message = `${outOfDateCLI.binary}: you have '1', but the project requires '${outOfDateCLI.semver}'`
 
-  await expect(checkCLI(outOfDateCLI, context)).rejects.toThrow()
+  await expect(checkCLI(outOfDateCLI, context)).rejects.toThrowError(message)
 })
 
 test('returns message with injected versions', async () => {
@@ -52,5 +52,5 @@ test('returns message with injected versions', async () => {
   solidarityExtension(context)
   context.solidarity.getVersion = () => '7.5'
 
-  await expect(checkCLI(injectVersion, context)).rejects.toThrow()
+  await expect(checkCLI(injectVersion, context)).rejects.toThrowError(message)
 })
