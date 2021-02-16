@@ -1,6 +1,6 @@
 {
   "name": "solidarity",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Make sure all React Native dependencies are uniform across machines",
   "repository": "https://github.com/infinitered/solidarity",
   "bin": {
