@@ -38,7 +38,7 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "envinfo": "7.5.0",
-    "gluegun": "4.2.0",
+    "gluegun": "^4.6.1",
     "json5": "2.1.1",
     "listr": "^0.14.3",
     "minimist": "^1.2.0",
