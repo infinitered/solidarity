@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var devMode = require('fs').existsSync(`${__dirname}/../src`)
 // used for integration tests
 var useCompiled = process.argv.indexOf('--compiled') >= 0
