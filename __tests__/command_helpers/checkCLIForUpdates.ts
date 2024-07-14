@@ -1,6 +1,6 @@
 import checkCLIForUpdates from '../../src/extensions/functions/checkCLIForUpdates'
 
-import * as context from 'gluegun/toolbox'
+const context = require('mockContext')
 const rule = {
   rule: 'cli',
   binary: 'bananas',

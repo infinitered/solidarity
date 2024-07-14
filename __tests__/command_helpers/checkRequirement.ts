@@ -24,7 +24,7 @@ const checkFile = require('../../src/extensions/functions/checkFile')
 jest.mock('../../src/extensions/functions/checkShell')
 const checkShell = require('../../src/extensions/functions/checkShell')
 
-const context = require('gluegun/toolbox')
+const context = require('mockContext')
 
 const badRule = toPairs({
   YARN: [{ rule: 'knope', binary: 'yarn' }],
